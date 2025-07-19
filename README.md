@@ -1,6 +1,14 @@
-# 老板IP打造方案生成器
+# 🚀 Starlight Media Generator
 
-基于硅基流动DeepSeek-V3等多种AI模型的智能方案生成系统。
+> AI驱动的企业IP打造方案生成器 | AI-Powered Business IP Development Solution Generator
+
+基于硅基流动DeepSeek-V3等多种AI模型的智能方案生成系统，专为中小企业老板IP打造而设计。
+
+[![Next.js](https://img.shields.io/badge/Next.js-15.1.3-black?logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.0.0-blue?logo=react)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7.2-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.17-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
+[![pnpm](https://img.shields.io/badge/pnpm-8.15.0-orange?logo=pnpm)](https://pnpm.io/)
 
 ## 🚀 项目特点
 
