@@ -194,13 +194,17 @@ SILICONFLOW_API_KEY=your_api_key_here
   "dependencies": {
     "docx": "^9.5.1",           // Word文档生成
     "file-saver": "^2.0.5",     // 文件下载
-    "jspdf": "^3.0.1"           // PDF文档生成
+    "jspdf": "^3.0.1",          // PDF文档生成
+    "postcss": "^8.5.1",        // CSS处理工具（生产依赖）
+    "tailwindcss": "^3.4.17"    // CSS框架（生产依赖）
   },
   "devDependencies": {
     "@types/file-saver": "^2.0.7"  // TypeScript类型定义
   }
 }
 ```
+
+**重要说明**: PostCSS和Tailwind CSS已移至生产依赖，确保在Vercel等部署平台上的样式构建正常工作。
 
 ### 5. 验证和测试
 
@@ -849,6 +853,13 @@ node scripts/test-cache.js
 - **prebuild钩子**: 在构建前自动运行cleanup脚本，确保生产版本不包含测试文件
 
 ## 📝 更新日志
+
+### v1.0.60 (2025-01-19)
+- ✅ 优化依赖配置，将PostCSS和Tailwind CSS移至生产依赖
+- ✅ 修复Vercel部署时的样式构建问题，确保CSS处理工具在生产环境可用
+- ✅ 提升部署稳定性，避免样式相关的构建失败
+- ✅ 优化依赖管理策略，确保所有必需工具在部署时可用
+- ✅ 更新文档以反映依赖配置的最新变更
 
 ### v1.0.59 (2025-01-19)
 - ✅ 优化Next.js配置，移除开发指示器配置，提升构建稳定性

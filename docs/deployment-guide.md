@@ -86,7 +86,16 @@ git commit -m "更新依赖锁定文件"
 git push
 ```
 
-### 问题3：构建超时
+### 问题3：样式构建失败
+**错误**: `Module not found: Can't resolve 'postcss'` 或 `tailwindcss not found`
+
+**解决方案**:
+项目已将PostCSS和Tailwind CSS移至生产依赖，确保部署时可用：
+- PostCSS和Tailwind CSS现在是生产依赖，不会在部署时被排除
+- 如遇到样式相关构建错误，检查依赖配置是否正确
+- 确保`postcss.config.mjs`和`tailwind.config.ts`配置文件存在
+
+### 问题4：构建超时
 **解决方案**:
 1. 检查 `vercel.json` 配置
 2. 确保没有无限循环或大文件
