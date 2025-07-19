@@ -1,5 +1,61 @@
 # 项目改动日志
 
+## 📅 2025-01-19 - Next.js配置路径别名恢复：提升开发体验
+
+### 🎯 变更目标
+恢复Next.js配置中的完整路径别名配置，提升开发体验和代码可读性。
+
+### 📄 具体变更
+- **新增ES模块支持**: 添加`import path from 'path'`和`fileURLToPath`支持
+- **恢复webpack配置**: 重新启用完整的路径别名配置
+- **路径别名完整性**: 恢复`@`、`@/components`、`@/lib`、`@/hooks`、`@/app`别名
+- **配置注释**: 添加中文注释说明路径别名配置的作用
+
+### 🔍 影响分析
+- **开发体验**: 恢复便捷的模块导入路径，提升开发效率
+- **代码可读性**: 清晰的导入路径，便于代码维护和理解
+- **模块解析**: 优化的webpack配置，提升模块解析性能
+- **向后兼容**: 确保现有代码中的路径别名导入正常工作
+
+### 🎯 技术细节
+```javascript
+// 恢复的路径别名配置
+config.resolve.alias = {
+  ...config.resolve.alias,
+  '@': __dirname,
+  '@/components': path.resolve(__dirname, 'components'),
+  '@/lib': path.resolve(__dirname, 'lib'),
+  '@/hooks': path.resolve(__dirname, 'hooks'),
+  '@/app': path.resolve(__dirname, 'app'),
+}
+```
+
+### 🚨 重要提醒
+- 现在可以正常使用`import { Component } from '@/components/...'`等路径别名
+- 所有现有的路径别名导入都应该正常工作
+- 提升了开发体验和代码组织的清晰度
+
+## 📅 2025-01-19 - 移除prebuild自动清理钩子：简化构建流程
+
+### 🎯 变更目标
+移除package.json中的prebuild自动清理钩子，简化构建流程，给开发者更多控制权。
+
+### 📄 具体变更
+- **移除prebuild钩子**: 删除 `"prebuild": "pnpm run cleanup"` 配置
+- **改为手动清理**: 开发者需要在构建前手动运行 `pnpm run cleanup`
+- **更新文档**: 更新README.md和开发规则文档，反映新的构建流程
+- **创建规则文档**: 新增 `docs/development-rules.md` 和 `docs/project-maintenance.md`
+
+### 🔍 影响分析
+- **构建流程**: 构建时不再自动清理测试文件，需要手动执行
+- **开发者控制**: 给开发者更多选择权，可以决定何时清理测试文件
+- **文档更新**: 所有相关文档已更新，反映新的操作流程
+- **规则遵循**: 需要加强手动清理流程的监督和提醒
+
+### 🚨 重要提醒
+- 构建前请手动运行 `pnpm run cleanup` 清理测试文件
+- 新的构建流程：`pnpm run cleanup` → `pnpm build` → `pnpm start`
+
 ## 📅 2025-01-19 - Next.js配置简化：解决内存问题和提升构建稳定性
 
 ### 🎯 优化目标

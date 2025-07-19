@@ -15,13 +15,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // 简化构建配置，避免内存问题
-  experimental: {
-    optimizeCss: false,
-  },
-  // Webpack配置
+  // 恢复路径别名配置
   webpack: (config) => {
-    // 路径别名
     config.resolve.alias = {
       ...config.resolve.alias,
       '@': __dirname,
@@ -30,7 +25,6 @@ const nextConfig = {
       '@/hooks': path.resolve(__dirname, 'hooks'),
       '@/app': path.resolve(__dirname, 'app'),
     }
-    
     return config
   },
 }
