@@ -1,0 +1,39 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# debug
+.pnpm-debug.log*
+
+# env files
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# temporary files and directories (per project rules)
+/temp/
+/test-output/
+
+# development and testing files
+dev.log
+dev.md
+test-*.html
+test-*.tsx
+test-*.js
+
+# IDE and editor files
+.vscode/
+.idea/
