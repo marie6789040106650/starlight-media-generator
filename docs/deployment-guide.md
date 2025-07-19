@@ -1,176 +1,177 @@
 # 🚀 部署指南
 
-本文档提供了Starlight Media Generator项目的完整部署指南，包括本地部署、生产环境部署和云平台部署。
+## 概述
+
+本项目是一个基于Next.js 15的AI驱动的老板IP打造方案生成器，支持多种部署方式。推荐使用Vercel进行部署，可获得最佳性能和用户体验。
 
 ## 📋 部署前准备
 
-### 环境要求
-- **Node.js**: >= 18.0.0
-- **pnpm**: >= 8.0.0 (推荐使用 pnpm@8.15.0)
-- **操作系统**: macOS, Linux, Windows
+### 1. 环境要求
+- Node.js >= 18.0.0
+- pnpm >= 8.0.0
+- Git
 
-### 必需的API密钥
+### 2. 项目检查
+运行以下命令确保项目准备就绪：
+
+```bash
+# 清理测试文件
+pnpm run cleanup
+
+# 验证导入路径
+node scripts/verify-imports.js
+
+# 本地构建测试
+pnpm build
+```
+
+## 🎯 Vercel部署（推荐）
+
+### 步骤1：准备代码仓库
+确保代码已推送到GitHub：
+
+```bash
+git add .
+git commit -m "准备部署"
+git push origin main
+```
+
+### 步骤2：Vercel配置
+1. 访问 [vercel.com](https://vercel.com)
+2. 使用GitHub账号登录
+3. 点击 "New Project"
+4. 选择你的仓库并导入
+
+### 步骤3：部署设置
+Vercel会自动检测配置，确认以下设置：
+
+- **Framework**: Next.js ✅
+- **Root Directory**: `./` ✅
+- **Build Command**: `pnpm build` ✅
+- **Install Command**: `pnpm install` ✅
+- **Output Directory**: `.next` ✅
+
+### 步骤4：环境变量
+在Vercel项目设置中添加环境变量：
+
 ```env
-# 硅基流动 API 配置
-SILICONFLOW_API_KEY=your_api_key_here
+SILICONFLOW_API_KEY=你的硅基流动API密钥
+NEXT_PUBLIC_API_BASE_URL=https://api.siliconflow.cn
+NODE_ENV=production
 ```
 
-## 🏠 本地部署
+### 步骤5：部署
+点击 "Deploy" 按钮开始部署。
 
-### 1. 克隆项目
+## 🔧 常见部署问题解决
+
+### 问题1：模块找不到
+**错误**: `Module not found: Can't resolve '@/lib/models'`
+
+**解决方案**:
+1. 检查 `tsconfig.json` 路径配置
+2. 确保所有文件都已提交到Git
+3. 运行验证脚本：`node scripts/verify-imports.js`
+
+### 问题2：依赖安装失败
+**错误**: `ERR_PNPM_OUTDATED_LOCKFILE`
+
+**解决方案**:
 ```bash
-git clone <your-repo-url>
+# 删除锁定文件并重新安装
+rm pnpm-lock.yaml
+pnpm install
+git add pnpm-lock.yaml
+git commit -m "更新依赖锁定文件"
+git push
+```
+
+### 问题3：构建超时
+**解决方案**:
+1. 检查 `vercel.json` 配置
+2. 确保没有无限循环或大文件
+3. 优化构建命令
+
+## 🏗️ 其他部署方式
+
+### Docker部署
+
+创建 `Dockerfile`：
+```dockerfile
+FROM node:18-alpine
+
+WORKDIR /app
+
+# 安装pnpm
+RUN npm install -g pnpm@8.15.0
+
+# 复制依赖文件
+COPY package.json pnpm-lock.yaml ./
+
+# 安装依赖
+RUN pnpm install --frozen-lockfile
+
+# 复制源码
+COPY . .
+
+# 构建应用
+RUN pnpm build
+
+EXPOSE 3000
+
+CMD ["pnpm", "start"]
+```
+
+构建和运行：
+```bash
+docker build -t starlight-media .
+docker run -p 3000:3000 starlight-media
+```
+
+### 服务器部署
+
+```bash
+# 1. 克隆代码
+git clone your-repo-url
 cd starlight-media-generator
-```
 
-### 2. 安装依赖
-```bash
-# 使用pnpm（推荐）
+# 2. 安装依赖
 pnpm install
 
-# 或使用npm
-npm install
-```
-
-### 3. 环境配置
-```bash
-# 复制环境变量模板
-cp .env.local.example .env.local
-
-# 编辑环境变量
-nano .env.local
-```
-
-### 4. 验证配置
-```bash
-# 验证AI模型可用性
-node scripts/verify-models.js
-
-# 运行健康检查
-pnpm run health-check
-
-# 测试核心功能
-node scripts/test-core-functionality.js
-```
-
-### 5. 启动开发服务器
-```bash
-# 智能启动（推荐）
-pnpm run smart-dev
-
-# 或标准启动
-pnpm dev
-```
-
-访问 http://localhost:3000
-
-## 🏭 生产环境部署
-
-### 1. 构建项目
-```bash
-# 构建生产版本（自动清理测试文件）
+# 3. 构建项目
 pnpm build
 
-# 验证构建结果
-ls -la .next/
-```
-
-### 2. 启动生产服务器
-```bash
-# 启动生产服务器
-pnpm start
-
-# 或使用PM2管理进程
+# 4. 使用PM2管理进程
+npm install -g pm2
 pm2 start npm --name "starlight-media" -- start
+pm2 save
+pm2 startup
 ```
 
-### 3. 生产环境优化
+## 📊 部署后验证
+
+### 功能检查清单
+- [ ] 页面正常加载
+- [ ] 表单提交功能正常
+- [ ] AI模型选择工作正常
+- [ ] 方案生成功能正常
+- [ ] 导出功能正常（如果启用）
+- [ ] 响应式设计正常
+
+### 性能检查
 ```bash
-# 设置生产环境变量
-export NODE_ENV=production
+# 使用Lighthouse检查性能
+npx lighthouse https://your-domain.vercel.app
 
-# 优化内存使用
-export NODE_OPTIONS="--max-old-space-size=2048"
+# 检查构建大小
+pnpm build
 ```
 
-## ☁️ Vercel部署
+## 🔧 Next.js配置优化
 
-项目已配置Vercel部署支持，包含完整的`vercel.json`配置。
+### 配置文件说明 (`next.config.mjs`)
+项目使用了优化的Next.js配置，确保最佳的构建和部署体验：
 
-### 1. Vercel配置
-```json
-{
-  "buildCommand": "pnpm build",
-  "devCommand": "pnpm dev", 
-  "installCommand": "pnpm install",
-  "framework": "nextjs",
-  "functions": {
-    "app/api/**/*.ts": {
-      "maxDuration": 30
-    }
-  }
-}
-```
-
-### 2. 部署步骤
-```bash
-# 安装Vercel CLI
-npm i -g vercel
-
-# 登录Vercel
-vercel login
-
-# 部署项目
-vercel --prod
-```
-
-### 3. 环境变量配置
-在Vercel Dashboard中配置：
-- `SILICONFLOW_API_KEY`: 硅基流动API密钥
-- `NODE_ENV`: production
-
-### 4. 域名配置
-- 在Vercel Dashboard中配置自定义域名
-- 确保DNS记录正确指向Vercel
-
-## 🐳 Docker部署
-
-### 1. 构建Docker镜像
-```bash
-# 构建应用镜像
-docker build -t starlight-media-generator .
-
-# 构建PDF服务镜像
-docker build -f docker/Dockerfile.pdf-service -t starlight-pdf-service .
-```
-
-### 2. 使用Docker Compose
-```bash
-# 启动所有服务
-docker-compose up -d
-
-# 查看服务状态
-docker-compose ps
-
-# 查看日志
-docker-compose logs -f
-```
-
-### 3. PDF服务部署
-```bash
-# 启动PDF服务
-pnpm run pdf:docker
-
-# 测试PDF服务
-pnpm run pdf:test
-
-# 停止PDF服务
-pnpm run pdf:docker-stop
-```
-
-## 🔧 部署配置
-
-### Next.js配置 (`next.config.mjs`)
 ```javascript
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -201,155 +202,76 @@ const nextConfig = {
 export default nextConfig
 ```
 
-### 安全配置
-项目已包含基础安全头配置：
-- `X-Content-Type-Options: nosniff`
-- `X-Frame-Options: DENY`
-- `X-XSS-Protection: 1; mode=block`
+### 配置项详解
+- **eslint.ignoreDuringBuilds**: 构建时忽略ESLint错误，提升构建速度和稳定性
+- **typescript.ignoreBuildErrors**: 构建时忽略TypeScript错误，确保部署成功
+- **images.unoptimized**: 禁用Next.js图片优化，适用于静态部署环境
+- **experimental.esmExternals**: 启用ESM外部模块支持，改善模块解析和兼容性
+- **rewrites**: 配置URL重写规则，当前为空数组，可根据需要扩展
 
-## 📊 性能监控
+### 配置优势
+1. **构建稳定性**: 忽略非关键错误，确保部署成功
+2. **模块兼容性**: ESM外部模块支持提升第三方库兼容性
+3. **部署适配**: 针对Vercel等平台优化的配置
+4. **性能优化**: 合理的资源处理策略
 
-### 1. 应用监控
-```bash
-# 性能测试
-node scripts/performance-test.js
+## 🔒 安全配置
 
-# PDF性能测试
-pnpm run pdf:test-performance
+### 环境变量安全
+- 永远不要在代码中硬编码API密钥
+- 使用Vercel的环境变量功能
+- 定期轮换API密钥
 
-# 缓存测试
-pnpm run pdf:test-cache
-```
+### 内容保护
+项目内置了内容保护功能：
+- 禁用复制粘贴
+- 阻止开发者工具
+- 防止内容选择
 
-### 2. 日志监控
-```bash
-# 查看应用日志
-tail -f logs/app.log
+## 📈 监控和维护
 
-# 查看错误日志
-tail -f logs/error.log
-```
+### Vercel Analytics
+启用Vercel Analytics获取访问数据：
+1. 在Vercel项目设置中启用Analytics
+2. 查看实时访问统计
+3. 监控性能指标
 
-### 3. 健康检查
-```bash
-# 定期健康检查
-pnpm run health-check
-
-# 核心功能测试
-node scripts/test-core-functionality.js
-```
+### 错误监控
+建议集成错误监控服务：
+- Sentry
+- LogRocket
+- Vercel的内置错误追踪
 
 ## 🚨 故障排除
 
-### 常见问题
+### 构建失败
+1. 检查构建日志
+2. 验证所有依赖都已安装
+3. 确保环境变量正确设置
+4. 运行本地构建测试
 
-#### 1. 构建失败
-```bash
-# 清理缓存
-rm -rf .next node_modules
-pnpm install
-pnpm build
-```
+### 运行时错误
+1. 检查Vercel函数日志
+2. 验证API密钥有效性
+3. 检查网络连接
+4. 查看浏览器控制台错误
 
-#### 2. API调用失败
-```bash
-# 验证API密钥
-node scripts/verify-models.js
+## 📞 获取帮助
 
-# 检查网络连接
-curl -I https://api.siliconflow.cn/v1/models
-```
-
-#### 3. PDF生成失败
-```bash
-# 安装LibreOffice
-pnpm run pdf:install
-
-# 测试PDF服务
-pnpm run pdf:test
-```
-
-#### 4. 内存不足
-```bash
-# 增加Node.js内存限制
-export NODE_OPTIONS="--max-old-space-size=4096"
-```
-
-### 日志分析
-```bash
-# 查看详细错误信息
-NODE_ENV=development pnpm dev
-
-# 启用调试模式
-DEBUG=* pnpm dev
-```
-
-## 🔄 更新部署
-
-### 1. 代码更新
-```bash
-# 拉取最新代码
-git pull origin main
-
-# 安装新依赖
-pnpm install
-
-# 重新构建
-pnpm build
-```
-
-### 2. 零停机更新
-```bash
-# 使用PM2进行零停机更新
-pm2 reload starlight-media
-
-# 或使用Docker滚动更新
-docker-compose up -d --no-deps app
-```
-
-### 3. 回滚策略
-```bash
-# Git回滚
-git revert <commit-hash>
-pnpm build
-pm2 restart starlight-media
-
-# Docker回滚
-docker tag starlight-media-generator:backup starlight-media-generator:latest
-docker-compose up -d
-```
-
-## 📋 部署检查清单
-
-### 部署前检查
-- [ ] 环境变量配置完成
-- [ ] API密钥有效性验证
-- [ ] 依赖安装完成
-- [ ] 构建成功
-- [ ] 测试通过
-
-### 部署后检查
-- [ ] 应用正常启动
-- [ ] API接口响应正常
-- [ ] PDF生成功能正常
-- [ ] 静态资源加载正常
-- [ ] 错误日志无异常
-
-### 定期维护
-- [ ] 定期更新依赖
-- [ ] 监控API使用量
-- [ ] 清理临时文件
-- [ ] 备份重要数据
-- [ ] 性能监控检查
-
-## 📞 技术支持
-
-如遇到部署问题：
-1. 查看本文档的故障排除部分
-2. 运行相关测试脚本诊断问题
-3. 查看应用日志获取详细错误信息
-4. 提交Issue并附上详细的错误信息和环境配置
+如果遇到部署问题：
+1. 查看Vercel官方文档
+2. 检查项目的GitHub Issues
+3. 运行项目健康检查：`pnpm run health-check`
+4. 联系技术支持
 
 ---
 
-**注意**: 部署前请确保已阅读并理解项目的[开发规则](development-rules.md)和[维护指南](project-maintenance.md)。
+## 🎉 部署成功！
+
+部署完成后，你将获得：
+- 全球CDN加速的网站
+- 自动HTTPS证书
+- 无服务器函数支持
+- 自动部署流水线
+
+访问你的网站开始使用AI驱动的IP打造方案生成器吧！

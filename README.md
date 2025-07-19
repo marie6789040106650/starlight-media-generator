@@ -850,6 +850,13 @@ node scripts/test-cache.js
 
 ## 📝 更新日志
 
+### v1.0.59 (2025-01-19)
+- ✅ 优化Next.js配置，移除开发指示器配置，提升构建稳定性
+- ✅ 新增ESM外部模块支持（experimental.esmExternals），改善模块解析
+- ✅ 更新部署配置文档，反映最新的Next.js配置状态
+- ✅ 提升项目构建兼容性和模块加载性能
+- ✅ 确保路径解析的正确性和一致性
+
 ### v1.0.58 (2025-01-19)
 - ✅ 优化依赖管理，移除未使用的`@radix-ui/react-textarea`依赖
 - ✅ 确认项目使用自定义Textarea组件（基于原生HTML textarea元素）
