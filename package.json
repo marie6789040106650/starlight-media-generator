@@ -1,6 +1,6 @@
 {
   "name": "starlight-media-generator",
-  "version": "1.0.58",
+  "version": "1.0.60",
   "private": true,
   "packageManager": "pnpm@8.15.0",
   "engines": {

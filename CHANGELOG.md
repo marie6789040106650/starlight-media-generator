@@ -1,5 +1,48 @@
 # 项目改动日志
 
+## 📅 2025-01-19 - 依赖配置优化：PostCSS和Tailwind CSS移至生产依赖
+
+### 🎯 优化目标
+解决Vercel部署时的样式构建问题，将PostCSS和Tailwind CSS从开发依赖移至生产依赖，确保CSS处理工具在部署时可用。
+
+### 📄 具体变更
+- **依赖迁移**: 将 `postcss` 和 `tailwindcss` 从 `devDependencies` 移动到 `dependencies`
+- **版本更新**: 项目版本从v1.0.58升级到v1.0.60
+- **配置验证**: 更新部署检查脚本，验证关键依赖位置
+- **文档更新**: 更新README.md、部署指南和相关文档
+
+### 🔍 影响分析
+- **部署稳定性**: 解决Vercel等平台部署时的样式构建失败问题
+- **构建一致性**: 确保开发和生产环境的依赖配置一致
+- **最佳实践**: 与现代前端项目的依赖管理标准保持一致
+- **维护成本**: 减少因依赖配置导致的部署问题和故障排除时间
+
+### 📊 技术细节
+- **移动依赖**: 
+  - `postcss: ^8.5.1` (devDependencies → dependencies)
+  - `tailwindcss: ^3.4.17` (devDependencies → dependencies)
+- **配置文件**: 确保 `postcss.config.mjs` 和 `tailwind.config.ts` 存在
+- **验证脚本**: 更新 `scripts/deployment-check.sh` 检查依赖位置
+- **文档同步**: 创建 `docs/DEPENDENCY_UPDATE_v1.0.60.md` 详细说明文档
+
+### 🎯 解决的问题
+- ✅ Vercel部署时的 "Module not found: Can't resolve 'postcss'" 错误
+- ✅ 样式构建失败导致的部署中断问题
+- ✅ 开发和生产环境依赖不一致的问题
+- ✅ CSS处理工具在生产构建时不可用的问题
+
+### 🔄 验证方法
+```bash
+# 检查依赖配置
+pnpm run deployment-check
+
+# 本地构建测试
+pnpm build
+
+# 验证样式构建
+pnpm dev
+```
+
 ## 📅 2025-01-19 - 依赖优化：移除未使用的@radix-ui/react-textarea
 
 ### 🎯 优化目标

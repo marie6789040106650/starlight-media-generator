@@ -37,6 +37,22 @@ else
     exit 1
 fi
 
+# 检查关键依赖是否在正确位置
+echo "4️⃣ 检查生产依赖..."
+if grep -q '"tailwindcss"' package.json && grep -A 30 '"dependencies"' package.json | grep -q '"tailwindcss"'; then
+    echo "✅ tailwindcss 在生产依赖中"
+else
+    echo "❌ tailwindcss 应该在 dependencies 中，不是 devDependencies"
+    exit 1
+fi
+
+if grep -q '"postcss"' package.json && grep -A 30 '"dependencies"' package.json | grep -q '"postcss"'; then
+    echo "✅ postcss 在生产依赖中"
+else
+    echo "❌ postcss 应该在 dependencies 中，不是 devDependencies"
+    exit 1
+fi
+
 # 5. 检查环境变量模板
 echo "5️⃣ 检查环境变量..."
 if [ -f ".env.example" ]; then
