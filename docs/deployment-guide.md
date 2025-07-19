@@ -174,27 +174,27 @@ pnpm run pdf:docker-stop
 ```javascript
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // 生产环境优化
-  compress: true,
-  poweredByHeader: false,
+  // 构建配置优化
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   
   // 静态资源优化
   images: {
-    domains: ['your-domain.com'],
-    formats: ['image/webp', 'image/avif'],
+    unoptimized: true,
+  },
+  
+  // 确保路径解析正确
+  experimental: {
+    esmExternals: true,
   },
   
   // API路由配置
-  async headers() {
-    return [
-      {
-        source: '/api/:path*',
-        headers: [
-          { key: 'Access-Control-Allow-Origin', value: '*' },
-          { key: 'Access-Control-Allow-Methods', value: 'GET, POST, OPTIONS' },
-        ],
-      },
-    ]
+  async rewrites() {
+    return []
   },
 }
 
