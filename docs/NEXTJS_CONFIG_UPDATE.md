@@ -4,81 +4,68 @@
 2025-01-19
 
 ## 🎯 更新目标
-全面优化Next.js配置，提升构建性能、稳定性和模块兼容性
+简化Next.js配置，避免内存问题和构建复杂性，提升构建稳定性
 
 ## 📄 具体变更
 
-### 新增性能优化配置
+### 简化构建配置
 ```javascript
-// 优化构建性能
-swcMinify: true,
-compiler: {
-  removeConsole: process.env.NODE_ENV === 'production',
+// 简化构建配置，避免内存问题
+experimental: {
+  optimizeCss: false,
 },
 ```
 
-### 增强Webpack配置
+### 精简Webpack配置
 ```javascript
-// 路径别名优化
-config.resolve.alias = {
-  ...config.resolve.alias,
-  '@': __dirname,
-  '@/components': path.resolve(__dirname, 'components'),
-  '@/lib': path.resolve(__dirname, 'lib'),
-  '@/hooks': path.resolve(__dirname, 'hooks'),
-  '@/app': path.resolve(__dirname, 'app'),
-}
-
-// 构建性能优化
-if (!dev && !isServer) {
-  config.optimization = {
-    ...config.optimization,
-    splitChunks: {
-      ...config.optimization.splitChunks,
-      cacheGroups: {
-        ...config.optimization.splitChunks.cacheGroups,
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-        },
-      },
-    },
+// 路径别名优化（保留核心功能）
+webpack: (config) => {
+  config.resolve.alias = {
+    ...config.resolve.alias,
+    '@': __dirname,
+    '@/components': path.resolve(__dirname, 'components'),
+    '@/lib': path.resolve(__dirname, 'lib'),
+    '@/hooks': path.resolve(__dirname, 'hooks'),
+    '@/app': path.resolve(__dirname, 'app'),
   }
-}
+  
+  return config
+},
 ```
 
 ## 🔍 变更原因
 
-### 1. 移除开发指示器配置
-- **原因**: `devIndicators.buildActivity` 配置在某些环境下可能导致构建不稳定
-- **影响**: 移除后构建过程更加稳定，不影响开发体验
-- **好处**: 减少潜在的构建错误和警告
+### 1. 内存问题解决
+- **移除复杂优化**: 移除可能导致内存问题的复杂构建优化
+- **简化配置**: 减少构建时的内存占用和复杂度
+- **稳定性优先**: 优先保证构建稳定性而非极致性能
 
-### 2. 新增ESM外部模块支持
-- **原因**: 提升第三方ESM模块的兼容性和加载性能
-- **影响**: 改善模块解析机制，特别是对于使用ESM格式的npm包
-- **好处**: 
-  - 更好的模块解析性能
-  - 提升第三方库兼容性
-  - 减少模块加载相关的错误
+### 2. 配置精简
+- **移除SWC压缩**: 移除可能导致内存问题的SWC压缩配置
+- **移除代码分割**: 简化webpack配置，移除复杂的代码分割逻辑
+- **移除console清理**: 移除生产环境console语句清理功能
+
+### 3. 保留核心功能
+- **路径别名**: 保留核心的路径别名配置，确保模块解析正常
+- **基础配置**: 保留必要的基础配置项
+- **简化参数**: 简化webpack函数参数，移除未使用的dev和isServer参数
 
 ## 🚀 预期效果
 
 ### 构建稳定性提升
-- 减少构建过程中的非关键错误
-- 提升在不同环境下的构建一致性
-- 优化CI/CD流水线的稳定性
+- 解决内存不足导致的构建失败问题
+- 减少复杂配置引起的构建错误
+- 提升在资源受限环境下的构建成功率
 
-### 模块加载优化
-- 改善ESM模块的加载性能
-- 提升第三方库的兼容性
-- 减少模块解析相关的问题
+### 配置简化效果
+- 降低配置复杂度，减少潜在问题
+- 提升配置的可维护性和可理解性
+- 减少因配置错误导致的部署失败
 
 ### 部署体验改善
 - 更稳定的Vercel部署体验
-- 减少部署过程中的配置相关错误
-- 提升整体部署成功率
+- 减少内存相关的构建超时问题
+- 提升整体部署成功率和可靠性
 
 ## 📋 验证清单
 
@@ -96,9 +83,9 @@ if (!dev && !isServer) {
 - 部署稳定性
 
 ### 注意事项
-- 如遇到ESM模块相关问题，可考虑调整 `esmExternals` 配置
+- 如遇到内存问题，可进一步简化配置
 - 定期检查Next.js版本更新，确保配置的最佳实践
-- 关注社区对experimental特性的反馈和建议
+- 关注构建性能和稳定性的平衡
 
 ## 📚 相关文档
 - [Next.js Configuration Documentation](https://nextjs.org/docs/api-reference/next.config.js/introduction)

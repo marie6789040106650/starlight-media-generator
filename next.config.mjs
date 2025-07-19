@@ -15,12 +15,12 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // 优化构建性能
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
+  // 简化构建配置，避免内存问题
+  experimental: {
+    optimizeCss: false,
   },
   // Webpack配置
-  webpack: (config, { dev, isServer }) => {
+  webpack: (config) => {
     // 路径别名
     config.resolve.alias = {
       ...config.resolve.alias,
@@ -31,29 +31,7 @@ const nextConfig = {
       '@/app': path.resolve(__dirname, 'app'),
     }
     
-    // 优化构建性能
-    if (!dev && !isServer) {
-      config.optimization = {
-        ...config.optimization,
-        splitChunks: {
-          ...config.optimization.splitChunks,
-          cacheGroups: {
-            ...config.optimization.splitChunks.cacheGroups,
-            vendor: {
-              test: /[\\/]node_modules[\\/]/,
-              name: 'vendors',
-              chunks: 'all',
-            },
-          },
-        },
-      }
-    }
-    
     return config
-  },
-  // 如果需要自定义服务器配置，可以在这里添加
-  async rewrites() {
-    return []
   },
 }
 

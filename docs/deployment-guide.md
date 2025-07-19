@@ -179,7 +179,7 @@ pnpm build
 ## 🔧 Next.js配置优化
 
 ### 配置文件说明 (`next.config.mjs`)
-项目使用了优化的Next.js配置，确保最佳的构建和部署体验：
+项目使用了简化的Next.js配置，确保构建稳定性和部署成功：
 
 ```javascript
 /** @type {import('next').NextConfig} */
@@ -197,14 +197,24 @@ const nextConfig = {
     unoptimized: true,
   },
   
-  // 确保路径解析正确
+  // 简化构建配置，避免内存问题
   experimental: {
-    esmExternals: true,
+    optimizeCss: false,
   },
   
-  // API路由配置
-  async rewrites() {
-    return []
+  // Webpack配置
+  webpack: (config) => {
+    // 路径别名
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': __dirname,
+      '@/components': path.resolve(__dirname, 'components'),
+      '@/lib': path.resolve(__dirname, 'lib'),
+      '@/hooks': path.resolve(__dirname, 'hooks'),
+      '@/app': path.resolve(__dirname, 'app'),
+    }
+    
+    return config
   },
 }
 
@@ -215,14 +225,15 @@ export default nextConfig
 - **eslint.ignoreDuringBuilds**: 构建时忽略ESLint错误，提升构建速度和稳定性
 - **typescript.ignoreBuildErrors**: 构建时忽略TypeScript错误，确保部署成功
 - **images.unoptimized**: 禁用Next.js图片优化，适用于静态部署环境
-- **experimental.esmExternals**: 启用ESM外部模块支持，改善模块解析和兼容性
-- **rewrites**: 配置URL重写规则，当前为空数组，可根据需要扩展
+- **experimental.optimizeCss**: 禁用CSS优化，避免内存问题
+- **webpack路径别名**: 保留核心的模块路径别名配置
 
 ### 配置优势
-1. **构建稳定性**: 忽略非关键错误，确保部署成功
-2. **模块兼容性**: ESM外部模块支持提升第三方库兼容性
-3. **部署适配**: 针对Vercel等平台优化的配置
-4. **性能优化**: 合理的资源处理策略
+1. **构建稳定性**: 简化配置减少构建失败风险
+2. **内存优化**: 移除内存密集型优化，适合资源受限环境
+3. **开发体验**: 保留核心路径别名配置，维持开发效率
+4. **部署适配**: 针对Vercel等平台的稳定性优化
+5. **维护简化**: 精简配置提升可维护性
 
 ## 🔒 安全配置
 

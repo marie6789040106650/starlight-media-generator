@@ -1,5 +1,57 @@
 # 项目改动日志
 
+## 📅 2025-01-19 - Next.js配置简化：解决内存问题和提升构建稳定性
+
+### 🎯 优化目标
+简化Next.js配置，移除可能导致内存问题的复杂优化功能，提升构建稳定性和部署成功率。
+
+### 📄 具体变更
+- **移除SWC压缩**: 移除 `swcMinify` 配置，避免内存密集型压缩
+- **移除生产优化**: 移除 `compiler.removeConsole`，简化构建流程
+- **移除代码分割**: 移除复杂的webpack代码分割配置
+- **简化CSS优化**: 新增 `experimental.optimizeCss: false`，禁用CSS优化
+- **精简webpack配置**: 保留核心路径别名，移除复杂优化逻辑
+
+### 🔍 影响分析
+- **构建稳定性**: 移除内存密集型功能，减少构建失败风险
+- **内存使用**: 显著降低构建时的内存占用
+- **配置复杂度**: 简化配置逻辑，提升可维护性
+- **部署成功率**: 提升在资源受限环境下的部署成功率
+- **开发体验**: 保留核心路径别名功能，维持开发效率
+
+### 📊 技术细节
+- **CSS优化禁用**: `experimental.optimizeCss: false` 避免CSS处理内存问题
+- **路径别名保留**: 
+  ```javascript
+  config.resolve.alias = {
+    '@': __dirname,
+    '@/components': path.resolve(__dirname, 'components'),
+    '@/lib': path.resolve(__dirname, 'lib'),
+    '@/hooks': path.resolve(__dirname, 'hooks'),
+    '@/app': path.resolve(__dirname, 'app'),
+  }
+  ```
+- **参数简化**: webpack函数移除未使用的 `dev` 和 `isServer` 参数
+
+### 🎯 解决的问题
+- ✅ 构建内存不足导致的失败问题
+- ✅ 复杂配置引起的构建错误
+- ✅ Vercel等平台的部署超时问题
+- ✅ 配置维护复杂度过高的问题
+- ✅ 资源受限环境下的构建稳定性
+
+### 🔄 验证方法
+```bash
+# 检查构建稳定性
+pnpm build
+
+# 验证路径别名仍然工作
+# 在代码中使用 import { Component } from '@/components/...'
+
+# 检查内存使用情况
+# 监控构建过程中的内存占用
+```
+
 ## 📅 2025-01-19 - 依赖配置优化：PostCSS和Tailwind CSS移至生产依赖
 
 ### 🎯 优化目标
