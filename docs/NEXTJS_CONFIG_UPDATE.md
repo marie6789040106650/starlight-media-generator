@@ -4,24 +4,48 @@
 2025-01-19
 
 ## 🎯 更新目标
-优化Next.js配置，提升构建稳定性和模块兼容性
+全面优化Next.js配置，提升构建性能、稳定性和模块兼容性
 
 ## 📄 具体变更
 
-### 移除的配置
+### 新增性能优化配置
 ```javascript
-// 开发服务器配置
-devIndicators: {
-  buildActivity: true,
+// 优化构建性能
+swcMinify: true,
+compiler: {
+  removeConsole: process.env.NODE_ENV === 'production',
 },
 ```
 
-### 新增的配置
+### 增强Webpack配置
 ```javascript
-// 确保路径解析正确
-experimental: {
-  esmExternals: true,
-},
+// 路径别名优化
+config.resolve.alias = {
+  ...config.resolve.alias,
+  '@': __dirname,
+  '@/components': path.resolve(__dirname, 'components'),
+  '@/lib': path.resolve(__dirname, 'lib'),
+  '@/hooks': path.resolve(__dirname, 'hooks'),
+  '@/app': path.resolve(__dirname, 'app'),
+}
+
+// 构建性能优化
+if (!dev && !isServer) {
+  config.optimization = {
+    ...config.optimization,
+    splitChunks: {
+      ...config.optimization.splitChunks,
+      cacheGroups: {
+        ...config.optimization.splitChunks.cacheGroups,
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
+  }
+}
 ```
 
 ## 🔍 变更原因

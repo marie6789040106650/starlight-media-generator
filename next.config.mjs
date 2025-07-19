@@ -15,8 +15,13 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // 优化构建性能
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
   // Webpack配置
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+  webpack: (config, { dev, isServer }) => {
+    // 路径别名
     config.resolve.alias = {
       ...config.resolve.alias,
       '@': __dirname,
@@ -25,6 +30,25 @@ const nextConfig = {
       '@/hooks': path.resolve(__dirname, 'hooks'),
       '@/app': path.resolve(__dirname, 'app'),
     }
+    
+    // 优化构建性能
+    if (!dev && !isServer) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          ...config.optimization.splitChunks,
+          cacheGroups: {
+            ...config.optimization.splitChunks.cacheGroups,
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'all',
+            },
+          },
+        },
+      }
+    }
+    
     return config
   },
   // 如果需要自定义服务器配置，可以在这里添加
