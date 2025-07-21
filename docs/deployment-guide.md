@@ -17,13 +17,19 @@
 ```javascript
 // next.config.mjs
 const nextConfig = {
-  serverExternalPackages: ['docx', 'jspdf', 'file-saver'],
-  webpack: (config, { isServer }) => {
+  experimental: {
+    webpackBuildWorker: false,
+  },
+  serverExternalPackages: ['docx', 'jspdf', 'file-saver', 'html2canvas'],
+  webpack: (config, { dev, isServer }) => {
     if (!isServer) {
       config.optimization.splitChunks = {
         chunks: 'all',
-        maxSize: 20000000, // 20MB限制
+        maxSize: 15000000, // 15MB限制
       };
+    }
+    if (!dev) {
+      config.cache = false
     }
     return config;
   },

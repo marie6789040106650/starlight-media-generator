@@ -23,11 +23,20 @@ else
     echo "⚠️  temp/ 目录不存在"
 fi
 
-# 删除根目录下的测试HTML文件（如果还有遗留的话）
-test_files=("test-fixes.html" "test-word-export.html")
+# 删除根目录下的测试文件
+test_files=("test-fixes.html" "test-word-export.html" "test-copy-protection.html")
 for file in "${test_files[@]}"; do
     if [ -f "$file" ]; then
         echo "删除 $file..."
+        rm "$file"
+        echo "✅ $file 已删除"
+    fi
+done
+
+# 删除根目录下的测试组件文件
+find . -maxdepth 1 -name "test-*.tsx" -o -name "test-*.ts" -o -name "test-*.jsx" -o -name "test-*.js" | while read -r file; do
+    if [ -f "$file" ]; then
+        echo "删除测试文件 $file..."
         rm "$file"
         echo "✅ $file 已删除"
     fi
