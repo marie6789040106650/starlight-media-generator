@@ -55,10 +55,19 @@ webpack: (config, { isServer }) => {
 }
 ```
 
-### 4. 服务端外部包配置
+### 4. 静态导出配置
 ```javascript
 // next.config.mjs
-serverExternalPackages: ['docx', 'jspdf', 'file-saver', 'html2canvas'],
+const nextConfig = {
+  // EdgeOne 静态部署配置
+  output: 'export',
+  trailingSlash: true,
+  distDir: 'out',
+  images: {
+    unoptimized: true,
+  },
+  serverExternalPackages: ['docx', 'jspdf', 'file-saver', 'html2canvas'],
+}
 ```
 
 ## 🚀 部署流程
