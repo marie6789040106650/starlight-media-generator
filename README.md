@@ -904,8 +904,14 @@ pnpm run pdf:test-performance
 
 ### 构建脚本
 ```bash
-# 构建项目（自动清理测试文件）
+# 手动清理测试文件（推荐在构建前执行）
+pnpm run cleanup
+
+# 构建项目
 pnpm build
+
+# 检查构建文件大小（验证部署兼容性）
+node scripts/check-build-size.js
 
 # 启动生产服务器
 pnpm start
@@ -960,6 +966,7 @@ node scripts/test-cache.js
 - **`pnpm run smart-dev`**: 智能启动开发服务器，自动检测并使用正确的包管理器
 - **`pnpm run setup-npm-alias`**: 设置npm到pnpm的别名，避免误用npm命令
 - **`pnpm run test-dev-config`**: 测试开发命令配置，验证dev脚本设置是否正确
+- **`node scripts/check-build-size.js`**: 构建文件大小检查，验证构建产物是否符合部署平台限制
 - **`pnpm build`**: 构建生产版本，建议构建前手动运行cleanup清理测试文件
 - **手动清理**: 建议在构建前手动运行cleanup脚本，确保生产版本不包含测试文件
 
