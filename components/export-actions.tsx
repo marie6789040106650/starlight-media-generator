@@ -9,8 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Download, FileText, File, ChevronDown } from "lucide-react"
-import { WordGenerator } from "@/lib/export/word-generator"
-import { PDFGenerator } from "@/lib/export/pdf-generator"
+// 移除客户端对大型库的直接导入，改用API调用
 import { isExportAllowed } from "@/config/copy-settings"
 
 interface ExportActionsProps {
@@ -50,14 +49,45 @@ export function ExportActions({ content, storeName, bannerImage, disabled = fals
         }
       }
       
-      const wordGenerator = new WordGenerator()
-      await wordGenerator.generateWordDocument({
-        content,
-        storeName,
-        bannerImage,
-        filename,
-        includeWatermark: true
+      // 通过API调用生成Word文档
+      const response = await fetch('/api/generate-word', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          content,
+          storeName,
+          bannerImage,
+          filename,
+          includeWatermark: true
+        }),
       })
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}))
+        throw new Error(`Word生成失败: ${errorData.error || '服务器错误'}`)
+      }
+
+      // 下载生成的Word文件
+      const blob = await response.blob()
+      const finalFilename = filename || `${storeName}-方案-${new Date().toLocaleDateString('zh-CN').replace(/\//g, '')}.docx`
+      
+      // 创建下载链接
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.style.display = 'none'
+      a.href = url
+      a.download = finalFilename
+      document.body.appendChild(a)
+      a.click()
+      
+      // 清理资源
+      setTimeout(() => {
+        window.URL.revokeObjectURL(url)
+        document.body.removeChild(a)
+      }, 100)
+
       console.log('Word文档导出成功')
     } catch (error) {
       console.error('Word导出失败:', error)
@@ -93,14 +123,45 @@ export function ExportActions({ content, storeName, bannerImage, disabled = fals
         }
       }
       
-      const pdfGenerator = new PDFGenerator()
-      await pdfGenerator.generatePDFDocument({
-        content,
-        storeName,
-        bannerImage,
-        filename,
-        includeWatermark: true
+      // 通过API调用生成PDF文档
+      const response = await fetch('/api/generate-pdf', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          content,
+          storeName,
+          bannerImage,
+          filename,
+          includeWatermark: true
+        }),
       })
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}))
+        throw new Error(`PDF生成失败: ${errorData.error || '服务器错误'}`)
+      }
+
+      // 下载生成的PDF文件
+      const blob = await response.blob()
+      const finalFilename = filename || `${storeName}-方案-${new Date().toLocaleDateString('zh-CN').replace(/\//g, '')}.pdf`
+      
+      // 创建下载链接
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.style.display = 'none'
+      a.href = url
+      a.download = finalFilename
+      document.body.appendChild(a)
+      a.click()
+      
+      // 清理资源
+      setTimeout(() => {
+        window.URL.revokeObjectURL(url)
+        document.body.removeChild(a)
+      }, 100)
+
       console.log('PDF文档导出成功')
     } catch (error) {
       console.error('PDF导出失败:', error)

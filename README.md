@@ -742,8 +742,14 @@ const nextConfig = {
     unoptimized: true,
   },
   
+  // 生产环境优化配置
+  experimental: {
+    // 减少构建缓存大小
+    webpackBuildWorker: false,
+  },
+  
   // 恢复路径别名配置
-  webpack: (config) => {
+  webpack: (config, { dev, isServer }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
       '@': __dirname,
@@ -752,6 +758,25 @@ const nextConfig = {
       '@/hooks': path.resolve(__dirname, 'hooks'),
       '@/app': path.resolve(__dirname, 'app'),
     }
+    
+    // 生产环境禁用缓存以避免文件过大
+    if (!dev) {
+      config.cache = false
+    }
+    
+    // 优化构建性能
+    config.optimization = {
+      ...config.optimization,
+      splitChunks: {
+        ...config.optimization.splitChunks,
+        cacheGroups: {
+          ...config.optimization.splitChunks?.cacheGroups,
+          default: false,
+          vendors: false,
+        },
+      },
+    }
+    
     return config
   },
 }
@@ -763,7 +788,10 @@ export default nextConfig
 - **eslint.ignoreDuringBuilds**: 构建时忽略ESLint错误，提升构建速度和稳定性
 - **typescript.ignoreBuildErrors**: 构建时忽略TypeScript错误，确保部署成功
 - **images.unoptimized**: 禁用Next.js图片优化，适用于静态部署环境
+- **experimental.webpackBuildWorker**: 禁用webpack构建worker，减少构建缓存大小
 - **webpack路径别名**: 完整的模块路径别名配置，提升开发体验
+- **生产环境缓存控制**: 生产构建时禁用缓存，避免文件过大问题
+- **代码分割优化**: 自定义splitChunks配置，优化构建性能和包大小
 
 ### 路径别名配置
 项目配置了完整的路径别名系统，支持以下导入方式：
@@ -780,12 +808,20 @@ import { generatePlan } from '@/lib/models'
 import { useFormData } from '@/hooks/use-form-data'
 ```
 
+### 生产环境优化
+项目针对生产环境进行了专门优化：
+- **缓存控制**: 生产构建时禁用webpack缓存，避免文件过大
+- **代码分割**: 自定义splitChunks配置，优化包大小和加载性能
+- **构建worker**: 禁用webpackBuildWorker，减少构建时的内存占用
+- **性能优化**: 针对资源受限环境的构建稳定性优化
+
 ### 配置优势
-1. **构建稳定性**: 简化配置减少构建失败风险
+1. **构建稳定性**: 生产环境优化配置，减少构建失败风险
 2. **开发体验**: 完整的路径别名配置，提升开发效率
 3. **代码可读性**: 清晰的导入路径，便于代码维护
 4. **部署适配**: 针对Vercel等平台的稳定性优化
 5. **模块解析**: 优化的webpack配置，提升模块解析性能
+6. **内存管理**: 生产构建时的内存使用优化
 
 ## 🔒 安全注意事项
 
