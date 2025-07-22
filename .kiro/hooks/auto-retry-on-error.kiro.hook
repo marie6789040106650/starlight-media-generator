@@ -1,0 +1,46 @@
+{
+  "name": "Auto Retry on Error",
+  "description": "当遇到文件操作错误或其他常见错误时自动重试",
+  "trigger": {
+    "type": "onError",
+    "conditions": [
+      "file_read_error",
+      "file_write_error", 
+      "file_create_error",
+      "execution_interrupted",
+      "network_error",
+      "timeout_error"
+    ]
+  },
+  "context": {
+    "includeFiles": [
+      ".kiro/specs/*/tasks.md",
+      "dev.log",
+      "package.json"
+    ]
+  },
+  "instructions": [
+    "1. 检测错误类型和原因",
+    "2. 如果是文件操作错误，检查文件路径和权限",
+    "3. 如果是网络错误，等待2秒后重试",
+    "4. 如果是超时错误，增加超时时间后重试",
+    "5. 最多重试3次，每次重试间隔递增（2s, 5s, 10s）",
+    "6. 记录重试过程到 dev.log",
+    "7. 如果重试失败，跳过当前操作继续下一个任务",
+    "8. 更新任务状态并继续执行任务链"
+  ],
+  "autoApprove": true,
+  "retryConfig": {
+    "maxRetries": 3,
+    "retryDelays": [2000, 5000, 10000],
+    "retryableErrors": [
+      "Error(s) while reading file(s)",
+      "Error(s) while creating",
+      "Error(s) while editing",
+      "ENOENT",
+      "EACCES",
+      "ETIMEDOUT",
+      "ECONNRESET"
+    ]
+  }
+}

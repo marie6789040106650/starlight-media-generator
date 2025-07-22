@@ -1,0 +1,70 @@
+
+> starlight-media-generator@1.0.62 dev /Users/bypasser/d/出海/starlight-media-generator
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+   ▲ Next.js 15.1.3
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.1.198:3001
+   - Experiments (use with caution):
+     · webpackBuildWorker
+
+ ✓ Starting...
+ ✓ Ready in 3.5s
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 550ms (98 modules)
+[2025-07-22T16:21:33.994Z] [3so8ol046] GET http://localhost:3001/api/health { userAgent: 'curl/8.7.1', referer: null, clientIP: '::1' }
+[2025-07-22T16:21:33.998Z] [3so8ol046] 请求处理开始完成 { duration: '4ms', status: 200 }
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 5.9s (590 modules)
+ GET /api/health 404 in 6330ms
+ ✓ Compiled in 722ms (297 modules)
+[2025-07-22T16:23:59.473Z] [ru1c365uy] GET http://localhost:3001/api/health/storage { userAgent: 'curl/8.7.1', referer: null, clientIP: '::1' }
+[2025-07-22T16:23:59.476Z] [ru1c365uy] 请求处理开始完成 { duration: '3ms', status: 200 }
+ ○ Compiling /api/health/storage ...
+ ⨯ ./lib/persistent-storage.ts:6:1
+Module not found: Can't resolve '@vercel/kv'
+  4 |  */
+  5 |
+> 6 | import { kv } from '@vercel/kv';
+    | ^
+  7 |
+  8 | interface CategoryData {
+  9 |   customCategories: Record<string, string[]>;
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./app/api/health/storage/route.ts
+ ⨯ ./lib/persistent-storage.ts:6:1
+Module not found: Can't resolve '@vercel/kv'
+  4 |  */
+  5 |
+> 6 | import { kv } from '@vercel/kv';
+    | ^
+  7 |
+  8 | interface CategoryData {
+  9 |   customCategories: Record<string, string[]>;
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./app/api/health/storage/route.ts
+ ⨯ ./lib/persistent-storage.ts:6:1
+Module not found: Can't resolve '@vercel/kv'
+  4 |  */
+  5 |
+> 6 | import { kv } from '@vercel/kv';
+    | ^
+  7 |
+  8 | interface CategoryData {
+  9 |   customCategories: Record<string, string[]>;
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./app/api/health/storage/route.ts
+ GET /api/health/storage 500 in 4167ms
+ ✓ Compiled /_error in 1232ms (491 modules)
+ ✓ Compiled in 475ms (491 modules)
+[?25h

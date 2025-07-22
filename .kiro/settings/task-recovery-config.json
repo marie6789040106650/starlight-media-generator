@@ -1,0 +1,49 @@
+{
+  "autoRecovery": {
+    "enabled": true,
+    "modelSelection": {
+      "preferredModel": "Claude Sonnet 4.0",
+      "fallbackModels": ["Claude Sonnet 3.7", "Claude Sonnet 3.5"],
+      "autoSwitch": true,
+      "retryInterval": 30000,
+      "maxRetries": 10,
+      "silentSwitch": true
+    },
+    "taskContinuity": {
+      "saveStateInterval": 10000,
+      "maxStateHistory": 100,
+      "autoResume": true,
+      "preserveContext": true
+    },
+    "errorHandling": {
+      "autoRetry": true,
+      "maxRetries": 3,
+      "retryDelay": 2000,
+      "skipOnFailure": true,
+      "continueChain": true
+    }
+  },
+  "notifications": {
+    "silent": [
+      "model_switch",
+      "auto_retry",
+      "state_save"
+    ],
+    "notify": [
+      "model_recovered",
+      "task_completed",
+      "chain_finished"
+    ],
+    "alert": [
+      "all_models_unavailable",
+      "critical_error",
+      "manual_intervention_required"
+    ]
+  },
+  "performance": {
+    "preloadFallback": true,
+    "cacheContext": true,
+    "optimizeSwitch": true,
+    "parallelExecution": false
+  }
+}

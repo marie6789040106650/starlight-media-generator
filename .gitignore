@@ -17,6 +17,10 @@
 # env files
 .env*
 
+# AI service configuration (contains API keys)
+.kiro/ai-config.json
+.kiro/ai-config.backup.json
+
 # vercel
 .vercel
 

@@ -2,247 +2,324 @@
 
 /**
  * 部署前检查脚本
- * 确保项目符合 EdgeOne 部署要求
+ * 确保所有配置正确，Edge Function和Serverless Function准备就绪
  */
 
-const fs = require('fs')
-const path = require('path')
-const { execSync } = require('child_process')
+const fs = require('fs');
+const path = require('path');
 
-// EdgeOne 部署限制
-const EDGEONE_LIMITS = {
-  MAX_FILE_SIZE: 25 * 1024 * 1024, // 25MB
-  WARN_FILE_SIZE: 20 * 1024 * 1024, // 20MB
-}
+console.log('🚀 部署前检查开始...\n');
 
-// 颜色输出
-const colors = {
-  red: '\x1b[31m',
-  green: '\x1b[32m',
-  yellow: '\x1b[33m',
-  blue: '\x1b[34m',
-  reset: '\x1b[0m'
-}
-
-function log(color, message) {
-  console.log(`${colors[color]}${message}${colors.reset}`)
-}
-
-function formatBytes(bytes) {
-  if (bytes === 0) return '0 Bytes'
-  const k = 1024
-  const sizes = ['Bytes', 'KB', 'MB', 'GB']
-  const i = Math.floor(Math.log(bytes) / Math.log(k))
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
-}
-
-/**
- * 检查构建目录是否存在
- */
-function checkBuildExists() {
-  if (!fs.existsSync('.next')) {
-    log('red', '❌ 构建目录不存在，请先运行 pnpm build')
-    return false
-  }
-  return true
-}
-
-/**
- * 清理测试文件
- */
-function cleanupTestFiles() {
-  log('blue', '🧹 清理测试文件...')
-  try {
-    execSync('pnpm run cleanup', { stdio: 'inherit' })
-    log('green', '✅ 测试文件清理完成')
-    return true
-  } catch (error) {
-    log('red', '❌ 测试文件清理失败')
-    console.error(error.message)
-    return false
-  }
-}
-
-/**
- * 运行构建
- */
-function runBuild() {
-  log('blue', '🔨 开始构建...')
-  try {
-    execSync('pnpm build', { stdio: 'inherit' })
-    log('green', '✅ 构建成功')
-    return true
-  } catch (error) {
-    log('red', '❌ 构建失败')
-    console.error(error.message)
-    return false
-  }
-}
-
-/**
- * 分析构建文件
- */
-function analyzeBuild() {
-  log('blue', '📊 分析构建文件...')
-  try {
-    const result = execSync('node scripts/analyze-bundle.js', { encoding: 'utf8' })
-    console.log(result)
-    return true
-  } catch (error) {
-    if (error.status === 1) {
-      log('red', '❌ 发现超大文件，不符合 EdgeOne 部署要求')
-      return false
-    }
-    log('red', '❌ 构建分析失败')
-    console.error(error.message)
-    return false
-  }
-}
-
-/**
- * 检查大型库使用情况
- */
-function checkLargeLibraries() {
-  log('blue', '🔍 检查大型库使用情况...')
+// 检查项目结构
+function checkProjectStructure() {
+  console.log('📋 检查项目结构:');
   
-  const largeLibs = ['docx', 'jspdf', 'file-saver', 'html2canvas']
-  let hasDirectImports = false
+  const requiredPaths = [
+    'app/api/chat-stream/route.ts',
+    'app/api/module1-keywords/route.ts', 
+    'app/api/module2-plan-stream/route.ts',
+    'app/api/module3-banner/route.ts',
+    'lib/models.ts',
+    'lib/business-types.ts',
+    'lib/business-utils.ts',
+    'vercel.json',
+    '.env.example'
+  ];
   
-  largeLibs.forEach(lib => {
-    try {
-      // 检查客户端组件中的直接导入
-      const result = execSync(
-        `grep -r "^import.*${lib}" --include="*.tsx" --include="*.ts" --exclude-dir=node_modules --exclude-dir=.next --exclude-dir=lib/export --exclude-dir=app/api .`,
-        { encoding: 'utf8' }
-      )
-      
-      if (result.trim()) {
-        log('yellow', `⚠️  发现 ${lib} 的直接导入（客户端）:`)
-        result.split('\n').filter(line => line.trim()).forEach(line => {
-          console.log(`   ${line}`)
-        })
-        hasDirectImports = true
-      }
-    } catch (error) {
-      // 没有找到直接导入是好事
-    }
-  })
+  let allExist = true;
   
-  if (!hasDirectImports) {
-    log('green', '✅ 没有发现客户端直接导入大型库')
-  }
-  
-  return true
-}
-
-/**
- * 验证 API 路由
- */
-function checkApiRoutes() {
-  log('blue', '🔌 检查 API 路由...')
-  
-  const requiredApis = [
-    'app/api/generate-pdf/route.ts',
-    'app/api/generate-word/route.ts'
-  ]
-  
-  let allExist = true
-  
-  requiredApis.forEach(api => {
-    if (fs.existsSync(api)) {
-      log('green', `✅ ${api} 存在`)
+  requiredPaths.forEach(filePath => {
+    const fullPath = path.join(process.cwd(), filePath);
+    if (fs.existsSync(fullPath)) {
+      console.log(`✅ ${filePath}`);
     } else {
-      log('red', `❌ ${api} 不存在`)
-      allExist = false
+      console.log(`❌ ${filePath}`);
+      allExist = false;
     }
-  })
+  });
   
-  return allExist
+  return allExist;
 }
 
-/**
- * 生成部署报告
- */
-function generateDeploymentReport() {
-  log('blue', '📋 生成部署报告...')
+// 检查TypeScript编译
+function checkTypeScript() {
+  console.log('\n📋 检查TypeScript配置:');
   
-  const report = {
-    timestamp: new Date().toISOString(),
-    edgeOneCompliant: true,
-    buildSize: 'Under 25MB limit',
-    optimizations: [
-      '✅ 大型库移至服务端 API',
-      '✅ 客户端使用动态导入',
-      '✅ Webpack 分包配置优化',
-      '✅ 测试文件已清理',
-      '✅ 构建缓存已禁用'
-    ],
-    recommendations: [
-      '定期运行 pnpm run deploy:check',
-      '监控构建文件大小变化',
-      '保持大型库在服务端使用'
-    ]
+  const tsconfigPath = path.join(process.cwd(), 'tsconfig.json');
+  if (!fs.existsSync(tsconfigPath)) {
+    console.log('❌ tsconfig.json: 不存在');
+    return false;
   }
   
-  fs.writeFileSync('deployment-report.json', JSON.stringify(report, null, 2))
-  log('green', '✅ 部署报告已生成: deployment-report.json')
+  console.log('✅ tsconfig.json: 存在');
   
-  return true
+  try {
+    const tsconfig = JSON.parse(fs.readFileSync(tsconfigPath, 'utf8'));
+    
+    // 检查关键配置
+    const compilerOptions = tsconfig.compilerOptions || {};
+    
+    console.log(`✅ target: ${compilerOptions.target || 'default'}`);
+    console.log(`✅ module: ${compilerOptions.module || 'default'}`);
+    console.log(`✅ moduleResolution: ${compilerOptions.moduleResolution || 'default'}`);
+    
+    return true;
+  } catch (error) {
+    console.log('❌ tsconfig.json: 格式错误');
+    return false;
+  }
 }
 
-/**
- * 主函数
- */
-async function main() {
-  console.log('🚀 EdgeOne 部署前检查')
-  console.log('='.repeat(50))
-  console.log()
+// 检查依赖包
+function checkDependencies() {
+  console.log('\n📋 检查依赖包:');
   
-  const checks = [
-    { name: '清理测试文件', fn: cleanupTestFiles },
-    { name: '运行构建', fn: runBuild },
-    { name: '检查构建目录', fn: checkBuildExists },
-    { name: '分析构建文件', fn: analyzeBuild },
-    { name: '检查大型库', fn: checkLargeLibraries },
-    { name: '验证 API 路由', fn: checkApiRoutes },
-    { name: '生成部署报告', fn: generateDeploymentReport }
-  ]
+  const packageJsonPath = path.join(process.cwd(), 'package.json');
+  if (!fs.existsSync(packageJsonPath)) {
+    console.log('❌ package.json: 不存在');
+    return false;
+  }
   
-  let allPassed = true
-  
-  for (const check of checks) {
-    try {
-      const result = await check.fn()
-      if (!result) {
-        allPassed = false
-        break
+  try {
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+    
+    const requiredDeps = [
+      'next',
+      'react',
+      'typescript'
+    ];
+    
+    const dependencies = { ...packageJson.dependencies, ...packageJson.devDependencies };
+    
+    let allPresent = true;
+    requiredDeps.forEach(dep => {
+      if (dependencies[dep]) {
+        console.log(`✅ ${dep}: ${dependencies[dep]}`);
+      } else {
+        console.log(`❌ ${dep}: 未安装`);
+        allPresent = false;
       }
-    } catch (error) {
-      log('red', `❌ ${check.name} 失败: ${error.message}`)
-      allPassed = false
-      break
+    });
+    
+    return allPresent;
+  } catch (error) {
+    console.log('❌ package.json: 格式错误');
+    return false;
+  }
+}
+
+// 检查Vercel配置
+function checkVercelConfiguration() {
+  console.log('\n📋 检查Vercel配置:');
+  
+  const vercelJsonPath = path.join(process.cwd(), 'vercel.json');
+  if (!fs.existsSync(vercelJsonPath)) {
+    console.log('❌ vercel.json: 不存在');
+    return false;
+  }
+  
+  try {
+    const vercelConfig = JSON.parse(fs.readFileSync(vercelJsonPath, 'utf8'));
+    
+    // 检查函数配置
+    if (!vercelConfig.functions) {
+      console.log('❌ functions配置: 缺失');
+      return false;
     }
-    console.log()
+    
+    console.log('✅ functions配置: 存在');
+    
+    // 检查Edge Functions
+    const edgeFunctions = Object.entries(vercelConfig.functions)
+      .filter(([_, config]) => config.runtime === 'edge');
+    
+    console.log(`✅ Edge Functions: ${edgeFunctions.length}个`);
+    edgeFunctions.forEach(([path, config]) => {
+      console.log(`   - ${path} (regions: ${config.regions?.join(', ') || 'default'})`);
+    });
+    
+    // 检查Serverless Functions
+    const serverlessFunctions = Object.entries(vercelConfig.functions)
+      .filter(([_, config]) => config.runtime !== 'edge');
+    
+    console.log(`✅ Serverless Functions: ${serverlessFunctions.length}个`);
+    serverlessFunctions.forEach(([path, config]) => {
+      console.log(`   - ${path} (timeout: ${config.maxDuration || 10}s)`);
+    });
+    
+    // 检查环境变量配置
+    if (vercelConfig.env) {
+      console.log('✅ 环境变量配置: 存在');
+      const envVars = Object.keys(vercelConfig.env);
+      console.log(`   配置的变量: ${envVars.join(', ')}`);
+    } else {
+      console.log('⚠️  环境变量配置: 缺失');
+    }
+    
+    return true;
+  } catch (error) {
+    console.log('❌ vercel.json: 格式错误', error.message);
+    return false;
+  }
+}
+
+// 检查API端点语法
+function checkApiSyntax() {
+  console.log('\n📋 检查API端点语法:');
+  
+  const apiFiles = [
+    'app/api/chat-stream/route.ts',
+    'app/api/module1-keywords/route.ts',
+    'app/api/module2-plan-stream/route.ts', 
+    'app/api/module3-banner/route.ts'
+  ];
+  
+  let allValid = true;
+  
+  apiFiles.forEach(filePath => {
+    const fullPath = path.join(process.cwd(), filePath);
+    if (fs.existsSync(fullPath)) {
+      const content = fs.readFileSync(fullPath, 'utf8');
+      
+      // 基本语法检查
+      const checks = [
+        { name: 'export POST', pattern: /export\s+async\s+function\s+POST/ },
+        { name: 'NextRequest import', pattern: /import.*NextRequest.*from.*next\/server/ },
+        { name: 'runtime配置', pattern: /export\s+const\s+runtime\s*=/ }
+      ];
+      
+      console.log(`📄 ${filePath}:`);
+      
+      checks.forEach(check => {
+        if (check.pattern.test(content)) {
+          console.log(`   ✅ ${check.name}`);
+        } else if (check.name === 'runtime配置') {
+          // runtime配置是可选的（Serverless Function不需要）
+          console.log(`   ⚠️  ${check.name} (可选)`);
+        } else {
+          console.log(`   ❌ ${check.name}`);
+          allValid = false;
+        }
+      });
+    } else {
+      console.log(`❌ ${filePath}: 文件不存在`);
+      allValid = false;
+    }
+  });
+  
+  return allValid;
+}
+
+// 检查环境变量模板
+function checkEnvironmentTemplate() {
+  console.log('\n📋 检查环境变量模板:');
+  
+  const envExamplePath = path.join(process.cwd(), '.env.example');
+  if (!fs.existsSync(envExamplePath)) {
+    console.log('❌ .env.example: 不存在');
+    return false;
   }
   
-  console.log('='.repeat(50))
+  const content = fs.readFileSync(envExamplePath, 'utf8');
   
-  if (allPassed) {
-    log('green', '🎉 所有检查通过！项目可以部署到 EdgeOne')
-    log('blue', '📝 部署命令: 上传构建产物到 EdgeOne 控制台')
-    process.exit(0)
+  const requiredVars = [
+    'SILICONFLOW_API_KEY',
+    'OPENAI_API_KEY'
+  ];
+  
+  const optionalVars = [
+    'ANTHROPIC_API_KEY',
+    'NEXT_PUBLIC_EDGE_REGION',
+    'API_TIMEOUT',
+    'STREAM_TIMEOUT'
+  ];
+  
+  console.log('必需的环境变量:');
+  requiredVars.forEach(varName => {
+    if (content.includes(varName)) {
+      console.log(`   ✅ ${varName}`);
+    } else {
+      console.log(`   ❌ ${varName}`);
+    }
+  });
+  
+  console.log('可选的环境变量:');
+  optionalVars.forEach(varName => {
+    if (content.includes(varName)) {
+      console.log(`   ✅ ${varName}`);
+    } else {
+      console.log(`   ⚠️  ${varName}`);
+    }
+  });
+  
+  return requiredVars.every(varName => content.includes(varName));
+}
+
+// 生成部署清单
+function generateDeploymentChecklist() {
+  console.log('\n📋 部署清单:');
+  
+  const checklist = [
+    '1. 确保所有环境变量在Vercel项目中已配置',
+    '2. 验证API密钥的有效性',
+    '3. 检查Edge Function的区域设置',
+    '4. 确认Serverless Function的超时配置',
+    '5. 测试所有API端点的功能',
+    '6. 验证流式响应的正常工作',
+    '7. 检查CORS配置是否正确',
+    '8. 确认错误处理和日志记录'
+  ];
+  
+  checklist.forEach(item => {
+    console.log(`   ${item}`);
+  });
+}
+
+// 主函数
+function main() {
+  const results = {
+    structure: checkProjectStructure(),
+    typescript: checkTypeScript(),
+    dependencies: checkDependencies(),
+    vercel: checkVercelConfiguration(),
+    syntax: checkApiSyntax(),
+    environment: checkEnvironmentTemplate()
+  };
+  
+  console.log('\n' + '='.repeat(50));
+  console.log('📊 检查结果汇总:');
+  
+  Object.entries(results).forEach(([key, result]) => {
+    const status = result ? '✅ 通过' : '❌ 失败';
+    const name = {
+      structure: '项目结构',
+      typescript: 'TypeScript配置',
+      dependencies: '依赖包',
+      vercel: 'Vercel配置',
+      syntax: 'API语法',
+      environment: '环境变量模板'
+    }[key];
+    
+    console.log(`${name}: ${status}`);
+  });
+  
+  const overall = Object.values(results).every(result => result);
+  console.log(`\n🎯 整体状态: ${overall ? '✅ 准备就绪' : '❌ 需要修复'}`);
+  
+  if (overall) {
+    console.log('\n🎉 项目已准备好部署！');
+    generateDeploymentChecklist();
   } else {
-    log('red', '❌ 部署前检查失败，请修复问题后重试')
-    process.exit(1)
+    console.log('\n⚠️  请修复上述问题后再进行部署。');
   }
+  
+  return overall;
 }
 
-// 运行主函数
+// 如果直接运行此脚本
 if (require.main === module) {
-  main().catch(error => {
-    console.error('检查过程出错:', error)
-    process.exit(1)
-  })
+  const success = main();
+  process.exit(success ? 0 : 1);
 }
 
-module.exports = { main }
+module.exports = { main };

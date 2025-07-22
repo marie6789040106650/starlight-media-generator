@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button"
 
 import { ArrowRight, Settings } from "lucide-react"
 import { FormData, ExpandedKeywords } from "@/lib/types"
-import { CHAT_MODELS } from "@/lib/models"
+import { CHAT_MODELS, getAvailableChatModels } from "@/lib/models"
 import { useKeywordStats } from "@/hooks/use-keyword-stats"
 import { useKeywordField } from "@/hooks/use-keyword-field-improved"
 import { BulkInputSection } from "./bulk-input-section"
@@ -82,15 +82,15 @@ export const FormSection: React.FC<FormSectionProps> = ({
             businessGoals: formData.businessGoals || ''
           })
         })
-        .then(res => res.json())
-        .then(data => {
-          setExpandedKeywords(data);
-          setIsExpandingKeywords(false);
-        })
-        .catch(error => {
-          console.error('关键词拓展出错:', error);
-          setIsExpandingKeywords(false);
-        });
+          .then(res => res.json())
+          .then(data => {
+            setExpandedKeywords(data);
+            setIsExpandingKeywords(false);
+          })
+          .catch(error => {
+            console.error('关键词拓展出错:', error);
+            setIsExpandingKeywords(false);
+          });
       }
     },
     setFocusedField
@@ -314,15 +314,15 @@ export const FormSection: React.FC<FormSectionProps> = ({
           </div>
         )}
 
-        {/* AI模择 */}
+        {/* 模型选择 */}
         <div className="bg-gradient-to-r from-orange-50 to-red-50 p-4 rounded-lg border border-orange-200">
           <div className="flex items-center justify-between">
             <div className="space-y-1">
               <Label className="text-sm font-medium text-orange-800">
-                🤖 AI模型选择
+                🤖 模型选择
               </Label>
               <p className="text-xs text-orange-600">
-                选择不同的AI模型来生成专业方案，默认使用DeepSeek-V3
+                选择不同的模型来生成专业方案，默认使用DeepSeek-V3
               </p>
             </div>
             <div className="flex items-center gap-2">
@@ -342,16 +342,18 @@ export const FormSection: React.FC<FormSectionProps> = ({
             <div className="mt-3 pt-3 border-t border-orange-200">
               <div className="space-y-3">
                 <div className="space-y-2">
-                  <Label className="text-sm font-medium text-orange-700">选择AI模型</Label>
+                  <Label className="text-sm font-medium text-orange-700">选择模型</Label>
                   <Select value={selectedModelId} onValueChange={onModelChange}>
                     <SelectTrigger className="border-orange-200 focus:border-orange-500 focus:ring-orange-500">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      {CHAT_MODELS.map((model) => (
+                      {getAvailableChatModels().map((model) => (
                         <SelectItem key={model.id} value={model.id}>
                           <div className="flex flex-col">
-                            <span className="font-medium">{model.name}</span>
+                            <span className="font-medium">
+                              {model.name}
+                            </span>
                             <span className="text-xs text-gray-500">{model.description}</span>
                           </div>
                         </SelectItem>

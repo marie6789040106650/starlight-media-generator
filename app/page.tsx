@@ -157,7 +157,7 @@ export default function Home() {
                 老板IP打造方案生成器
               </h1>
               <p className="text-gray-600 text-base sm:text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed">
-                填写您的店铺信息，AI将为您量身定制专业的IP打造方案
+                填写您的店铺信息，系统将为您量身定制专业的IP打造方案
               </p>
               <div className="mt-6 flex justify-center">
                 <div className="bg-gradient-to-r from-purple-100 to-blue-100 px-6 py-3 rounded-full">
@@ -271,7 +271,7 @@ export default function Home() {
                         </div>
                       </div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">正在生成专业方案</h3>
-                      <p className="text-gray-600">AI正在为您量身定制IP打造方案，请稍候...</p>
+                      <p className="text-gray-600">正在为您量身定制IP打造方案，请稍候...</p>
                       <div className="mt-4 flex justify-center space-x-1">
                         <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce"></div>
                         <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>

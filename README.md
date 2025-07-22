@@ -920,6 +920,18 @@ pnpm run health-check
 # 核心功能完整性测试
 node scripts/test-core-functionality.js
 
+# API端点测试（模块1、2、3和流式聊天）
+pnpm run test:api
+
+# 业务流程Hook测试
+pnpm run test:hooks
+
+# SiliconFlow兼容性测试
+pnpm run test:integration
+
+# 运行所有测试
+pnpm run test:all
+
 # 输出示例：
 # 🚀 开始核心功能测试
 # ==================================================

@@ -1,18 +1,35 @@
+/**
+ * 聊天 API - 使用统一多模型 SDK 优化版
+ */
+
 import { NextRequest, NextResponse } from 'next/server'
+import { unifiedChat, smartChat } from '@/lib/llm'
 
 export async function POST(request: NextRequest) {
-  try {
-    const { messages, model = 'deepseek-ai/DeepSeek-V3', ...options } = await request.json()
+  const requestId = Math.random().toString(36).substring(2, 9)
+  const startTime = Date.now()
 
-    // 验证环境变量
-    const apiKey = process.env.SILICONFLOW_API_KEY
+  try {
+    console.log(`[${new Date().toISOString()}] [${requestId}] 收到聊天请求`)
     
-    if (!apiKey) {
-      return NextResponse.json(
-        { error: 'API密钥未配置，请检查环境变量 SILICONFLOW_API_KEY' },
-        { status: 500 }
-      )
-    }
+    const { 
+      messages, 
+      model, 
+      taskType,
+      temperature,
+      max_tokens,
+      top_p,
+      stream = false,
+      ...options 
+    } = await request.json()
+
+    console.log(`[${new Date().toISOString()}] [${requestId}] 请求参数:`, {
+      messagesCount: messages?.length,
+      model,
+      taskType,
+      stream,
+      clientIP: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
+    })
 
     // 验证必需参数
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
@@ -22,43 +39,109 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // 构建请求体
-    const requestBody = {
-      model,
-      messages,
-      max_tokens: options.max_tokens || 4000,
-      temperature: options.temperature || 0.7,
-      top_p: options.top_p || 0.9,
-      stream: options.stream || false,
-      ...options
+    try {
+      // 使用统一SDK - 智能选择或指定模型
+      const chatFunction = model ? unifiedChat : smartChat
+      const chatOptions = model 
+        ? { 
+            model, 
+            messages, 
+            temperature,
+            maxTokens: max_tokens,
+            topP: top_p,
+            stream 
+          }
+        : { 
+            taskType: taskType || 'default', 
+            messages, 
+            temperature,
+            maxTokens: max_tokens,
+            topP: top_p,
+            stream 
+          }
+
+      const response = await chatFunction(chatOptions)
+
+      const duration = Date.now() - startTime
+      console.log(`[${new Date().toISOString()}] [${requestId}] 聊天完成`, {
+        duration: `${duration}ms`,
+        model: response.model,
+        provider: response.provider,
+        contentLength: response.content.length
+      })
+
+      // 返回兼容原格式的响应
+      return NextResponse.json({
+        choices: [{
+          message: {
+            role: 'assistant',
+            content: response.content
+          },
+          finish_reason: 'stop'
+        }],
+        model: response.model,
+        provider: response.provider,
+        usage: response.usage,
+        requestId,
+        duration
+      })
+
+    } catch (error) {
+      // 尝试降级处理
+      console.log(`[${new Date().toISOString()}] [${requestId}] 尝试降级到智能选择...`)
+      
+      try {
+        const fallbackResponse = await smartChat({
+          taskType: 'default',
+          messages,
+          temperature,
+          maxTokens: max_tokens,
+          topP: top_p
+        })
+
+        const duration = Date.now() - startTime
+        console.log(`[${new Date().toISOString()}] [${requestId}] 降级处理成功`, {
+          duration: `${duration}ms`,
+          model: fallbackResponse.model,
+          provider: fallbackResponse.provider
+        })
+
+        return NextResponse.json({
+          choices: [{
+            message: {
+              role: 'assistant',
+              content: fallbackResponse.content
+            },
+            finish_reason: 'stop'
+          }],
+          model: fallbackResponse.model,
+          provider: fallbackResponse.provider,
+          usage: fallbackResponse.usage,
+          requestId,
+          duration,
+          fallback: true,
+          originalError: error instanceof Error ? error.message : '未知错误'
+        })
+
+      } catch (fallbackError) {
+        throw fallbackError
+      }
     }
-
-    // 调用硅基流动 Chat Completions API
-    const response = await fetch('https://api.siliconflow.cn/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(requestBody),
-    })
-
-    if (!response.ok) {
-      const errorData = await response.text()
-      console.error('硅基流动API错误:', errorData)
-      return NextResponse.json(
-        { error: `API调用失败: ${response.status} ${response.statusText}`, details: errorData },
-        { status: response.status }
-      )
-    }
-
-    const data = await response.json()
-    return NextResponse.json(data)
 
   } catch (error) {
-    console.error('文本对话API错误:', error)
+    const duration = Date.now() - startTime
+    console.error(`[${new Date().toISOString()}] [${requestId}] 聊天API错误:`, {
+      error: error instanceof Error ? error.message : '未知错误',
+      duration: `${duration}ms`
+    })
+
     return NextResponse.json(
-      { error: '服务器内部错误', details: error instanceof Error ? error.message : '未知错误' },
+      { 
+        error: '服务器内部错误', 
+        details: error instanceof Error ? error.message : '未知错误',
+        requestId,
+        duration
+      },
       { status: 500 }
     )
   }

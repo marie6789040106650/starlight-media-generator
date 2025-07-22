@@ -2,35 +2,55 @@
 
 ## 概述
 
-本设计文档描述了流式响应功能的MVP实现方案。专注于核心功能：Edge Function流式API、React Hook状态管理、完整聊天界面，确保与现有系统的兼容性。
+本设计文档描述了基于业务字段标准的流式响应功能实现方案。专注于模块1、2、3的业务流程，使用统一的字段结构，确保数据一致性和系统兼容性。
+
+## 字段标准对齐
+
+本设计严格遵循 `docs/FIELD_STANDARDS.md` 中定义的业务字段标准：
+
+### 核心字段结构
+- **storeName**: 店铺名称
+- **storeCategory**: 所属行业
+- **storeLocation**: 所在城市/商圈
+- **confirmedStoreKeywords**: 用户确认的店铺关键词数组
+- **confirmedOwnerKeywords**: 用户确认的老板关键词数组
+- **businessDuration**: 开店时长（可选）
+- **storeFeatures**: 店铺特色数组
+- **ownerName**: 老板姓氏
+- **ownerFeatures**: 老板人格特色数组
 
 ## 架构设计
 
-### 整体架构
+### 业务模块架构
 
 ```mermaid
 graph TB
-    Client[客户端应用] --> Router[Next.js App Router]
-    Router --> EdgeAPI[Edge Function API]
-    Router --> ServerlessAPI[Serverless Function API]
+    Client[客户端应用] --> Module1[模块1: 信息填写+关键词]
+    Client --> Module2[模块2: IP方案生成]
+    Client --> Module3[模块3: Banner设计]
     
-    EdgeAPI --> SiliconFlow[SiliconFlow API]
-    EdgeAPI --> OpenAI[OpenAI API]
-    ServerlessAPI --> SiliconFlow
+    Module1 --> API1[/api/module1-keywords]
+    Module2 --> API2[/api/module2-plan-stream]
+    Module3 --> API3[/api/module3-banner]
     
-    Client --> Hook[useStreamingChat Hook]
-    Hook --> EdgeAPI
+    API1 --> Serverless1[Serverless Function]
+    API2 --> Edge1[Edge Function]
+    API3 --> Serverless2[Serverless Function]
     
-    subgraph "Edge Runtime"
-        EdgeAPI
-        StreamProcessor[流式数据处理器]
-        ErrorHandler[错误处理器]
+    Serverless1 --> PresetKeywords[预置关键词库]
+    Edge1 --> SiliconFlow[SiliconFlow API]
+    Serverless2 --> DataExtractor[数据提取器]
+    
+    subgraph "数据流转"
+        Module1Data[模块1数据] --> Module2Data[模块2数据]
+        Module2Data --> Module3Data[模块3数据]
     end
     
-    subgraph "Serverless Runtime"
-        ServerlessAPI
-        BusinessLogic[业务逻辑处理]
-        FileGeneration[文件生成]
+    subgraph "字段标准"
+        FieldStandards[统一字段结构]
+        FieldStandards --> API1
+        FieldStandards --> API2
+        FieldStandards --> API3
     end
 ```
 
@@ -50,113 +70,240 @@ graph TB
 
 ## 组件和接口设计
 
-### 1. Edge Function API (`app/api/chat-stream/route.ts`)
+### 1. 模块1 API (`app/api/module1-keywords/route.ts`)
 
 ```typescript
-interface ChatStreamAPI {
-  // 请求接口
-  POST: (request: ChatRequest) => Promise<StreamResponse>
+interface Module1API {
+  // Serverless Function - 快速返回预置关键词
+  POST: (request: Module1Request) => Promise<Module1Response>
   
-  // 配置
+  // 输入字段（基于字段标准）
+  interface Module1Request {
+    storeName: string;
+    storeCategory: string;
+    storeLocation: string;
+    businessDuration?: string;
+    storeFeatures: string[];
+    ownerName: string;
+    ownerFeatures: string[];
+  }
+  
+  // 输出字段
+  interface Module1Response {
+    success: boolean;
+    data: {
+      confirmedStoreKeywords: KeywordItem[];
+      confirmedOwnerKeywords: KeywordItem[];
+    };
+  }
+}
+```
+
+### 2. 模块2 流式API (`app/api/module2-plan-stream/route.ts`)
+
+```typescript
+interface Module2StreamAPI {
+  // Edge Function - 流式生成8板块方案
+  POST: (request: Module2Request) => Promise<StreamResponse>
   runtime: 'edge'
   
-  // 核心功能
-  - 模型配置复用 (lib/models.ts)
-  - 多API提供商支持 (SiliconFlow + OpenAI)
-  - 流式数据处理
-  - 错误处理和日志记录
-}
-
-interface ChatRequest {
-  messages: ChatMessage[]
-  modelId?: string
-  temperature?: number
-  max_tokens?: number
-}
-
-interface StreamResponse {
-  // Server-Sent Events 格式
-  headers: {
-    'Content-Type': 'text/event-stream'
-    'Cache-Control': 'no-cache'
-    'Connection': 'keep-alive'
+  // 输入字段（继承模块1所有字段）
+  interface Module2Request {
+    storeName: string;
+    storeCategory: string;
+    storeLocation: string;
+    businessDuration?: string;
+    storeFeatures: string[];
+    ownerName: string;
+    ownerFeatures: string[];
+    confirmedStoreKeywords: KeywordItem[];
+    confirmedOwnerKeywords: KeywordItem[];
   }
-  body: ReadableStream<Uint8Array>
-}
-```
-
-### 2. 类型系统 (`lib/chat-types.ts`)
-
-```typescript
-// 核心消息类型
-interface ChatMessage {
-  role: 'system' | 'user' | 'assistant'
-  content: string
-  timestamp: number
-}
-
-// 流式响应状态
-interface StreamingState {
-  messages: ChatMessage[]
-  currentResponse: string
-  isStreaming: boolean
-  error: string | null
-}
-
-// Hook 配置选项
-interface StreamingChatOptions {
-  modelId?: string
-  temperature?: number
-  max_tokens?: number
-  systemMessage?: string
-}
-
-// API 响应格式
-interface StreamChunk {
-  content?: string
-  error?: string
-  done?: boolean
-}
-```
-
-### 3. React Hook (`hooks/use-streaming-chat.ts`)
-
-```typescript
-interface StreamingChatHook {
-  // 状态管理
-  state: StreamingState
   
-  // 核心方法
-  sendMessage: (content: string) => Promise<void>
-  stopStreaming: () => void
-  clearMessages: () => void
-  retryLastMessage: () => void
-  
-  // 内部功能
-  - AbortController 支持
-  - 错误处理和重试
-  - 状态同步
-  - 内存管理
+  // 流式输出8个板块（全部需要生成）
+  interface Module2StreamOutput {
+    ipTags: string[];
+    brandSlogan: string;
+    contentColumns: ContentColumn[];
+    goldenSentences: string[];
+    // 其余4个板块（全部需要生成）
+    accountMatrix: string[];
+    liveStreamDesign: string[];
+    operationAdvice: string[];
+    commercializationPath: string[];
+  }
 }
 ```
 
-### 4. UI 组件架构
+### 3. 模块3 API (`app/api/module3-banner/route.ts`)
 
 ```typescript
-// 基础聊天组件
-interface ChatStreamingComponent {
-  - 消息列表渲染
-  - 实时流式显示
-  - 输入处理
-  - 基础控制功能
+interface Module3API {
+  // Serverless Function - 快速返回设计方案
+  POST: (request: Module3Request) => Promise<Module3Response>
+  
+  // 输入字段（从模块1、2提取）
+  interface Module3Request {
+    storeName: string;
+    storeCategory: string;
+    storeLocation: string;
+    confirmedStoreKeywords: KeywordItem[];
+    brandSlogan: string;
+    ipTags: string[];
+    contentColumns: ContentColumn[];
+  }
+  
+  // 输出字段
+  interface Module3Response {
+    success: boolean;
+    data: {
+      bannerDesign: BannerDesign;
+      imagePrompt: string;
+      designTags: string[];
+    };
+  }
 }
 
-// 增强聊天组件
-interface EnhancedChatComponent extends ChatStreamingComponent {
-  - 模型选择器
-  - 高级配置选项
-  - 详细状态显示
-  - 完整错误处理
+### 4. 业务数据类型系统 (`lib/business-types.ts`)
+
+```typescript
+// 基于字段标准的核心类型
+interface StoreInfo {
+  storeName: string;
+  storeCategory: string;
+  storeLocation: string;
+  businessDuration?: string;
+  storeFeatures: string[];
+  ownerName: string;
+  ownerFeatures: string[];
+}
+
+interface KeywordItem {
+  keyword: string;
+  description: string;
+}
+
+interface Module1Data extends StoreInfo {
+  confirmedStoreKeywords: KeywordItem[];
+  confirmedOwnerKeywords: KeywordItem[];
+}
+
+// 模块2输出结构（8个板块全部生成）
+interface Module2OutputFull {
+  // 前4个板块
+  ipTags: string[];
+  brandSlogan: string;
+  contentColumns: ContentColumn[];
+  goldenSentences: string[];
+  // 后4个板块（全部需要生成）
+  accountMatrix: string[];
+  liveStreamDesign: string[];
+  operationAdvice: string[];
+  commercializationPath: string[];
+}
+
+// 流式响应状态（8个板块全部生成）
+interface Module2StreamState {
+  ipTags: { content: string[]; isComplete: boolean; };
+  brandSlogan: { content: string; isComplete: boolean; };
+  contentColumns: { content: ContentColumn[]; isComplete: boolean; };
+  goldenSentences: { content: string[]; isComplete: boolean; };
+  accountMatrix: { content: string[]; isComplete: boolean; };
+  liveStreamDesign: { content: string[]; isComplete: boolean; };
+  operationAdvice: { content: string[]; isComplete: boolean; };
+  commercializationPath: { content: string[]; isComplete: boolean; };
+}
+```
+
+### 5. 业务流程 Hook (`hooks/use-business-stream.ts`)
+
+```typescript
+interface BusinessStreamHook {
+  // 模块1状态
+  module1: {
+    data: Module1Data | null;
+    isLoading: boolean;
+    error: string | null;
+    fetchKeywords: (storeInfo: StoreInfo) => Promise<void>;
+  };
+  
+  // 模块2流式状态
+  module2: {
+    streamState: Module2StreamState;
+    isStreaming: boolean;
+    error: string | null;
+    startGeneration: (module1Data: Module1Data) => Promise<void>;
+    stopGeneration: () => void;
+  };
+  
+  // 模块3状态
+  module3: {
+    data: Module3Output | null;
+    isLoading: boolean;
+    error: string | null;
+    generateBanner: (module1Data: Module1Data, module2Data: Module2OutputFull) => Promise<void>;
+  };
+  
+  // 通用方法
+  reset: () => void;
+  retryCurrentStep: () => void;
+}
+```
+
+### 6. 业务流程UI组件架构
+
+```typescript
+// 模块1组件 - 信息填写和关键词选择
+interface Module1Component {
+  props: {
+    onComplete: (data: Module1Data) => void;
+    initialData?: Partial<StoreInfo>;
+  };
+  features: [
+    '店铺信息表单',
+    '关键词推荐展示',
+    '关键词选择和确认',
+    '数据验证和提交'
+  ];
+}
+
+// 模块2组件 - 流式方案生成
+interface Module2Component {
+  props: {
+    module1Data: Module1Data;
+    onComplete: (data: Module2OutputFull) => void;
+  };
+  features: [
+    '8个板块分区域展示',
+    '实时流式内容更新',
+    '生成进度指示',
+    '停止和重试控制'
+  ];
+}
+
+// 模块3组件 - Banner设计预览
+interface Module3Component {
+  props: {
+    module1Data: Module1Data;
+    module2Data: Module2OutputFull;
+    onComplete: (data: Module3Output) => void;
+  };
+  features: [
+    'Banner设计方案展示',
+    '设计元素可视化',
+    '生成参数调整',
+    '结果导出功能'
+  ];
+}
+
+// 主容器组件
+interface BusinessProcessDemo {
+  features: [
+    '三个模块的流程编排',
+    '数据流转管理',
+    '整体进度控制',
+    '结果汇总展示'
+  ];
 }
 ```
 

@@ -6,24 +6,25 @@
 
 ## 业务对齐说明
 
-- **模块1支持**: 流式展示关键词推荐过程和解释
-- **模块2核心**: 流式生成IP标签、品牌主张、内容栏目、金句模板
-- **模块3辅助**: 为Banner生成提供实时设计建议和元素推荐
-- **字段标准**: 严格按照业务文档中定义的字段结构实现
+- **模块1支持**: 快速返回预置关键词（不需要流式），复用现有关键词触发逻辑
+- **模块2核心**: 流式生成8个板块（全部需要生成），解决Serverless Function 10秒限制
+- **模块3辅助**: 快速返回Banner设计方案，从模块1、2数据中提取所需信息
+- **字段标准**: 严格按照 `docs/FIELD_STANDARDS.md` 中定义的字段结构实现
+- **API端点**: 模块化设计 - `/api/module1-keywords`, `/api/module2-plan-stream`, `/api/module3-banner`
 
 ## 核心需求 (MVP)
 
-### 需求 1：业务流程流式API
+### 需求 1：模块化API端点设计
 
-**用户故事：** 作为商家，我希望能够实时看到系统生成关键词推荐、IP方案、Banner设计建议的过程。
+**用户故事：** 作为商家，我希望系统能够高效处理不同模块的业务需求，提供合适的响应方式。
 
 #### 验收标准
 
-1. WHEN 处理模块1关键词推荐 THEN 系统应流式展示关键词生成和解释过程
-2. WHEN 处理模块2方案生成 THEN 系统应流式输出IP标签、品牌主张、内容栏目、金句模板
-3. WHEN 处理模块3设计建议 THEN 系统应流式生成Banner设计方案和视觉元素建议
-4. WHEN API接收业务数据 THEN 系统应支持标准字段(storeName, storeCategory, confirmedStoreKeywords等)
-5. WHEN 调用AI服务 THEN 系统应使用业务定义的Prompt模板结构
+1. WHEN 调用模块1 API THEN 系统应快速返回预置关键词列表（Serverless Function）
+2. WHEN 调用模块2 API THEN 系统应流式生成8个板块的IP方案（Edge Function）
+3. WHEN 调用模块3 API THEN 系统应快速返回Banner设计方案（Serverless Function）
+4. WHEN API接收业务数据 THEN 系统应严格遵循字段标准(storeName, storeCategory, confirmedStoreKeywords等)
+5. WHEN 模块3处理数据 THEN 系统应从模块1、2数据中正确提取Banner所需信息
 6. WHEN 响应完成 THEN 系统应返回符合业务输出结构的JSON格式数据
 
 ### 需求 2：业务数据状态管理Hook
@@ -34,7 +35,7 @@
 
 1. WHEN Hook初始化 THEN 系统应支持业务字段结构(storeName, storeCategory等)
 2. WHEN 处理模块1数据 THEN Hook应管理关键词推荐的流式状态
-3. WHEN 处理模块2数据 THEN Hook应管理IP方案生成的四个板块状态
+3. WHEN 处理模块2数据 THEN Hook应管理IP方案生成的8个板块状态（全部板块都需要生成）
 4. WHEN 处理模块3数据 THEN Hook应管理Banner设计建议的流式状态
 5. WHEN 接收业务数据 THEN Hook应实时更新对应的业务字段内容
 6. WHEN 完成业务流程 THEN Hook应返回符合业务输出结构的完整数据
@@ -46,7 +47,7 @@
 #### 验收标准
 
 1. WHEN 展示模块1流程 THEN 界面应显示店铺信息输入和关键词推荐区域
-2. WHEN 展示模块2流程 THEN 界面应分区域显示IP标签、品牌主张、内容栏目、金句的生成过程
+2. WHEN 展示模块2流程 THEN 界面应分区域显示8个板块的流式生成过程（IP标签、品牌主张、内容栏目、金句等）
 3. WHEN 展示模块3流程 THEN 界面应显示Banner设计建议和视觉元素推荐
 4. WHEN 处理业务数据 THEN 界面应支持业务字段的结构化输入和展示
 5. WHEN 生成过程中 THEN 界面应实时显示各个板块的流式内容更新

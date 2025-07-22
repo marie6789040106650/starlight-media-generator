@@ -48,6 +48,14 @@ export const ContentRenderer: React.FC<ContentRendererProps> = ({ content }) => 
     }
 
     lines.forEach((line, index) => {
+      // 检查是否是分隔线
+      if (line.trim() === '---' || line.trim() === '***' || line.trim() === '___') {
+        renderedContent.push(
+          <hr key={index} className="my-6 border-t border-gray-300" />
+        )
+        return
+      }
+
       // 检查是否是标题行
       const headingMatch = line.match(/^(#{1,6})\s+(.+)$/)
       if (headingMatch) {
