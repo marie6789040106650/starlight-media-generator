@@ -12,11 +12,8 @@ import {
   Module3Output,
   BannerDesign,
   ContentColumn,
-  ApiResponse,
-  STORE_CATEGORIES
+  ApiResponse
 } from './business-types';
-// Conditional import for server-side only
-let categoryManager: any = null;
 
 
 
@@ -177,16 +174,14 @@ export function generateBackgroundStyle(storeFeatures: string[]): string {
  */
 export function generateBannerDesign(module3Request: Module3Request): BannerDesign {
   const {
-    storeName,
     storeCategory,
     confirmedStoreKeywords,
     brandSlogan,
-    ipTags,
     contentColumns
   } = module3Request;
   
   // 生成主标题（优先使用品牌主张，其次店铺名称）
-  const mainTitle = brandSlogan || storeName;
+  const mainTitle = brandSlogan || module3Request.storeName;
   
   // 生成副标题（从关键词中选择最有特色的）
   const subtitle = confirmedStoreKeywords.length > 0 
@@ -210,24 +205,7 @@ export function generateBannerDesign(module3Request: Module3Request): BannerDesi
   };
 }
 
-/**
- * 根据行业生成字体风格建议
- * @param storeCategory 店铺行业
- * @returns 字体风格建议
- */
-function generateFontStyle(storeCategory: string): string {
-  const categoryFontMap: Record<string, string> = {
-    '餐饮': '圆润字体，温暖亲和，适合美食品牌',
-    '美业': '优雅字体，精致细腻，体现专业品质',
-    '零售': '现代字体，清晰易读，传达活力感',
-    '服务': '专业字体，稳重可信，展现专业形象',
-    '教育': '清晰字体，易读性强，营造学习氛围',
-    '健康': '简洁字体，清新自然，传达健康理念',
-    '其他': '通用字体，适应性强，平衡美观与可读性'
-  };
-  
-  return categoryFontMap[storeCategory] || categoryFontMap['其他'];
-}
+
 
 /**
  * 生成图像生成Prompt
@@ -241,7 +219,7 @@ export function generateImagePrompt(
   storeName: string,
   storeCategory: string
 ): string {
-  const { backgroundStyle, colorTheme, fontStyle, visualSymbols } = bannerDesign;
+  const { backgroundStyle, colorTheme, visualSymbols } = bannerDesign;
   
   const prompt = [
     `Professional banner design for ${translateCategoryToEnglish(storeCategory)} business`,
@@ -319,19 +297,7 @@ function translateColorToEnglish(color: string): string {
     .replace(/中性色调（蓝色、灰色、白色）适应性强/g, 'neutral colors (blue, gray, white) for versatility');
 }
 
-/**
- * 将中文字体描述翻译为英文
- */
-function translateFontToEnglish(font: string): string {
-  return font
-    .replace(/圆润字体，温暖亲和，适合美食品牌/g, 'rounded fonts, warm and friendly, suitable for food brands')
-    .replace(/优雅字体，精致细腻，体现专业品质/g, 'elegant fonts, refined and delicate, showing professional quality')
-    .replace(/现代字体，清晰易读，传达活力感/g, 'modern fonts, clear and readable, conveying vitality')
-    .replace(/专业字体，稳重可信，展现专业形象/g, 'professional fonts, stable and trustworthy, showing professional image')
-    .replace(/清晰字体，易读性强，营造学习氛围/g, 'clear fonts, highly readable, creating learning atmosphere')
-    .replace(/简洁字体，清新自然，传达健康理念/g, 'simple fonts, fresh and natural, conveying health concepts')
-    .replace(/通用字体，适应性强，平衡美观与可读性/g, 'universal fonts, highly adaptable, balancing beauty and readability');
-}
+
 
 /**
  * 将中文视觉元素翻译为英文
@@ -527,11 +493,15 @@ export function validateKeywords(
  * @param rawData 原始数据
  * @returns 格式化后的模块1数据
  */
-export function formatModule1Data(rawData: any): ApiResponse<Module1Data> {
+export async function formatModule1Data(rawData: any): Promise<ApiResponse<Module1Data>> {
   // 验证基础信息
-  const storeInfoResult = validateStoreInfo(rawData);
+  const storeInfoResult = await validateStoreInfo(rawData);
   if (!storeInfoResult.success) {
-    return storeInfoResult as ApiResponse<Module1Data>;
+    return {
+      success: false,
+      error: storeInfoResult.error,
+      code: storeInfoResult.code
+    };
   }
   
   // 验证店铺关键词

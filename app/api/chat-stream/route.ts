@@ -14,7 +14,7 @@ interface ChatMessage {
 interface ChatRequest {
   messages: ChatMessage[]
   model?: string
-  taskType?: string
+  taskType?: 'fast' | 'long_context' | 'multimodal' | 'budget' | 'experimental' | 'long_generation' | 'default'
   temperature?: number
   max_tokens?: number
   top_p?: number
@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
 
   try {
     console.log(`[${new Date().toISOString()}] [${requestId}] 收到流式聊天请求`)
-    
+
     const {
       messages,
       model,
@@ -57,75 +57,113 @@ export async function POST(request: NextRequest) {
       async start(controller) {
         try {
           // 使用统一SDK - 智能选择或指定模型
-          const chatFunction = model ? unifiedChat : smartChat
-          const chatOptions = model 
-            ? { 
-                model, 
-                messages, 
-                stream: true,
-                temperature,
-                maxTokens: max_tokens,
-                topP: top_p
-              }
-            : { 
-                taskType: taskType || 'default', 
-                messages, 
-                stream: true,
-                temperature,
-                maxTokens: max_tokens,
-                topP: top_p
-              }
+          if (model) {
+            // 指定模型调用
+            await unifiedChat({
+              model,
+              messages,
+              stream: true,
+              temperature,
+              maxTokens: max_tokens,
+              topP: top_p,
+              onData: (chunk: string) => {
+                totalChunks++
+                totalContent += chunk
 
-          await chatFunction({
-            ...chatOptions,
-            onData: (chunk: string) => {
-              totalChunks++
-              totalContent += chunk
+                // 转发内容到客户端
+                const responseData = {
+                  content: chunk,
+                  timestamp: Date.now(),
+                  requestId
+                }
+                controller.enqueue(encoder.encode(`data: ${JSON.stringify(responseData)}\n\n`))
+              },
+              onComplete: (content: string) => {
+                const duration = Date.now() - startTime
+                console.log(`[${new Date().toISOString()}] [${requestId}] 流式聊天完成`, {
+                  duration: `${duration}ms`,
+                  totalChunks,
+                  contentLength: content.length
+                })
 
-              // 转发内容到客户端
-              const responseData = {
-                content: chunk,
-                timestamp: Date.now(),
-                requestId
-              }
-              controller.enqueue(encoder.encode(`data: ${JSON.stringify(responseData)}\n\n`))
-            },
-            onComplete: (content: string) => {
-              const duration = Date.now() - startTime
-              console.log(`[${new Date().toISOString()}] [${requestId}] 流式聊天完成`, {
-                duration: `${duration}ms`,
-                totalChunks,
-                contentLength: content.length
-              })
-              
-              controller.enqueue(encoder.encode('data: [DONE]\n\n'))
-              controller.close()
-            },
-            onError: (error: Error) => {
-              const duration = Date.now() - startTime
-              console.error(`[${new Date().toISOString()}] [${requestId}] 流式聊天错误:`, {
-                error: error.message,
-                duration: `${duration}ms`
-              })
+                controller.enqueue(encoder.encode('data: [DONE]\n\n'))
+                controller.close()
+              },
+              onError: (error: Error) => {
+                const duration = Date.now() - startTime
+                console.error(`[${new Date().toISOString()}] [${requestId}] 流式聊天错误:`, {
+                  error: error.message,
+                  duration: `${duration}ms`
+                })
 
-              // 发送错误信息到客户端
-              const errorData = {
-                error: error.message,
-                requestId,
-                timestamp: Date.now()
+                // 发送错误信息到客户端
+                const errorData = {
+                  error: error.message,
+                  requestId,
+                  timestamp: Date.now()
+                }
+                controller.enqueue(encoder.encode(`data: ${JSON.stringify(errorData)}\n\n`))
+                controller.close()
               }
-              controller.enqueue(encoder.encode(`data: ${JSON.stringify(errorData)}\n\n`))
-              controller.close()
-            }
-          })
+            })
+          } else {
+            // 智能模型选择
+            await smartChat({
+              taskType: (taskType as 'fast' | 'long_context' | 'multimodal' | 'budget' | 'experimental' | 'long_generation' | 'default') || 'default',
+              messages,
+              stream: true,
+              temperature,
+              maxTokens: max_tokens,
+              topP: top_p,
+              onData: (chunk: string) => {
+                totalChunks++
+                totalContent += chunk
+
+                // 转发内容到客户端
+                const responseData = {
+                  content: chunk,
+                  timestamp: Date.now(),
+                  requestId
+                }
+                controller.enqueue(encoder.encode(`data: ${JSON.stringify(responseData)}\n\n`))
+              },
+              onComplete: (content: string) => {
+                const duration = Date.now() - startTime
+                console.log(`[${new Date().toISOString()}] [${requestId}] 流式聊天完成`, {
+                  duration: `${duration}ms`,
+                  totalChunks,
+                  contentLength: content.length
+                })
+
+                controller.enqueue(encoder.encode('data: [DONE]\n\n'))
+                controller.close()
+              },
+              onError: (error: Error) => {
+                const duration = Date.now() - startTime
+                console.error(`[${new Date().toISOString()}] [${requestId}] 流式聊天错误:`, {
+                  error: error.message,
+                  duration: `${duration}ms`
+                })
+
+                // 发送错误信息到客户端
+                const errorData = {
+                  error: error.message,
+                  requestId,
+                  timestamp: Date.now()
+                }
+                controller.enqueue(encoder.encode(`data: ${JSON.stringify(errorData)}\n\n`))
+                controller.close()
+              }
+            })
+          }
 
         } catch (error) {
           // 尝试降级处理
           console.log(`[${new Date().toISOString()}] [${requestId}] 尝试降级到智能选择...`)
-          
+
           try {
             await smartChat({
-              taskType: 'default',
+              taskType: 'default' as const,
               messages,
               stream: true,
               temperature,
@@ -146,13 +184,13 @@ export async function POST(request: NextRequest) {
                   duration: `${duration}ms`,
                   contentLength: content.length
                 })
-                
+
                 controller.enqueue(encoder.encode('data: [DONE]\n\n'))
                 controller.close()
               },
               onError: (fallbackError: Error) => {
                 console.error(`[${new Date().toISOString()}] [${requestId}] 降级处理也失败:`, fallbackError.message)
-                
+
                 const errorData = {
                   error: `降级处理失败: ${fallbackError.message}`,
                   requestId,

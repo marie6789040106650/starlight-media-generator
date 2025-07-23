@@ -2,7 +2,7 @@
  * 统一多模型 LLM SDK 配置
  */
 
-import type { AIModel } from '@/lib/models'
+// LLM 配置类型定义
 
 export interface LLMConfig {
   // 默认模型选择策略
@@ -165,7 +165,8 @@ export const ENVIRONMENT_CONFIGS: Record<string, Partial<LLMConfig>> = {
     },
     costControl: {
       maxCostPerRequest: 0.1,  // 开发环境限制更严格
-      dailyBudget: 1.0
+      dailyBudget: 1.0,
+      enableCostTracking: true
     }
   },
   
@@ -183,7 +184,8 @@ export const ENVIRONMENT_CONFIGS: Record<string, Partial<LLMConfig>> = {
     },
     costControl: {
       maxCostPerRequest: 5.0,
-      dailyBudget: 100.0
+      dailyBudget: 100.0,
+      enableCostTracking: true
     }
   },
   

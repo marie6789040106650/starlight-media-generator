@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { useStreamingChat } from '@/hooks/use-streaming-chat';
+import { MarkdownRenderer } from './markdown-renderer';
 
 interface ChatStreamingProps {
   model?: string;
@@ -208,8 +209,15 @@ export default function ChatStreaming({
                 </button>
               </div>
               
-              <div className="whitespace-pre-wrap break-words pr-12">
-                {message.content}
+              <div className="break-words pr-12">
+                {message.role === 'user' ? (
+                  <div className="whitespace-pre-wrap">{message.content}</div>
+                ) : (
+                  <MarkdownRenderer 
+                    content={message.content} 
+                    className="text-inherit [&>*:first-child]:mt-0 [&>*:last-child]:mb-0"
+                  />
+                )}
               </div>
               <div className={`flex justify-between items-center text-xs mt-2 ${
                 message.role === 'user' ? 'text-blue-100' : 'text-gray-500'
@@ -227,8 +235,11 @@ export default function ChatStreaming({
         {currentResponse && (
           <div className="flex justify-start">
             <div className="max-w-[80%] p-4 rounded-lg bg-gray-100 text-gray-800 border shadow-sm">
-              <div className="whitespace-pre-wrap break-words">
-                {currentResponse}
+              <div className="break-words">
+                <MarkdownRenderer 
+                  content={currentResponse} 
+                  className="text-inherit [&>*:first-child]:mt-0 [&>*:last-child]:mb-0"
+                />
                 <span className="inline-block w-2 h-5 bg-blue-500 animate-pulse ml-1" />
               </div>
               <div className="flex items-center justify-between mt-2">

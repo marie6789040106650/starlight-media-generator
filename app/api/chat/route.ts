@@ -19,8 +19,7 @@ export async function POST(request: NextRequest) {
       temperature,
       max_tokens,
       top_p,
-      stream = false,
-      ...options 
+      stream = false
     } = await request.json()
 
     console.log(`[${new Date().toISOString()}] [${requestId}] 请求参数:`, {
@@ -40,27 +39,29 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-      // 使用统一SDK - 智能选择或指定模型
-      const chatFunction = model ? unifiedChat : smartChat
-      const chatOptions = model 
-        ? { 
-            model, 
-            messages, 
-            temperature,
-            maxTokens: max_tokens,
-            topP: top_p,
-            stream 
-          }
-        : { 
-            taskType: taskType || 'default', 
-            messages, 
-            temperature,
-            maxTokens: max_tokens,
-            topP: top_p,
-            stream 
-          }
-
-      const response = await chatFunction(chatOptions)
+      let response;
+      
+      if (model) {
+        // 指定模型调用
+        response = await unifiedChat({
+          model,
+          messages,
+          temperature,
+          maxTokens: max_tokens,
+          topP: top_p,
+          stream
+        });
+      } else {
+        // 智能模型选择
+        response = await smartChat({
+          taskType: (taskType as 'fast' | 'long_context' | 'multimodal' | 'budget' | 'experimental' | 'long_generation' | 'default') || 'default',
+          messages,
+          temperature,
+          maxTokens: max_tokens,
+          topP: top_p,
+          stream
+        });
+      }
 
       const duration = Date.now() - startTime
       console.log(`[${new Date().toISOString()}] [${requestId}] 聊天完成`, {
