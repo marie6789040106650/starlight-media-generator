@@ -1,0 +1,207 @@
+
+> starlight-media-generator@1.0.62 dev /Users/bypasser/d/出海/starlight-media-generator
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+   ▲ Next.js 15.1.3
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.1.199:3001
+   - Environments: .env.local
+   - Experiments (use with caution):
+     · webpackBuildWorker
+
+ ✓ Starting...
+ ✓ Ready in 6.2s
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 1063ms (98 modules)
+[2025-<w> [webpack.cache.PackFileCacheStrategy] Restoring failed for ResolverCachePlugin|loader|default|path=|/Users/bypasser/d/出海/starlight-media-generator|request=|next-middleware-loader from pack: Error: Expected end of object
+<w> (during deserialization of webpack/lib/ExternalModule)
+<w> (during deserialization of Map)
+<w> (during deserialization of webpack/lib/cache/PackFileCacheStrategy PackContentItems)
+ ○ Compiling /middleware ...
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: Expected end of object
+<w> (during deserialization of webpack/lib/ExternalModule)
+<w> (during deserialization of Map)
+<w> (during deserialization of webpack/lib/cache/PackFileCacheStrategy PackContentItems)
+led in 596ms (434 modules)
+ ✓ Compiled in 663ms (434 modules)
+[2025-07-23T20:55:09.248Z] [01mr4eets] GET http://localhost:3001/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: null,
+  clientIP: '::1'
+}
+[2025-07-23T20:55:09.252Z] [01mr4eets] 请求处理开始完成 { duration: '4ms', status: 200 }
+ GET / 200 in 228ms
+[2025-07-23T20:55:11.471Z] [e8oehz2sq] GET http://localhost:3001/api/keyword-stats {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3001/',
+  clientIP: '::1'
+}
+[2025-07-23T20:55:11.472Z] [e8oehz2sq] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ○ Compiling /api/keyword-stats ...
+ ✓ Compiled /api/keyword-stats in 718ms (872 modules)
+ GET /api/keyword-stats 200 in 886ms
+[2025-07-23T20:55:12.373Z] [vwnkxejrx] GET http://localhost:3001/api/keyword-stats {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3001/',
+  clientIP: '::1'
+}
+[2025-07-23T20:55:12.374Z] [vwnkxejrx] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /api/keyword-stats 200 in 11ms
+[2025-07-23T20:55:20.713Z] [ah2pxxzwi] POST http://localhost:3001/api/expand-keywords {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3001/',
+  clientIP: '::1'
+}
+[2025-07-23T20:55:20.714Z] [ah2pxxzwi] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ○ Compiling /api/expand-keywords ...
+ ✓ Compiled /api/expand-keywords in 1057ms (886 modules)
+收到关键词拓展请求: {
+  storeFeatures: '',
+  ownerFeatures: undefined,
+  storeCategory: undefined
+}
+关键词拓展结果: {
+  expanded_store_features: [
+    '专业服务', '品质保证',
+    '价格合理', '服务周到',
+    '经验丰富', '诚信经营',
+    '客户至上', '创新思维',
+    '持续改进', '团队协作',
+    '专业素养', '用心服务',
+    '行业领先', '技术创新',
+    '质量第一', '信誉保障',
+    '口碑传承', '匠心精神',
+    '精益求精', '追求卓越'
+  ],
+  expanded_boss_features: [
+    '热情好客', '亲和力强',
+    '平易近人', '善于沟通',
+    '幽默风趣', '专业素养',
+    '技术精湛', '经验丰富',
+    '行业专家', '持续学习',
+    '诚信经营', '用心服务',
+    '客户至上', '品质坚持',
+    '创新思维'
+  ]
+}
+ POST /api/expand-keywords 200 in 1419ms
+[2025-07-23T20:55:32.462Z] [lgbsrr5wz] POST http://localhost:3001/api/keyword-stats {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3001/',
+  clientIP: '::1'
+}
+[2025-07-23T20:55:32.478Z] [lgbsrr5wz] 请求处理开始完成 { duration: '16ms', status: 200 }
+ POST /api/keyword-stats 200 in 126ms
+[2025-07-23T20:55:32.637Z] [wreb7cmhp] POST http://localhost:3001/api/expand-keywords {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3001/',
+  clientIP: '::1'
+}
+[2025-07-23T20:55:32.637Z] [wreb7cmhp] 请求处理开始完成 { duration: '0ms', status: 200 }
+收到关键词拓展请求: {
+  storeFeatures: '秘制汤底、地域食材、现制模式、健康定制、主题沉浸、网红装修',
+  ownerFeatures: '匠人、传承、学霸、宠粉',
+  storeCategory: undefined
+}
+关键词拓展结果: {
+  expanded_store_features: [
+    '专业服务', '品质保证',
+    '价格合理', '服务周到',
+    '经验丰富', '诚信经营',
+    '客户至上', '创新思维',
+    '持续改进', '团队协作',
+    '专业素养', '用心服务',
+    '行业领先', '技术创新',
+    '质量第一'
+  ],
+  expanded_boss_features: [
+    '匠人传承', '二代传承',
+    '学霸出身', '宠粉达人',
+    '热情好客', '亲和力强',
+    '平易近人', '善于沟通',
+    '幽默风趣', '专业素养',
+    '技术精湛', '经验丰富',
+    '行业专家', '持续学习'
+  ]
+}
+ POST /api/expand-keywords 200 in 434ms
+ ✓ Compiled in 547ms (435 modules)
+[2025-07-23T20:55:33.178Z] [l7d77qlxg] POST http://localhost:3001/api/generate-plan {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3001/',
+  clientIP: '::1'
+}
+[2025-07-23T20:55:33.178Z] [l7d77qlxg] 请求处理开始完成 { duration: '0ms', status: 200 }
+[2025-07-23T20:55:33.214Z] [cu8fhn4l3] GET http://localhost:3001/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3001/',
+  clientIP: '::1'
+}
+[2025-07-23T20:55:33.221Z] [cu8fhn4l3] 请求处理开始完成 { duration: '7ms', status: 200 }
+ ○ Compiling /api/generate-plan ...
+ ✓ Compiled /api/generate-plan in 1017ms (896 modules)
+[2025-07-23T20:55:34.301Z] [2gymvop] 收到生成方案请求
+[2025-07-23T20:55:34.302Z] [2gymvop] 请求参数: {
+  promptLength: 543,
+  modelId: 'deepseek-ai/DeepSeek-V3',
+  taskType: 'long_generation',
+  stream: true,
+  storeInfo: '馋嘴老张麻辣烫',
+  clientIP: '::1'
+}
+ GET / 200 in 1218ms
+[2025-07-23T20:55:39.083Z] [umvoiyymm] POST http://localhost:3001/api/generate-word {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3001/',
+  clientIP: '::1'
+}
+[2025-07-23T20:55:39.103Z] [umvoiyymm] 请求处理开始完成 { duration: '21ms', status: 200 }
+ ○ Compiling /api/generate-word ...
+ ✓ Compiled /api/generate-word in 962ms (904 modules)
+📝 开始生成Word文档...
+内容长度: 138 字符
+店铺名称: 馋嘴老张麻辣烫
+Logo图片加载成功: /Users/bypasser/d/出海/starlight-media-generator/public/logo.png
+✅ Word文档生成成功 - 文件大小: 2440925 bytes
+ POST /api/generate-word 200 in 2271ms
+ ✓ Compiled in 741ms (435 modules)
+[2025-07-23T20:55:43.189Z] [behl6rp68] GET http://localhost:3001/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3001/',
+  clientIP: '::1'
+}
+[2025-07-23T20:55:43.190Z] [behl6rp68] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 110ms
+ POST /api/generate-plan 200 in 14086ms
+[2025-07-23T20:56:13.140Z] [o2bsri2qq] GET http://localhost:3001/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: null,
+  clientIP: '::1'
+}
+[2025-07-23T20:56:13.141Z] [o2bsri2qq] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 256ms
+[2025-07-23T20:56:15.022Z] [1sc114yi7] GET http://localhost:3001/api/keyword-stats {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3001/',
+  clientIP: '::1'
+}
+[2025-07-23T20:56:15.023Z] [1sc114yi7] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /api/keyword-stats 200 in 19ms
+[2025-07-23T20:56:15.049Z] [e9rmc97az] GET http://localhost:3001/api/keyword-stats {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3001/',
+  clientIP: '::1'
+}
+[2025-07-23T20:56:15.050Z] [e9rmc97az] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /api/keyword-stats 200 in 14ms
+[2025-07-23T20:56:51.517Z] [2gymvop] 生成完成 { duration: '77216ms', contentLength: 2746, totalChunks: 1166 }
+[2025-07-23T20:56:51.518Z] [2gymvop] 生成错误: {
+  error: 'Invalid state: Controller is already closed',
+  duration: '77217ms'
+}
+[2025-07-23T20:56:51.520Z] [2gymvop] 处理异常: {
+  error: 'Invalid state: Controller is already closed',
+  duration: '77219ms'
+}
+[2025-07-23T20:56:51.520Z] [2gymvop] 尝试降级到智能选择...
