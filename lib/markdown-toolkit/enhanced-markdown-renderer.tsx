@@ -6,7 +6,7 @@
 "use client"
 
 import React, { useEffect, useMemo } from 'react';
-import { renderMarkdown, MarkdownOptions, MarkdownPresets } from '../lib/markdown-renderer';
+import { renderMarkdown, MarkdownOptions, MarkdownPresets } from './markdown-renderer';
 
 interface EnhancedMarkdownRendererProps {
   /** Markdown 内容 */

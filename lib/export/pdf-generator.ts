@@ -1,4 +1,5 @@
 import { WordToPDFGenerator, PDFFromWordOptions } from './word-to-pdf-generator'
+import { addCompanyWatermark, addConfidentialWatermark, WatermarkPresets } from '../utils/pdf-watermark'
 
 export interface PDFExportOptions {
   content: string
@@ -6,6 +7,9 @@ export interface PDFExportOptions {
   bannerImage?: string | null
   filename?: string
   includeWatermark?: boolean
+  watermarkText?: string
+  watermarkType?: 'company' | 'confidential' | 'custom'
+  watermarkOptions?: any
 }
 
 /**
@@ -117,12 +121,19 @@ export class PDFGenerator {
       }
 
       // 下载生成的PDF文件
-      const blob = await response.blob()
+      let blob = await response.blob()
       const finalFilename = filename || this.generatePDFFilename(content)
       
       // 验证blob大小
       if (blob.size === 0) {
         throw new Error('生成的PDF文件为空')
+      }
+      
+      // 添加水印（如果需要）
+      if (includeWatermark) {
+        console.log('🔖 正在添加PDF水印...')
+        blob = await this.addWatermarkToPDF(blob, options)
+        console.log('✅ PDF水印添加完成')
       }
       
       // 创建下载链接
@@ -227,6 +238,64 @@ export class PDFGenerator {
     }
 
     return this.wordToPdfGenerator.generateWordDocument(wordOptions)
+  }
+
+  /**
+   * 为 PDF 添加水印
+   */
+  private async addWatermarkToPDF(blob: Blob, options: PDFExportOptions): Promise<Blob> {
+    try {
+      const { storeName, watermarkText, watermarkType = 'company', watermarkOptions } = options
+      
+      // 将 Blob 转换为 ArrayBuffer
+      const arrayBuffer = await blob.arrayBuffer()
+      
+      let watermarkResult
+      
+      // 根据水印类型选择不同的水印方法
+      switch (watermarkType) {
+        case 'confidential':
+          watermarkResult = await addConfidentialWatermark(arrayBuffer, {
+            ...WatermarkPresets.security,
+            ...watermarkOptions
+          })
+          break
+        case 'custom':
+          if (watermarkText) {
+            const { addSimpleWatermark } = await import('../utils/pdf-watermark')
+            watermarkResult = await addSimpleWatermark(arrayBuffer, watermarkText, {
+              ...WatermarkPresets.standard,
+              ...watermarkOptions
+            })
+          } else {
+            // 默认使用公司水印
+            watermarkResult = await addCompanyWatermark(arrayBuffer, storeName, {
+              ...WatermarkPresets.copyright,
+              ...watermarkOptions
+            })
+          }
+          break
+        case 'company':
+        default:
+          watermarkResult = await addCompanyWatermark(arrayBuffer, storeName, {
+            ...WatermarkPresets.copyright,
+            ...watermarkOptions
+          })
+          break
+      }
+      
+      if (watermarkResult.success && watermarkResult.pdfBytes) {
+        console.log(`✅ 水印添加成功 - 处理了 ${watermarkResult.stats?.watermarkedPages} 页`)
+        return new Blob([watermarkResult.pdfBytes], { type: 'application/pdf' })
+      } else {
+        console.warn('⚠️ 水印添加失败，返回原始PDF:', watermarkResult.error)
+        return blob
+      }
+    } catch (error) {
+      console.error('❌ 水印处理出错:', error)
+      // 如果水印添加失败，返回原始PDF
+      return blob
+    }
   }
 }
 

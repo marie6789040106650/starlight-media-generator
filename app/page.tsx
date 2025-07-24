@@ -15,7 +15,7 @@ import { useToc } from "@/hooks/use-toc"
 import { useKeywordStats } from "@/hooks/use-keyword-stats"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ExportActions } from "@/components/export-actions"
+import { EnhancedExportWithWatermark } from "@/components/enhanced-export-with-watermark"
 
 import { ArrowLeft, RefreshCw } from "lucide-react"
 
@@ -213,7 +213,7 @@ export default function Home() {
                   重新生成
                 </Button>
 
-                <ExportActions
+                <EnhancedExportWithWatermark
                   content={generatedContent}
                   storeName={formData.storeName || "店铺"}
                   bannerImage={bannerImage}

@@ -92,3 +92,6 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* 导入增强 Markdown 样式 */
+@import '../styles/enhanced-markdown.css';

@@ -1,107 +1,74 @@
 "use client"
 
-import React from "react"
-import { generateHeadingId } from "@/lib/utils"
+import React, { useMemo } from "react"
+import { renderWebMarkdown } from "../lib/web-markdown-renderer"
+import { EnhancedExportActions } from "./enhanced-export-actions"
+import "../styles/solution-display.css"
 
 interface ContentRendererProps {
   content: string
+  enableAllFeatures?: boolean
+  showToolbar?: boolean
+  storeName?: string
+  bannerImage?: string | null
+  showExportActions?: boolean
 }
 
-export const ContentRenderer: React.FC<ContentRendererProps> = ({ content }) => {
-  // 解析和渲染方案内容的函数
-  const renderParsedContent = (content: string) => {
-    const lines = content.split('\n')
-    let renderedContent: React.ReactElement[] = []
+export const ContentRenderer: React.FC<ContentRendererProps> = ({ 
+  content,
+  enableAllFeatures = true,
+  showToolbar = false,
+  storeName,
+  bannerImage,
+  showExportActions = false
+}) => {
+  // 使用网页专用的Markdown渲染器
+  const renderedContent = useMemo(() => {
+    if (!content) return '';
+    return renderWebMarkdown(content, {
+      breaks: true,
+      tables: true,
+      codeHighlight: enableAllFeatures,
+      sanitize: true
+    });
+  }, [content, enableAllFeatures]);
 
-    // 处理文本中的Markdown格式
-    const parseMarkdownText = (text: string) => {
-      const parts: (string | React.ReactElement)[] = []
-      let lastIndex = 0
+  return (
+    <div className="content-renderer">
+      {/* 工具栏 */}
+      {showToolbar && (
+        <div className="flex justify-between items-center mb-4 p-4 bg-gray-50 rounded-lg">
+          <div className="text-sm text-gray-600">
+            {content.split('\n').length} 行 · {content.split(/\s+/).filter(w => w).length} 词
+          </div>
+          {showExportActions && storeName && (
+            <EnhancedExportActions
+              content={content}
+              storeName={storeName}
+              bannerImage={bannerImage}
+              showPreview={true}
+            />
+          )}
+        </div>
+      )}
 
-      // 匹配 **text** 格式的加粗文本
-      const boldRegex = /\*\*(.*?)\*\*/g
-      let match
-      let keyCounter = 0
-
-      while ((match = boldRegex.exec(text)) !== null) {
-        // 添加匹配前的普通文本
-        if (match.index > lastIndex) {
-          parts.push(text.slice(lastIndex, match.index))
-        }
-
-        // 添加加粗文本
-        parts.push(
-          <strong key={`bold-${keyCounter++}`} className="font-semibold text-gray-900">
-            {match[1]}
-          </strong>
-        )
-
-        lastIndex = match.index + match[0].length
-      }
-
-      // 添加剩余的普通文本
-      if (lastIndex < text.length) {
-        parts.push(text.slice(lastIndex))
-      }
-
-      return parts.length > 0 ? parts : [text]
-    }
-
-    lines.forEach((line, index) => {
-      // 检查是否是分隔线
-      if (line.trim() === '---' || line.trim() === '***' || line.trim() === '___') {
-        renderedContent.push(
-          <hr key={index} className="my-6 border-t border-gray-300" />
-        )
-        return
-      }
-
-      // 检查是否是标题行
-      const headingMatch = line.match(/^(#{1,6})\s+(.+)$/)
-      if (headingMatch) {
-        const level = headingMatch[1].length
-        const title = headingMatch[2].trim()
-        const id = generateHeadingId(index, title)
-
-        const headingElement = React.createElement(
-          `h${level}`,
-          {
-            key: index,
-            id: id,
-            className: `scroll-mt-20 font-bold text-gray-900 ${
-              level === 1 ? 'text-3xl mb-6 mt-8' :
-              level === 2 ? 'text-2xl mb-4 mt-6' :
-              level === 3 ? 'text-xl mb-3 mt-5' :
-              'text-lg mb-2 mt-4'
-            }`
-          },
-          parseMarkdownText(title)
-        )
-
-        renderedContent.push(headingElement)
-      } else if (line.trim()) {
-        // 处理普通文本行，解析Markdown格式
-        const trimmedLine = line.trim()
-
-        if (trimmedLine) {
-          renderedContent.push(
-            <p key={index} className="text-gray-700 leading-relaxed mb-3">
-              {parseMarkdownText(trimmedLine)}
-            </p>
-          )
-        }
-      } else {
-        // 空行
-        renderedContent.push(<div key={index} className="h-2" />)
-      }
-    })
-
-    return (
-      <div className="prose max-w-none">
-        {renderedContent}
-      </div>
-    )
-  }
-
-  return renderParsedContent(content)
+      {/* 内容渲染 */}
+      <div 
+        className="solution-markdown-content prose prose-lg max-w-none"
+        dangerouslySetInnerHTML={{ __html: renderedContent }}
+        onClick={(e) => {
+          // 处理链接点击
+          const target = e.target as HTMLElement;
+          if (target.tagName === 'A') {
+            const link = target as HTMLAnchorElement;
+            const url = link.href;
+            if (url && !url.startsWith('#') && !url.startsWith('/')) {
+              e.preventDefault();
+              window.open(url, '_blank', 'noopener,noreferrer');
+            }
+          }
+        }}
+      />
+    </div>
+  )
 }
