@@ -1051,3 +1051,129 @@ Import trace for requested module:
  GET /chinese-watermark-demo 200 in 527ms
  GET /watermark-test 200 in 461ms
  GET / 200 in 226ms
+ ✓ Compiled in 1014ms (574 modules)
+[2025-07-24T13:05:39.221Z] [5rh4aal30] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T13:05:39.222Z] [5rh4aal30] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /chinese-watermark-demo 200 in 418ms
+ GET /watermark-test 200 in 748ms
+ GET / 200 in 869ms
+ ✓ Compiled in 1191ms (574 modules)
+[2025-07-24T13:05:40.410Z] [dtoa7ouh7] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T13:05:40.411Z] [dtoa7ouh7] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /chinese-watermark-demo 200 in 362ms
+ GET /watermark-test 200 in 453ms
+ GET / 200 in 414ms
+ ✓ Compiled in 555ms (574 modules)
+[2025-07-24T13:06:19.582Z] [65fmjvqtj] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T13:06:19.582Z] [65fmjvqtj] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /chinese-watermark-demo 200 in 154ms
+ GET /watermark-test 200 in 185ms
+ GET / 200 in 163ms
+ ✓ Compiled in 719ms (574 modules)
+[2025-07-24T13:07:16.814Z] [mu1aks7dk] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T13:07:16.814Z] [mu1aks7dk] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /watermark-test 200 in 171ms
+ GET /chinese-watermark-demo 200 in 206ms
+ GET / 200 in 174ms
+[2025-07-24T13:11:04.689Z] [736e5ahj1] POST http://localhost:3000/api/generate-pdf { userAgent: 'node-fetch', referer: null, clientIP: '::1' }
+[2025-07-24T13:11:04.690Z] [736e5ahj1] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ○ Compiling /api/generate-pdf ...
+🗑️ 清理过期文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358170748-anvlzts/document-1753358170749.docx
+🧹 清理完成，删除了 1 个过期文件
+ ✓ Compiled /api/generate-pdf in 4.3s (893 modules)
+[2025-07-24T13:11:09.983Z] [injpmwl33] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T13:11:09.983Z] [injpmwl33] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /watermark-test 200 in 1357ms
+ GET /chinese-watermark-demo 200 in 1220ms
+ GET / 200 in 2349ms
+✅ 找到LibreOffice命令: soffice
+📄 开始PDF转换流程（优化版本）
+📝 生成Word文档（支持缓存）...
+📁 创建临时目录: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753362674681-n2kpnz7
+📝 生成新的Word文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753362674681-n2kpnz7/document-1753362674681.docx
+Logo图片加载成功: /Users/bypasser/d/出海/starlight-media-generator/public/logo.png
+✅ Word文件生成完成: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753362674681-n2kpnz7/document-1753362674681.docx (53983 bytes)
+✅ Word文档准备完成
+📊 缓存统计: 1 文件, 52.72 KB, 命中率: 0.0%
+🔄 开始PDF转换...
+🔄 PDF转换尝试 1/3
+执行命令: soffice --headless --convert-to pdf --outdir "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753362674681-n2kpnz7" "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753362674681-n2kpnz7/document-1753362674681.docx"
+LibreOffice stdout: convert /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753362674681-n2kpnz7/document-1753362674681.docx as a Writer document -> /private/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753362674681-n2kpnz7/document-1753362674681.pdf using filter : writer_pdf_Export
+
+预期PDF文件不存在，搜索其他PDF文件...
+📁 临时目录中的文件: [ 'document-1753362674681.docx', 'document-1753362674681.pdf' ]
+📄 找到的PDF文件: [ 'document-1753362674681.pdf' ]
+📄 使用PDF文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753362674681-n2kpnz7/document-1753362674681.pdf (64712 bytes)
+✅ PDF转换成功 (尝试 1)
+✅ PDF转换成功 - 文件大小: 64712 bytes
+🛡️ 开始添加服务端水印...
+🛡️ 服务端添加水印: "星光传媒"
+📁 服务端加载字体文件: /Users/bypasser/d/出海/starlight-media-generator/public/fonts/NotoSansSC-Regular.woff2, 大小: 1595296 bytes
+⚠️ 服务端中文字体加载失败，使用默认字体: Error: Input to `PDFDocument.embedFont` was a custom font, but no `fontkit` instance was found. You must register a `fontkit` instance with `PDFDocument.registerFontkit(...)` before embedding custom fonts.
+    at new Promise (<anonymous>)
+    at addServerSideWatermark (app/api/generate-pdf/route.ts:42:26)
+    at async generatePdfFromRequest (app/api/generate-pdf/route.ts:421:32)
+    at async POST (app/api/generate-pdf/route.ts:486:11)
+  40 |       const fontBytes = await readFile(fontPath)
+  41 |       console.log(`📁 服务端加载字体文件: ${fontPath}, 大小: ${fontBytes.length} bytes`)
+> 42 |       font = await pdfDoc.embedFont(fontBytes)
+     |                          ^
+  43 |       console.log('✅ 服务端中文字体加载成功')
+  44 |     } catch (fontError) {
+  45 |       console.warn('⚠️ 服务端中文字体加载失败，使用默认字体:', fontError)
+❌ 服务端水印处理失败: Error: WinAnsi cannot encode "星" (0x661f)
+    at addServerSideWatermark (app/api/generate-pdf/route.ts:67:17)
+    at async generatePdfFromRequest (app/api/generate-pdf/route.ts:421:32)
+    at async POST (app/api/generate-pdf/route.ts:486:11)
+  65 |         for (let x = -width; x < width * 2; x += spacing) {
+  66 |           for (let y = -height; y < height * 2; y += spacing) {
+> 67 |             page.drawText(watermarkConfig.text, {
+     |                 ^
+  68 |               x: x,
+  69 |               y: y,
+  70 |               size: watermarkConfig.fontSize,
+ POST /api/generate-pdf 200 in 18493ms
+ ✓ Compiled in 700ms (574 modules)
+[2025-07-24T13:11:24.005Z] [czdvz2qip] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T13:11:24.005Z] [czdvz2qip] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /chinese-watermark-demo 200 in 164ms
+ GET /watermark-test 200 in 194ms
+ GET / 200 in 141ms
+ ✓ Compiled in 837ms (574 modules)
+[2025-07-24T13:12:00.078Z] [w7188n1gg] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T13:12:00.079Z] [w7188n1gg] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /chinese-watermark-demo 200 in 213ms
+ GET /watermark-test 200 in 306ms
+ GET / 200 in 307ms
+🗑️ 清理过期文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.docx
+🧹 清理完成，删除了 1 个过期文件
+🗑️ 清理过期文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358449244-che8yao/document-1753358449245.docx
+🧹 清理完成，删除了 1 个过期文件

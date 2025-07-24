@@ -1,0 +1,13 @@
+
+> starlight-media-generator@1.0.62 dev /Users/bypasser/d/出海/starlight-media-generator
+> next dev
+
+   ▲ Next.js 15.4.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.199:3000
+   - Environments: .env.local
+   - Experiments (use with caution):
+     ⨯ webpackBuildWorker
+
+ ✓ Starting...
+ ✓ Ready in 8.8s
