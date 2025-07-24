@@ -31,8 +31,9 @@ export const generateHeadingId = (index: number, title: string): string => {
 export const parseMarkdownToc = (content: string): TocItem[] => {
   const lines = content.split('\n')
   const toc: TocItem[] = []
+  let headingIndex = 0
 
-  lines.forEach((line, index) => {
+  lines.forEach((line) => {
     // 匹配标题行 (# ## ### 等)
     const match = line.match(/^(#{1,6})\s+(.+)$/)
     if (match) {
@@ -42,7 +43,8 @@ export const parseMarkdownToc = (content: string): TocItem[] => {
       // 去掉标题前后的 * 号
       title = title.replace(/^\*+|\*+$/g, '').trim()
       
-      const id = generateHeadingId(index, title)
+      const id = generateHeadingId(headingIndex, title)
+      headingIndex++
 
       toc.push({
         id,
@@ -56,17 +58,17 @@ export const parseMarkdownToc = (content: string): TocItem[] => {
 }
 
 // 生成AI提示词
-export const generatePrompt = (formData: FormData, storeFeatures: string, ownerFeatures: string) => {
-  return `你是一名资深抖音IP打造专家，请根据下列商家信息，输出一份结构完整、语言专业、情绪有感染力的《老板IP打造方案》，适合导出为PDF格式。
+export const generatePrompt = (formData: FormData, storeFeatures: string, ownerFeatures: string, confirmedStoreKeywords?: string, confirmedOwnerKeywords?: string) => {
+  return `你是一名资深抖音IP打造专家，请根据下列商家信息，输出一份结构完整、语言专业、情绪有感染力的《老板IP打造方案》，以markdown格式输出。
 
 商家信息如下：
 - 店名：${formData.storeName}
 - 品类：${formData.storeCategory}
 - 地点：${formData.storeLocation}
 - 开店时长：${formData.businessDuration}
-- 店铺特色：${storeFeatures}
+- 店铺特色：${storeFeatures}、${confirmedStoreKeywords}
 - 老板姓氏：${formData.ownerName}
-- 老板个人特色：${ownerFeatures}
+- 老板个人特色：${ownerFeatures}、${confirmedOwnerKeywords}
 
 请严格按照以下8个结构输出内容：
 1. IP核心定位与形象塑造（标签 + 人设 + Slogan）

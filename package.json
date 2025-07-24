@@ -28,6 +28,8 @@
     "build:analyze": "node scripts/analyze-bundle.js",
     "build:analyze-webpack": "ANALYZE=true pnpm build",
     "deploy:check": "node scripts/pre-deploy-check.js",
+    "setup-keys": "node scripts/setup-local-keys.js",
+    "check-env": "node scripts/verify-env-config.js",
     "deploy:edgeone": "node scripts/prepare-edgeone-deploy.js",
     "deploy:prepare": "node scripts/prepare-edgeone-deploy.js",
     "health-check": "bash scripts/project-health-check.sh",

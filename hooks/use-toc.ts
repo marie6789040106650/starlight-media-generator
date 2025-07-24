@@ -51,6 +51,7 @@ export const useToc = (content: string, currentStep: number) => {
       console.log('未找到元素，可用的标题元素:', 
         Array.from(document.querySelectorAll('[id^="heading-"]')).map(el => el.id)
       )
+      console.log('目录项:', tocItems.map(item => ({ id: item.id, title: item.title })))
     }
   }
 

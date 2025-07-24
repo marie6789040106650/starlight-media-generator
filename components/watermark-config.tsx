@@ -39,9 +39,9 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
   storeName
 }) => {
   const [config, setConfig] = useState<WatermarkConfig>({
-    enabled: true,
+    enabled: false,
     text: `© ${storeName}`,
-    opacity: 30,
+    opacity: 20,
     fontSize: 48,
     rotation: 45,
     position: 'center',
@@ -56,7 +56,7 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
   const getDefaultConfig = (): WatermarkConfig => ({
     enabled: true,
     text: '星光同城传媒',
-    opacity: 10,
+    opacity: 20,
     fontSize: 64,
     rotation: 30,
     position: 'center',

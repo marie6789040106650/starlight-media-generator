@@ -15,9 +15,15 @@ import { useToc } from "@/hooks/use-toc"
 import { useKeywordStats } from "@/hooks/use-keyword-stats"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { EnhancedExportWithWatermark } from "@/components/enhanced-export-with-watermark"
 
-import { ArrowLeft, RefreshCw } from "lucide-react"
+import { ArrowLeft, RefreshCw, ChevronDown, FileImage } from "lucide-react"
 
 
 
@@ -137,6 +143,16 @@ export default function Home() {
     setGeneratedContent("")
   }
 
+  const handleRegenerateBanner = async () => {
+    if (!generatedContent) {
+      alert('请先生成方案内容')
+      return
+    }
+    
+    console.log(`[${new Date().toISOString()}] 重新生成Banner图片`)
+    await generateBannerImage(generatedContent, formData)
+  }
+
 
 
 
@@ -203,15 +219,43 @@ export default function Home() {
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   修改信息
                 </Button>
-                <Button
-                  variant="outline"
-                  size="default"
-                  onClick={handleNextStep}
-                  className="flex-1 lg:flex-none min-w-[120px] h-11 text-sm font-medium border-orange-300 text-orange-700 hover:bg-orange-50 transition-colors"
-                >
-                  <RefreshCw className="h-4 w-4 mr-2" />
-                  重新生成
-                </Button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="outline"
+                      size="default"
+                      className="flex-1 lg:flex-none min-w-[120px] h-11 text-sm font-medium border-orange-300 text-orange-700 hover:bg-orange-50 transition-colors"
+                    >
+                      <RefreshCw className="h-4 w-4 mr-2" />
+                      重新生成
+                      <ChevronDown className="h-4 w-4 ml-1" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-48">
+                    <DropdownMenuItem
+                      onClick={handleNextStep}
+                      disabled={isGenerating}
+                      className="cursor-pointer"
+                    >
+                      <RefreshCw className="h-4 w-4 mr-2" />
+                      <div className="flex flex-col">
+                        <span>重新生成方案</span>
+                        <span className="text-xs text-gray-500">重新生成完整IP方案</span>
+                      </div>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={handleRegenerateBanner}
+                      disabled={isGeneratingBanner || !generatedContent}
+                      className="cursor-pointer"
+                    >
+                      <FileImage className="h-4 w-4 mr-2" />
+                      <div className="flex flex-col">
+                        <span>重新生成banner图</span>
+                        <span className="text-xs text-gray-500">仅重新生成Banner图片</span>
+                      </div>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
 
                 <EnhancedExportWithWatermark
                   content={generatedContent}

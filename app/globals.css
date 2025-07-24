@@ -95,3 +95,6 @@ body {
 
 /* 导入增强 Markdown 样式 */
 @import '../styles/enhanced-markdown.css';
+
+/* 导入悬浮目录样式 */
+@import '../styles/floating-toc.css';

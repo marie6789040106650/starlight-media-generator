@@ -21,15 +21,30 @@ export function WatermarkSettingsButton({
   disabled = false, 
   className = "" 
 }: WatermarkSettingsButtonProps) {
-  const [watermarkConfig, setWatermarkConfig] = useState<WatermarkConfig>({
-    enabled: true,
-    text: `© ${storeName}`,
-    opacity: 35,
-    fontSize: 48,
-    rotation: 45,
-    position: 'center',
-    repeat: 'diagonal',
-    color: 'gray'
+  // 从localStorage加载配置，如果没有则使用默认配置
+  const [watermarkConfig, setWatermarkConfig] = useState<WatermarkConfig>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem('watermarkConfig')
+        if (saved) {
+          return JSON.parse(saved)
+        }
+      } catch (error) {
+        console.warn('加载水印配置失败:', error)
+      }
+    }
+    
+    // 默认配置（关闭状态）
+    return {
+      enabled: false,
+      text: `© ${storeName}`,
+      opacity: 20,
+      fontSize: 48,
+      rotation: 45,
+      position: 'center',
+      repeat: 'diagonal',
+      color: 'gray'
+    }
   })
 
   const handleConfigChange = (config: WatermarkConfig) => {
