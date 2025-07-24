@@ -13,7 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Settings, Eye } from "lucide-react";
+import { Settings, Eye, RotateCcw } from "lucide-react";
 import "../styles/watermark-preview.css";
 
 export interface WatermarkConfig {
@@ -52,10 +52,29 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
 
   const [isOpen, setIsOpen] = useState(false);
 
+  // 默认配置
+  const getDefaultConfig = (): WatermarkConfig => ({
+    enabled: true,
+    text: '星光同城传媒',
+    opacity: 10,
+    fontSize: 64,
+    rotation: 30,
+    position: 'center',
+    repeat: 'grid',
+    color: 'gray'
+  });
+
   const handleConfigChange = (key: keyof WatermarkConfig, value: any) => {
     const newConfig = { ...config, [key]: value };
     setConfig(newConfig);
     onConfigChange(newConfig);
+  };
+
+  // 重置为默认配置
+  const resetToDefault = () => {
+    const defaultConfig = getDefaultConfig();
+    setConfig(defaultConfig);
+    onConfigChange(defaultConfig);
   };
 
   // 渲染水印预览效果
@@ -213,14 +232,25 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* 左侧：配置选项 */}
           <div className="space-y-4">
-          {/* 启用水印 */}
-          <div className="flex items-center justify-between">
-            <Label htmlFor="watermark-enabled">启用水印</Label>
-            <Switch
-              id="watermark-enabled"
-              checked={config.enabled}
-              onCheckedChange={(checked) => handleConfigChange('enabled', checked)}
-            />
+          {/* 顶部操作按钮 */}
+          <div className="flex items-center justify-between pb-2 border-b border-gray-200">
+            <div className="flex items-center space-x-2">
+              <Label htmlFor="watermark-enabled">启用水印</Label>
+              <Switch
+                id="watermark-enabled"
+                checked={config.enabled}
+                onCheckedChange={(checked) => handleConfigChange('enabled', checked)}
+              />
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={resetToDefault}
+              className="flex items-center space-x-1 text-gray-600 hover:text-gray-800 border-gray-300 hover:border-gray-400"
+            >
+              <RotateCcw className="h-3 w-3" />
+              <span className="text-xs">默认配置</span>
+            </Button>
           </div>
 
           {config.enabled && (
