@@ -1,0 +1,993 @@
+
+> starlight-media-generator@1.0.62 dev /Users/bypasser/d/出海/starlight-media-generator
+> next dev
+
+   ▲ Next.js 15.4.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.199:3000
+   - Environments: .env.local
+   - Experiments (use with caution):
+     ⨯ webpackBuildWorker
+
+ ✓ Starting...
+ ✓ Ready in 4.7s
+ ○ Compiling /watermark-test ...
+ ✓ Compiled /watermark-test in 9.7s (1100 modules)
+ GET /watermark-test 200 in 10992ms
+ ✓ Compiled in 1275ms (516 modules)
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 716ms (108 modules)
+[2025-07-24T11:37:45.473Z] [2ldmd14hp] GET http://localhost:3000/ { userAgent: 'curl/8.7.1', referer: null, clientIP: '::1' }
+[2025-07-24T11:37:45.477Z] [2ldmd14hp] 请求处理开始完成 { duration: '4ms', status: 200 }
+ ○ Compiling / ...
+ ✓ Compiled / in 4.1s (1241 modules)
+ GET / 200 in 5312ms
+ GET /watermark-test 200 in 90ms
+[2025-07-24T11:40:19.700Z] [2u6y4eqys] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: null,
+  clientIP: '::1'
+}
+[2025-07-24T11:40:19.707Z] [2u6y4eqys] 请求处理开始完成 { duration: '7ms', status: 200 }
+ GET / 200 in 536ms
+[2025-07-24T11:40:24.219Z] [k7aim0bj3] GET http://localhost:3000/api/keyword-stats {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:40:24.220Z] [k7aim0bj3] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ○ Compiling /api/keyword-stats ...
+ ✓ Compiled /api/keyword-stats in 1390ms (1262 modules)
+ GET /api/keyword-stats 200 in 1792ms
+[2025-07-24T11:40:26.030Z] [jiep563or] GET http://localhost:3000/api/keyword-stats {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:40:26.033Z] [jiep563or] 请求处理开始完成 { duration: '3ms', status: 200 }
+ GET /api/keyword-stats 200 in 38ms
+ ✓ Compiled in 1931ms (1156 modules)
+ GET /watermark-test 200 in 367ms
+ GET /watermark-test 200 in 199ms
+ ✓ Compiled in 1615ms (1156 modules)
+[2025-07-24T11:49:57.763Z] [voc7uexb8] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:49:57.765Z] [voc7uexb8] 请求处理开始完成 { duration: '2ms', status: 200 }
+ GET /watermark-test 200 in 415ms
+ ✓ Compiled / in 426ms (685 modules)
+ GET / 200 in 1067ms
+ ✓ Compiled in 1420ms (1257 modules)
+[2025-07-24T11:50:21.281Z] [7uxm1l7w4] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:50:21.282Z] [7uxm1l7w4] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /watermark-test 200 in 511ms
+ GET / 200 in 601ms
+ ✓ Compiled in 2.5s (1257 modules)
+[2025-07-24T11:51:37.661Z] [zrsf132cb] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:51:37.665Z] [zrsf132cb] 请求处理开始完成 { duration: '4ms', status: 200 }
+ GET /watermark-test 200 in 391ms
+ GET / 200 in 509ms
+ ✓ Compiled in 1878ms (1257 modules)
+[2025-07-24T11:52:20.250Z] [nqs2j5aq5] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:52:20.251Z] [nqs2j5aq5] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /watermark-test 200 in 292ms
+ GET / 200 in 288ms
+ ✓ Compiled in 2s (1257 modules)
+[2025-07-24T11:53:27.867Z] [ybrqacoze] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:53:27.870Z] [ybrqacoze] 请求处理开始完成 { duration: '3ms', status: 200 }
+ GET /watermark-test 200 in 370ms
+ GET / 200 in 378ms
+[2025-07-24T11:53:49.164Z] [09ipzl39e] POST http://localhost:3000/api/expand-keywords {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:53:49.167Z] [09ipzl39e] 请求处理开始完成 { duration: '3ms', status: 200 }
+ ○ Compiling /api/expand-keywords ...
+ ✓ Compiled /api/expand-keywords in 715ms (1274 modules)
+收到关键词拓展请求: {
+  storeFeatures: '',
+  ownerFeatures: undefined,
+  storeCategory: undefined
+}
+关键词拓展结果: {
+  expanded_store_features: [
+    '专业服务', '品质保证',
+    '价格合理', '服务周到',
+    '经验丰富', '诚信经营',
+    '客户至上', '创新思维',
+    '持续改进', '团队协作',
+    '专业素养', '用心服务',
+    '行业领先', '技术创新',
+    '质量第一', '信誉保障',
+    '口碑传承', '匠心精神',
+    '精益求精', '追求卓越'
+  ],
+  expanded_boss_features: [
+    '热情好客', '亲和力强',
+    '平易近人', '善于沟通',
+    '幽默风趣', '专业素养',
+    '技术精湛', '经验丰富',
+    '行业专家', '持续学习',
+    '诚信经营', '用心服务',
+    '客户至上', '品质坚持',
+    '创新思维'
+  ]
+}
+ POST /api/expand-keywords 200 in 989ms
+[2025-07-24T11:55:09.948Z] [9r6xopf8o] POST http://localhost:3000/api/expand-keywords {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:55:09.955Z] [9r6xopf8o] 请求处理开始完成 { duration: '7ms', status: 200 }
+收到关键词拓展请求: {
+  storeFeatures: '的特',
+  ownerFeatures: undefined,
+  storeCategory: undefined
+}
+关键词拓展结果: {
+  expanded_store_features: [
+    '专业服务', '品质保证',
+    '价格合理', '服务周到',
+    '经验丰富', '诚信经营',
+    '客户至上', '创新思维',
+    '持续改进', '团队协作',
+    '专业素养', '用心服务',
+    '行业领先', '技术创新',
+    '质量第一'
+  ],
+  expanded_boss_features: [
+    '热情好客', '亲和力强',
+    '平易近人', '善于沟通',
+    '幽默风趣', '专业素养',
+    '技术精湛', '经验丰富',
+    '行业专家', '持续学习',
+    '诚信经营', '用心服务',
+    '客户至上', '品质坚持',
+    '创新思维'
+  ]
+}
+ POST /api/expand-keywords 200 in 45ms
+[2025-07-24T11:55:17.826Z] [lbx0g8hzx] POST http://localhost:3000/api/expand-keywords {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:55:17.827Z] [lbx0g8hzx] 请求处理开始完成 { duration: '1ms', status: 200 }
+收到关键词拓展请求: {
+  storeFeatures: '的特',
+  ownerFeatures: undefined,
+  storeCategory: undefined
+}
+关键词拓展结果: {
+  expanded_store_features: [
+    '专业服务', '品质保证',
+    '价格合理', '服务周到',
+    '经验丰富', '诚信经营',
+    '客户至上', '创新思维',
+    '持续改进', '团队协作',
+    '专业素养', '用心服务',
+    '行业领先', '技术创新',
+    '质量第一'
+  ],
+  expanded_boss_features: [
+    '热情好客', '亲和力强',
+    '平易近人', '善于沟通',
+    '幽默风趣', '专业素养',
+    '技术精湛', '经验丰富',
+    '行业专家', '持续学习',
+    '诚信经营', '用心服务',
+    '客户至上', '品质坚持',
+    '创新思维'
+  ]
+}
+ POST /api/expand-keywords 200 in 43ms
+[2025-07-24T11:55:26.243Z] [byip0b1af] POST http://localhost:3000/api/expand-keywords {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:55:26.244Z] [byip0b1af] 请求处理开始完成 { duration: '1ms', status: 200 }
+收到关键词拓展请求: {
+  storeFeatures: '的特',
+  ownerFeatures: undefined,
+  storeCategory: undefined
+}
+关键词拓展结果: {
+  expanded_store_features: [
+    '专业服务', '品质保证',
+    '价格合理', '服务周到',
+    '经验丰富', '诚信经营',
+    '客户至上', '创新思维',
+    '持续改进', '团队协作',
+    '专业素养', '用心服务',
+    '行业领先', '技术创新',
+    '质量第一'
+  ],
+  expanded_boss_features: [
+    '热情好客', '亲和力强',
+    '平易近人', '善于沟通',
+    '幽默风趣', '专业素养',
+    '技术精湛', '经验丰富',
+    '行业专家', '持续学习',
+    '诚信经营', '用心服务',
+    '客户至上', '品质坚持',
+    '创新思维'
+  ]
+}
+ POST /api/expand-keywords 200 in 29ms
+[2025-07-24T11:55:32.738Z] [z8tubrwlo] POST http://localhost:3000/api/keyword-stats {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:55:32.739Z] [z8tubrwlo] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ○ Compiling /api/keyword-stats ...
+ ✓ Compiled /api/keyword-stats in 824ms (719 modules)
+ POST /api/keyword-stats 200 in 961ms
+[2025-07-24T11:55:34.090Z] [k6zgoh5oo] POST http://localhost:3000/api/expand-keywords {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:55:34.103Z] [k6zgoh5oo] 请求处理开始完成 { duration: '13ms', status: 200 }
+收到关键词拓展请求: {
+  storeFeatures: '秘制汤底、地域食材、现制模式、健康定制、主题沉浸、网红装修',
+  ownerFeatures: '匠人、传承、学霸、宠粉',
+  storeCategory: undefined
+}
+关键词拓展结果: {
+  expanded_store_features: [
+    '专业服务', '品质保证',
+    '价格合理', '服务周到',
+    '经验丰富', '诚信经营',
+    '客户至上', '创新思维',
+    '持续改进', '团队协作',
+    '专业素养', '用心服务',
+    '行业领先', '技术创新',
+    '质量第一'
+  ],
+  expanded_boss_features: [
+    '匠人传承', '二代传承',
+    '学霸出身', '宠粉达人',
+    '热情好客', '亲和力强',
+    '平易近人', '善于沟通',
+    '幽默风趣', '专业素养',
+    '技术精湛', '经验丰富',
+    '行业专家', '持续学习'
+  ]
+}
+ POST /api/expand-keywords 200 in 115ms
+[2025-07-24T11:55:34.257Z] [mmadu2zy0] POST http://localhost:3000/api/generate-plan {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:55:34.258Z] [mmadu2zy0] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ✓ Compiled in 912ms (572 modules)
+[2025-07-24T11:55:34.701Z] [0gr1bij7m] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:55:34.701Z] [0gr1bij7m] 请求处理开始完成 { duration: '0ms', status: 200 }
+ ○ Compiling /api/generate-plan ...
+ ✓ Compiled /api/generate-plan in 1117ms (1286 modules)
+[2025-07-24T11:55:35.828Z] [s5eaz0c] 收到生成方案请求
+[2025-07-24T11:55:35.829Z] [s5eaz0c] 请求参数: {
+  promptLength: 543,
+  modelId: 'deepseek-ai/DeepSeek-V3',
+  taskType: 'long_generation',
+  stream: true,
+  storeInfo: '馋嘴老张麻辣烫',
+  clientIP: '::1'
+}
+ GET /watermark-test 200 in 1470ms
+ GET / 200 in 1415ms
+[2025-07-24T11:56:05.267Z] [6flsuss32] POST http://localhost:3000/api/generate-word {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:56:05.268Z] [6flsuss32] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ○ Compiling /api/generate-word ...
+ ✓ Compiled /api/generate-word in 612ms (1294 modules)
+📝 开始生成Word文档...
+内容长度: 902 字符
+店铺名称: 馋嘴老张麻辣烫
+Logo图片加载成功: /Users/bypasser/d/出海/starlight-media-generator/public/logo.png
+✅ Word文档生成成功 - 文件大小: 55328 bytes
+ POST /api/generate-word 200 in 832ms
+[2025-07-24T11:56:08.327Z] [n0tofcsk1] POST http://localhost:3000/api/generate-pdf {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:56:08.327Z] [n0tofcsk1] 请求处理开始完成 { duration: '0ms', status: 200 }
+ ○ Compiling /api/generate-pdf ...
+ ✓ Compiled /api/generate-pdf in 507ms (1299 modules)
+✅ 找到LibreOffice命令: soffice
+📄 开始PDF转换流程（优化版本）
+📝 生成Word文档（支持缓存）...
+📁 创建临时目录: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358170748-anvlzts
+📝 生成新的Word文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358170748-anvlzts/document-1753358170749.docx
+Logo图片加载成功: /Users/bypasser/d/出海/starlight-media-generator/public/logo.png
+✅ Word文件生成完成: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358170748-anvlzts/document-1753358170749.docx (55471 bytes)
+✅ Word文档准备完成
+📊 缓存统计: 1 文件, 54.17 KB, 命中率: 0.0%
+🔄 开始PDF转换...
+🔄 PDF转换尝试 1/3
+执行命令: soffice --headless --convert-to pdf --outdir "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358170748-anvlzts" "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358170748-anvlzts/document-1753358170749.docx"
+LibreOffice stdout: convert /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358170748-anvlzts/document-1753358170749.docx as a Writer document -> /private/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358170748-anvlzts/document-1753358170749.pdf using filter : writer_pdf_Export
+
+预期PDF文件不存在，搜索其他PDF文件...
+📁 临时目录中的文件: [ 'document-1753358170749.docx', 'document-1753358170749.pdf' ]
+📄 找到的PDF文件: [ 'document-1753358170749.pdf' ]
+📄 使用PDF文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358170748-anvlzts/document-1753358170749.pdf (179525 bytes)
+✅ PDF转换成功 (尝试 1)
+✅ PDF转换成功 - 文件大小: 179525 bytes
+ POST /api/generate-pdf 200 in 13128ms
+[2025-07-24T11:57:01.846Z] [s5eaz0c] 生成完成 { duration: '86018ms', contentLength: 2714, totalChunks: 1086 }
+ POST /api/generate-plan 200 in 87238ms
+[2025-07-24T11:57:01.876Z] [t1cenrr8w] POST http://localhost:3000/api/images {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:57:01.876Z] [t1cenrr8w] 请求处理开始完成 { duration: '0ms', status: 200 }
+ ✓ Compiled /api/images in 458ms (1276 modules)
+ POST /api/images 200 in 3010ms
+[2025-07-24T11:57:12.194Z] [6ajdl6rbm] POST http://localhost:3000/api/generate-word {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:57:12.195Z] [6ajdl6rbm] 请求处理开始完成 { duration: '1ms', status: 200 }
+📝 开始生成Word文档...
+内容长度: 2714 字符
+店铺名称: 馋嘴老张麻辣烫
+Logo图片加载成功: /Users/bypasser/d/出海/starlight-media-generator/public/logo.png
+Banner图片通过HTTP加载成功
+✅ Word文档生成成功 - 文件大小: 1117269 bytes
+ POST /api/generate-word 200 in 2657ms
+[2025-07-24T11:57:16.435Z] [h20l8vqq0] POST http://localhost:3000/api/generate-pdf {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:57:16.435Z] [h20l8vqq0] 请求处理开始完成 { duration: '0ms', status: 200 }
+✅ 找到LibreOffice命令: soffice
+📄 开始PDF转换流程（优化版本）
+📝 生成Word文档（支持缓存）...
+📁 创建临时目录: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i
+📝 生成新的Word文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.docx
+Logo图片加载成功: /Users/bypasser/d/出海/starlight-media-generator/public/logo.png
+Banner图片通过HTTP加载成功
+✅ Word文件生成完成: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.docx (1117270 bytes)
+✅ Word文档准备完成
+📊 缓存统计: 1 文件, 1.07 MB, 命中率: 0.0%
+🔄 开始PDF转换...
+🔄 PDF转换尝试 1/3
+执行命令: soffice --headless --convert-to pdf --outdir "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i" "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.docx"
+LibreOffice stdout: convert /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.docx as a Writer document -> /private/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.pdf using filter : writer_pdf_Export
+
+预期PDF文件不存在，搜索其他PDF文件...
+📁 临时目录中的文件: [ 'document-1753358237724.docx', 'document-1753358237724.pdf' ]
+📄 找到的PDF文件: [ 'document-1753358237724.pdf' ]
+📄 使用PDF文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.pdf (565766 bytes)
+✅ PDF转换成功 (尝试 1)
+✅ PDF转换成功 - 文件大小: 565766 bytes
+ POST /api/generate-pdf 200 in 15431ms
+[2025-07-24T11:57:55.055Z] [ftc51n7lj] POST http://localhost:3000/api/generate-pdf {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:57:55.056Z] [ftc51n7lj] 请求处理开始完成 { duration: '1ms', status: 200 }
+✅ 找到LibreOffice命令: soffice
+📄 开始PDF转换流程（优化版本）
+📝 生成Word文档（支持缓存）...
+📋 使用缓存的Word文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.docx
+✅ Word文档准备完成
+📊 缓存统计: 1 文件, 1.07 MB, 命中率: 50.0%
+🔄 开始PDF转换...
+🔄 PDF转换尝试 1/3
+执行命令: soffice --headless --convert-to pdf --outdir "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i" "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.docx"
+LibreOffice stdout: convert /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.docx as a Writer document -> /private/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.pdf using filter : writer_pdf_Export
+Overwriting: /private/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.pdf
+
+预期PDF文件不存在，搜索其他PDF文件...
+📁 临时目录中的文件: [ 'document-1753358237724.docx', 'document-1753358237724.pdf' ]
+📄 找到的PDF文件: [ 'document-1753358237724.pdf' ]
+📄 使用PDF文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.pdf (565766 bytes)
+✅ PDF转换成功 (尝试 1)
+✅ PDF转换成功 - 文件大小: 565766 bytes
+ POST /api/generate-pdf 200 in 10611ms
+[2025-07-24T11:58:16.603Z] [nytcj1pus] POST http://localhost:3000/api/generate-pdf {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:58:16.603Z] [nytcj1pus] 请求处理开始完成 { duration: '0ms', status: 200 }
+✅ 找到LibreOffice命令: soffice
+📄 开始PDF转换流程（优化版本）
+📝 生成Word文档（支持缓存）...
+📋 使用缓存的Word文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.docx
+✅ Word文档准备完成
+📊 缓存统计: 1 文件, 1.07 MB, 命中率: 66.7%
+🔄 开始PDF转换...
+🔄 PDF转换尝试 1/3
+执行命令: soffice --headless --convert-to pdf --outdir "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i" "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.docx"
+LibreOffice stdout: convert /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.docx as a Writer document -> /private/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.pdf using filter : writer_pdf_Export
+Overwriting: /private/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.pdf
+
+预期PDF文件不存在，搜索其他PDF文件...
+📁 临时目录中的文件: [ 'document-1753358237724.docx', 'document-1753358237724.pdf' ]
+📄 找到的PDF文件: [ 'document-1753358237724.pdf' ]
+📄 使用PDF文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.pdf (565766 bytes)
+✅ PDF转换成功 (尝试 1)
+✅ PDF转换成功 - 文件大小: 565766 bytes
+ POST /api/generate-pdf 200 in 10245ms
+[2025-07-24T11:58:48.826Z] [e3ldb99gm] POST http://localhost:3000/api/generate-pdf {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T11:58:48.826Z] [e3ldb99gm] 请求处理开始完成 { duration: '0ms', status: 200 }
+✅ 找到LibreOffice命令: soffice
+📄 开始PDF转换流程（优化版本）
+📝 生成Word文档（支持缓存）...
+📋 使用缓存的Word文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.docx
+✅ Word文档准备完成
+📊 缓存统计: 1 文件, 1.07 MB, 命中率: 75.0%
+🔄 开始PDF转换...
+🔄 PDF转换尝试 1/3
+执行命令: soffice --headless --convert-to pdf --outdir "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i" "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.docx"
+LibreOffice stdout: convert /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.docx as a Writer document -> /private/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.pdf using filter : writer_pdf_Export
+Overwriting: /private/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.pdf
+
+预期PDF文件不存在，搜索其他PDF文件...
+📁 临时目录中的文件: [ 'document-1753358237724.docx', 'document-1753358237724.pdf' ]
+📄 找到的PDF文件: [ 'document-1753358237724.pdf' ]
+📄 使用PDF文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.pdf (565766 bytes)
+✅ PDF转换成功 (尝试 1)
+✅ PDF转换成功 - 文件大小: 565766 bytes
+ POST /api/generate-pdf 200 in 9774ms
+[2025-07-24T12:00:05.140Z] [07o0yx13i] POST http://localhost:3000/api/generate-pdf {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:00:05.141Z] [07o0yx13i] 请求处理开始完成 { duration: '1ms', status: 200 }
+✅ 找到LibreOffice命令: soffice
+📄 开始PDF转换流程（优化版本）
+📝 生成Word文档（支持缓存）...
+📋 使用缓存的Word文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.docx
+✅ Word文档准备完成
+📊 缓存统计: 1 文件, 1.07 MB, 命中率: 80.0%
+🔄 开始PDF转换...
+🔄 PDF转换尝试 1/3
+执行命令: soffice --headless --convert-to pdf --outdir "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i" "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.docx"
+LibreOffice stdout: convert /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.docx as a Writer document -> /private/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.pdf using filter : writer_pdf_Export
+Overwriting: /private/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.pdf
+
+预期PDF文件不存在，搜索其他PDF文件...
+📁 临时目录中的文件: [ 'document-1753358237724.docx', 'document-1753358237724.pdf' ]
+📄 找到的PDF文件: [ 'document-1753358237724.pdf' ]
+📄 使用PDF文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358237724-u3yhy8i/document-1753358237724.pdf (565766 bytes)
+✅ PDF转换成功 (尝试 1)
+✅ PDF转换成功 - 文件大小: 565766 bytes
+ POST /api/generate-pdf 200 in 13917ms
+ ✓ Compiled in 4.4s (1287 modules)
+[2025-07-24T12:00:41.403Z] [gjohqhh7p] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:00:41.403Z] [gjohqhh7p] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /watermark-test 200 in 499ms
+ GET / 200 in 570ms
+[2025-07-24T12:00:46.186Z] [sb6lbeqbb] POST http://localhost:3000/api/generate-pdf {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:00:46.186Z] [sb6lbeqbb] 请求处理开始完成 { duration: '0ms', status: 200 }
+✅ 找到LibreOffice命令: soffice
+📄 开始PDF转换流程（优化版本）
+📝 生成Word文档（支持缓存）...
+📁 创建临时目录: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358449244-che8yao
+📝 生成新的Word文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358449244-che8yao/document-1753358449245.docx
+Logo图片加载成功: /Users/bypasser/d/出海/starlight-media-generator/public/logo.png
+Banner图片通过HTTP加载成功
+✅ Word文件生成完成: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358449244-che8yao/document-1753358449245.docx (1117269 bytes)
+✅ Word文档准备完成
+📊 缓存统计: 1 文件, 1.07 MB, 命中率: 0.0%
+🔄 开始PDF转换...
+🔄 PDF转换尝试 1/3
+执行命令: soffice --headless --convert-to pdf --outdir "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358449244-che8yao" "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358449244-che8yao/document-1753358449245.docx"
+LibreOffice stdout: convert /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358449244-che8yao/document-1753358449245.docx as a Writer document -> /private/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358449244-che8yao/document-1753358449245.pdf using filter : writer_pdf_Export
+
+预期PDF文件不存在，搜索其他PDF文件...
+📁 临时目录中的文件: [ 'document-1753358449245.docx', 'document-1753358449245.pdf' ]
+📄 找到的PDF文件: [ 'document-1753358449245.pdf' ]
+📄 使用PDF文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358449244-che8yao/document-1753358449245.pdf (547402 bytes)
+✅ PDF转换成功 (尝试 1)
+✅ PDF转换成功 - 文件大小: 547402 bytes
+ POST /api/generate-pdf 200 in 17145ms
+ ✓ Compiled in 1463ms (1287 modules)
+[2025-07-24T12:01:29.973Z] [rwckdq6oh] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:01:29.974Z] [rwckdq6oh] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /watermark-test 200 in 596ms
+ GET / 200 in 678ms
+ ✓ Compiled in 2.7s (1257 modules)
+[2025-07-24T12:02:35.457Z] [arsj3luxl] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:02:35.471Z] [arsj3luxl] 请求处理开始完成 { duration: '14ms', status: 200 }
+ GET /watermark-test 200 in 857ms
+ GET / 200 in 733ms
+ ✓ Compiled in 2.6s (1257 modules)
+[2025-07-24T12:04:49.048Z] [i04fseahh] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:04:49.049Z] [i04fseahh] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /watermark-test 200 in 517ms
+ GET / 200 in 618ms
+[2025-07-24T12:04:51.323Z] [1grcvjgod] POST http://localhost:3000/api/generate-word {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:04:51.324Z] [1grcvjgod] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ○ Compiling /api/generate-word ...
+ ✓ Compiled /api/generate-word in 696ms (710 modules)
+📝 开始生成Word文档...
+内容长度: 2714 字符
+店铺名称: 馋嘴老张麻辣烫
+Logo图片加载成功: /Users/bypasser/d/出海/starlight-media-generator/public/logo.png
+Banner图片通过HTTP加载成功
+✅ Word文档生成成功 - 文件大小: 1117270 bytes
+ POST /api/generate-word 200 in 4920ms
+[2025-07-24T12:05:06.986Z] [6yv8uig2f] POST http://localhost:3000/api/generate-pdf {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:05:06.987Z] [6yv8uig2f] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ✓ Compiled /api/generate-pdf in 242ms (717 modules)
+✅ 找到LibreOffice命令: soffice
+📄 开始PDF转换流程（优化版本）
+📝 生成Word文档（支持缓存）...
+📁 创建临时目录: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358709960-kcevtye
+📝 生成新的Word文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358709960-kcevtye/document-1753358709960.docx
+Logo图片加载成功: /Users/bypasser/d/出海/starlight-media-generator/public/logo.png
+Banner图片通过HTTP加载成功
+✅ Word文件生成完成: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358709960-kcevtye/document-1753358709960.docx (1117269 bytes)
+✅ Word文档准备完成
+📊 缓存统计: 1 文件, 1.07 MB, 命中率: 0.0%
+🔄 开始PDF转换...
+🔄 PDF转换尝试 1/3
+执行命令: soffice --headless --convert-to pdf --outdir "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358709960-kcevtye" "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358709960-kcevtye/document-1753358709960.docx"
+LibreOffice stdout: convert /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358709960-kcevtye/document-1753358709960.docx as a Writer document -> /private/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358709960-kcevtye/document-1753358709960.pdf using filter : writer_pdf_Export
+
+预期PDF文件不存在，搜索其他PDF文件...
+📁 临时目录中的文件: [ 'document-1753358709960.docx', 'document-1753358709960.pdf' ]
+📄 找到的PDF文件: [ 'document-1753358709960.pdf' ]
+📄 使用PDF文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358709960-kcevtye/document-1753358709960.pdf (565766 bytes)
+✅ PDF转换成功 (尝试 1)
+✅ PDF转换成功 - 文件大小: 565766 bytes
+ POST /api/generate-pdf 200 in 16432ms
+[2025-07-24T12:05:37.855Z] [kglo8tu43] POST http://localhost:3000/api/generate-pdf {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:05:37.855Z] [kglo8tu43] 请求处理开始完成 { duration: '0ms', status: 200 }
+✅ 找到LibreOffice命令: soffice
+📄 开始PDF转换流程（优化版本）
+📝 生成Word文档（支持缓存）...
+📋 使用缓存的Word文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358709960-kcevtye/document-1753358709960.docx
+✅ Word文档准备完成
+📊 缓存统计: 1 文件, 1.07 MB, 命中率: 50.0%
+🔄 开始PDF转换...
+🔄 PDF转换尝试 1/3
+执行命令: soffice --headless --convert-to pdf --outdir "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358709960-kcevtye" "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358709960-kcevtye/document-1753358709960.docx"
+ ✓ Compiled in 1571ms (1289 modules)
+[2025-07-24T12:05:47.785Z] [vz7tmb42q] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:05:47.786Z] [vz7tmb42q] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /watermark-test 200 in 282ms
+ GET / 200 in 367ms
+LibreOffice stdout: convert /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358709960-kcevtye/document-1753358709960.docx as a Writer document -> /private/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358709960-kcevtye/document-1753358709960.pdf using filter : writer_pdf_Export
+Overwriting: /private/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358709960-kcevtye/document-1753358709960.pdf
+
+预期PDF文件不存在，搜索其他PDF文件...
+📁 临时目录中的文件: [ 'document-1753358709960.docx', 'document-1753358709960.pdf' ]
+📄 找到的PDF文件: [ 'document-1753358709960.pdf' ]
+📄 使用PDF文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753358709960-kcevtye/document-1753358709960.pdf (689548 bytes)
+✅ PDF转换成功 (尝试 1)
+✅ PDF转换成功 - 文件大小: 689548 bytes
+ POST /api/generate-pdf 200 in 23214ms
+ ✓ Compiled in 495ms (572 modules)
+[2025-07-24T12:06:13.681Z] [5xdmdc924] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:06:13.681Z] [5xdmdc924] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /watermark-test 200 in 123ms
+ GET / 200 in 93ms
+ ✓ Compiled in 3.4s (1257 modules)
+[2025-07-24T12:09:45.854Z] [xdy057l56] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:09:45.857Z] [xdy057l56] 请求处理开始完成 { duration: '3ms', status: 200 }
+ GET /watermark-test 200 in 629ms
+ GET / 200 in 631ms
+ ✓ Compiled in 579ms (572 modules)
+[2025-07-24T12:10:37.687Z] [ikscmz9xc] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:10:37.688Z] [ikscmz9xc] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /watermark-test 200 in 97ms
+ GET / 200 in 217ms
+ ✓ Compiled in 1189ms (572 modules)
+[2025-07-24T12:11:00.610Z] [rbfa8efaq] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:11:00.611Z] [rbfa8efaq] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /watermark-test 200 in 229ms
+ GET / 200 in 115ms
+ ✓ Compiled in 717ms (572 modules)
+[2025-07-24T12:11:19.066Z] [im93oggfd] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:11:19.067Z] [im93oggfd] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /watermark-test 200 in 133ms
+ GET / 200 in 107ms
+ ✓ Compiled in 625ms (572 modules)
+[2025-07-24T12:11:45.963Z] [s0453a63d] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:11:45.964Z] [s0453a63d] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ✓ Compiled in 729ms (572 modules)
+ GET /watermark-test 200 in 846ms
+ GET / 200 in 469ms
+[2025-07-24T12:11:46.542Z] [ntkcide46] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:11:46.543Z] [ntkcide46] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /watermark-test 200 in 276ms
+ GET / 200 in 82ms
+ ✓ Compiled in 699ms (572 modules)
+[2025-07-24T12:11:59.593Z] [8h8atthhr] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:11:59.594Z] [8h8atthhr] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /watermark-test 200 in 103ms
+ GET / 200 in 128ms
+ ✓ Compiled in 2.1s (572 modules)
+[2025-07-24T12:16:10.307Z] [9c72lgiqc] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:16:10.307Z] [9c72lgiqc] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /watermark-test 200 in 83ms
+ GET / 200 in 78ms
+ ✓ Compiled in 756ms (572 modules)
+[2025-07-24T12:17:16.584Z] [hdae7fw2v] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:17:16.584Z] [hdae7fw2v] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /watermark-test 200 in 71ms
+ GET / 200 in 175ms
+ ✓ Compiled in 677ms (572 modules)
+[2025-07-24T12:17:38.405Z] [senpftnu6] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:17:38.405Z] [senpftnu6] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /watermark-test 200 in 107ms
+ GET / 200 in 82ms
+ ✓ Compiled in 419ms (572 modules)
+[2025-07-24T12:17:42.695Z] [k92xjmmf9] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:17:42.696Z] [k92xjmmf9] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /watermark-test 200 in 138ms
+ GET / 200 in 113ms
+ ✓ Compiled in 1927ms (1257 modules)
+[2025-07-24T12:18:58.876Z] [9xrs6r1i5] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:18:58.876Z] [9xrs6r1i5] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /watermark-test 200 in 385ms
+ GET / 200 in 443ms
+ ✓ Compiled in 1365ms (1257 modules)
+[2025-07-24T12:19:38.147Z] [hk5xdwhdo] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:19:38.147Z] [hk5xdwhdo] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /watermark-test 200 in 465ms
+ GET / 200 in 522ms
+[2025-07-24T12:21:05.170Z] [qnjkhxvq5] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:21:05.172Z] [qnjkhxvq5] 请求处理开始完成 { duration: '2ms', status: 200 }
+ GET /watermark-test 200 in 540ms
+ ✓ Compiled in 1858ms (1350 modules)
+ GET / 200 in 953ms
+[2025-07-24T12:21:06.504Z] [bls97br0h] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:21:06.505Z] [bls97br0h] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 22ms
+ ✓ Compiled in 490ms (572 modules)
+[2025-07-24T12:21:51.917Z] [6kbhsahyi] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:21:51.917Z] [6kbhsahyi] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 96ms
+ ✓ Compiled in 802ms (572 modules)
+[2025-07-24T12:24:58.232Z] [3mc1lcngo] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:24:58.232Z] [3mc1lcngo] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 50ms
+ ✓ Compiled in 1012ms (572 modules)
+[2025-07-24T12:26:45.345Z] [buwmwd34j] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:26:45.346Z] [buwmwd34j] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ✓ Compiled in 564ms (572 modules)
+ GET / 200 in 246ms
+[2025-07-24T12:26:45.624Z] [jtja59dn0] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:26:45.625Z] [jtja59dn0] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 157ms
+ ✓ Compiled in 1078ms (572 modules)
+[2025-07-24T12:27:00.151Z] [ugqyqyzum] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:27:00.152Z] [ugqyqyzum] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 59ms
+ ✓ Compiled in 664ms (572 modules)
+[2025-07-24T12:27:30.103Z] [o8xcrwxyd] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:27:30.103Z] [o8xcrwxyd] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 34ms
+ ✓ Compiled in 715ms (572 modules)
+[2025-07-24T12:30:00.152Z] [78aabmmt1] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:30:00.153Z] [78aabmmt1] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 96ms
+ ✓ Compiled in 979ms (572 modules)
+[2025-07-24T12:30:46.744Z] [uhll8yf0m] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:30:46.745Z] [uhll8yf0m] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ✓ Compiled in 567ms (572 modules)
+ GET / 200 in 237ms
+[2025-07-24T12:30:47.105Z] [83mfmz0x7] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:30:47.106Z] [83mfmz0x7] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 38ms
+ ○ Compiling /chinese-watermark-demo ...
+ ✓ Compiled /chinese-watermark-demo in 1971ms (1249 modules)
+ GET /chinese-watermark-demo 200 in 2682ms
+ GET /watermark-test 200 in 132ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1690ms (1249 modules)
+ GET /fonts/SourceHanSansSC-Regular.ttf 404 in 2131ms
+ GET /fonts/chinese-font.ttf 404 in 54ms
+[2025-07-24T12:33:51.405Z] [jpun3f6cv] POST http://localhost:3000/api/generate-pdf {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:33:51.406Z] [jpun3f6cv] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ○ Compiling /api/generate-pdf ...
+ ✓ Compiled /api/generate-pdf in 1168ms (715 modules)
+✅ 找到LibreOffice命令: soffice
+📄 开始PDF转换流程（优化版本）
+📝 生成Word文档（支持缓存）...
+📁 创建临时目录: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753360435542-c27r1o1
+📝 生成新的Word文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753360435542-c27r1o1/document-1753360435543.docx
+Logo图片加载成功: /Users/bypasser/d/出海/starlight-media-generator/public/logo.png
+Banner图片通过HTTP加载成功
+✅ Word文件生成完成: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753360435542-c27r1o1/document-1753360435543.docx (1117269 bytes)
+✅ Word文档准备完成
+📊 缓存统计: 1 文件, 1.07 MB, 命中率: 0.0%
+🔄 开始PDF转换...
+🔄 PDF转换尝试 1/3
+执行命令: soffice --headless --convert-to pdf --outdir "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753360435542-c27r1o1" "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753360435542-c27r1o1/document-1753360435543.docx"
+LibreOffice stdout: convert /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753360435542-c27r1o1/document-1753360435543.docx as a Writer document -> /private/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753360435542-c27r1o1/document-1753360435543.pdf using filter : writer_pdf_Export
+
+预期PDF文件不存在，搜索其他PDF文件...
+📁 临时目录中的文件: [ 'document-1753360435543.docx', 'document-1753360435543.pdf' ]
+📄 找到的PDF文件: [ 'document-1753360435543.pdf' ]
+📄 使用PDF文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753360435542-c27r1o1/document-1753360435543.pdf (689548 bytes)
+✅ PDF转换成功 (尝试 1)
+✅ PDF转换成功 - 文件大小: 689548 bytes
+ POST /api/generate-pdf 200 in 27784ms
+[2025-07-24T12:34:28.893Z] [g3oxpio6d] POST http://localhost:3000/api/generate-pdf {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:34:28.894Z] [g3oxpio6d] 请求处理开始完成 { duration: '1ms', status: 200 }
+✅ 找到LibreOffice命令: soffice
+📄 开始PDF转换流程（优化版本）
+📝 生成Word文档（支持缓存）...
+📋 使用缓存的Word文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753360435542-c27r1o1/document-1753360435543.docx
+✅ Word文档准备完成
+📊 缓存统计: 1 文件, 1.07 MB, 命中率: 50.0%
+🔄 开始PDF转换...
+🔄 PDF转换尝试 1/3
+执行命令: soffice --headless --convert-to pdf --outdir "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753360435542-c27r1o1" "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753360435542-c27r1o1/document-1753360435543.docx"
+LibreOffice stdout: convert /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753360435542-c27r1o1/document-1753360435543.docx as a Writer document -> /private/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753360435542-c27r1o1/document-1753360435543.pdf using filter : writer_pdf_Export
+Overwriting: /private/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753360435542-c27r1o1/document-1753360435543.pdf
+
+预期PDF文件不存在，搜索其他PDF文件...
+📁 临时目录中的文件: [ 'document-1753360435543.docx', 'document-1753360435543.pdf' ]
+📄 找到的PDF文件: [ 'document-1753360435543.pdf' ]
+📄 使用PDF文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753360435542-c27r1o1/document-1753360435543.pdf (667839 bytes)
+✅ PDF转换成功 (尝试 1)
+✅ PDF转换成功 - 文件大小: 667839 bytes
+ POST /api/generate-pdf 200 in 6895ms
+ ✓ Compiled /_not-found in 446ms (1279 modules)
+ GET /fonts/SourceHanSansSC-Regular.ttf 404 in 753ms
+ GET /fonts/chinese-font.ttf 404 in 59ms
+ ✓ Compiled in 3.2s (1259 modules)
+[2025-07-24T12:37:31.512Z] [9272ykbdj] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:37:31.512Z] [9272ykbdj] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /watermark-test 200 in 848ms
+ GET / 200 in 960ms
+ ✓ Compiled in 1809ms (1259 modules)
+[2025-07-24T12:38:04.077Z] [japu19myc] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:38:04.077Z] [japu19myc] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /watermark-test 200 in 446ms
+ GET / 200 in 407ms
+ ○ Compiling /chinese-watermark-demo ...
+ ✓ Compiled /chinese-watermark-demo in 869ms (690 modules)
+ GET /chinese-watermark-demo 200 in 1297ms
+ ✓ Compiled in 1253ms (574 modules)
+[2025-07-24T12:43:44.812Z] [m6vh5gpgs] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:43:44.813Z] [m6vh5gpgs] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /chinese-watermark-demo 200 in 221ms
+ GET /watermark-test 200 in 248ms
+ GET / 200 in 319ms
+ ✓ Compiled in 1300ms (574 modules)
+[2025-07-24T12:48:55.395Z] [cr3dq4a21] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:48:55.396Z] [cr3dq4a21] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /chinese-watermark-demo 200 in 285ms
+ GET /watermark-test 200 in 298ms
+ GET / 200 in 338ms
+ ✓ Compiled in 997ms (574 modules)
+[2025-07-24T12:49:49.810Z] [hwx48p23k] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:49:49.811Z] [hwx48p23k] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /watermark-test 200 in 242ms
+ GET /chinese-watermark-demo 200 in 254ms
+ GET / 200 in 335ms
+ ✓ Compiled in 724ms (574 modules)
+[2025-07-24T12:50:41.660Z] [fce63ts7v] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:50:41.661Z] [fce63ts7v] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /watermark-test 200 in 252ms
+ GET /chinese-watermark-demo 200 in 339ms
+ GET / 200 in 389ms
+ ⨯ ./components/enhanced-export-with-watermark.tsx
+Module parse failed: Identifier 'watermarkConfig' has already been declared (166:18)
+|             }
+|             // 第二步：如果启用水印，则在PDF上添加水印层
+>             const watermarkConfig = getWatermarkConfig();
+|             if (watermarkConfig && watermarkConfig.enabled) {
+|                 try {
+
+Import trace for requested module:
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx

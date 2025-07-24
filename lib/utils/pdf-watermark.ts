@@ -84,8 +84,38 @@ export class PDFWatermarkProcessor {
       const pdfDoc = await PDFDocument.load(pdfBuffer);
       const pages = pdfDoc.getPages();
       
-      // 获取字体
-      const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+      // 获取字体 - 支持中文字符
+      let font;
+      let finalText = config.text;
+      
+      try {
+        // 检查文本是否包含中文字符
+        const hasChinese = /[\u4e00-\u9fff]/.test(config.text);
+        
+        if (hasChinese) {
+          console.log('🔤 检测到中文字符，尝试加载中文字体');
+          // 尝试多种方法加载中文字体
+          font = await this.loadChineseFont(pdfDoc);
+          
+          if (!font) {
+            console.warn('⚠️ 中文字体加载失败，转换为英文');
+            finalText = this.convertToEnglish(config.text);
+            font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+          }
+        } else {
+          font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+        }
+      } catch (error) {
+        console.warn('❌ 字体加载失败，使用默认字体:', error);
+        // 如果是中文，转换为英文
+        if (/[\u4e00-\u9fff]/.test(config.text)) {
+          finalText = this.convertToEnglish(config.text);
+        }
+        font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+      }
+      
+      // 更新配置中的文本
+      config.text = finalText;
       
       // 计算要处理的页面
       const pagesToProcess = config.firstPageOnly ? [pages[0]] : pages;
@@ -291,6 +321,183 @@ export class PDFWatermarkProcessor {
     }
     
     return { x, y };
+  }
+
+  /**
+   * 加载支持中文的字体
+   */
+  private async loadChineseFont(pdfDoc: any): Promise<any> {
+    try {
+      console.log('🔤 开始加载中文字体...');
+      
+      // 方法1: 尝试加载本地中文字体文件
+      const chineseFont = await this.loadLocalChineseFont(pdfDoc);
+      if (chineseFont) {
+        console.log('✅ 本地中文字体加载成功');
+        return chineseFont;
+      }
+      
+      // 方法2: 尝试从CDN加载中文字体
+      const cdnFont = await this.loadCDNChineseFont(pdfDoc);
+      if (cdnFont) {
+        console.log('✅ CDN中文字体加载成功');
+        return cdnFont;
+      }
+      
+      // 方法3: 使用系统字体备用方案
+      return await this.createChineseFontFallback(pdfDoc);
+      
+    } catch (error) {
+      console.warn('❌ 中文字体加载失败，使用备用方案:', error);
+      return await this.createChineseFontFallback(pdfDoc);
+    }
+  }
+
+  /**
+   * 加载本地中文字体文件
+   */
+  private async loadLocalChineseFont(pdfDoc: any): Promise<any> {
+    try {
+      // 尝试加载项目中的中文字体文件
+      const fontPaths = [
+        '/fonts/NotoSansSC-Regular.woff2',
+        '/fonts/NotoSansSC-Regular.ttf',
+        '/fonts/SourceHanSansSC-Regular.ttf',
+        '/fonts/chinese-font.ttf'
+      ];
+      
+      for (const fontPath of fontPaths) {
+        try {
+          console.log(`🔍 尝试加载字体: ${fontPath}`);
+          const response = await fetch(fontPath);
+          if (response.ok) {
+            const fontBytes = await response.arrayBuffer();
+            console.log(`📁 字体文件加载成功: ${fontPath}, 大小: ${fontBytes.byteLength} bytes`);
+            
+            // 检查字体文件是否有效
+            if (fontBytes.byteLength > 1000) {
+              try {
+                const font = await pdfDoc.embedFont(fontBytes);
+                console.log(`✅ 字体嵌入成功: ${fontPath}`);
+                return font;
+              } catch (embedError) {
+                console.warn(`❌ 字体嵌入失败: ${fontPath}`, embedError);
+                continue;
+              }
+            } else {
+              console.warn(`⚠️ 字体文件过小，可能损坏: ${fontPath}`);
+              continue;
+            }
+          }
+        } catch (error) {
+          console.log(`⚠️ 字体文件加载失败: ${fontPath}`, error);
+          continue;
+        }
+      }
+      
+      return null;
+    } catch (error) {
+      console.warn('本地字体加载失败:', error);
+      return null;
+    }
+  }
+
+  /**
+   * 从CDN加载中文字体
+   */
+  private async loadCDNChineseFont(pdfDoc: any): Promise<any> {
+    try {
+      // 使用免费的中文字体CDN
+      const fontUrls = [
+        'https://fonts.gstatic.com/s/notosanssc/v36/k3kCo84MPvpLmixcA63oeAL7Iqp5IZJF9bmaG9_FnYxNbPzS5HE.woff2',
+        'https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-sc@4.5.11/files/noto-sans-sc-chinese-simplified-400-normal.woff2'
+      ];
+      
+      for (const fontUrl of fontUrls) {
+        try {
+          console.log(`🌐 尝试从CDN加载字体: ${fontUrl}`);
+          const response = await fetch(fontUrl);
+          if (response.ok) {
+            const fontBytes = await response.arrayBuffer();
+            console.log(`✅ CDN字体加载成功，大小: ${fontBytes.byteLength} bytes`);
+            return await pdfDoc.embedFont(fontBytes);
+          }
+        } catch (error) {
+          console.warn(`❌ CDN字体加载失败: ${fontUrl}`, error);
+          continue;
+        }
+      }
+      
+      return null;
+    } catch (error) {
+      console.warn('CDN字体加载失败:', error);
+      return null;
+    }
+  }
+
+  /**
+   * 创建中文字体备用方案
+   */
+  private async createChineseFontFallback(pdfDoc: any): Promise<any> {
+    try {
+      console.log('🔄 使用中文字体备用方案');
+      
+      // 尝试使用对Unicode支持更好的字体
+      const fallbackFonts = [
+        StandardFonts.TimesRoman,
+        StandardFonts.CourierBold,
+        StandardFonts.HelveticaBold
+      ];
+      
+      for (const fontType of fallbackFonts) {
+        try {
+          const font = await pdfDoc.embedFont(fontType);
+          console.log(`✅ 备用字体加载成功: ${fontType}`);
+          return font;
+        } catch (error) {
+          continue;
+        }
+      }
+      
+      // 最后的备用方案
+      return await pdfDoc.embedFont(StandardFonts.Helvetica);
+      
+    } catch (error) {
+      console.warn('❌ 备用字体也失败，使用默认字体');
+      return await pdfDoc.embedFont(StandardFonts.Helvetica);
+    }
+  }
+
+  /**
+   * 将中文文本转换为英文或拼音（备用方案）
+   */
+  private convertToEnglish(text: string): string {
+    // 常见中文水印的英文映射
+    const chineseToEnglish: { [key: string]: string } = {
+      '机密文档': 'CONFIDENTIAL',
+      '内部资料': 'INTERNAL',
+      '草稿': 'DRAFT',
+      '样本': 'SAMPLE',
+      '测试': 'TEST',
+      '星光传媒': 'Starlight Media',
+      '星光同城传媒': 'Starlight Media',
+      '版权所有': 'Copyright',
+      '禁止复制': 'Do Not Copy',
+      '测试水印': 'TEST WATERMARK'
+    };
+    
+    // 检查是否有直接映射
+    if (chineseToEnglish[text]) {
+      return chineseToEnglish[text];
+    }
+    
+    // 如果包含公司名称，提取并转换
+    if (text.includes('传媒') || text.includes('公司')) {
+      return 'Company Watermark';
+    }
+    
+    // 默认回退
+    return 'WATERMARK';
   }
 
   /**

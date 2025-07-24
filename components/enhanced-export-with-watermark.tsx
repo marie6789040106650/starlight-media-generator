@@ -151,7 +151,10 @@ export function EnhancedExportWithWatermark({
         }
       }
 
-      // 第一步：按原逻辑导出PDF
+      // 获取水印配置
+      const watermarkConfig = getWatermarkConfig()
+      
+      // 调用服务端PDF生成API，包含水印配置
       const response = await fetch('/api/generate-pdf', {
         method: 'POST',
         headers: {
@@ -161,7 +164,8 @@ export function EnhancedExportWithWatermark({
           content,
           storeName,
           bannerImage,
-          filename
+          filename,
+          watermarkConfig: watermarkConfig // 传递水印配置到服务端
         }),
       })
 
@@ -183,8 +187,8 @@ export function EnhancedExportWithWatermark({
           // 将blob转换为ArrayBuffer
           const pdfBuffer = await finalBlob.arrayBuffer()
           
-          // 动态导入水印工具
-          const { addSimpleWatermark } = await import('../lib/watermark-toolkit')
+          // 动态导入水印工具 - 使用实际可用的实现
+          const { addSimpleWatermark } = await import('../lib/utils/pdf-watermark')
           
           // 准备水印选项
           const watermarkOptions = {

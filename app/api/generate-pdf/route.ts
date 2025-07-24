@@ -5,8 +5,127 @@ import { promisify } from 'util'
 import { readFile, access, readdir } from 'fs/promises'
 import { join } from 'path'
 import { constants } from 'fs'
+import { PDFDocument, rgb, StandardFonts, degrees } from 'pdf-lib'
 
 const execAsync = promisify(exec)
+
+/**
+ * 服务端水印处理函数
+ */
+async function addServerSideWatermark(
+  pdfBuffer: Buffer,
+  watermarkConfig: {
+    enabled: boolean
+    text: string
+    opacity: number
+    fontSize: number
+    rotation: number
+    position: string
+    repeat: string
+    color: string
+  }
+): Promise<Buffer | null> {
+  try {
+    console.log(`🛡️ 服务端添加水印: "${watermarkConfig.text}"`)
+    
+    // 加载PDF文档
+    const pdfDoc = await PDFDocument.load(pdfBuffer)
+    const pages = pdfDoc.getPages()
+    
+    // 尝试加载中文字体
+    let font
+    try {
+      // 在服务端，我们可以直接读取字体文件
+      const fontPath = join(process.cwd(), 'public/fonts/NotoSansSC-Regular.woff2')
+      const fontBytes = await readFile(fontPath)
+      console.log(`📁 服务端加载字体文件: ${fontPath}, 大小: ${fontBytes.length} bytes`)
+      font = await pdfDoc.embedFont(fontBytes)
+      console.log('✅ 服务端中文字体加载成功')
+    } catch (fontError) {
+      console.warn('⚠️ 服务端中文字体加载失败，使用默认字体:', fontError)
+      font = await pdfDoc.embedFont(StandardFonts.Helvetica)
+    }
+    
+    // 转换颜色
+    const colorMap = {
+      gray: { r: 0.5, g: 0.5, b: 0.5 },
+      red: { r: 1, g: 0, b: 0 },
+      blue: { r: 0, g: 0, b: 1 },
+      black: { r: 0, g: 0, b: 0 }
+    }
+    const color = colorMap[watermarkConfig.color as keyof typeof colorMap] || colorMap.gray
+    
+    // 为每个页面添加水印
+    for (const page of pages) {
+      const { width, height } = page.getSize()
+      
+      if (watermarkConfig.repeat === 'diagonal') {
+        // 对角线重复水印
+        const spacing = 150
+        for (let x = -width; x < width * 2; x += spacing) {
+          for (let y = -height; y < height * 2; y += spacing) {
+            page.drawText(watermarkConfig.text, {
+              x: x,
+              y: y,
+              size: watermarkConfig.fontSize,
+              font: font,
+              color: rgb(color.r, color.g, color.b),
+              opacity: watermarkConfig.opacity / 100,
+              rotate: degrees(watermarkConfig.rotation)
+            })
+          }
+        }
+      } else if (watermarkConfig.repeat === 'grid') {
+        // 网格重复水印
+        const spacingX = 120
+        const spacingY = 80
+        for (let x = spacingX / 2; x < width; x += spacingX) {
+          for (let y = spacingY / 2; y < height; y += spacingY) {
+            page.drawText(watermarkConfig.text, {
+              x: x,
+              y: y,
+              size: watermarkConfig.fontSize,
+              font: font,
+              color: rgb(color.r, color.g, color.b),
+              opacity: watermarkConfig.opacity / 100,
+              rotate: degrees(watermarkConfig.rotation)
+            })
+          }
+        }
+      } else {
+        // 单个水印
+        let x = width / 2
+        let y = height / 2
+        
+        // 根据位置调整
+        if (watermarkConfig.position.includes('left')) x = width * 0.2
+        if (watermarkConfig.position.includes('right')) x = width * 0.8
+        if (watermarkConfig.position.includes('top')) y = height * 0.8
+        if (watermarkConfig.position.includes('bottom')) y = height * 0.2
+        
+        page.drawText(watermarkConfig.text, {
+          x: x,
+          y: y,
+          size: watermarkConfig.fontSize,
+          font: font,
+          color: rgb(color.r, color.g, color.b),
+          opacity: watermarkConfig.opacity / 100,
+          rotate: degrees(watermarkConfig.rotation)
+        })
+      }
+    }
+    
+    // 保存PDF
+    const pdfBytes = await pdfDoc.save()
+    console.log(`✅ 服务端水印处理完成，新文件大小: ${pdfBytes.length} bytes`)
+    
+    return Buffer.from(pdfBytes)
+    
+  } catch (error) {
+    console.error('❌ 服务端水印处理失败:', error)
+    return null
+  }
+}
 
 // Configuration constants
 const PDF_CONVERSION_CONFIG = {
@@ -57,6 +176,16 @@ interface PDFGenerationRequest {
   bannerImage?: string | null
   filename?: string
   includeWatermark?: boolean
+  watermarkConfig?: {
+    enabled: boolean
+    text: string
+    opacity: number
+    fontSize: number
+    rotation: number
+    position: string
+    repeat: string
+    color: string
+  }
 }
 
 
@@ -275,16 +404,30 @@ async function generatePdfFromRequest(
   // Convert to PDF
   console.log('🔄 开始PDF转换...')
   const timestamp = Date.now()
-  const pdfBuffer = await convertWordToPdfWithRetry(
+  let pdfBuffer = await convertWordToPdfWithRetry(
     libreOfficeCommand,
     wordPath,
     tempDir,
     timestamp
   )
 
-  // Generate final filename and return response
-  const finalFilename = generateFilename(filename)
   console.log(`✅ PDF转换成功 - 文件大小: ${pdfBuffer.length} bytes`)
+
+  // 检查是否需要添加水印
+  let finalFilename = generateFilename(filename)
+  if (request.watermarkConfig && request.watermarkConfig.enabled) {
+    console.log('🛡️ 开始添加服务端水印...')
+    try {
+      const watermarkedBuffer = await addServerSideWatermark(pdfBuffer, request.watermarkConfig)
+      if (watermarkedBuffer) {
+        pdfBuffer = watermarkedBuffer
+        finalFilename = finalFilename.replace('.pdf', '_protected.pdf')
+        console.log('✅ 服务端水印添加成功')
+      }
+    } catch (watermarkError) {
+      console.warn('⚠️ 服务端水印添加失败，使用原始PDF:', watermarkError)
+    }
+  }
 
   return createPdfResponse(pdfBuffer, finalFilename)
 }

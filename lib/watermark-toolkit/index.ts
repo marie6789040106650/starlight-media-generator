@@ -1,7 +1,8 @@
 /**
- * 水印工具包入口文件
+ * 水印工具包入口文件 - 统一导出
  */
 
+// 主要从utils目录导出，因为那里有完整的实现
 export {
   PDFWatermarkProcessor,
   addSimpleWatermark,
@@ -11,15 +12,19 @@ export {
   WatermarkPresets,
   batchAddWatermark,
   addWatermarkFromUrl
-} from './pdf-watermark';
+} from '../utils/pdf-watermark';
 
 export type {
   WatermarkOptions,
   WatermarkResult
-} from './pdf-watermark';
+} from '../utils/pdf-watermark';
 
+// 从组件目录导出配置相关
 export {
-  WatermarkConfig,
   WatermarkConfigDialog,
   configToWatermarkOptions
-} from './watermark-config';
+} from '../../components/watermark-config';
+
+export type {
+  WatermarkConfig
+} from '../../components/watermark-config';
