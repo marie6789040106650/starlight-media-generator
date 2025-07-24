@@ -1,29 +1,29 @@
 {
   "functions": {
     "app/api/chat-stream/route.ts": {
-      "runtime": "edge"
+      "runtime": "@vercel/edge"
     },
     "app/api/module2-plan-stream/route.ts": {
-      "runtime": "edge"
+      "runtime": "@vercel/edge"
     },
     "app/api/module1-keywords/route.ts": {
-      "runtime": "nodejs18.x",
+      "runtime": "@vercel/node",
       "maxDuration": 30
     },
     "app/api/module3-banner/route.ts": {
-      "runtime": "nodejs18.x",
+      "runtime": "@vercel/node",
       "maxDuration": 30
     },
     "app/api/generate-plan/route.ts": {
-      "runtime": "nodejs18.x",
+      "runtime": "@vercel/node",
       "maxDuration": 60
     },
     "app/api/generate-pdf/route.ts": {
-      "runtime": "nodejs18.x",
+      "runtime": "@vercel/node",
       "maxDuration": 60
     },
     "app/api/generate-word/route.ts": {
-      "runtime": "nodejs18.x",
+      "runtime": "@vercel/node",
       "maxDuration": 60
     }
   },
