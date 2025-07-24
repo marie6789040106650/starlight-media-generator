@@ -175,51 +175,13 @@ export function EnhancedExportWithWatermark({
         throw new Error(`导出失败: ${response.status} ${errorText}`);
       }
 
-      let finalBlob = await response.blob()
+      const finalBlob = await response.blob()
       if (finalBlob.size === 0) {
         throw new Error('导出的PDF文件为空');
       }
 
-      // 第二步：如果启用水印，则在PDF上添加水印层
-      const watermarkConfig = getWatermarkConfig()
-      if (watermarkConfig && watermarkConfig.enabled) {
-        try {
-          // 将blob转换为ArrayBuffer
-          const pdfBuffer = await finalBlob.arrayBuffer()
-          
-          // 动态导入水印工具 - 使用实际可用的实现
-          const { addSimpleWatermark } = await import('../lib/utils/pdf-watermark')
-          
-          // 准备水印选项
-          const watermarkOptions = {
-            opacity: watermarkConfig.opacity / 100,
-            fontSize: watermarkConfig.fontSize,
-            rotation: watermarkConfig.rotation,
-            position: {
-              x: watermarkConfig.position.includes('left') ? 'left' : 
-                 watermarkConfig.position.includes('right') ? 'right' : 'center',
-              y: watermarkConfig.position.includes('top') ? 'top' : 
-                 watermarkConfig.position.includes('bottom') ? 'bottom' : 'center'
-            },
-            repeat: watermarkConfig.repeat,
-            color: getColorRGB(watermarkConfig.color)
-          }
-
-          // 添加水印
-          const watermarkResult = await addSimpleWatermark(pdfBuffer, watermarkConfig.text, watermarkOptions)
-
-          if (watermarkResult.success && watermarkResult.pdfBytes) {
-            finalBlob = new Blob([watermarkResult.pdfBytes], { type: 'application/pdf' })
-            filename = filename?.replace('.pdf', '_protected.pdf') || `${storeName}-方案_protected.pdf`
-            console.log('水印添加成功');
-          } else {
-            console.warn('水印添加失败:', watermarkResult.error);
-          }
-        } catch (watermarkError) {
-          console.warn('水印添加失败，使用原始PDF:', watermarkError)
-          // 如果水印添加失败，继续使用原始PDF
-        }
-      }
+      // 服务端已经处理了水印，直接使用返回的PDF
+      console.log('✅ 服务端PDF生成完成（包含水印处理）')
 
       // 下载最终的PDF文件
       const url = window.URL.createObjectURL(finalBlob)

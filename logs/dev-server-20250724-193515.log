@@ -991,3 +991,63 @@ Module parse failed: Identifier 'watermarkConfig' has already been declared (166
 Import trace for requested module:
 ./components/enhanced-export-with-watermark.tsx
 ./app/page.tsx
+ ✓ Compiled in 3.6s (1264 modules)
+[2025-07-24T12:53:02.128Z] [e96c7tfnk] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:53:02.128Z] [e96c7tfnk] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /chinese-watermark-demo 200 in 502ms
+ GET /watermark-test 200 in 583ms
+ GET / 200 in 503ms
+ ✓ Compiled in 728ms (574 modules)
+[2025-07-24T12:53:18.494Z] [ul6kzsf9k] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:53:18.494Z] [ul6kzsf9k] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /chinese-watermark-demo 200 in 229ms
+ GET /watermark-test 200 in 268ms
+ GET / 200 in 325ms
+ ✓ Compiled in 1323ms (574 modules)
+[2025-07-24T12:53:37.813Z] [2izj4t1t5] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:53:37.813Z] [2izj4t1t5] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /chinese-watermark-demo 200 in 302ms
+ GET /watermark-test 200 in 316ms
+ GET / 200 in 268ms
+ ✓ Compiled in 986ms (574 modules)
+[2025-07-24T12:53:59.449Z] [93i1mhood] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:53:59.450Z] [93i1mhood] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /chinese-watermark-demo 200 in 211ms
+ GET /watermark-test 200 in 254ms
+ GET / 200 in 182ms
+ ✓ Compiled in 833ms (574 modules)
+[2025-07-24T12:54:36.963Z] [sskjphk1o] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:54:36.969Z] [sskjphk1o] 请求处理开始完成 { duration: '6ms', status: 200 }
+ ✓ Compiled in 1136ms (574 modules)
+ GET /chinese-watermark-demo 200 in 1173ms
+ GET /watermark-test 200 in 1215ms
+ GET / 200 in 724ms
+[2025-07-24T12:54:37.990Z] [ydt4mv9ud] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-24T12:54:37.990Z] [ydt4mv9ud] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /chinese-watermark-demo 200 in 527ms
+ GET /watermark-test 200 in 461ms
+ GET / 200 in 226ms
