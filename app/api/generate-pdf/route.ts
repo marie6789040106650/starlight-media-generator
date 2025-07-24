@@ -415,6 +415,10 @@ async function generatePdfFromRequest(
 
   // 检查是否需要添加水印
   let finalFilename = generateFilename(filename)
+  
+  // 调试：打印请求中的水印配置
+  console.log('🔍 检查水印配置:', JSON.stringify(request.watermarkConfig, null, 2))
+  
   if (request.watermarkConfig && request.watermarkConfig.enabled) {
     console.log('🛡️ 开始添加服务端水印...')
     try {
@@ -423,10 +427,14 @@ async function generatePdfFromRequest(
         pdfBuffer = watermarkedBuffer
         finalFilename = finalFilename.replace('.pdf', '_protected.pdf')
         console.log('✅ 服务端水印添加成功')
+      } else {
+        console.warn('⚠️ 水印处理返回null')
       }
     } catch (watermarkError) {
       console.warn('⚠️ 服务端水印添加失败，使用原始PDF:', watermarkError)
     }
+  } else {
+    console.log('ℹ️ 未启用水印或水印配置为空')
   }
 
   return createPdfResponse(pdfBuffer, finalFilename)

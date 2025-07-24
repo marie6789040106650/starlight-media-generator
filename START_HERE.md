@@ -60,7 +60,7 @@ git push origin main
 在 [vercel.com](https://vercel.com) 项目设置中添加：
 ```
 SILICONFLOW_API_KEY = "你的SiliconFlow密钥"
-GOOGLE_API_KEY = "AIzaSyBB1Wuf3bnv7KdyGPevGt7dyn7ak2yakR0"
+GOOGLE_API_KEY = "你的Google API密钥"
 NODE_ENV = "production"
 ```
 

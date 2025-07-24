@@ -54,7 +54,7 @@ git push origin main
 在Vercel控制台添加：
 ```bash
 SILICONFLOW_API_KEY = "你的SiliconFlow密钥"
-GOOGLE_API_KEY = "AIzaSyBB1Wuf3bnv7KdyGPevGt7dyn7ak2yakR0"
+GOOGLE_API_KEY = "你的Google API密钥"
 NODE_ENV = "production"
 ```
 

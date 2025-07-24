@@ -74,7 +74,7 @@ git push origin main
 
 # 2. 配置Vercel环境变量
 SILICONFLOW_API_KEY = "你的密钥"
-GOOGLE_API_KEY = "AIzaSyBB1Wuf3bnv7KdyGPevGt7dyn7ak2yakR0"
+GOOGLE_API_KEY = "你的Google API密钥"
 NODE_ENV = "production"
 
 # 3. 部署验证

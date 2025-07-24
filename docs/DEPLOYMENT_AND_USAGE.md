@@ -10,7 +10,7 @@ pnpm run config:status
 
 你目前拥有的密钥：
 - ✅ **SiliconFlow**: 已配置
-- ✅ **Google Gemini**: `AIzaSyBB1Wuf3bnv7KdyGPevGt7dyn7ak2yakR0`
+- ✅ **Google Gemini**: 已配置
 - ❌ **OpenAI**: 暂无
 - ❌ **Anthropic**: 暂无
 
@@ -31,7 +31,7 @@ git push origin main
 ```bash
 # AI服务密钥
 SILICONFLOW_API_KEY = "你的SiliconFlow密钥"
-GOOGLE_API_KEY = "AIzaSyBB1Wuf3bnv7KdyGPevGt7dyn7ak2yakR0"
+GOOGLE_API_KEY = "你的Google API密钥"
 
 # 运行环境
 NODE_ENV = "production"

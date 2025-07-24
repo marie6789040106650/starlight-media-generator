@@ -20,7 +20,7 @@
 ```bash
 # 必须配置的密钥 (你已有的)
 SILICONFLOW_API_KEY = "你的SiliconFlow密钥"
-GOOGLE_API_KEY = "AIzaSyBB1Wuf3bnv7KdyGPevGt7dyn7ak2yakR0"
+GOOGLE_API_KEY = "你的Google API密钥"
 
 # 可选配置的密钥 (暂时可以留空)
 OPENAI_API_KEY = ""

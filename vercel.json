@@ -27,18 +27,7 @@
       "maxDuration": 60
     }
   },
-  "env": {
-    "SILICONFLOW_API_KEY": "@siliconflow_api_key",
-    "OPENAI_API_KEY": "@openai_api_key",
-    "ANTHROPIC_API_KEY": "@anthropic_api_key"
-  },
-  "build": {
-    "env": {
-      "SILICONFLOW_API_KEY": "@siliconflow_api_key",
-      "OPENAI_API_KEY": "@openai_api_key",
-      "ANTHROPIC_API_KEY": "@anthropic_api_key"
-    }
-  },
+
   "headers": [
     {
       "source": "/api/(.*)",
