@@ -185,6 +185,14 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
   const processContentForMeasurement = (content: string): string => {
     let html = content
 
+    // 清理和转义特殊字符
+    html = html
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;')
+
     // 处理粗体 - 正文加粗关键字：同正文，11pt，加粗
     html = html.replace(/\*\*([^*\n]+)\*\*/g, '<strong style="font-weight: bold; color: #000000; font-family: \'Source Han Sans SC\', \'SimHei\', sans-serif; font-size: 11pt;">$1</strong>')
 
@@ -200,8 +208,8 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
       switch (level) {
         case 1:
           if (isFirstH1) {
-            // 文档主标题：22pt，居中，思源黑体加粗，段前24pt，段后18pt
-            fontSize = '22pt'
+            // 文档主标题：24pt，居中，思源黑体加粗，段前24pt，段后18pt
+            fontSize = '24pt'
             fontFamily = "'Source Han Sans SC', 'SimHei', sans-serif"
             marginTop = '24pt'
             marginBottom = '18pt'
@@ -219,13 +227,13 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
           }
           break
         case 2:
-          // 二级标题：18pt，居中，思源黑体加粗，段前12pt，段后8pt
+          // 二级标题：18pt，左对齐，思源黑体加粗，段前12pt，段后8pt
           fontSize = '18pt'
           fontFamily = "'Source Han Sans SC', 'SimHei', sans-serif"
           marginTop = '12pt'
           marginBottom = '8pt'
           fontWeight = 'bold'
-          textAlign = 'center'
+          textAlign = 'left'
           break
         case 3:
           // 三级标题：16pt，左对齐，思源黑体加粗，段前8pt，段后6pt
@@ -345,7 +353,7 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
         left: `${PAGE_MARGIN_LEFT}px`,
         right: `${PAGE_MARGIN_RIGHT}px`,
         height: `${HEADER_HEIGHT}px`,
-        borderBottom: '1pt solid #DDDDDD',
+        borderBottom: '0.5pt solid #DDDDDD',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -386,10 +394,10 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
           }}>
             LOGO
           </div>
-          {/* 页眉文字 - 思源黑体，10pt，纯黑色 */}
+          {/* 页眉文字 - 思源黑体，9pt，深灰色 */}
           <span style={{
-            fontSize: '10pt',
-            color: '#000000',
+            fontSize: '9pt',
+            color: '#333333',
             fontFamily: "'Source Han Sans SC', 'SimHei', sans-serif",
             fontWeight: 'normal'
           }}>
@@ -470,27 +478,37 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
         <div dangerouslySetInnerHTML={{ __html: page.content }} />
       </div>
 
-      {/* 页脚 - 精确按照Word样式，页脚距离1.75cm */}
+      {/* 页脚 - 中文商业文档标准格式 */}
       <div style={{
         position: 'absolute',
         bottom: `${PAGE_MARGIN_BOTTOM}px`,
         left: `${PAGE_MARGIN_LEFT}px`,
         right: `${PAGE_MARGIN_RIGHT}px`,
         height: `${FOOTER_HEIGHT}px`,
-        borderTop: '1pt solid #DDDDDD',
+        borderTop: '0.5pt solid #DDDDDD',
         backgroundColor: 'white',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'space-between'
       }}>
-        {/* 页码 - 居中显示，思源黑体，10pt */}
+        {/* 左侧版权信息 */}
         <div style={{
-          fontSize: '10pt',
-          color: '#000000',
+          fontSize: '9pt',
+          color: '#666666',
           fontFamily: "'Source Han Sans SC', 'SimHei', sans-serif",
           fontWeight: 'normal'
         }}>
-          {page.pageNumber}
+          © 2025 星光同城传媒
+        </div>
+        
+        {/* 右侧页码 */}
+        <div style={{
+          fontSize: '9pt',
+          color: '#666666',
+          fontFamily: "'Source Han Sans SC', 'SimHei', sans-serif",
+          fontWeight: 'normal'
+        }}>
+          第 {page.pageNumber} 页
         </div>
       </div>
     </div>
@@ -660,7 +678,7 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
           margin-top: 12pt !important;
           margin-bottom: 8pt !important;
           line-height: 1.5 !important;
-          text-align: center !important;
+          text-align: left !important;
         }
 
         h3 {
