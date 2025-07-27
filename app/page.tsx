@@ -6,7 +6,6 @@ import { REQUIRED_FIELDS } from "@/lib/constants"
 import { PageHeader } from "@/components/page-header"
 import { ProgressSteps } from "@/components/progress-steps"
 import { FormSection } from "@/components/form-section"
-import { ContentRenderer } from "@/components/content-renderer"
 import { SmartWordRenderer } from "@/components/smart-word-renderer"
 import { TocNavigation } from "@/components/toc-navigation"
 import { useFormData } from "@/hooks/use-form-data"
@@ -14,11 +13,17 @@ import { usePlanGeneration } from "@/hooks/use-plan-generation"
 import { useBannerImage } from "@/hooks/use-banner-image"
 import { useToc } from "@/hooks/use-toc"
 import { useKeywordStats } from "@/hooks/use-keyword-stats"
-import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { EnhancedExportWithWatermark } from "@/components/enhanced-export-with-watermark"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator
+} from "@/components/ui/dropdown-menu"
 
-import { ArrowLeft, RefreshCw } from "lucide-react"
+import { ArrowLeft, RefreshCw, ChevronDown, Image, ImageOff } from "lucide-react"
 
 
 
@@ -47,7 +52,8 @@ export default function Home() {
   const {
     bannerImage,
     isGeneratingBanner,
-    generateBannerImage
+    generateBannerImage,
+    setBannerImage
   } = useBannerImage()
 
   const {
@@ -138,6 +144,24 @@ export default function Home() {
     setGeneratedContent("")
   }
 
+  // 重新生成方案
+  const handleRegenerateContent = () => {
+    handleNextStep()
+  }
+
+  // 重新生成Banner图
+  const handleRegenerateBanner = () => {
+    if (generatedContent) {
+      generateBannerImage(generatedContent, formData)
+    }
+  }
+
+  // 禁用Banner图
+  const handleDisableBanner = () => {
+    // 清除当前的Banner图片
+    setBannerImage(null)
+  }
+
 
 
 
@@ -204,15 +228,34 @@ export default function Home() {
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   修改信息
                 </Button>
-                <Button
-                  variant="outline"
-                  size="default"
-                  onClick={handleNextStep}
-                  className="flex-1 lg:flex-none min-w-[120px] h-11 text-sm font-medium border-orange-300 text-orange-700 hover:bg-orange-50 transition-colors"
-                >
-                  <RefreshCw className="h-4 w-4 mr-2" />
-                  重新生成
-                </Button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="outline"
+                      size="default"
+                      className="flex-1 lg:flex-none min-w-[120px] h-11 text-sm font-medium border-orange-300 text-orange-700 hover:bg-orange-50 transition-colors"
+                    >
+                      <RefreshCw className="h-4 w-4 mr-2" />
+                      重新生成
+                      <ChevronDown className="h-4 w-4 ml-1" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-48">
+                    <DropdownMenuItem onClick={handleRegenerateContent}>
+                      <RefreshCw className="h-4 w-4 mr-2" />
+                      重新生成方案
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={handleRegenerateBanner} disabled={!generatedContent}>
+                      <Image className="h-4 w-4 mr-2" />
+                      重新生成Banner图
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={handleDisableBanner} disabled={!bannerImage}>
+                      <ImageOff className="h-4 w-4 mr-2" />
+                      禁用Banner图
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
 
                 <EnhancedExportWithWatermark
                   content={generatedContent}
