@@ -10,111 +10,56 @@
      ⨯ webpackBuildWorker
 
  ✓ Starting...
- ✓ Ready in 4.8s
- ✓ Compiled /middleware in 404ms (108 modules)
-[2025-07-27T19:34:53.493Z] [ydw4hilip] GET http://localhost:3000/ {
+ ✓ Ready in 5.5s
+ ✓ Compiled /middleware in 418ms (108 modules)
+[2025-07-27T20:30:17.607Z] [ov8azl5n5] GET http://localhost:3000/ {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: null,
   clientIP: '::1'
 }
-[2025-07-27T19:34:53.497Z] [ydw4hilip] 请求处理开始完成 { duration: '4ms', status: 200 }
+[2025-07-27T20:30:17.610Z] [ov8azl5n5] 请求处理开始完成 { duration: '3ms', status: 200 }
  ○ Compiling / ...
- GET / 200 in 10495ms
-[2025-07-27T19:35:04.883Z] [uuo5ivkgb] GET http://localhost:3000/api/keyword-stats {
+[2025-07-27T20:30:24.118Z] [pslw94ord] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: null,
+  clientIP: '::1'
+}
+[2025-07-27T20:30:24.119Z] [pslw94ord] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 2238ms
+[2025-07-27T20:30:27.203Z] [7u5yhixuc] GET http://localhost:3000/api/keyword-stats {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-27T19:35:04.885Z] [uuo5ivkgb] 请求处理开始完成 { duration: '2ms', status: 200 }
- GET /api/keyword-stats 200 in 2244ms
-[2025-07-27T19:35:07.160Z] [1w5huimgu] GET http://localhost:3000/api/keyword-stats {
+[2025-07-27T20:30:27.204Z] [7u5yhixuc] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /api/keyword-stats 200 in 1853ms
+[2025-07-27T20:30:29.107Z] [87hf29h7t] GET http://localhost:3000/api/keyword-stats {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-27T19:35:07.162Z] [1w5huimgu] 请求处理开始完成 { duration: '2ms', status: 200 }
- GET /api/keyword-stats 200 in 19ms
-[2025-07-27T19:35:21.796Z] [ohtcgutbw] POST http://localhost:3000/api/expand-keywords {
+[2025-07-27T20:30:29.107Z] [87hf29h7t] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /api/keyword-stats 200 in 26ms
+[2025-07-27T20:30:30.679Z] [451b2ad8m] GET http://localhost:3000/result {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/result',
+  clientIP: '::1'
+}
+[2025-07-27T20:30:30.679Z] [451b2ad8m] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /result 200 in 1545ms
+[2025-07-27T20:30:43.033Z] [j74qdtb47] POST http://localhost:3000/api/keyword-stats {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-27T19:35:21.797Z] [ohtcgutbw] 请求处理开始完成 { duration: '1ms', status: 200 }
-收到关键词拓展请求: {
-  storeFeatures: '秘制汤底、地域食材、现制模式、健康定制、主题沉浸、网红装修',
-  ownerFeatures: undefined,
-  storeCategory: undefined
-}
-关键词拓展结果: {
-  expanded_store_features: [
-    '专业服务', '品质保证',
-    '价格合理', '服务周到',
-    '经验丰富', '诚信经营',
-    '客户至上', '创新思维',
-    '持续改进', '团队协作',
-    '专业素养', '用心服务',
-    '行业领先', '技术创新',
-    '质量第一'
-  ],
-  expanded_boss_features: [
-    '热情好客', '亲和力强',
-    '平易近人', '善于沟通',
-    '幽默风趣', '专业素养',
-    '技术精湛', '经验丰富',
-    '行业专家', '持续学习',
-    '诚信经营', '用心服务',
-    '客户至上', '品质坚持',
-    '创新思维'
-  ]
-}
- POST /api/expand-keywords 200 in 818ms
-[2025-07-27T19:35:24.606Z] [u5zjidmvx] POST http://localhost:3000/api/expand-keywords {
+[2025-07-27T20:30:43.035Z] [j74qdtb47] 请求处理开始完成 { duration: '2ms', status: 200 }
+ POST /api/keyword-stats 200 in 68ms
+[2025-07-27T20:30:43.146Z] [n0dahr8oy] POST http://localhost:3000/api/expand-keywords {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-27T19:35:24.606Z] [u5zjidmvx] 请求处理开始完成 { duration: '0ms', status: 200 }
-收到关键词拓展请求: {
-  storeFeatures: '秘制汤底、地域食材、现制模式、健康定制、主题沉浸、网红装修',
-  ownerFeatures: undefined,
-  storeCategory: undefined
-}
-关键词拓展结果: {
-  expanded_store_features: [
-    '专业服务', '品质保证',
-    '价格合理', '服务周到',
-    '经验丰富', '诚信经营',
-    '客户至上', '创新思维',
-    '持续改进', '团队协作',
-    '专业素养', '用心服务',
-    '行业领先', '技术创新',
-    '质量第一'
-  ],
-  expanded_boss_features: [
-    '热情好客', '亲和力强',
-    '平易近人', '善于沟通',
-    '幽默风趣', '专业素养',
-    '技术精湛', '经验丰富',
-    '行业专家', '持续学习',
-    '诚信经营', '用心服务',
-    '客户至上', '品质坚持',
-    '创新思维'
-  ]
-}
- POST /api/expand-keywords 200 in 15ms
-[2025-07-27T19:35:29.817Z] [oj7rl7u47] POST http://localhost:3000/api/keyword-stats {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-27T19:35:29.817Z] [oj7rl7u47] 请求处理开始完成 { duration: '0ms', status: 200 }
- POST /api/keyword-stats 200 in 22ms
-[2025-07-27T19:35:29.854Z] [qdmp1yjzj] POST http://localhost:3000/api/expand-keywords {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-27T19:35:29.855Z] [qdmp1yjzj] 请求处理开始完成 { duration: '1ms', status: 200 }
+[2025-07-27T20:30:43.146Z] [n0dahr8oy] 请求处理开始完成 { duration: '0ms', status: 200 }
 收到关键词拓展请求: {
   storeFeatures: '秘制汤底、地域食材、现制模式、健康定制、主题沉浸、网红装修',
   ownerFeatures: '匠人、传承、学霸、宠粉',
@@ -141,21 +86,28 @@
     '行业专家', '持续学习'
   ]
 }
- POST /api/expand-keywords 200 in 452ms
-[2025-07-27T19:35:30.483Z] [b7xjibjoz] POST http://localhost:3000/api/generate-plan {
+ POST /api/expand-keywords 200 in 1476ms
+[2025-07-27T20:30:44.661Z] [8l1c58u36] GET http://localhost:3000/ {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-27T19:35:30.483Z] [b7xjibjoz] 请求处理开始完成 { duration: '0ms', status: 200 }
-[2025-07-27T19:35:30.547Z] [acvu053m2] GET http://localhost:3000/ {
+[2025-07-27T20:30:44.661Z] [8l1c58u36] 请求处理开始完成 { duration: '0ms', status: 200 }
+[2025-07-27T20:30:44.662Z] [6no62n7za] GET http://localhost:3000/result {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/result',
+  clientIP: '::1'
+}
+[2025-07-27T20:30:44.662Z] [6no62n7za] 请求处理开始完成 { duration: '0ms', status: 200 }
+[2025-07-27T20:30:44.681Z] [vcdf4ubhe] POST http://localhost:3000/api/generate-plan {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-27T19:35:30.547Z] [acvu053m2] 请求处理开始完成 { duration: '0ms', status: 200 }
-[2025-07-27T19:35:31.252Z] [fr1whxp] 收到生成方案请求
-[2025-07-27T19:35:31.254Z] [fr1whxp] 请求参数: {
+[2025-07-27T20:30:44.682Z] [vcdf4ubhe] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /result 200 in 142ms
+[2025-07-27T20:30:46.078Z] [0xvdb10] 收到生成方案请求
+[2025-07-27T20:30:46.078Z] [0xvdb10] 请求参数: {
   promptLength: 543,
   modelId: 'deepseek-ai/DeepSeek-V3',
   taskType: 'long_generation',
@@ -163,118 +115,70 @@
   storeInfo: '馋嘴老张麻辣烫',
   clientIP: '::1'
 }
- GET / 200 in 824ms
-[2025-07-27T19:36:27.069Z] [fr1whxp] 生成完成 { duration: '55817ms', contentLength: 1988, totalChunks: 803 }
- POST /api/generate-plan 200 in 56583ms
-[2025-07-27T19:36:27.103Z] [nks40hhlc] POST http://localhost:3000/api/images {
+ GET / 200 in 1446ms
+[2025-07-27T20:30:49.950Z] [slgq1khkz] GET http://localhost:3000/result {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/result',
+  clientIP: '::1'
+}
+[2025-07-27T20:30:49.951Z] [slgq1khkz] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /result 200 in 313ms
+[2025-07-27T20:31:31.164Z] [0xvdb10] 生成完成 { duration: '45086ms', contentLength: 1576, totalChunks: 634 }
+ POST /api/generate-plan 200 in 46479ms
+[2025-07-27T20:31:31.194Z] [zxxwrvy0u] POST http://localhost:3000/api/images {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-27T19:36:27.103Z] [nks40hhlc] 请求处理开始完成 { duration: '0ms', status: 200 }
- POST /api/images 200 in 2884ms
-[2025-07-27T19:36:37.516Z] [9lbswpg4c] POST http://localhost:3000/api/keyword-stats {
+[2025-07-27T20:31:31.195Z] [zxxwrvy0u] 请求处理开始完成 { duration: '1ms', status: 200 }
+ POST /api/images 200 in 3246ms
+[2025-07-27T20:42:09.449Z] [drczjrzh3] GET http://localhost:3000/result {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/result',
+  clientIP: '::1'
+}
+[2025-07-27T20:42:09.451Z] [drczjrzh3] 请求处理开始完成 { duration: '2ms', status: 200 }
+[2025-07-27T20:42:10.915Z] [z348te32i] GET http://localhost:3000/ {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-27T19:36:37.516Z] [9lbswpg4c] 请求处理开始完成 { duration: '0ms', status: 200 }
- POST /api/keyword-stats 200 in 25ms
-[2025-07-27T19:36:37.569Z] [s3dmsf01w] POST http://localhost:3000/api/expand-keywords {
+[2025-07-27T20:42:10.917Z] [z348te32i] 请求处理开始完成 { duration: '2ms', status: 200 }
+[2025-07-27T20:42:10.917Z] [82gcagka3] GET http://localhost:3000/result {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/result',
+  clientIP: '::1'
+}
+[2025-07-27T20:42:10.918Z] [82gcagka3] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /result 500 in 2782ms
+ GET /result 500 in 1329ms
+ GET / 500 in 1387ms
+[2025-07-27T20:42:12.387Z] [5mni06ses] GET http://localhost:3000/ {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-27T19:36:37.569Z] [s3dmsf01w] 请求处理开始完成 { duration: '0ms', status: 200 }
-收到关键词拓展请求: {
-  storeFeatures: '秘制汤底、地域食材、现制模式、健康定制、主题沉浸、网红装修',
-  ownerFeatures: '匠人、传承、学霸、宠粉',
-  storeCategory: undefined
-}
-关键词拓展结果: {
-  expanded_store_features: [
-    '专业服务', '品质保证',
-    '价格合理', '服务周到',
-    '经验丰富', '诚信经营',
-    '客户至上', '创新思维',
-    '持续改进', '团队协作',
-    '专业素养', '用心服务',
-    '行业领先', '技术创新',
-    '质量第一'
-  ],
-  expanded_boss_features: [
-    '匠人传承', '二代传承',
-    '学霸出身', '宠粉达人',
-    '热情好客', '亲和力强',
-    '平易近人', '善于沟通',
-    '幽默风趣', '专业素养',
-    '技术精湛', '经验丰富',
-    '行业专家', '持续学习'
-  ]
-}
- POST /api/expand-keywords 200 in 277ms
-[2025-07-27T19:36:37.989Z] [g5bpbstut] POST http://localhost:3000/api/generate-plan {
+[2025-07-27T20:42:12.387Z] [5mni06ses] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 500 in 61ms
+[2025-07-27T20:42:12.474Z] [n3aagespb] GET http://localhost:3000/ {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-27T19:36:37.989Z] [g5bpbstut] 请求处理开始完成 { duration: '0ms', status: 200 }
-[2025-07-27T19:36:38.041Z] [rvgn8zn] 收到生成方案请求
-[2025-07-27T19:36:38.041Z] [rvgn8zn] 请求参数: {
-  promptLength: 543,
-  modelId: 'deepseek-ai/DeepSeek-V3',
-  taskType: 'long_generation',
-  stream: true,
-  storeInfo: '馋嘴老张麻辣烫',
+[2025-07-27T20:42:12.474Z] [n3aagespb] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 500 in 32ms
+[2025-07-27T20:55:13.201Z] [3v75zmau4] GET http://localhost:3000/result {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/result',
   clientIP: '::1'
 }
-[2025-07-27T19:36:38.061Z] [oy67ori38] GET http://localhost:3000/ {
+[2025-07-27T20:55:13.202Z] [3v75zmau4] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /result 500 in 29ms
+[2025-07-27T20:55:22.790Z] [rg5uisyl6] GET http://localhost:3000/ {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-27T19:36:38.061Z] [oy67ori38] 请求处理开始完成 { duration: '0ms', status: 200 }
- GET / 200 in 91ms
-[2025-07-27T19:37:41.076Z] [rvgn8zn] 生成完成 { duration: '63035ms', contentLength: 2273, totalChunks: 869 }
- POST /api/generate-plan 200 in 63086ms
-[2025-07-27T19:38:14.994Z] [pybttws75] POST http://localhost:3000/api/generate-word {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-27T19:38:14.994Z] [pybttws75] 请求处理开始完成 { duration: '0ms', status: 200 }
-📝 开始生成Word文档...
-内容长度: 2273 字符
-店铺名称: 馋嘴老张麻辣烫
-Logo图片加载成功: /Users/bypasser/d/出海/starlight-media-generator/public/logo.png
-Banner图片通过HTTP加载成功
-✅ Word文档生成成功 - 文件大小: 466893 bytes
- POST /api/generate-word 200 in 2079ms
-[2025-07-27T19:38:32.091Z] [7mmu39iu9] POST http://localhost:3000/api/generate-pdf {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-27T19:38:32.092Z] [7mmu39iu9] 请求处理开始完成 { duration: '1ms', status: 200 }
-✅ 找到LibreOffice命令: soffice
-📄 开始PDF转换流程（优化版本）
-📝 生成Word文档（支持缓存）...
-📁 创建临时目录: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753645115635-zo0qco5
-📝 生成新的Word文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753645115635-zo0qco5/document-1753645115635.docx
-Logo图片加载成功: /Users/bypasser/d/出海/starlight-media-generator/public/logo.png
-Banner图片通过HTTP加载成功
-✅ Word文件生成完成: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753645115635-zo0qco5/document-1753645115635.docx (466893 bytes)
-✅ Word文档准备完成
-📊 缓存统计: 1 文件, 455.95 KB, 命中率: 0.0%
-🔄 开始PDF转换...
-🔄 PDF转换尝试 1/3
-执行命令: soffice --headless --convert-to pdf --outdir "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753645115635-zo0qco5" "/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753645115635-zo0qco5/document-1753645115635.docx"
-LibreOffice stdout: convert /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753645115635-zo0qco5/document-1753645115635.docx as a Writer document -> /private/var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753645115635-zo0qco5/document-1753645115635.pdf using filter : writer_pdf_Export
-
-预期PDF文件不存在，搜索其他PDF文件...
-📁 临时目录中的文件: [ 'document-1753645115635.docx', 'document-1753645115635.pdf' ]
-📄 找到的PDF文件: [ 'document-1753645115635.pdf' ]
-📄 使用PDF文件: /var/folders/tn/gz3_g_3s46jcgs2kp0nmbcq40000gn/T/pdf-conversion-1753645115635-zo0qco5/document-1753645115635.pdf (358118 bytes)
-✅ PDF转换成功 (尝试 1)
-✅ PDF转换成功 - 文件大小: 358118 bytes
- POST /api/generate-pdf 200 in 18018ms
+[2025-07-27T20:55:22.791Z] [rg5uisyl6] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 500 in 26ms
+[?25h

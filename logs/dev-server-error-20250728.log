@@ -163,78 +163,598 @@ Import trace for requested module:
 ./lib/watermark-toolkit/index.ts
 ./components/enhanced-export-with-watermark.tsx
 ./app/page.tsx
- ⚠ ./lib/watermark-toolkit/index.ts
-export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:374:1]
+ [2m371[0m |       )}
+ [2m372[0m |     </div>
+ [2m373[0m | 
+ [2m374[0m |     {/* 文档底部信息 - 完全独立的模块 */}
+     : [35;1m    ^[0m
+ [2m375[0m |     <div style={{
+ [2m376[0m |       marginTop: '20px',
+ [2m377[0m |       padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
 
 Import trace for requested module:
-./lib/watermark-toolkit/index.ts
-./components/enhanced-export-with-watermark.tsx
+./components/word-style-renderer.tsx
 ./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */}
+     : [35;1m    ^[0m
+ [2m386[0m |     <div style={{
+ [2m387[0m |       marginTop: '20px',
+ [2m388[0m |       padding: '16pt 20pt',
+     `----
 
-./lib/watermark-toolkit/index.ts
-export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+Caused by:
+    Syntax Error
 
 Import trace for requested module:
-./lib/watermark-toolkit/index.ts
-./components/enhanced-export-with-watermark.tsx
+./components/word-style-renderer.tsx
 ./app/page.tsx
- ⚠ ./lib/watermark-toolkit/index.ts
-export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */}
+     : [35;1m    ^[0m
+ [2m386[0m |     <div style={{
+ [2m387[0m |       marginTop: '20px',
+ [2m388[0m |       padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
 
 Import trace for requested module:
-./lib/watermark-toolkit/index.ts
-./components/enhanced-export-with-watermark.tsx
+./components/word-style-renderer.tsx
 ./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */}
+     : [35;1m    ^[0m
+ [2m386[0m |     <div style={{
+ [2m387[0m |       marginTop: '20px',
+ [2m388[0m |       padding: '16pt 20pt',
+     `----
 
-./lib/watermark-toolkit/index.ts
-export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+Caused by:
+    Syntax Error
 
 Import trace for requested module:
-./lib/watermark-toolkit/index.ts
-./components/enhanced-export-with-watermark.tsx
+./components/word-style-renderer.tsx
 ./app/page.tsx
- ⚠ ./lib/watermark-toolkit/index.ts
-export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */}
+     : [35;1m    ^[0m
+ [2m386[0m |     <div style={{
+ [2m387[0m |       marginTop: '20px',
+ [2m388[0m |       padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
 
 Import trace for requested module:
-./lib/watermark-toolkit/index.ts
-./components/enhanced-export-with-watermark.tsx
+./components/word-style-renderer.tsx
 ./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
 
-./lib/watermark-toolkit/index.ts
-export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+Caused by:
+    Syntax Error
 
 Import trace for requested module:
-./lib/watermark-toolkit/index.ts
-./components/enhanced-export-with-watermark.tsx
+./components/word-style-renderer.tsx
 ./app/page.tsx
- ⚠ ./lib/watermark-toolkit/index.ts
-export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
 
 Import trace for requested module:
-./lib/watermark-toolkit/index.ts
-./components/enhanced-export-with-watermark.tsx
+./components/word-style-renderer.tsx
 ./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
 
-./lib/watermark-toolkit/index.ts
-export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+Caused by:
+    Syntax Error
 
 Import trace for requested module:
-./lib/watermark-toolkit/index.ts
-./components/enhanced-export-with-watermark.tsx
+./components/word-style-renderer.tsx
 ./app/page.tsx
- ⚠ ./lib/watermark-toolkit/index.ts
-export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
 
 Import trace for requested module:
-./lib/watermark-toolkit/index.ts
-./components/enhanced-export-with-watermark.tsx
+./components/word-style-renderer.tsx
 ./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
 
-./lib/watermark-toolkit/index.ts
-export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+Caused by:
+    Syntax Error
 
 Import trace for requested module:
-./lib/watermark-toolkit/index.ts
-./components/enhanced-export-with-watermark.tsx
+./components/word-style-renderer.tsx
+./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./app/result/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./app/result/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./components/smart-word-renderer.tsx
+./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./components/smart-word-renderer.tsx
+./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */ }
+     : [35;1m    ^[0m
+ [2m386[0m |   <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./components/smart-word-renderer.tsx
+./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */}
+     : [35;1m    ^[0m
+ [2m386[0m |     <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./components/smart-word-renderer.tsx
+./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */}
+     : [35;1m    ^[0m
+ [2m386[0m |     <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./components/smart-word-renderer.tsx
+./app/page.tsx
+ ⨯ ./components/word-style-renderer.tsx
+Error:   [31mx[0m Expected ',', got '{'
+     ,-[[36;1;4m/Users/bypasser/d/出海/starlight-media-generator/components/word-style-renderer.tsx[0m:385:1]
+ [2m382[0m |       )}
+ [2m383[0m |     </div>
+ [2m384[0m | 
+ [2m385[0m |     {/* 文档底部信息 - 完全独立的模块 */}
+     : [35;1m    ^[0m
+ [2m386[0m |     <div style={{
+ [2m387[0m |     marginTop: '20px',
+ [2m388[0m |     padding: '16pt 20pt',
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/word-style-renderer.tsx
+./components/smart-word-renderer.tsx
 ./app/page.tsx

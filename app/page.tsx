@@ -7,6 +7,7 @@ import { PageHeader } from "@/components/page-header"
 import { ProgressSteps } from "@/components/progress-steps"
 import { FormSection } from "@/components/form-section"
 import { ContentRenderer } from "@/components/content-renderer"
+import { SmartWordRenderer } from "@/components/smart-word-renderer"
 import { TocNavigation } from "@/components/toc-navigation"
 import { useFormData } from "@/hooks/use-form-data"
 import { usePlanGeneration } from "@/hooks/use-plan-generation"
@@ -225,62 +226,14 @@ export default function Home() {
 
             {/* Generated Content */}
             <div className="space-y-8">
-              {/* Combined Banner and Content */}
-              <Card className="overflow-hidden shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-                {/* Banner Image */}
-                {(bannerImage || isGeneratingBanner) && (
-                  <CardContent className="p-0">
-                    {isGeneratingBanner ? (
-                      <div className="w-full h-64 bg-gradient-to-r from-purple-100 to-blue-100 flex items-center justify-center">
-                        <div className="text-center">
-                          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto mb-4"></div>
-                          <p className="text-purple-700 font-medium">正在生成专属Banner图...</p>
-                        </div>
-                      </div>
-                    ) : bannerImage ? (
-                      <div className="relative w-full h-64 overflow-hidden">
-                        <img
-                          src={bannerImage}
-                          alt="方案Banner图"
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
-                          <div className="text-center text-white">
-                            <h3 className="text-2xl font-bold mb-2">{formData.storeName} IP打造方案</h3>
-                            <p className="text-lg opacity-90">专业定制 · 精准营销</p>
-                          </div>
-                        </div>
-                      </div>
-                    ) : null}
-                  </CardContent>
-                )}
-
-                {/* Content Section */}
-
-                <CardContent>
-                  {generatedContent ? (
-                    <div className="prose prose-lg max-w-none">
-                      <ContentRenderer content={generatedContent} />
-                    </div>
-                  ) : (
-                    <div className="text-center py-16">
-                      <div className="relative">
-                        <div className="animate-spin rounded-full h-12 w-12 border-4 border-purple-200 border-t-purple-600 mx-auto mb-6"></div>
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-6 h-6 bg-purple-600 rounded-full animate-pulse"></div>
-                        </div>
-                      </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">正在生成专业方案</h3>
-                      <p className="text-gray-600">正在为您量身定制IP打造方案，请稍候...</p>
-                      <div className="mt-4 flex justify-center space-x-1">
-                        <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce"></div>
-                        <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                        <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
-                      </div>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
+              {/* Smart Word Style Document */}
+              <SmartWordRenderer
+                content={generatedContent}
+                formData={formData}
+                bannerImage={bannerImage}
+                isGeneratingBanner={isGeneratingBanner}
+                isStreaming={isGenerating}
+              />
             </div>
           </div>
         )}

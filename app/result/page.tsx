@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, Download, Copy, RefreshCw, Shield } from "lucide-react"
 import Link from 'next/link'
 import { getCopySettings, shouldShowCopyUI } from "@/config/copy-settings"
+import { SmartWordRenderer } from "@/components/smart-word-renderer"
 
 function ResultPageContent() {
   const searchParams = useSearchParams()
@@ -369,76 +370,57 @@ function ResultPageContent() {
           </div>
         </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              老板IP打造方案
-              {isGenerating && (
-                <div className="flex items-center gap-2 text-sm text-blue-600">
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
-                  正在生成中...
-                </div>
-              )}
-              {isComplete && (
-                <span className="text-sm text-green-600">✅ 生成完成</span>
-              )}
-            </CardTitle>
-            <CardDescription className="flex items-center justify-between">
-              <span>
-                {isGenerating ? '方案正在实时生成，请耐心等待...' : '专业定制的抖音IP打造方案'}
-              </span>
-              
-              {/* 复制保护状态指示器 */}
-              <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${
-                copySettings.allowCopy 
-                  ? 'bg-green-100 text-green-700' 
-                  : 'bg-red-100 text-red-700'
-              }`}>
-                {copySettings.allowCopy ? (
-                  <>
-                    <Copy className="h-3 w-3" />
-                    <span>可复制</span>
-                  </>
-                ) : (
-                  <>
-                    <Shield className="h-3 w-3" />
-                    <span>复制保护</span>
-                  </>
-                )}
+        {/* 状态指示器 */}
+        <div className="mb-6 flex items-center justify-between bg-white p-4 rounded-lg shadow-sm border">
+          <div className="flex items-center gap-3">
+            <h2 className="text-lg font-semibold text-gray-900">老板IP打造方案</h2>
+            {isGenerating && (
+              <div className="flex items-center gap-2 text-sm text-blue-600">
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+                正在生成中...
               </div>
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="prose max-w-none">
-              {content ? (
-                <div 
-                  className="text-sm leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: renderContent(content) }}
-                />
-              ) : (
-                <div className="text-center py-8 text-gray-500">
-                  {isGenerating ? (
-                    <div className="flex flex-col items-center gap-4">
-                      <div className="animate-pulse flex space-x-1">
-                        <div className="rounded-full bg-blue-400 h-2 w-2 animate-bounce"></div>
-                        <div className="rounded-full bg-blue-400 h-2 w-2 animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                        <div className="rounded-full bg-blue-400 h-2 w-2 animate-bounce" style={{animationDelay: '0.2s'}}></div>
-                      </div>
-                      <p>正在为您量身定制专业方案...</p>
-                    </div>
-                  ) : (
-                    '等待生成内容...'
-                  )}
-                </div>
-              )}
-              
-              {/* 实时显示光标效果 */}
-              {isGenerating && content && (
-                <span className="inline-block w-2 h-5 bg-blue-600 animate-pulse ml-1"></span>
-              )}
-            </div>
-          </CardContent>
-        </Card>
+            )}
+            {isComplete && (
+              <span className="text-sm text-green-600">✅ 生成完成</span>
+            )}
+          </div>
+          
+          {/* 复制保护状态指示器 */}
+          <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${
+            copySettings.allowCopy 
+              ? 'bg-green-100 text-green-700' 
+              : 'bg-red-100 text-red-700'
+          }`}>
+            {copySettings.allowCopy ? (
+              <>
+                <Copy className="h-3 w-3" />
+                <span>可复制</span>
+              </>
+            ) : (
+              <>
+                <Shield className="h-3 w-3" />
+                <span>复制保护</span>
+              </>
+            )}
+          </div>
+        </div>
+
+        {/* Smart Word样式文档 */}
+        <SmartWordRenderer
+          content={content}
+          formData={{
+            storeName: searchParams?.get('storeName') || '店铺',
+            storeCategory: '',
+            storeLocation: '',
+            storeFeatures: '',
+            ownerName: '',
+            ownerAge: '',
+            ownerFeatures: ''
+          }}
+          bannerImage={null}
+          isGeneratingBanner={false}
+          isStreaming={isGenerating}
+        />
 
 
       </div>
