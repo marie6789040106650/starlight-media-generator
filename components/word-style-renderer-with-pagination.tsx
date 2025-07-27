@@ -570,7 +570,7 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
         {/* 左侧版权信息 */}
         <div style={{
           fontSize: '9pt',
-          color: '#666666',
+          color: '#333333',
           fontFamily: "'Source Han Sans SC', 'SimHei', sans-serif",
           fontWeight: 'normal'
         }}>
@@ -580,7 +580,7 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
         {/* 右侧页码 */}
         <div style={{
           fontSize: '9pt',
-          color: '#666666',
+          color: '#333333',
           fontFamily: "'Source Han Sans SC', 'SimHei', sans-serif",
           fontWeight: 'normal'
         }}>

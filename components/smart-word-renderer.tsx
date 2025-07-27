@@ -32,8 +32,11 @@ export const SmartWordRenderer: React.FC<SmartWordRendererProps> = ({
   const [contentStable, setContentStable] = useState(false)
   const [paginationReady, setPaginationReady] = useState(false)
   const [cachedContent, setCachedContent] = useState<CachedContent | null>(null)
+  const [contentUpdated, setContentUpdated] = useState(false) // 新增：跟踪内容是否已更新
   const contentStabilityTimer = useRef<NodeJS.Timeout | null>(null)
   const paginationTimer = useRef<NodeJS.Timeout | null>(null)
+  const previousContentRef = useRef<string>('')
+  const previousBannerRef = useRef<string | null | undefined>(undefined)
 
   // 从浏览器缓存中加载内容
   useEffect(() => {
@@ -63,8 +66,19 @@ export const SmartWordRenderer: React.FC<SmartWordRendererProps> = ({
     loadCachedContent()
   }, [])
 
-  // 检测内容是否稳定
+  // 检测内容是否稳定和是否有更新
   useEffect(() => {
+    // 检测内容或Banner是否发生变化
+    if (content !== previousContentRef.current || bannerImage !== previousBannerRef.current) {
+      if (previousContentRef.current !== '' || previousBannerRef.current !== undefined) {
+        // 不是初始加载，说明内容已更新
+        setContentUpdated(true)
+        console.log('Content or banner updated, pagination may need refresh')
+      }
+      previousContentRef.current = content
+      previousBannerRef.current = bannerImage
+    }
+
     if (content && isStreaming) {
       // 清除之前的计时器
       if (contentStabilityTimer.current) {
@@ -90,7 +104,7 @@ export const SmartWordRenderer: React.FC<SmartWordRendererProps> = ({
       // 如果不是流式模式，立即标记为稳定
       setContentStable(true)
     }
-  }, [content, isStreaming])
+  }, [content, isStreaming, bannerImage])
 
   // 当内容稳定后，准备分页数据
   useEffect(() => {
@@ -173,10 +187,21 @@ export const SmartWordRenderer: React.FC<SmartWordRendererProps> = ({
       setCachedContent(null)
       setPaginationReady(false)
       setContentStable(false)
+      setContentUpdated(false) // 清除缓存时也清除更新提示
       console.log('Cache cleared successfully')
     } catch (error) {
       console.warn('Failed to clear cache:', error)
     }
+  }
+
+  // 处理分页模式切换
+  const handlePaginationSwitch = () => {
+    if (!paginationReady) {
+      alert('分页模式正在准备中，请稍候...')
+      return
+    }
+    setUseAdvancedRenderer(true)
+    setContentUpdated(false) // 重新生成分页后清除更新提示
   }
 
   return (
@@ -224,7 +249,7 @@ export const SmartWordRenderer: React.FC<SmartWordRendererProps> = ({
               </button>
               
               <button
-                onClick={() => handleModeSwitch(true)}
+                onClick={handlePaginationSwitch}
                 disabled={!paginationReady}
                 style={{
                   padding: '6px 12px',
@@ -238,7 +263,7 @@ export const SmartWordRenderer: React.FC<SmartWordRendererProps> = ({
                   opacity: paginationReady ? 1 : 0.6
                 }}
               >
-                📑 分页模式 {!paginationReady && '(准备中...)'}
+                📑 {contentUpdated && cachedContent ? '重新生成分页' : '分页模式'} {!paginationReady && '(准备中...)'}
               </button>
             </div>
 
@@ -352,6 +377,38 @@ export const SmartWordRenderer: React.FC<SmartWordRendererProps> = ({
               <p style={{ margin: '4px 0', color: '#007bff' }}>
                 ⏳ 正在为分页模式准备数据，请稍候...
               </p>
+            )}
+            {contentUpdated && cachedContent && (
+              <div style={{ 
+                margin: '4px 0', 
+                color: '#ff6b35', 
+                backgroundColor: '#fff3e0', 
+                padding: '4px 8px', 
+                borderRadius: '4px', 
+                border: '1px solid #ffcc80',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+              }}>
+                <span>
+                  ⚠️ 内容已更新，如需更新分页模式，请先点击"清除缓存"，然后重新生成分页
+                </span>
+                <button 
+                  onClick={() => setContentUpdated(false)}
+                  style={{ 
+                    background: 'none', 
+                    border: 'none', 
+                    color: '#ff6b35',
+                    cursor: 'pointer',
+                    fontSize: '12px',
+                    marginLeft: '8px',
+                    padding: '0 4px'
+                  }}
+                  title="关闭提示"
+                >
+                  ✕
+                </button>
+              </div>
             )}
           </div>
         </div>
