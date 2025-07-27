@@ -31,23 +31,34 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
   // 使用CSS的1pt = 1.333px的标准换算，更接近Word的实际渲染
   const PT_TO_PX = 1.333 // 1pt = 1.333px (CSS标准)
   const CM_TO_PT = 28.35 // 1cm = 28.35pt
-  
+
   // A4纸张尺寸：21cm × 29.7cm
   const A4_WIDTH_PX = Math.round(21 * CM_TO_PT * PT_TO_PX)   // 21cm = 794px
   const A4_HEIGHT_PX = Math.round(29.7 * CM_TO_PT * PT_TO_PX) // 29.7cm = 1123px
-  
+
   // Word默认页边距：上下2.54cm，左右3.17cm
   const PAGE_MARGIN_TOP = Math.round(2.54 * CM_TO_PT * PT_TO_PX)    // 2.54cm = 96px
   const PAGE_MARGIN_BOTTOM = Math.round(2.54 * CM_TO_PT * PT_TO_PX) // 2.54cm = 96px
   const PAGE_MARGIN_LEFT = Math.round(3.17 * CM_TO_PT * PT_TO_PX)   // 3.17cm = 120px
   const PAGE_MARGIN_RIGHT = Math.round(3.17 * CM_TO_PT * PT_TO_PX)  // 3.17cm = 120px
-  
+
   // 页眉页脚高度：页眉距离1.5cm，页脚距离1.75cm
   const HEADER_HEIGHT = Math.round(1.5 * CM_TO_PT * PT_TO_PX)  // 1.5cm = 57px
   const FOOTER_HEIGHT = Math.round(1.75 * CM_TO_PT * PT_TO_PX) // 1.75cm = 66px
 
-  // 可用内容区域高度
-  const CONTENT_HEIGHT = A4_HEIGHT_PX - PAGE_MARGIN_TOP - PAGE_MARGIN_BOTTOM - HEADER_HEIGHT - FOOTER_HEIGHT
+  // 可用内容区域高度（考虑Banner图片的影响）
+  const getContentHeight = (pageNumber: number, hasBanner: boolean) => {
+    let baseHeight = A4_HEIGHT_PX - PAGE_MARGIN_TOP - PAGE_MARGIN_BOTTOM - HEADER_HEIGHT - FOOTER_HEIGHT
+
+    // 第一页如果有Banner图片，需要减去Banner高度
+    if (pageNumber === 1 && hasBanner) {
+      baseHeight -= 180 // Banner图片区域高度
+    }
+
+    return baseHeight
+  }
+
+  const CONTENT_HEIGHT = getContentHeight(1, !!(bannerImage || isGeneratingBanner))
 
   // 智能分页处理机制
   useEffect(() => {
@@ -148,9 +159,17 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
 
       for (const element of elements) {
         const elementHeight = element.offsetHeight
+        const elementMarginTop = parseInt(window.getComputedStyle(element).marginTop) || 0
+        const elementMarginBottom = parseInt(window.getComputedStyle(element).marginBottom) || 0
+        const totalElementHeight = elementHeight + elementMarginTop + elementMarginBottom
+
+        // 预留一些安全边距，避免内容被截断
+        const safetyMargin = 20 // 20px安全边距
+        const availableHeight = CONTENT_HEIGHT - safetyMargin
 
         // 如果添加这个元素会超出页面高度，创建新页面
-        if (currentHeight + elementHeight > CONTENT_HEIGHT && currentPageContent) {
+        if (currentHeight + totalElementHeight > availableHeight && currentPageContent) {
+          // 确保当前页面内容不为空才创建新页面
           newPages.push({
             pageNumber: pageNumber,
             content: currentPageContent,
@@ -158,11 +177,17 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
           })
 
           currentPageContent = element.outerHTML
-          currentHeight = elementHeight
+          currentHeight = totalElementHeight
           pageNumber++
         } else {
           currentPageContent += element.outerHTML
-          currentHeight += elementHeight
+          currentHeight += totalElementHeight
+        }
+
+        // 特殊处理：如果单个元素本身就超过页面高度，强制分页
+        if (totalElementHeight > availableHeight && currentPageContent === element.outerHTML) {
+          console.warn('Element too large for single page:', element.tagName, totalElementHeight)
+          // 即使元素过大，也要保留在页面中，但记录警告
         }
       }
 
@@ -183,21 +208,37 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
 
   // 处理内容用于测量 - 完全按照Word样式规范
   const processContentForMeasurement = (content: string): string => {
+    if (!content) return ''
+
+    // 清理可能导致显示问题的特殊字符
     let html = content
+      .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F]/g, '') // 移除控制字符
+      .replace(/\uFEFF/g, '') // 移除BOM字符
+      .replace(/[\u200B-\u200D\uFEFF]/g, '') // 移除零宽字符
 
-    // 清理和转义特殊字符
-    html = html
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;')
+    // 处理删除线
+    html = html.replace(/~~([^~\n]+)~~/g, '<del style="text-decoration: line-through; color: #000000; font-family: \'Source Han Sans SC\', \'SimHei\', sans-serif; font-size: 11pt;">$1</del>')
 
-    // 处理粗体 - 正文加粗关键字：同正文，11pt，加粗
+    // 处理粗体 - 支持 ** 和 __ 两种格式
     html = html.replace(/\*\*([^*\n]+)\*\*/g, '<strong style="font-weight: bold; color: #000000; font-family: \'Source Han Sans SC\', \'SimHei\', sans-serif; font-size: 11pt;">$1</strong>')
+    html = html.replace(/__([^_\n]+)__/g, '<strong style="font-weight: bold; color: #000000; font-family: \'Source Han Sans SC\', \'SimHei\', sans-serif; font-size: 11pt;">$1</strong>')
 
-    // 处理斜体
+    // 处理斜体 - 支持 * 和 _ 两种格式
     html = html.replace(/(?<!\*)\*([^*\n]+)\*(?!\*)/g, '<em style="font-style: italic; color: #000000; font-family: \'Source Han Sans SC\', \'SimHei\', sans-serif; font-size: 11pt;">$1</em>')
+    html = html.replace(/(?<!_)_([^_\n]+)_(?!_)/g, '<em style="font-style: italic; color: #000000; font-family: \'Source Han Sans SC\', \'SimHei\', sans-serif; font-size: 11pt;">$1</em>')
+
+    // 处理高亮文本
+    html = html.replace(/==([^=\n]+)==/g, '<mark style="background-color: #ffff00; color: #000000; font-family: \'Source Han Sans SC\', \'SimHei\', sans-serif; font-size: 11pt;">$1</mark>')
+
+    // 处理上标和下标
+    html = html.replace(/\^([^\^\s]+)\^/g, '<sup style="font-size: 8pt; color: #000000;">$1</sup>')
+    html = html.replace(/~([^~\s]+)~/g, '<sub style="font-size: 8pt; color: #000000;">$1</sub>')
+
+    // 处理键盘按键
+    html = html.replace(/\[\[([^\]]+)\]\]/g, '<kbd style="background-color: #f1f1f1; border: 1px solid #ccc; border-radius: 3px; padding: 1px 4px; font-family: monospace; font-size: 9pt;">$1</kbd>')
+
+    // 处理特殊符号和转义字符
+    html = html.replace(/\\([\\`*_{}[\]()#+\-.!])/g, '$1') // 处理转义字符
 
     // 处理标题 - 中文商业文档标准
     let isFirstH1 = true // 标记是否为第一个一级标题（文档主标题）
@@ -271,11 +312,38 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
     // 处理行内代码
     html = html.replace(/`([^`\n]+)`/g, '<code style="background-color: #F1F3F4; padding: 1pt 3pt; font-family: \'Courier New\', monospace; font-size: 9pt; color: #000000;">$1</code>')
 
+    // 处理图片链接
+    html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" style="max-width: 100%; height: auto; margin: 6pt 0;" />')
+
     // 处理链接
     html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" style="color: #0000FF; text-decoration: underline; font-family: \'Source Han Sans SC\', \'SimHei\', sans-serif; font-size: 11pt;">$1</a>')
 
-    // 处理水平线
-    html = html.replace(/^-{3,}$/gm, '<hr style="border: none; border-top: 1pt solid #E5E7EB; margin: 12pt 0;" />')
+    // 处理自动链接
+    html = html.replace(/<(https?:\/\/[^>]+)>/g, '<a href="$1" style="color: #0000FF; text-decoration: underline; font-family: \'Source Han Sans SC\', \'SimHei\', sans-serif; font-size: 11pt;">$1</a>')
+
+    // 处理水平线 - 支持多种格式
+    html = html.replace(/^(-{3,}|\*{3,}|_{3,})$/gm, '<hr style="border: none; border-top: 1pt solid #E5E7EB; margin: 12pt 0;" />')
+
+    // 处理表格分隔符（简单处理，避免显示原始符号）
+    html = html.replace(/^\|.*\|$/gm, (match) => {
+      if (match.includes('---') || match.includes('===')) {
+        return '' // 移除表格分隔行
+      }
+      return match.replace(/\|/g, ' | ') // 简单格式化表格行
+    })
+
+    // 处理任务列表
+    html = html.replace(/^- \[[ x]\] (.+)$/gm, (match, text, offset, string) => {
+      const checked = match.includes('[x]')
+      return `<div style="margin: 3pt 0;"><input type="checkbox" ${checked ? 'checked' : ''} disabled style="margin-right: 6pt;"><span style="font-family: 'Source Han Sans SC', 'SimHei', sans-serif; font-size: 11pt; color: #000000;">${text}</span></div>`
+    })
+
+    // 处理脚注引用
+    html = html.replace(/\[\^([^\]]+)\]/g, '<sup style="font-size: 8pt; color: #0066cc;">[$1]</sup>')
+
+    // 清理可能残留的Markdown符号
+    html = html.replace(/^\s*[>]+\s*/gm, '') // 清理可能残留的引用符号
+    html = html.replace(/^\s*[*+-]\s*$/gm, '') // 清理空的列表项符号
 
     // 处理段落 - 完全按照Word样式规范
     const lines = html.split('\n')
@@ -308,8 +376,9 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
           continue
         } else if (line.startsWith('<h') || line.startsWith('<blockquote') || line.startsWith('<hr') || line.startsWith('<pre')) {
           processedLines.push(line)
-        } else {
+        } else if (line.trim()) {
           // 正文段落：思源黑体，11pt，1.5倍行距，首行缩进2个字符，段前0pt，段后6pt
+          // 只处理非空行，避免空段落
           processedLines.push(`<p style="font-family: 'Source Han Sans SC', 'SimHei', sans-serif; font-size: 11pt; line-height: 1.5; color: #000000; text-align: left; text-indent: 0.74cm; margin-top: 0pt; margin-bottom: 6pt;">${line}</p>`)
         }
       }
@@ -467,15 +536,22 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
         top: `${PAGE_MARGIN_TOP + HEADER_HEIGHT + (page.pageNumber === 1 && (bannerImage || isGeneratingBanner) ? 180 : 0)}px`,
         left: `${PAGE_MARGIN_LEFT}px`,
         right: `${PAGE_MARGIN_RIGHT}px`,
-        bottom: `${PAGE_MARGIN_BOTTOM + FOOTER_HEIGHT}px`,
-        overflow: 'hidden',
+        bottom: `${PAGE_MARGIN_BOTTOM + FOOTER_HEIGHT + 20}px`, // 增加20px安全边距
+        overflow: 'hidden', // 确保内容不会溢出
         fontSize: '11pt', // 正文11pt
         lineHeight: '1.5', // 1.5倍行距
         color: '#000000',
         backgroundColor: 'white',
         fontFamily: "'Source Han Sans SC', 'SimHei', sans-serif"
       }}>
-        <div dangerouslySetInnerHTML={{ __html: page.content }} />
+        <div
+          style={{
+            height: '100%',
+            overflow: 'hidden', // 双重保险，确保内容不溢出
+            paddingBottom: '10px' // 底部留一点空间
+          }}
+          dangerouslySetInnerHTML={{ __html: page.content }}
+        />
       </div>
 
       {/* 页脚 - 中文商业文档标准格式 */}
@@ -500,7 +576,7 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
         }}>
           © 2025 星光同城传媒
         </div>
-        
+
         {/* 右侧页码 */}
         <div style={{
           fontSize: '9pt',
