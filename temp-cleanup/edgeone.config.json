@@ -1,0 +1,37 @@
+{
+  "name": "starlight-media-generator",
+  "type": "nextjs",
+  "framework": {
+    "name": "nextjs",
+    "version": "15.1.3"
+  },
+  "build": {
+    "command": "pnpm install && pnpm build",
+    "outputDirectory": ".next",
+    "installCommand": "pnpm install"
+  },
+  "env": {
+    "NODE_VERSION": "18"
+  },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/_next/static/(.*)",
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "functions": {
+    "app/api/*/route.ts": {
+      "runtime": "nodejs18.x"
+    }
+  }
+}

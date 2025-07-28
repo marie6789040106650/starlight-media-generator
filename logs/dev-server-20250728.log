@@ -10,93 +10,451 @@
      ⨯ webpackBuildWorker
 
  ✓ Starting...
- ✓ Ready in 4.1s
- ○ Compiling /_not-found ...
- ✓ Compiled /_not-found in 8.4s (542 modules)
- GET /_next/static/webpack/9746bfb3973c1abc.webpack.hot-update.json 404 in 9248ms
- ○ Compiling /middleware ...
- ✓ Compiled /middleware in 1771ms (635 modules)
-[2025-07-28T06:29:44.535Z] [wbr25y0jd] GET http://localhost:3000/ {
+ ✓ Ready in 5.5s
+ ✓ Compiled /middleware in 361ms (108 modules)
+[2025-07-28T12:48:50.541Z] [ym33uu57o] GET http://localhost:3000/ {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
+  referer: null,
   clientIP: '::1'
 }
-[2025-07-28T06:29:44.538Z] [wbr25y0jd] 请求处理开始完成 { duration: '3ms', status: 200 }
-[2025-07-28T06:29:44.555Z] [qcdua5gpp] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T06:29:44.556Z] [qcdua5gpp] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET /_next/static/webpack/9746bfb3973c1abc.webpack.hot-update.json 404 in 1500ms
+[2025-07-28T12:48:50.549Z] [ym33uu57o] 请求处理开始完成 { duration: '8ms', status: 200 }
  ○ Compiling / ...
-[2025-07-28T06:29:54.485Z] [yiidqwhw5] GET http://localhost:3000/ {
+ GET / 200 in 7076ms
+[2025-07-28T12:48:59.041Z] [8dbj6km05] GET http://localhost:3000/api/keyword-stats {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-28T06:29:54.491Z] [yiidqwhw5] 请求处理开始完成 { duration: '6ms', status: 200 }
- GET / 500 in 1065ms
-[2025-07-28T06:32:41.842Z] [84me875hy] GET http://localhost:3000/ {
+[2025-07-28T12:48:59.044Z] [8dbj6km05] 请求处理开始完成 { duration: '3ms', status: 200 }
+ GET /api/keyword-stats 200 in 1192ms
+[2025-07-28T12:49:00.254Z] [mugkp8mlf] GET http://localhost:3000/api/keyword-stats {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-28T06:32:41.845Z] [84me875hy] 请求处理开始完成 { duration: '3ms', status: 200 }
- GET / 500 in 38ms
-[2025-07-28T06:32:44.903Z] [enj48hgh0] GET http://localhost:3000/ {
+[2025-07-28T12:49:00.255Z] [mugkp8mlf] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /api/keyword-stats 200 in 10ms
+[2025-07-28T12:49:06.110Z] [4jsnyy1lf] POST http://localhost:3000/api/expand-keywords {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-28T06:32:44.904Z] [enj48hgh0] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 500 in 30ms
- GET /test-export 500 in 1327ms
- GET /test-export 200 in 2084ms
- GET /_next/static/webpack/9746bfb3973c1abc.webpack.hot-update.json 404 in 2201ms
- GET /test-export 200 in 309ms
- GET /test-export 200 in 1510ms
- GET /test-export 500 in 2271ms
- GET /placeholder-banner.jpg 404 in 3035ms
- GET /test-export 200 in 1909ms
- GET /test-export 500 in 2207ms
- GET /_next/static/css/app/layout.css?v=1753685249305 404 in 812ms
- GET /_next/static/chunks/common.js 404 in 732ms
- GET /_next/static/chunks/main-app.js 404 in 685ms
- GET /_next/static/chunks/app-pages-internals.js 404 in 108ms
-[2025-07-28T06:47:43.769Z] [tle47sv5u] GET http://localhost:3000/ {
+[2025-07-28T12:49:06.111Z] [4jsnyy1lf] 请求处理开始完成 { duration: '1ms', status: 200 }
+收到关键词拓展请求: {
+  storeFeatures: '',
+  ownerFeatures: undefined,
+  storeCategory: undefined
+}
+关键词拓展结果: {
+  expanded_store_features: [
+    '专业服务', '品质保证',
+    '价格合理', '服务周到',
+    '经验丰富', '诚信经营',
+    '客户至上', '创新思维',
+    '持续改进', '团队协作',
+    '专业素养', '用心服务',
+    '行业领先', '技术创新',
+    '质量第一', '信誉保障',
+    '口碑传承', '匠心精神',
+    '精益求精', '追求卓越'
+  ],
+  expanded_boss_features: [
+    '热情好客', '亲和力强',
+    '平易近人', '善于沟通',
+    '幽默风趣', '专业素养',
+    '技术精湛', '经验丰富',
+    '行业专家', '持续学习',
+    '诚信经营', '用心服务',
+    '客户至上', '品质坚持',
+    '创新思维'
+  ]
+}
+ POST /api/expand-keywords 200 in 916ms
+[2025-07-28T12:49:09.467Z] [g33ooeuq9] POST http://localhost:3000/api/expand-keywords {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-28T06:47:43.775Z] [tle47sv5u] 请求处理开始完成 { duration: '6ms', status: 200 }
-[2025-07-28T06:47:49.070Z] [1kwlbh68z] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://192.168.1.200:3000/',
-  clientIP: '::ffff:192.168.1.200'
+[2025-07-28T12:49:09.468Z] [g33ooeuq9] 请求处理开始完成 { duration: '1ms', status: 200 }
+收到关键词拓展请求: {
+  storeFeatures: '',
+  ownerFeatures: undefined,
+  storeCategory: undefined
 }
-[2025-07-28T06:47:49.070Z] [1kwlbh68z] 请求处理开始完成 { duration: '0ms', status: 200 }
- GET / 200 in 8172ms
- GET / 200 in 3038ms
- GET /_next/static/css/app/page.css?v=1753685269605 404 in 611ms
- GET /_next/static/css/app/page.css?v=1753685269608 404 in 629ms
- GET /_next/static/css/app/layout.css?v=1753685269605 404 in 643ms
- GET /_next/static/css/app/layout.css?v=1753685269608 404 in 653ms
- GET /_next/static/chunks/common.js?v=1753685269608 404 in 1394ms
- GET /_next/static/chunks/main-app.js?v=1753685269608 404 in 760ms
- GET /_next/static/chunks/common.js?v=1753685269605 404 in 746ms
- GET /_next/static/chunks/app-pages-internals.js 404 in 736ms
- GET /_next/static/chunks/app/page.js 404 in 711ms
- GET /_next/static/chunks/main-app.js?v=1753685269605 404 in 710ms
- GET /test-export 500 in 973ms
- GET /_next/static/css/app/layout.css?v=1753685273149 404 in 309ms
- GET /_next/static/chunks/app-pages-internals.js 404 in 616ms
- GET /_next/static/chunks/common.js 404 in 444ms
- GET /_next/static/chunks/main-app.js 404 in 437ms
- GET /_next/static/chunks/app/page.js 404 in 431ms
- GET /_next/static/chunks/app-pages-internals.js 404 in 426ms
- GET /test-export 500 in 502ms
- GET /_next/static/css/app/layout.css?v=1753685278672 404 in 138ms
- GET /_next/static/chunks/common.js 404 in 237ms
- GET /_next/static/chunks/app-pages-internals.js 404 in 229ms
- GET /_next/static/chunks/main-app.js 404 in 238ms
+关键词拓展结果: {
+  expanded_store_features: [
+    '专业服务', '品质保证',
+    '价格合理', '服务周到',
+    '经验丰富', '诚信经营',
+    '客户至上', '创新思维',
+    '持续改进', '团队协作',
+    '专业素养', '用心服务',
+    '行业领先', '技术创新',
+    '质量第一', '信誉保障',
+    '口碑传承', '匠心精神',
+    '精益求精', '追求卓越'
+  ],
+  expanded_boss_features: [
+    '热情好客', '亲和力强',
+    '平易近人', '善于沟通',
+    '幽默风趣', '专业素养',
+    '技术精湛', '经验丰富',
+    '行业专家', '持续学习',
+    '诚信经营', '用心服务',
+    '客户至上', '品质坚持',
+    '创新思维'
+  ]
+}
+ POST /api/expand-keywords 200 in 20ms
+[2025-07-28T12:49:16.255Z] [ifd6mhkoz] POST http://localhost:3000/api/keyword-stats {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T12:49:16.255Z] [ifd6mhkoz] 请求处理开始完成 { duration: '0ms', status: 200 }
+ POST /api/keyword-stats 200 in 20ms
+[2025-07-28T12:49:16.292Z] [da22xdxhy] POST http://localhost:3000/api/expand-keywords {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T12:49:16.292Z] [da22xdxhy] 请求处理开始完成 { duration: '0ms', status: 200 }
+收到关键词拓展请求: {
+  storeFeatures: '秘制汤底、地域食材、现制模式、健康定制、主题沉浸、网红装修',
+  ownerFeatures: '匠人、传承、学霸、宠粉',
+  storeCategory: undefined
+}
+关键词拓展结果: {
+  expanded_store_features: [
+    '专业服务', '品质保证',
+    '价格合理', '服务周到',
+    '经验丰富', '诚信经营',
+    '客户至上', '创新思维',
+    '持续改进', '团队协作',
+    '专业素养', '用心服务',
+    '行业领先', '技术创新',
+    '质量第一'
+  ],
+  expanded_boss_features: [
+    '匠人传承', '二代传承',
+    '学霸出身', '宠粉达人',
+    '热情好客', '亲和力强',
+    '平易近人', '善于沟通',
+    '幽默风趣', '专业素养',
+    '技术精湛', '经验丰富',
+    '行业专家', '持续学习'
+  ]
+}
+ POST /api/expand-keywords 200 in 248ms
+[2025-07-28T12:49:16.584Z] [7q70fgb48] POST http://localhost:3000/api/generate-plan {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T12:49:16.584Z] [7q70fgb48] 请求处理开始完成 { duration: '0ms', status: 200 }
+[2025-07-28T12:49:16.705Z] [valwqkhn5] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T12:49:16.706Z] [valwqkhn5] 请求处理开始完成 { duration: '1ms', status: 200 }
+[2025-07-28T12:49:17.220Z] [oktjt9g] 收到生成方案请求
+[2025-07-28T12:49:17.221Z] [oktjt9g] 请求参数: {
+  promptLength: 543,
+  modelId: 'deepseek-ai/DeepSeek-V3',
+  taskType: 'long_generation',
+  stream: true,
+  storeInfo: '馋嘴老张麻辣烫',
+  clientIP: '::1'
+}
+ GET / 200 in 638ms
+[2025-07-28T12:50:22.818Z] [oktjt9g] 生成完成 { duration: '65598ms', contentLength: 2386, totalChunks: 880 }
+ POST /api/generate-plan 200 in 66162ms
+[2025-07-28T12:50:22.852Z] [3niqforuk] POST http://localhost:3000/api/images {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T12:50:22.852Z] [3niqforuk] 请求处理开始完成 { duration: '0ms', status: 200 }
+ POST /api/images 200 in 3120ms
+[2025-07-28T12:54:44.175Z] [dff6y7ug0] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T12:54:44.176Z] [dff6y7ug0] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 221ms
+[2025-07-28T12:55:09.960Z] [yc5c93ipw] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T12:55:09.962Z] [yc5c93ipw] 请求处理开始完成 { duration: '2ms', status: 200 }
+ GET / 200 in 71ms
+[2025-07-28T12:56:56.975Z] [xei46s94z] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T12:56:56.977Z] [xei46s94z] 请求处理开始完成 { duration: '2ms', status: 200 }
+ GET / 200 in 111ms
+[2025-07-28T12:57:25.020Z] [drhmrk8mn] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T12:57:25.022Z] [drhmrk8mn] 请求处理开始完成 { duration: '2ms', status: 200 }
+ GET / 200 in 114ms
+[2025-07-28T12:57:45.268Z] [5hlgd5pd7] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T12:57:45.269Z] [5hlgd5pd7] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 54ms
+[2025-07-28T12:59:29.107Z] [wnu438lud] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T12:59:29.108Z] [wnu438lud] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 68ms
+[2025-07-28T13:00:58.538Z] [mh2dp4hbb] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:00:58.539Z] [mh2dp4hbb] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 147ms
+[2025-07-28T13:01:18.814Z] [1bv2nu2id] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:01:18.815Z] [1bv2nu2id] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 56ms
+[2025-07-28T13:03:39.791Z] [1llpbmmb5] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:03:39.791Z] [1llpbmmb5] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 47ms
+[2025-07-28T13:04:42.620Z] [dqhuantyd] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:04:42.622Z] [dqhuantyd] 请求处理开始完成 { duration: '2ms', status: 200 }
+ GET / 200 in 348ms
+[2025-07-28T13:04:42.988Z] [v6j1rxrvw] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:04:42.988Z] [v6j1rxrvw] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 55ms
+[2025-07-28T13:04:59.659Z] [6q8l02xnd] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:04:59.661Z] [6q8l02xnd] 请求处理开始完成 { duration: '2ms', status: 200 }
+ GET / 200 in 85ms
+[2025-07-28T13:05:23.966Z] [ab76xtmlb] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:05:23.967Z] [ab76xtmlb] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 464ms
+[2025-07-28T13:10:22.287Z] [rlc9x6qob] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:10:22.288Z] [rlc9x6qob] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 129ms
+[2025-07-28T13:11:31.353Z] [cs2oh014c] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:11:31.355Z] [cs2oh014c] 请求处理开始完成 { duration: '2ms', status: 200 }
+ GET / 200 in 80ms
+[2025-07-28T13:12:24.898Z] [vn8pynlg7] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:12:24.899Z] [vn8pynlg7] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 98ms
+[2025-07-28T13:14:21.395Z] [53qbhmltc] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:14:21.396Z] [53qbhmltc] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 69ms
+[2025-07-28T13:37:58.854Z] [9hkke0k1o] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:37:58.855Z] [9hkke0k1o] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 195ms
+[2025-07-28T13:38:39.506Z] [ow7izc6qa] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:38:39.508Z] [ow7izc6qa] 请求处理开始完成 { duration: '2ms', status: 200 }
+ GET / 200 in 311ms
+[2025-07-28T13:38:39.859Z] [z5phq7npc] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:38:39.859Z] [z5phq7npc] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 52ms
+[2025-07-28T13:41:51.655Z] [n8jbdih0g] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:41:51.656Z] [n8jbdih0g] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 408ms
+[2025-07-28T13:41:52.094Z] [5juqfbv1h] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:41:52.095Z] [5juqfbv1h] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 60ms
+[2025-07-28T13:53:28.640Z] [3jgh12lwe] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:53:28.640Z] [3jgh12lwe] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 254ms
+[2025-07-28T13:53:28.945Z] [t9vnve1m4] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:53:28.945Z] [t9vnve1m4] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 57ms
+[2025-07-28T13:54:09.962Z] [nqhtikqln] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:54:09.963Z] [nqhtikqln] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 417ms
+[2025-07-28T13:54:10.411Z] [jrpm4be8s] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:54:10.412Z] [jrpm4be8s] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 44ms
+[2025-07-28T13:55:20.597Z] [a07bspina] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:55:20.597Z] [a07bspina] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 73ms
+[2025-07-28T13:56:52.872Z] [3j2b3irj9] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:56:52.872Z] [3j2b3irj9] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 28ms
+[2025-07-28T13:57:45.510Z] [npvz58bol] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:57:45.511Z] [npvz58bol] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 312ms
+[2025-07-28T13:57:45.854Z] [prbghqgea] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:57:45.854Z] [prbghqgea] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 44ms
+[2025-07-28T13:57:59.571Z] [xh4xyzwo5] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:57:59.571Z] [xh4xyzwo5] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 54ms
+[2025-07-28T13:58:15.387Z] [rftl8x1a0] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:58:15.387Z] [rftl8x1a0] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 51ms
+[2025-07-28T13:58:52.971Z] [niezc6lpg] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:58:52.972Z] [niezc6lpg] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 275ms
+[2025-07-28T13:58:53.268Z] [2wlgz9m5r] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T13:58:53.269Z] [2wlgz9m5r] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 52ms
+[2025-07-28T14:01:10.785Z] [f9nlf5uqp] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T14:01:10.786Z] [f9nlf5uqp] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 52ms
+[2025-07-28T14:02:30.928Z] [wr8n1i3jm] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T14:02:30.928Z] [wr8n1i3jm] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 39ms
+[2025-07-28T14:03:51.054Z] [a29tp47fk] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T14:03:51.055Z] [a29tp47fk] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 282ms
+[2025-07-28T14:03:51.361Z] [hb1lorfdc] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T14:03:51.362Z] [hb1lorfdc] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 40ms
+[2025-07-28T14:04:10.957Z] [xq60ci5z5] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T14:04:10.958Z] [xq60ci5z5] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 275ms
+[2025-07-28T14:04:11.658Z] [7s6mhb2ad] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://localhost:3000/',
+  clientIP: '::1'
+}
+[2025-07-28T14:04:11.658Z] [7s6mhb2ad] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 37ms
+[?25h

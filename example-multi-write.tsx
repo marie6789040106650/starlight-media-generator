@@ -129,8 +129,29 @@ export default function MultiWritePage() {
 
   const tocItems = generateToc()
 
-  // 渲染markdown内容
-  const renderedContent = renderMarkdown(content, MarkdownPresets.full)
+  // 渲染markdown内容，并为标题添加ID
+  const renderedContent = (() => {
+    let html = renderMarkdown(content, MarkdownPresets.full)
+    
+    // 为标题添加ID，以便目录跳转
+    const lines = content.split('\n')
+    lines.forEach((line, index) => {
+      const match = line.match(/^(#{1,6})\s+(.+)/)
+      if (match) {
+        const headingText = match[2].replace(/[《》]/g, '')
+        const headingId = `heading-${index}`
+        
+        // 在HTML中查找对应的标题标签并添加ID
+        const headingLevel = match[1].length
+        const headingTag = `h${headingLevel}`
+        const headingRegex = new RegExp(`<${headingTag}[^>]*>(.*?${headingText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}.*?)</${headingTag}>`, 'i')
+        
+        html = html.replace(headingRegex, `<${headingTag} id="${headingId}">$1</${headingTag}>`)
+      }
+    })
+    
+    return html
+  })()
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -316,10 +337,13 @@ export default function MultiWritePage() {
             <div className="absolute bottom-16 right-0 w-80 max-h-96 bg-white rounded-lg shadow-lg border overflow-hidden">
               <div className="p-3 border-b bg-gray-50">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-medium text-gray-900 flex items-center">
-                    <List className="w-4 h-4 mr-2" />
-                    文档目录
-                  </h3>
+                  <div>
+                    <h3 className="font-medium text-gray-900 flex items-center">
+                      <List className="w-4 h-4 mr-2" />
+                      文档目录
+                    </h3>
+                    <p className="text-xs text-gray-500 mt-1">点击标题可快速跳转</p>
+                  </div>
                   <Button
                     variant="ghost"
                     size="sm"
@@ -336,14 +360,26 @@ export default function MultiWritePage() {
                     {tocItems.map((item, index) => (
                       <div
                         key={index}
-                        className="flex items-center py-1 px-2 hover:bg-gray-100 rounded cursor-pointer text-sm"
+                        className="flex items-center py-2 px-2 hover:bg-blue-50 hover:text-blue-600 rounded cursor-pointer text-sm transition-colors group"
                         style={{ paddingLeft: `${(item.level - 1) * 16 + 8}px` }}
                         onClick={() => {
-                          console.log(`滚动到: ${item.text}`)
+                          // 跳转到对应的标题
+                          const targetElement = document.getElementById(item.id)
+                          if (targetElement) {
+                            targetElement.scrollIntoView({ 
+                              behavior: 'smooth', 
+                              block: 'start' 
+                            })
+                            // 关闭目录面板
+                            setShowToc(false)
+                          } else {
+                            console.warn(`未找到ID为 ${item.id} 的元素`)
+                          }
                         }}
+                        title={`点击跳转到: ${item.text}`}
                       >
-                        <Hash className="w-3 h-3 mr-2 text-gray-400" />
-                        <span className="truncate">{item.text}</span>
+                        <Hash className="w-3 h-3 mr-2 text-gray-400 group-hover:text-blue-500 transition-colors" />
+                        <span className="truncate group-hover:font-medium">{item.text}</span>
                       </div>
                     ))}
                   </div>

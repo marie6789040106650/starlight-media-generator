@@ -1,18 +1,44 @@
 "use client"
 
 import React, { useState } from "react"
-import { DEFAULT_CHAT_MODEL } from "@/lib/models"
+import type { ReactElement, ReactNode } from "react"
+import { DEFAULT_CHAT_MODEL, CHAT_MODELS } from "@/lib/models"
 import { PageHeader } from "@/components/page-header"
 import { ProgressSteps } from "@/components/progress-steps"
 import { FormSection } from "@/components/form-section"
 import { useFormData } from "@/hooks/use-form-data"
 import { usePlanGeneration } from "@/hooks/use-plan-generation"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Switch } from "@/components/ui/switch"
+import { Star, ArrowRight, Bot, Target, Sparkles, Users, Video, MessageSquare, TrendingUp, DollarSign, Settings, Copy, Download, Menu, Hash, X } from "lucide-react"
 
 export default function Home() {
   const [currentStep, setCurrentStep] = useState(1)
   const [selectedModelId, setSelectedModelId] = useState(DEFAULT_CHAT_MODEL.id)
   const [showModelSettings, setShowModelSettings] = useState(false)
-  
+
+  // Banner图片相关状态
+  const [bannerImage, setBannerImage] = useState<string | null>(null)
+  const [isGeneratingBanner, setIsGeneratingBanner] = useState(false)
+
+  // 内容生成相关状态
+  const [generatedContent, setGeneratedContent] = useState("")
+
+  // 目录相关状态
+  const [tocItems, setTocItems] = useState<Array<{ id: string, title: string, level: number }>>([])
+  const [activeSection, setActiveSection] = useState("")
+  const [showFloatingToc, setShowFloatingToc] = useState(false)
+
+  // 批量输入相关状态
+  const [bulkInputText, setBulkInputText] = useState("")
+  const [showBulkInput, setShowBulkInput] = useState(false)
+
   // 使用自定义hooks
   const {
     formData,
@@ -20,22 +46,34 @@ export default function Home() {
     isExpandingKeywords,
     enableKeywordExpansion,
     setEnableKeywordExpansion,
-    handleInputChange
+    handleInputChange,
+    setFormData,
+    setExpandedKeywords,
+    setIsExpandingKeywords
   } = useFormData()
-  
+
   const { isLoading, error, generatePlan } = usePlanGeneration()
 
-
+  // 解析关键词的工具函数
+  const parseKeywords = (text: string | undefined): string[] => {
+    if (!text) return []
+    return text.split(/[、，,\/\s]+/).filter(keyword => keyword.trim())
+  }
 
   // 处理表单提交
   const handleNextStep = async () => {
-    await generatePlan(
+    const result = await generatePlan(
       formData,
       enableKeywordExpansion,
       selectedModelId,
-      () => {}, // setExpandedKeywords - 这里简化处理
-      () => {}  // setIsExpandingKeywords - 这里简化处理
+      setExpandedKeywords,
+      setIsExpandingKeywords
     )
+
+    if (result) {
+      setGeneratedContent(result)
+      setCurrentStep(2)
+    }
   }
 
 
@@ -45,7 +83,7 @@ export default function Home() {
   const handleBackToForm = () => {
     setCurrentStep(1)
     setGeneratedContent("")
-    setError("")
+    // setError("") // 这个函数来自 usePlanGeneration hook
   }
 
   const sectionIcons = {
@@ -253,6 +291,7 @@ ${cleanContent}
                     width: 600,
                     height: 300,
                   },
+                  type: "png",
                 })
               ],
               alignment: AlignmentType.CENTER,
@@ -414,8 +453,10 @@ ${cleanContent}
 
     try {
       // 动态导入jsPDF和html2canvas
-      const { default: jsPDF } = await import('jspdf')
-      const { default: html2canvas } = await import('html2canvas')
+      const jsPDFModule = await import('jspdf')
+      const jsPDF = jsPDFModule.default
+      const html2canvasModule = await import('html2canvas')
+      const html2canvas = html2canvasModule.default
 
       // 创建一个临时的导出容器
       const exportContainer = document.createElement('div')
@@ -553,6 +594,9 @@ ${cleanContent}
           // 创建当前页的canvas
           const pageCanvas = document.createElement('canvas')
           const pageCtx = pageCanvas.getContext('2d')
+          if (!pageCtx) {
+            throw new Error('无法获取Canvas 2D上下文')
+          }
           pageCanvas.width = imgWidth
           pageCanvas.height = sourceHeight
 
@@ -595,13 +639,13 @@ ${cleanContent}
   }, [generatedContent, currentStep])
 
   // 解析和渲染方案内容的函数
-  const renderParsedContent = (content: string) => {
+  const renderParsedContent = (content: string): ReactElement => {
     const lines = content.split('\n')
-    let renderedContent: JSX.Element[] = []
+    const renderedContent: ReactElement[] = []
 
     // 处理文本中的Markdown格式
-    const parseMarkdownText = (text: string) => {
-      const parts: (string | JSX.Element)[] = []
+    const parseMarkdownText = (text: string): (string | ReactElement)[] => {
+      const parts: (string | ReactElement)[] = []
       let lastIndex = 0
 
       // 匹配 **text** 格式的加粗文本
@@ -1024,7 +1068,12 @@ ${cleanContent}
                               businessDuration: "5年",
                               storeFeatures: "秘制汤底、地域食材、现制模式、健康定制、主题沉浸、网红装修",
                               ownerName: "张",
-                              ownerFeatures: "匠人、传承、学霸、宠粉"
+                              ownerFeatures: "匠人、传承、学霸、宠粉",
+                              targetAudience: "",
+                              businessGoals: "",
+                              contentStyle: "",
+                              keywords: "",
+                              additionalRequirements: ""
                             };
                             setFormData(defaultData);
                             setShowBulkInput(false);
@@ -1090,7 +1139,14 @@ ${cleanContent}
 
                           // 解析批量输入文本
                           const lines = bulkInputText.split('\n');
-                          const newFormData = { ...formData };
+                          const newFormData = {
+                            ...formData,
+                            targetAudience: formData.targetAudience || "",
+                            businessGoals: formData.businessGoals || "",
+                            contentStyle: formData.contentStyle || "",
+                            keywords: formData.keywords || "",
+                            additionalRequirements: formData.additionalRequirements || ""
+                          };
 
                           // 正常解析批量输入文本
                           lines.forEach(line => {
@@ -1370,7 +1426,6 @@ ${cleanContent}
                     size="sm"
                     onClick={() => {
                       setCurrentStep(1);
-                      setError("");
                       // 重新生成方案
                       setTimeout(() => {
                         handleNextStep();

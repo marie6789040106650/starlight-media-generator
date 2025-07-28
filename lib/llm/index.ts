@@ -22,17 +22,17 @@
  */
 
 // 核心统一接口
-export { 
-  unifiedChat, 
-  unifiedChatStream, 
-  unifiedChatBatch, 
-  smartChat 
+export {
+  unifiedChat,
+  unifiedChatStream,
+  unifiedChatBatch,
+  smartChat
 } from './unifiedChat'
 
 // 类型定义
-export type { 
-  UnifiedChatOptions, 
-  UnifiedChatResponse 
+export type {
+  UnifiedChatOptions,
+  UnifiedChatResponse
 } from './unifiedChat'
 
 // 各提供商的具体实现 (可选导出，用于高级用法)

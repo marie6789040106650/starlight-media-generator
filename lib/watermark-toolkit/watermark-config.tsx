@@ -42,7 +42,7 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
     enabled: false, // 默认不启用水印
     type: 'company',
     text: `© ${storeName}`,
-    opacity: 15, // 透明度 15%
+    opacity: 10, // 透明度 10%
     fontSize: 42, // 字体大小 42px
     rotation: 45, // 旋转角度 45°
     position: 'center',
@@ -62,12 +62,12 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
         case 'company':
           newConfig.text = `© ${storeName}`;
           newConfig.color = 'gray';
-          newConfig.opacity = 15;
+          newConfig.opacity = 10;
           break;
         case 'confidential':
           newConfig.text = '机密文档 CONFIDENTIAL';
           newConfig.color = 'red';
-          newConfig.opacity = 40;
+          newConfig.opacity = 20; // 机密文档稍微明显一些，但不超过20%
           break;
         case 'custom':
           // 保持用户自定义的文本

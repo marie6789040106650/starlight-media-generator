@@ -58,35 +58,72 @@ export function checkMobileCompatibility(): MobileCompatibility {
  * 获取移动端优化的html2canvas配置
  */
 export function getMobileCanvasConfig(isMobile: boolean, memoryLimited: boolean) {
+    const baseConfig = {
+        backgroundColor: '#ffffff',
+        width: 794,
+        height: 1123,
+        // 图片处理优化
+        useCORS: true,
+        allowTaint: false, // 改为 false 以避免 CORS 问题
+        imageTimeout: 30000, // 增加图片加载超时时间到30秒
+        ignoreElements: (element: Element) => {
+            // 忽略可能导致问题的元素
+            if (element.tagName === 'SCRIPT') return true
+            if (element.tagName === 'NOSCRIPT') return true
+            if (element.classList?.contains('no-export')) return true
+            return false
+        },
+        onclone: (clonedDoc: Document) => {
+            // 处理克隆文档中的图片
+            const images = clonedDoc.querySelectorAll('img')
+            images.forEach((img) => {
+                // 如果图片加载失败，添加错误处理
+                if (img.src && img.src.includes('aliyuncs.com')) {
+                    // 为阿里云图片添加 crossorigin 属性
+                    img.crossOrigin = 'anonymous'
+                    
+                    // 如果图片加载失败，使用占位符
+                    img.onerror = () => {
+                        console.warn('图片加载失败，使用占位符:', img.src)
+                        // 创建一个简单的占位符
+                        const canvas = document.createElement('canvas')
+                        canvas.width = img.width || 200
+                        canvas.height = img.height || 150
+                        const ctx = canvas.getContext('2d')
+                        if (ctx) {
+                            ctx.fillStyle = '#f0f0f0'
+                            ctx.fillRect(0, 0, canvas.width, canvas.height)
+                            ctx.fillStyle = '#999'
+                            ctx.font = '14px Arial'
+                            ctx.textAlign = 'center'
+                            ctx.fillText('图片加载失败', canvas.width / 2, canvas.height / 2)
+                        }
+                        img.src = canvas.toDataURL()
+                    }
+                }
+            })
+            
+            // 移除脚本标签
+            const scripts = clonedDoc.querySelectorAll('script')
+            scripts.forEach(script => script.remove())
+        }
+    }
+
     if (!isMobile) {
         // 桌面端高质量配置
         return {
+            ...baseConfig,
             scale: 2,
-            useCORS: true,
-            allowTaint: true,
-            backgroundColor: '#ffffff',
-            width: 794,
-            height: 1123
+            logging: false
         }
     }
 
     // 移动端优化配置
     return {
+        ...baseConfig,
         scale: memoryLimited ? 1 : 1.5, // 降低缩放比例节省内存
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: '#ffffff',
-        width: 794,
-        height: 1123,
-        // 移动端特殊优化
         logging: false, // 关闭日志节省内存
-        removeContainer: true, // 自动清理临时容器
-        imageTimeout: 15000, // 增加图片加载超时时间
-        onclone: (clonedDoc: Document) => {
-            // 移除可能导致问题的元素
-            const scripts = clonedDoc.querySelectorAll('script')
-            scripts.forEach(script => script.remove())
-        }
+        removeContainer: true // 自动清理临时容器
     }
 }
 

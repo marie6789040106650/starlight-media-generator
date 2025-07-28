@@ -160,10 +160,13 @@ async function executeBasicPDFExport(options: ExportOptions): Promise<void> {
   }
 
   // 动态导入库
-  const [{ default: jsPDF }, { default: html2canvas }] = await Promise.all([
+  const [jsPDFModule, html2canvasModule] = await Promise.all([
     import('jspdf'),
     import('html2canvas')
   ])
+  
+  const jsPDF = jsPDFModule.default
+  const html2canvas = html2canvasModule.default
 
   // 获取分页元素
   const pages = document.querySelectorAll('.page')
@@ -191,6 +194,9 @@ async function executeBasicPDFExport(options: ExportOptions): Promise<void> {
     }
 
     try {
+      // 预处理页面中的图片，确保它们能正确加载
+      await preprocessPageImages(pageElement)
+      
       // 使用优化的配置截图
       const canvas = await html2canvas(pageElement, canvasConfig)
       const imgData = canvas.toDataURL('image/png', mobileCompat.memoryLimited ? 0.8 : 1.0)
@@ -215,10 +221,51 @@ async function executeBasicPDFExport(options: ExportOptions): Promise<void> {
 
     } catch (error) {
       console.error(`页面 ${i + 1} 处理失败:`, error)
-      if (mobileCompat.isMobile) {
-        throw new Error(`移动端导出失败：页面 ${i + 1} 处理出错，建议减少页数或使用桌面端`)
+      
+      // 如果是图片加载错误，尝试继续处理但给出警告
+      if (error instanceof Error && error.message.includes('Error loading image')) {
+        console.warn(`页面 ${i + 1} 包含无法加载的图片，将继续处理但可能影响显示效果`)
+        
+        try {
+          // 尝试使用更宽松的配置重新截图
+          const fallbackConfig = {
+            ...canvasConfig,
+            allowTaint: true,
+            useCORS: false,
+            ignoreElements: (element: Element) => {
+              // 忽略有问题的图片
+              if (element.tagName === 'IMG') {
+                const img = element as HTMLImageElement
+                if (img.src && img.src.includes('aliyuncs.com')) {
+                  return true // 忽略阿里云图片
+                }
+              }
+              return false
+            }
+          }
+          
+          const canvas = await html2canvas(pageElement, fallbackConfig)
+          const imgData = canvas.toDataURL('image/png', mobileCompat.memoryLimited ? 0.8 : 1.0)
+
+          if (i > 0) {
+            pdf.addPage()
+          }
+          pdf.addImage(imgData, 'PNG', 0, 0, 595, 842)
+          
+          console.log(`✅ 页面 ${i + 1} 使用备用方案处理成功`)
+        } catch (fallbackError) {
+          console.error(`页面 ${i + 1} 备用方案也失败:`, fallbackError)
+          if (mobileCompat.isMobile) {
+            throw new Error(`移动端导出失败：页面 ${i + 1} 处理出错，建议减少页数或使用桌面端`)
+          }
+          throw error
+        }
+      } else {
+        if (mobileCompat.isMobile) {
+          throw new Error(`移动端导出失败：页面 ${i + 1} 处理出错，建议减少页数或使用桌面端`)
+        }
+        throw error
       }
-      throw error
     }
   }
 
@@ -578,6 +625,96 @@ function getColorHex(color: string): string {
     black: "212529"
   }
   return colorMap[color as keyof typeof colorMap] || colorMap.gray
+}
+
+/**
+ * 预处理页面中的图片，确保它们能正确加载
+ */
+async function preprocessPageImages(pageElement: HTMLElement): Promise<void> {
+  const images = pageElement.querySelectorAll('img')
+  const imagePromises: Promise<void>[] = []
+
+  images.forEach((img) => {
+    if (img.src && img.src.includes('aliyuncs.com')) {
+      const promise = new Promise<void>((resolve) => {
+        // 如果图片已经加载完成
+        if (img.complete && img.naturalHeight !== 0) {
+          resolve()
+          return
+        }
+
+        // 设置超时时间
+        const timeout = setTimeout(() => {
+          console.warn('图片加载超时，将使用占位符:', img.src)
+          // 创建占位符
+          const canvas = document.createElement('canvas')
+          canvas.width = img.width || 200
+          canvas.height = img.height || 150
+          const ctx = canvas.getContext('2d')
+          if (ctx) {
+            ctx.fillStyle = '#f8f9fa'
+            ctx.fillRect(0, 0, canvas.width, canvas.height)
+            ctx.strokeStyle = '#dee2e6'
+            ctx.strokeRect(0, 0, canvas.width, canvas.height)
+            ctx.fillStyle = '#6c757d'
+            ctx.font = '14px Arial'
+            ctx.textAlign = 'center'
+            ctx.fillText('图片加载中...', canvas.width / 2, canvas.height / 2)
+          }
+          img.src = canvas.toDataURL()
+          resolve()
+        }, 10000) // 10秒超时
+
+        // 图片加载成功
+        img.onload = () => {
+          clearTimeout(timeout)
+          resolve()
+        }
+
+        // 图片加载失败
+        img.onerror = () => {
+          clearTimeout(timeout)
+          console.warn('图片加载失败，使用占位符:', img.src)
+          // 创建错误占位符
+          const canvas = document.createElement('canvas')
+          canvas.width = img.width || 200
+          canvas.height = img.height || 150
+          const ctx = canvas.getContext('2d')
+          if (ctx) {
+            ctx.fillStyle = '#f8d7da'
+            ctx.fillRect(0, 0, canvas.width, canvas.height)
+            ctx.strokeStyle = '#f5c6cb'
+            ctx.strokeRect(0, 0, canvas.width, canvas.height)
+            ctx.fillStyle = '#721c24'
+            ctx.font = '14px Arial'
+            ctx.textAlign = 'center'
+            ctx.fillText('图片加载失败', canvas.width / 2, canvas.height / 2)
+          }
+          img.src = canvas.toDataURL()
+          resolve()
+        }
+
+        // 如果图片还没开始加载，触发加载
+        if (!img.src) {
+          resolve()
+        }
+      })
+
+      imagePromises.push(promise)
+    }
+  })
+
+  // 等待所有图片处理完成，但不超过15秒
+  try {
+    await Promise.race([
+      Promise.all(imagePromises),
+      new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('图片预处理超时')), 15000)
+      )
+    ])
+  } catch (error) {
+    console.warn('图片预处理超时，继续导出:', error)
+  }
 }
 
 /**
