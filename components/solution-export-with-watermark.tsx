@@ -40,7 +40,7 @@ export const SolutionExportWithWatermark: React.FC<SolutionExportProps> = ({
   const [isExporting, setIsExporting] = useState(false);
   const [watermarkConfig, setWatermarkConfig] = useState({
     enabled: true,
-    text: '© 星光传媒',
+    text: '© 星光同城传媒',
     opacity: 30,
     fontSize: 48,
     rotation: 45,

@@ -202,7 +202,7 @@ function generatePDFDocument(
     </div>
     
     <div class="document-footer">
-        <p>本文档由星光传媒方案生成系统自动生成</p>
+        <p>本文档由星光同城传媒方案生成系统自动生成</p>
         ${userInfo ? `<p>联系方式: ${userInfo.email}</p>` : ''}
     </div>
 </body>

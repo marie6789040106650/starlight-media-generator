@@ -70,8 +70,8 @@ export const SmartWordRenderer: React.FC<SmartWordRendererProps> = ({
   useEffect(() => {
     // 检测内容或Banner是否发生变化
     if (content !== previousContentRef.current || bannerImage !== previousBannerRef.current) {
-      if (previousContentRef.current !== '' || previousBannerRef.current !== undefined) {
-        // 不是初始加载，说明内容已更新
+      // 只有在已经有缓存的情况下，才认为是"更新"
+      if ((previousContentRef.current !== '' || previousBannerRef.current !== undefined) && cachedContent) {
         setContentUpdated(true)
         console.log('Content or banner updated, pagination may need refresh')
       }
@@ -188,6 +188,10 @@ export const SmartWordRenderer: React.FC<SmartWordRendererProps> = ({
       setPaginationReady(false)
       setContentStable(false)
       setContentUpdated(false) // 清除缓存时也清除更新提示
+      // 清除缓存后，如果当前是分页模式，切换回流式模式
+      if (useAdvancedRenderer) {
+        setUseAdvancedRenderer(false)
+      }
       console.log('Cache cleared successfully')
     } catch (error) {
       console.warn('Failed to clear cache:', error)
@@ -248,23 +252,46 @@ export const SmartWordRenderer: React.FC<SmartWordRendererProps> = ({
                 📄 流式模式
               </button>
               
-              <button
-                onClick={handlePaginationSwitch}
-                disabled={!paginationReady}
-                style={{
-                  padding: '6px 12px',
-                  backgroundColor: useAdvancedRenderer ? '#3b82f6' : '#ffffff',
-                  color: useAdvancedRenderer ? '#ffffff' : (!paginationReady ? '#999999' : '#000000'),
-                  border: '1px solid #d1d5db',
-                  borderRadius: '4px',
-                  cursor: paginationReady ? 'pointer' : 'not-allowed',
-                  fontSize: '10pt',
-                  fontFamily: "'Source Han Sans SC', 'SimHei', sans-serif",
-                  opacity: paginationReady ? 1 : 0.6
-                }}
-              >
-                📑 {contentUpdated && cachedContent ? '重新生成分页' : '分页模式'} {!paginationReady && '(准备中...)'}
-              </button>
+              {/* 根据缓存状态显示不同的按钮 */}
+              {!cachedContent ? (
+                // 没有缓存时，显示"重新生成分页"按钮
+                <button
+                  onClick={handlePaginationSwitch}
+                  disabled={!paginationReady}
+                  style={{
+                    padding: '6px 12px',
+                    backgroundColor: paginationReady ? '#007bff' : '#ffffff',
+                    color: paginationReady ? '#ffffff' : '#999999',
+                    border: paginationReady ? '1px solid #007bff' : '1px solid #d1d5db',
+                    borderRadius: '4px',
+                    cursor: paginationReady ? 'pointer' : 'not-allowed',
+                    fontSize: '10pt',
+                    fontFamily: "'Source Han Sans SC', 'SimHei', sans-serif",
+                    opacity: paginationReady ? 1 : 0.6
+                  }}
+                >
+                  🔄 生成分页 {!paginationReady && '(准备中...)'}
+                </button>
+              ) : (
+                // 有缓存时，显示普通的"分页模式"按钮
+                <button
+                  onClick={handlePaginationSwitch}
+                  disabled={!paginationReady}
+                  style={{
+                    padding: '6px 12px',
+                    backgroundColor: useAdvancedRenderer ? '#3b82f6' : '#ffffff',
+                    color: useAdvancedRenderer ? '#ffffff' : (!paginationReady ? '#999999' : '#000000'),
+                    border: '1px solid #d1d5db',
+                    borderRadius: '4px',
+                    cursor: paginationReady ? 'pointer' : 'not-allowed',
+                    fontSize: '10pt',
+                    fontFamily: "'Source Han Sans SC', 'SimHei', sans-serif",
+                    opacity: paginationReady ? 1 : 0.6
+                  }}
+                >
+                  📑 分页模式 {!paginationReady && '(准备中...)'}
+                </button>
+              )}
             </div>
 
             {/* 状态指示器 */}
@@ -378,6 +405,7 @@ export const SmartWordRenderer: React.FC<SmartWordRendererProps> = ({
                 ⏳ 正在为分页模式准备数据，请稍候...
               </p>
             )}
+            {/* 根据不同状态显示不同提示 */}
             {contentUpdated && cachedContent && (
               <div style={{ 
                 margin: '4px 0', 
@@ -391,7 +419,7 @@ export const SmartWordRenderer: React.FC<SmartWordRendererProps> = ({
                 justifyContent: 'space-between'
               }}>
                 <span>
-                  ⚠️ 内容已更新，如需更新分页模式，请先点击"清除缓存"，然后重新生成分页
+                  ⚠️ 内容已更新，请点击"清除缓存"以更新分页模式
                 </span>
                 <button 
                   onClick={() => setContentUpdated(false)}
@@ -408,6 +436,18 @@ export const SmartWordRenderer: React.FC<SmartWordRendererProps> = ({
                 >
                   ✕
                 </button>
+              </div>
+            )}
+            {!cachedContent && content && paginationReady && (
+              <div style={{ 
+                margin: '4px 0', 
+                color: '#007bff', 
+                backgroundColor: '#e7f3ff', 
+                padding: '4px 8px', 
+                borderRadius: '4px', 
+                border: '1px solid #b3d9ff'
+              }}>
+                💡 缓存已清除，可以点击"重新生成分页"按钮生成最新的分页模式
               </div>
             )}
           </div>

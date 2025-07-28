@@ -249,7 +249,7 @@ const defaultConfig: StyleConfig = {
     enabled: true,
     type: "text",
     text: {
-      content: "星光传媒 AI 生成",
+      content: "星光同城传媒 AI 生成",
       font: {
         name: "Source Han Sans SC",
         fallback: "Microsoft YaHei",
@@ -299,7 +299,7 @@ const defaultConfig: StyleConfig = {
     default: {
       titleFormat: "企业方案 Word 样式模板规范文档",
       subtitle: "（适用于IP打造、品牌方案、项目规划类文档）",
-      footer: "本方案由星光传媒AI智能生成 | 专注于服务本地实体商家的IP内容机构",
+      footer: "本方案由星光同城传媒AI智能生成 | 专注于服务本地实体商家的IP内容机构",
       date: "撰写日期：{date}"
     }
   }

@@ -17,7 +17,7 @@ export const PageHeader: React.FC = () => {
                 className="h-8 w-8 sm:h-10 sm:w-10 rounded-lg"
               />
               <div>
-                <h1 className="text-lg sm:text-xl font-bold text-gray-900">星光传媒</h1>
+                <h1 className="text-lg sm:text-xl font-bold text-gray-900">星光同城传媒</h1>
                 <p className="text-xs sm:text-sm text-gray-500">方案生成器</p>
               </div>
             </Link>

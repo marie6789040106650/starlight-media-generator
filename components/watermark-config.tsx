@@ -378,7 +378,7 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
             <div className="watermark-preview-container">
               {/* 模拟文档内容 */}
               <div className="watermark-preview-content">
-                <h3>《星光传媒营销方案》</h3>
+                <h3>《星光同城传媒营销方案》</h3>
                 <p className="text-gray-700">
                   本方案针对目标客户群体制定了完整的营销策略，
                   包含品牌定位、内容策略、渠道布局等核心要素。

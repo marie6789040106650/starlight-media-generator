@@ -46,16 +46,52 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
   const HEADER_HEIGHT = Math.round(1.5 * CM_TO_PT * PT_TO_PX)  // 1.5cm = 57px
   const FOOTER_HEIGHT = Math.round(1.75 * CM_TO_PT * PT_TO_PX) // 1.75cm = 66px
 
-  // 可用内容区域高度（考虑Banner图片的影响）
+  // 动态计算每页的可用内容高度（根据Banner状态智能调整）
   const getContentHeight = (pageNumber: number, hasBanner: boolean) => {
     let baseHeight = A4_HEIGHT_PX - PAGE_MARGIN_TOP - PAGE_MARGIN_BOTTOM - HEADER_HEIGHT - FOOTER_HEIGHT
 
-    // 第一页如果有Banner图片，需要减去Banner高度
+    // 第一页如果有Banner图片，需要减去Banner高度和额外间距
     if (pageNumber === 1 && hasBanner) {
-      baseHeight -= 180 // Banner图片区域高度
+      baseHeight -= 180 + 12 // Banner图片区域高度 + 页眉间距调整
     }
 
     return baseHeight
+  }
+
+  // 辅助函数：判断元素类型
+  const getElementType = (element: HTMLElement) => {
+    const tagName = element.tagName.toLowerCase()
+
+    if (tagName.match(/^h[1-6]$/)) {
+      return 'heading'
+    } else if (tagName === 'p') {
+      return 'paragraph'
+    } else if (tagName === 'ul' || tagName === 'ol') {
+      return 'list'
+    } else if (tagName === 'blockquote') {
+      return 'quote'
+    } else if (tagName === 'pre') {
+      return 'code'
+    }
+
+    return 'other'
+  }
+
+  // 辅助函数：获取元素的优先级（用于分页决策）
+  const getElementPriority = (element: HTMLElement) => {
+    const type = getElementType(element)
+
+    switch (type) {
+      case 'heading':
+        return 'high' // 标题优先保持完整
+      case 'quote':
+      case 'code':
+        return 'medium' // 引用和代码块尽量不分割
+      case 'list':
+        return 'medium' // 列表尽量保持完整
+      default:
+        return 'low' // 普通段落可以灵活处理
+    }
   }
 
   const CONTENT_HEIGHT = getContentHeight(1, !!(bannerImage || isGeneratingBanner))
@@ -157,19 +193,103 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
       // 获取所有段落元素
       const elements = Array.from(measureContainer.children) as HTMLElement[]
 
-      for (const element of elements) {
+      // 智能分页处理
+      const hasBanner = !!(bannerImage || isGeneratingBanner)
+
+      for (let i = 0; i < elements.length; i++) {
+        const element = elements[i]
+        const nextElement = elements[i + 1]
+
         const elementHeight = element.offsetHeight
-        const elementMarginTop = parseInt(window.getComputedStyle(element).marginTop) || 0
-        const elementMarginBottom = parseInt(window.getComputedStyle(element).marginBottom) || 0
-        const totalElementHeight = elementHeight + elementMarginTop + elementMarginBottom
+        const computedStyle = window.getComputedStyle(element)
+        const elementMarginTop = parseInt(computedStyle.marginTop) || 0
+        const elementMarginBottom = parseInt(computedStyle.marginBottom) || 0
 
-        // 预留一些安全边距，避免内容被截断
-        const safetyMargin = 20 // 20px安全边距
-        const availableHeight = CONTENT_HEIGHT - safetyMargin
+        // 更精确的高度计算
+        let totalElementHeight = elementHeight
+        if (elementMarginTop > 0) totalElementHeight += Math.min(elementMarginTop, 12)
+        if (elementMarginBottom > 0) totalElementHeight += Math.min(elementMarginBottom, 12)
 
-        // 如果添加这个元素会超出页面高度，创建新页面
-        if (currentHeight + totalElementHeight > availableHeight && currentPageContent) {
-          // 确保当前页面内容不为空才创建新页面
+        // 动态计算当前页面的可用高度（根据Banner状态）
+        const currentPageHeight = getContentHeight(pageNumber, hasBanner && pageNumber === 1)
+        const safetyMargin = 8
+        const availableHeight = currentPageHeight - safetyMargin
+
+        // 智能分页决策函数
+        const shouldCreateNewPage = () => {
+          // 基本空间检查
+          if (currentHeight + totalElementHeight <= availableHeight) {
+            return false
+          }
+
+          // 如果当前页面没有内容，强制添加（避免无限循环）
+          if (!currentPageContent) {
+            return false
+          }
+
+          const elementType = getElementType(element)
+          const elementPriority = getElementPriority(element)
+          const lineHeight = parseFloat(computedStyle.lineHeight) || 22
+          const remainingSpace = availableHeight - currentHeight
+
+          // 1. 标题智能处理：标题优先放到下一页，避免孤立显示
+          if (elementType === 'heading') {
+            console.log(`Moving heading "${element.textContent?.substring(0, 30)}..." to next page`)
+            return true
+          }
+
+          // 2. 行高智能处理：根据行高计算是否有足够空间
+          if (elementType === 'paragraph') {
+            // 对于段落，检查是否有足够空间显示至少2行内容
+            const minRequiredSpace = lineHeight * 2
+            if (remainingSpace < minRequiredSpace) {
+              console.log(`Insufficient space for paragraph (${remainingSpace}px < ${minRequiredSpace}px)`)
+              return true
+            }
+          }
+
+          // 3. 高优先级元素处理：引用、代码块等尽量保持完整
+          if (elementPriority === 'high' || elementPriority === 'medium') {
+            const elementNeedsSpace = totalElementHeight * 1.1 // 需要额外10%空间
+            if (remainingSpace < elementNeedsSpace) {
+              console.log(`Moving ${elementType} to next page to keep it intact`)
+              return true
+            }
+          }
+
+          // 4. 避免标题孤立：如果下一个元素是标题，避免当前元素孤立在页面底部
+          if (nextElement) {
+            const nextElementType = getElementType(nextElement)
+            if (nextElementType === 'heading') {
+              const spaceAfterCurrent = availableHeight - (currentHeight + totalElementHeight)
+              const nextElementHeight = nextElement.offsetHeight + 24 // 标题需要更多空间
+
+              if (spaceAfterCurrent < nextElementHeight) {
+                console.log(`Avoiding orphaned content before heading, moving to next page`)
+                return true
+              }
+            }
+          }
+
+          // 5. 列表智能处理：避免列表被截断在不合适的位置
+          if (elementType === 'list') {
+            const listItems = element.querySelectorAll('li')
+            if (listItems.length > 1) {
+              // 如果列表有多个项目，确保至少能显示2个项目
+              const itemHeight = listItems[0]?.offsetHeight || 20
+              const minListSpace = itemHeight * 2
+              if (remainingSpace < minListSpace) {
+                console.log(`Moving list to next page to avoid awkward split`)
+                return true
+              }
+            }
+          }
+
+          return true
+        }
+
+        if (shouldCreateNewPage()) {
+          // 创建新页面
           newPages.push({
             pageNumber: pageNumber,
             content: currentPageContent,
@@ -179,15 +299,16 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
           currentPageContent = element.outerHTML
           currentHeight = totalElementHeight
           pageNumber++
+
+          console.log(`Created page ${pageNumber - 1}, starting page ${pageNumber}`)
         } else {
           currentPageContent += element.outerHTML
           currentHeight += totalElementHeight
         }
 
-        // 特殊处理：如果单个元素本身就超过页面高度，强制分页
+        // 特殊处理：超大元素警告
         if (totalElementHeight > availableHeight && currentPageContent === element.outerHTML) {
-          console.warn('Element too large for single page:', element.tagName, totalElementHeight)
-          // 即使元素过大，也要保留在页面中，但记录警告
+          console.warn('Element too large for single page:', element.tagName, totalElementHeight, 'available:', availableHeight)
         }
       }
 
@@ -533,10 +654,10 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
       {/* 页面内容 - 精确按照Word A4页面样式 */}
       <div style={{
         position: 'absolute',
-        top: `${PAGE_MARGIN_TOP + HEADER_HEIGHT + (page.pageNumber === 1 && (bannerImage || isGeneratingBanner) ? 180 : 0)}px`,
+        top: `${PAGE_MARGIN_TOP + HEADER_HEIGHT + 12 + (page.pageNumber === 1 && (bannerImage || isGeneratingBanner) ? 180 : 0)}px`, // 增加12px间距
         left: `${PAGE_MARGIN_LEFT}px`,
         right: `${PAGE_MARGIN_RIGHT}px`,
-        bottom: `${PAGE_MARGIN_BOTTOM + FOOTER_HEIGHT + 20}px`, // 增加20px安全边距
+        bottom: `${PAGE_MARGIN_BOTTOM + FOOTER_HEIGHT + 8}px`, // 减少到8px安全边距
         overflow: 'hidden', // 确保内容不会溢出
         fontSize: '11pt', // 正文11pt
         lineHeight: '1.5', // 1.5倍行距
@@ -548,7 +669,8 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
           style={{
             height: '100%',
             overflow: 'hidden', // 双重保险，确保内容不溢出
-            paddingBottom: '10px' // 底部留一点空间
+            paddingTop: '4px', // 顶部留一点空间
+            paddingBottom: '4px' // 底部留一点空间
           }}
           dangerouslySetInnerHTML={{ __html: page.content }}
         />

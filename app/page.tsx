@@ -56,6 +56,9 @@ export default function Home() {
     setBannerImage
   } = useBannerImage()
 
+  // 保存之前的Banner图，用于启用/禁用切换
+  const [previousBannerImage, setPreviousBannerImage] = useState<string | null>(null)
+
   const {
     tocItems,
     activeSection,
@@ -152,14 +155,25 @@ export default function Home() {
   // 重新生成Banner图
   const handleRegenerateBanner = () => {
     if (generatedContent) {
+      // 清除之前保存的Banner，因为要生成新的了
+      setPreviousBannerImage(null)
       generateBannerImage(generatedContent, formData)
     }
   }
 
-  // 禁用Banner图
-  const handleDisableBanner = () => {
-    // 清除当前的Banner图片
-    setBannerImage(null)
+  // 切换Banner图显示状态
+  const handleToggleBanner = () => {
+    if (bannerImage) {
+      // 如果当前有Banner，则禁用（保存后清除）
+      setPreviousBannerImage(bannerImage)
+      setBannerImage(null)
+    } else {
+      // 如果当前没有Banner，则恢复之前的Banner
+      if (previousBannerImage) {
+        setBannerImage(previousBannerImage)
+        setPreviousBannerImage(null)
+      }
+    }
   }
 
 
@@ -216,7 +230,7 @@ export default function Home() {
             <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 lg:gap-6 bg-white p-4 lg:p-6 rounded-xl shadow-sm border border-gray-100">
               <div className="flex-1">
                 <h2 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2">{formData.storeName || "店铺名称"} - 老板IP打造方案</h2>
-                <p className="text-sm lg:text-base text-gray-600">由星光传媒专业团队为您量身定制 · 智能生成 · 专业可靠</p>
+                <p className="text-sm lg:text-base text-gray-600">由星光同城传媒专业团队为您量身定制 · 专业可靠</p>
               </div>
               <div className="flex flex-wrap gap-3 lg:gap-4 w-full lg:w-auto">
                 <Button
@@ -250,9 +264,21 @@ export default function Home() {
                       <Image className="h-4 w-4 mr-2" />
                       重新生成Banner图
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={handleDisableBanner} disabled={!bannerImage}>
-                      <ImageOff className="h-4 w-4 mr-2" />
-                      禁用Banner图
+                    <DropdownMenuItem 
+                      onClick={handleToggleBanner} 
+                      disabled={!generatedContent || (!bannerImage && !previousBannerImage)}
+                    >
+                      {bannerImage ? (
+                        <>
+                          <ImageOff className="h-4 w-4 mr-2" />
+                          禁用Banner图
+                        </>
+                      ) : (
+                        <>
+                          <Image className="h-4 w-4 mr-2" />
+                          启用Banner图
+                        </>
+                      )}
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>

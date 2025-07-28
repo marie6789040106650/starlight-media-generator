@@ -368,7 +368,7 @@ export class WordGenerator {
     // 添加文字，与logo在同一行，增加间距使其更协调
     headerChildren.push(
       new TextRun({
-        text: "  由星光传媒专业团队为您量身定制", // 增加空格，与logo分开更明显
+        text: "  由星光同城传媒专业团队为您量身定制", // 增加空格，与logo分开更明显
         font: "Source Han Sans SC", // 思源黑体
         size: 24, // 12pt * 2，与图片中效果一致
       })

@@ -72,7 +72,7 @@ export default function MultiWritePage() {
 
   const [watermarkConfig, setWatermarkConfig] = useState<WatermarkConfig>({
     enabled: false,
-    text: '星光传媒',
+    text: '星光同城传媒',
     opacity: 30,
     fontSize: 48,
     rotation: 45,
