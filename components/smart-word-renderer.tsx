@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react"
 import { FormData } from "@/lib/types"
 import { WordStyleRenderer } from "./word-style-renderer"
 import { WordStyleRendererWithPagination } from "./word-style-renderer-with-pagination"
+import { ExportButtons } from "./export-buttons"
 
 interface SmartWordRendererProps {
   content: string
@@ -260,22 +261,23 @@ export const SmartWordRenderer: React.FC<SmartWordRendererProps> = ({
 
   return (
     <div>
-      {/* 渲染器切换控制 */}
+      {/* 渲染器切换控制和导出功能 */}
       {content && (
         <div style={{
           marginBottom: '20px',
           padding: '12px',
           backgroundColor: '#f8f9fa',
           border: '1px solid #e5e7eb',
-          borderRadius: '8px',
-          textAlign: 'center'
+          borderRadius: '8px'
         }}>
+          {/* 显示模式控制 */}
           <div style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             gap: '16px',
-            flexWrap: 'wrap'
+            flexWrap: 'wrap',
+            marginBottom: '16px'
           }}>
             <span style={{
               fontSize: '11pt',
@@ -532,6 +534,31 @@ export const SmartWordRenderer: React.FC<SmartWordRendererProps> = ({
                 </span>
               </div>
             )}
+          </div>
+
+          {/* 导出功能区域 */}
+          <div style={{
+            borderTop: '1px solid #e5e7eb',
+            paddingTop: '16px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '12px'
+          }}>
+            <div style={{
+              fontSize: '11pt',
+              color: '#000000',
+              fontFamily: "'Source Han Sans SC', 'SimHei', sans-serif"
+            }}>
+              📥 导出文档：
+            </div>
+            <ExportButtons
+              content={content}
+              formData={formData}
+              bannerImage={bannerImage}
+              className="flex-shrink-0"
+            />
           </div>
         </div>
       )}

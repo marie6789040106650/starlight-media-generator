@@ -2281,3 +2281,337 @@ Import trace for requested module:
 }
 [2025-07-28T01:35:14.158Z] [2ki77e2p2] 请求处理开始完成 { duration: '0ms', status: 200 }
  GET / 200 in 684ms
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+[2025-07-28T01:39:59.319Z] [v3vy104dx] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T01:39:59.322Z] [v3vy104dx] 请求处理开始完成 { duration: '3ms', status: 200 }
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ GET / 404 in 11445ms
+[2025-07-28T01:40:10.810Z] [er8ngk6bi] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T01:40:10.816Z] [er8ngk6bi] 请求处理开始完成 { duration: '6ms', status: 200 }
+ GET / 200 in 2070ms
+ GET /_next/static/css/app/layout.css?v=1753666810989 404 in 623ms
+ GET /_next/static/css/app/page.css?v=1753666810989 404 in 577ms
+ GET /_next/static/chunks/main-app.js?v=1753666810989 404 in 725ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 725ms
+ GET /_next/static/chunks/app/page.js 404 in 689ms
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
