@@ -2,15 +2,18 @@
 export interface FormData {
   storeName: string
   storeCategory: string
-  storeLocation: string
-  businessDuration: string
-  storeFeatures: string
-  ownerName: string
-  ownerFeatures: string
-  // 添加缺失的属性用于关键词扩展
+  storeLocation?: string
+  businessDuration?: string
+  storeFeatures?: string
+  ownerName?: string
+  ownerFeatures?: string
+  // 添加缺失的属性用于关键词扩展和导出
   storeType?: string
-  targetAudience?: string
-  businessGoals?: string
+  targetAudience: string
+  businessGoals: string
+  contentStyle: string
+  keywords: string
+  additionalRequirements: string
 }
 
 export interface ExpandedKeywords {

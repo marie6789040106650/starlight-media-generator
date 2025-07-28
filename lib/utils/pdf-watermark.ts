@@ -57,12 +57,12 @@ export interface WatermarkResult {
 export class PDFWatermarkProcessor {
   private defaultOptions: Required<WatermarkOptions> = {
     text: '机密文档',
-    opacity: 0.3,
+    opacity: 0.1, // 透明度 10%
     color: { r: 0.5, g: 0.5, b: 0.5 },
-    fontSize: 48,
-    rotation: 45,
+    fontSize: 42, // 字体大小 42px
+    rotation: 45, // 旋转角度 45°
     position: { x: 'center', y: 'center' },
-    repeat: 'diagonal',
+    repeat: 'grid', // 重复模式 网格
     spacing: { x: 200, y: 150 },
     firstPageOnly: false
   };

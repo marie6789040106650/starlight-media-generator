@@ -12,10 +12,13 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu"
-import { Download, FileText, File, ChevronDown, Shield } from "lucide-react"
+import { Download, FileText, File, ChevronDown, Shield, Layout } from "lucide-react"
 import { isExportAllowed } from "@/config/copy-settings"
 import { WatermarkSettingsButton } from "./watermark-settings-button"
+import { exportToPDF, exportToWord, checkExportSupport } from "@/lib/export-utils"
+import { FormData } from "@/lib/types"
 
 interface EnhancedExportWithWatermarkProps {
   content: string
@@ -33,7 +36,10 @@ export function EnhancedExportWithWatermark({
   className 
 }: EnhancedExportWithWatermarkProps) {
   const [isExporting, setIsExporting] = useState(false)
-  const [exportType, setExportType] = useState<'word' | 'pdf' | null>(null)
+  const [exportType, setExportType] = useState<'word' | 'pdf' | 'page-pdf' | 'page-word' | null>(null)
+
+  // 检查是否在分页模式
+  const isInPageMode = typeof document !== 'undefined' && document.querySelectorAll('.page').length > 0
 
   // 获取水印配置
   const getWatermarkConfig = () => {
@@ -237,6 +243,106 @@ export function EnhancedExportWithWatermark({
     }
   }
 
+  // 分页模式PDF导出
+  const handlePagePDFExport = async () => {
+    if (!isExportAllowed()) {
+      alert('导出功能已被禁用');
+      return;
+    }
+
+    if (!storeName) return;
+
+    // 检查分页模式
+    if (!isInPageMode) {
+      alert('请先切换到分页模式');
+      return;
+    }
+
+    const support = checkExportSupport()
+    if (!support.pdf) {
+      alert('当前浏览器不支持PDF导出功能');
+      return;
+    }
+
+    setIsExporting(true)
+    setExportType('page-pdf')
+
+    try {
+      const formData: FormData = {
+        storeName: storeName,
+        storeCategory: '',
+        targetAudience: '',
+        businessGoals: '',
+        contentStyle: '',
+        keywords: '',
+        additionalRequirements: ''
+      }
+
+      await exportToPDF({
+        content: '', // PDF导出基于.page元素，不依赖content
+        formData,
+        bannerImage,
+        includeWatermark: true,
+        format: 'pdf'
+      })
+
+      console.log('分页PDF导出成功')
+    } catch (error) {
+      console.error('分页PDF导出失败:', error)
+      alert(`导出PDF失败: ${error instanceof Error ? error.message : '未知错误'}`)
+    } finally {
+      setIsExporting(false)
+      setExportType(null)
+    }
+  }
+
+  // 分页模式Word导出
+  const handlePageWordExport = async () => {
+    if (!isExportAllowed()) {
+      alert('导出功能已被禁用');
+      return;
+    }
+
+    if (!storeName || !content) return;
+
+    const support = checkExportSupport()
+    if (!support.word) {
+      alert('当前浏览器不支持Word导出功能');
+      return;
+    }
+
+    setIsExporting(true)
+    setExportType('page-word')
+
+    try {
+      const formData: FormData = {
+        storeName: storeName,
+        storeCategory: '',
+        targetAudience: '',
+        businessGoals: '',
+        contentStyle: '',
+        keywords: '',
+        additionalRequirements: ''
+      }
+
+      await exportToWord({
+        content,
+        formData,
+        bannerImage,
+        includeWatermark: true,
+        format: 'word'
+      })
+
+      console.log('分页Word导出成功')
+    } catch (error) {
+      console.error('分页Word导出失败:', error)
+      alert(`导出Word失败: ${error instanceof Error ? error.message : '未知错误'}`)
+    } finally {
+      setIsExporting(false)
+      setExportType(null)
+    }
+  }
+
   // 检查水印状态
   const watermarkConfig = getWatermarkConfig()
   const isWatermarkEnabled = watermarkConfig?.enabled || false
@@ -269,7 +375,10 @@ export function EnhancedExportWithWatermark({
             {isExporting ? (
               <>
                 <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2" />
-                {exportType === 'word' ? '导出Word中...' : '导出PDF中...'}
+                {exportType === 'word' ? '导出Word中...' : 
+                 exportType === 'pdf' ? '导出PDF中...' :
+                 exportType === 'page-word' ? '导出Word中...' :
+                 exportType === 'page-pdf' ? '导出PDF中...' : '导出中...'}
               </>
             ) : (
               <>
@@ -280,7 +389,29 @@ export function EnhancedExportWithWatermark({
             )}
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-56">
+        <DropdownMenuContent align="end" className="w-64">
+          {/* 分页模式导出选项 */}
+          {isInPageMode && (
+            <>
+              <DropdownMenuItem onClick={handlePagePDFExport} disabled={isExporting}>
+                <File className="h-4 w-4 mr-2 text-red-600" />
+                <div className="flex flex-col">
+                  <span>导出PDF (分页模式)</span>
+                  <span className="text-xs text-gray-500">基于分页视觉效果</span>
+                </div>
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={handlePageWordExport} disabled={isExporting || !content}>
+                <FileText className="h-4 w-4 mr-2 text-blue-600" />
+                <div className="flex flex-col">
+                  <span>导出Word (可编辑)</span>
+                  <span className="text-xs text-gray-500">基于文本内容</span>
+                </div>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+            </>
+          )}
+          
+          {/* 原有的导出选项 */}
           <DropdownMenuItem onClick={handleWordExport} disabled={isExporting}>
             <FileText className="h-4 w-4 mr-2" />
             <div className="flex flex-col">

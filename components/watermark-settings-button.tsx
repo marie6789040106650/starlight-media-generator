@@ -26,7 +26,7 @@ export function WatermarkSettingsButton({
     enabled: false, // 默认不启用水印
     type: 'company',
     text: `© ${storeName}`,
-    opacity: 15, // 透明度 15%
+    opacity: 10, // 透明度 10%
     fontSize: 42, // 字体大小 42px
     rotation: 45, // 旋转角度 45°
     position: 'center',

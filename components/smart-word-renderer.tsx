@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react"
 import { FormData } from "@/lib/types"
 import { WordStyleRenderer } from "./word-style-renderer"
 import { WordStyleRendererWithPagination } from "./word-style-renderer-with-pagination"
-import { ExportButtons } from "./export-buttons"
+import { ExportActions } from "./export-actions"
 
 interface SmartWordRendererProps {
   content: string
@@ -258,6 +258,27 @@ export const SmartWordRenderer: React.FC<SmartWordRendererProps> = ({
     setUseAdvancedRenderer(true)
     setContentUpdated(false) // 重新生成分页后清除更新提示
   }
+
+  // 监听智能模式切换事件
+  useEffect(() => {
+    const handleSmartModeSwitch = (event: CustomEvent) => {
+      const { toPagination, forExport } = event.detail
+      
+      if (forExport) {
+        if (toPagination && paginationReady) {
+          setUseAdvancedRenderer(true)
+        } else if (!toPagination) {
+          setUseAdvancedRenderer(false)
+        }
+      }
+    }
+
+    window.addEventListener('smart-mode-switch', handleSmartModeSwitch as EventListener)
+    
+    return () => {
+      window.removeEventListener('smart-mode-switch', handleSmartModeSwitch as EventListener)
+    }
+  }, [paginationReady])
 
   return (
     <div>
@@ -549,16 +570,30 @@ export const SmartWordRenderer: React.FC<SmartWordRendererProps> = ({
             <div style={{
               fontSize: '11pt',
               color: '#000000',
-              fontFamily: "'Source Han Sans SC', 'SimHei', sans-serif"
+              fontFamily: "'Source Han Sans SC', 'SimHei', sans-serif",
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px'
             }}>
-              📥 导出文档：
+              📄 导出文档：
+              <span style={{
+                fontSize: '9pt',
+                color: '#666666',
+                fontStyle: 'italic'
+              }}>
+                {useAdvancedRenderer ? '(基于分页内容)' : '(智能切换模式)'}
+              </span>
             </div>
-            <ExportButtons
-              content={content}
-              formData={formData}
-              bannerImage={bannerImage}
-              className="flex-shrink-0"
-            />
+            
+            {/* 导出按钮 */}
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <ExportActions
+                content={content}
+                storeName={formData.storeName || '内容'}
+                bannerImage={bannerImage}
+                disabled={!content}
+              />
+            </div>
           </div>
         </div>
       )}

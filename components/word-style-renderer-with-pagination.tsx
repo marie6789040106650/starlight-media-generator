@@ -911,7 +911,7 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
   )
 
   return (
-    <div style={{ maxWidth: '100%', margin: '0 auto' }}>
+    <div style={{ maxWidth: '100%', margin: '0 auto' }} data-pagination-active="true">
       {/* 隐藏的测量容器 */}
       <div ref={contentRef} style={{ display: 'none' }} />
 

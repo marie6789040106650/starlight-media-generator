@@ -41,11 +41,11 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
   const [config, setConfig] = useState<WatermarkConfig>({
     enabled: true,
     text: `© ${storeName}`,
-    opacity: 30,
-    fontSize: 48,
+    opacity: 10,
+    fontSize: 42,
     rotation: 45,
     position: 'center',
-    repeat: 'diagonal',
+    repeat: 'grid',
     color: 'gray',
     ...defaultConfig
   });
@@ -57,8 +57,8 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
     enabled: true,
     text: '星光同城传媒',
     opacity: 10,
-    fontSize: 64,
-    rotation: 30,
+    fontSize: 42,
+    rotation: 45,
     position: 'center',
     repeat: 'grid',
     color: 'gray'
@@ -81,7 +81,7 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
   const renderWatermarkPreview = () => {
     const colorMap = {
       gray: '#6b7280',
-      red: '#ef4444', 
+      red: '#ef4444',
       blue: '#3b82f6',
       black: '#000000'
     };
@@ -97,7 +97,7 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
     const getPosition = (index = 0) => {
       const containerWidth = 300; // 预览容器宽度
       const containerHeight = 200; // 预览容器高度
-      
+
       switch (config.position) {
         case 'top-left':
           return { top: '10px', left: '10px' };
@@ -109,10 +109,10 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
           return { bottom: '10px', right: '10px' };
         case 'center':
         default:
-          return { 
-            top: '50%', 
-            left: '50%', 
-            transform: `translate(-50%, -50%) rotate(${config.rotation}deg)` 
+          return {
+            top: '50%',
+            left: '50%',
+            transform: `translate(-50%, -50%) rotate(${config.rotation}deg)`
           };
       }
     };
@@ -133,7 +133,7 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
     const renderDiagonalWatermarks = () => {
       const watermarks = [];
       const spacing = 70; // 优化间距
-      
+
       for (let i = -1; i <= 2; i++) {
         for (let j = -1; j <= 2; j++) {
           watermarks.push(
@@ -160,7 +160,7 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
       const watermarks = [];
       const spacingX = 80; // 水平间距
       const spacingY = 50; // 垂直间距
-      
+
       for (let i = 0; i < 4; i++) {
         for (let j = 0; j < 4; j++) {
           watermarks.push(
@@ -212,8 +212,8 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button 
-          variant="outline" 
+        <Button
+          variant="outline"
           size="sm"
           className="flex items-center space-x-2 border-blue-200 text-blue-700 hover:bg-blue-50 transition-colors"
         >
@@ -228,141 +228,141 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
             水印配置与预览
           </DialogTitle>
         </DialogHeader>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* 左侧：配置选项 */}
           <div className="space-y-4">
-          {/* 顶部操作按钮 */}
-          <div className="flex items-center justify-between pb-2 border-b border-gray-200">
-            <div className="flex items-center space-x-2">
-              <Label htmlFor="watermark-enabled">启用水印</Label>
-              <Switch
-                id="watermark-enabled"
-                checked={config.enabled}
-                onCheckedChange={(checked) => handleConfigChange('enabled', checked)}
-              />
+            {/* 顶部操作按钮 */}
+            <div className="flex items-center justify-between pb-2 border-b border-gray-200">
+              <div className="flex items-center space-x-2">
+                <Label htmlFor="watermark-enabled">启用水印</Label>
+                <Switch
+                  id="watermark-enabled"
+                  checked={config.enabled}
+                  onCheckedChange={(checked) => handleConfigChange('enabled', checked)}
+                />
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={resetToDefault}
+                className="flex items-center space-x-1 text-gray-600 hover:text-gray-800 border-gray-300 hover:border-gray-400"
+              >
+                <RotateCcw className="h-3 w-3" />
+                <span className="text-xs">默认配置</span>
+              </Button>
             </div>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={resetToDefault}
-              className="flex items-center space-x-1 text-gray-600 hover:text-gray-800 border-gray-300 hover:border-gray-400"
-            >
-              <RotateCcw className="h-3 w-3" />
-              <span className="text-xs">默认配置</span>
-            </Button>
-          </div>
 
-          {config.enabled && (
-            <>
-              {/* 水印文本 */}
-              <div className="space-y-2">
-                <Label htmlFor="watermark-text">水印文本</Label>
-                <Input
-                  id="watermark-text"
-                  value={config.text}
-                  onChange={(e) => handleConfigChange('text', e.target.value)}
-                  placeholder="输入水印文本"
-                />
-              </div>
+            {config.enabled && (
+              <>
+                {/* 水印文本 */}
+                <div className="space-y-2">
+                  <Label htmlFor="watermark-text">水印文本</Label>
+                  <Input
+                    id="watermark-text"
+                    value={config.text}
+                    onChange={(e) => handleConfigChange('text', e.target.value)}
+                    placeholder="输入水印文本"
+                  />
+                </div>
 
-              {/* 透明度 */}
-              <div className="space-y-2">
-                <Label>透明度: {config.opacity}%</Label>
-                <Slider
-                  value={[config.opacity]}
-                  onValueChange={([value]) => handleConfigChange('opacity', value)}
-                  max={100}
-                  min={10}
-                  step={5}
-                  className="w-full"
-                />
-              </div>
+                {/* 透明度 */}
+                <div className="space-y-2">
+                  <Label>透明度: {config.opacity}%</Label>
+                  <Slider
+                    value={[config.opacity]}
+                    onValueChange={([value]) => handleConfigChange('opacity', value)}
+                    max={100}
+                    min={10}
+                    step={5}
+                    className="w-full"
+                  />
+                </div>
 
-              {/* 字体大小 */}
-              <div className="space-y-2">
-                <Label>字体大小: {config.fontSize}px</Label>
-                <Slider
-                  value={[config.fontSize]}
-                  onValueChange={([value]) => handleConfigChange('fontSize', value)}
-                  max={100}
-                  min={20}
-                  step={4}
-                  className="w-full"
-                />
-              </div>
+                {/* 字体大小 */}
+                <div className="space-y-2">
+                  <Label>字体大小: {config.fontSize}px</Label>
+                  <Slider
+                    value={[config.fontSize]}
+                    onValueChange={([value]) => handleConfigChange('fontSize', value)}
+                    max={100}
+                    min={20}
+                    step={4}
+                    className="w-full"
+                  />
+                </div>
 
-              {/* 旋转角度 */}
-              <div className="space-y-2">
-                <Label>旋转角度: {config.rotation}°</Label>
-                <Slider
-                  value={[config.rotation]}
-                  onValueChange={([value]) => handleConfigChange('rotation', value)}
-                  max={90}
-                  min={-90}
-                  step={15}
-                  className="w-full"
-                />
-              </div>
+                {/* 旋转角度 */}
+                <div className="space-y-2">
+                  <Label>旋转角度: {config.rotation}°</Label>
+                  <Slider
+                    value={[config.rotation]}
+                    onValueChange={([value]) => handleConfigChange('rotation', value)}
+                    max={90}
+                    min={-90}
+                    step={15}
+                    className="w-full"
+                  />
+                </div>
 
-              {/* 位置 */}
-              <div className="space-y-2">
-                <Label>位置</Label>
-                <Select
-                  value={config.position}
-                  onValueChange={(value) => handleConfigChange('position', value)}
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="center">居中</SelectItem>
-                    <SelectItem value="top-left">左上角</SelectItem>
-                    <SelectItem value="top-right">右上角</SelectItem>
-                    <SelectItem value="bottom-left">左下角</SelectItem>
-                    <SelectItem value="bottom-right">右下角</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+                {/* 位置 */}
+                <div className="space-y-2">
+                  <Label>位置</Label>
+                  <Select
+                    value={config.position}
+                    onValueChange={(value) => handleConfigChange('position', value)}
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="center">居中</SelectItem>
+                      <SelectItem value="top-left">左上角</SelectItem>
+                      <SelectItem value="top-right">右上角</SelectItem>
+                      <SelectItem value="bottom-left">左下角</SelectItem>
+                      <SelectItem value="bottom-right">右下角</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
 
-              {/* 重复模式 */}
-              <div className="space-y-2">
-                <Label>重复模式</Label>
-                <Select
-                  value={config.repeat}
-                  onValueChange={(value) => handleConfigChange('repeat', value)}
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="none">单个</SelectItem>
-                    <SelectItem value="diagonal">对角线</SelectItem>
-                    <SelectItem value="grid">网格</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+                {/* 重复模式 */}
+                <div className="space-y-2">
+                  <Label>重复模式</Label>
+                  <Select
+                    value={config.repeat}
+                    onValueChange={(value) => handleConfigChange('repeat', value)}
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="none">单个</SelectItem>
+                      <SelectItem value="diagonal">对角线</SelectItem>
+                      <SelectItem value="grid">网格</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
 
-              {/* 颜色 */}
-              <div className="space-y-2">
-                <Label>颜色</Label>
-                <Select
-                  value={config.color}
-                  onValueChange={(value) => handleConfigChange('color', value)}
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="gray">灰色</SelectItem>
-                    <SelectItem value="red">红色</SelectItem>
-                    <SelectItem value="blue">蓝色</SelectItem>
-                    <SelectItem value="black">黑色</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </>
-          )}
+                {/* 颜色 */}
+                <div className="space-y-2">
+                  <Label>颜色</Label>
+                  <Select
+                    value={config.color}
+                    onValueChange={(value) => handleConfigChange('color', value)}
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="gray">灰色</SelectItem>
+                      <SelectItem value="red">红色</SelectItem>
+                      <SelectItem value="blue">蓝色</SelectItem>
+                      <SelectItem value="black">黑色</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </>
+            )}
           </div>
 
           {/* 右侧：预览区域 */}
@@ -370,60 +370,60 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
             <div className="sticky top-0">
               {/* 水印预览 */}
               <div className="space-y-3">
-            <div className="flex items-center">
-              <Eye className="h-4 w-4 mr-2 text-blue-600" />
-              <Label className="text-sm font-medium">水印预览效果</Label>
-            </div>
-            
-            <div className="watermark-preview-container">
-              {/* 模拟文档内容 */}
-              <div className="watermark-preview-content">
-                <h3>《星光同城传媒营销方案》</h3>
-                <p className="text-gray-700">
-                  本方案针对目标客户群体制定了完整的营销策略，
-                  包含品牌定位、内容策略、渠道布局等核心要素。
-                </p>
-                <p className="text-gray-600">
-                  水印将根据您的设置叠加在文档内容之上，
-                  为您的知识产权提供有效保护。
-                </p>
-              </div>
-
-              {/* 水印效果 */}
-              {config.enabled && renderWatermarkPreview()}
-            </div>
-            
-            <div className="watermark-preview-note">
-              * 预览效果仅供参考，实际导出效果可能因文档内容而略有差异
-            </div>
-            
-            {/* 配置摘要 */}
-            {config.enabled && (
-              <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                <h4 className="text-sm font-medium text-blue-800 mb-2">当前配置</h4>
-                <div className="text-xs text-blue-700 space-y-1">
-                  <div>文本: {config.text}</div>
-                  <div>透明度: {config.opacity}%</div>
-                  <div>大小: {config.fontSize}px</div>
-                  <div>角度: {config.rotation}°</div>
-                  <div>位置: {
-                    config.position === 'center' ? '居中' :
-                    config.position === 'top-left' ? '左上角' :
-                    config.position === 'top-right' ? '右上角' :
-                    config.position === 'bottom-left' ? '左下角' : '右下角'
-                  }</div>
-                  <div>模式: {
-                    config.repeat === 'none' ? '单个' :
-                    config.repeat === 'diagonal' ? '对角线' : '网格'
-                  }</div>
-                  <div>颜色: {
-                    config.color === 'gray' ? '灰色' :
-                    config.color === 'red' ? '红色' :
-                    config.color === 'blue' ? '蓝色' : '黑色'
-                  }</div>
+                <div className="flex items-center">
+                  <Eye className="h-4 w-4 mr-2 text-blue-600" />
+                  <Label className="text-sm font-medium">水印预览效果</Label>
                 </div>
-              </div>
-            )}
+
+                <div className="watermark-preview-container">
+                  {/* 模拟文档内容 */}
+                  <div className="watermark-preview-content">
+                    <h3>《星光同城传媒营销方案》</h3>
+                    <p className="text-gray-700">
+                      本方案针对目标客户群体制定了完整的营销策略，
+                      包含品牌定位、内容策略、渠道布局等核心要素。
+                    </p>
+                    <p className="text-gray-600">
+                      水印将根据您的设置叠加在文档内容之上，
+                      为您的知识产权提供有效保护。
+                    </p>
+                  </div>
+
+                  {/* 水印效果 */}
+                  {config.enabled && renderWatermarkPreview()}
+                </div>
+
+                <div className="watermark-preview-note">
+                  * 预览效果仅供参考，实际导出效果可能因文档内容而略有差异
+                </div>
+
+                {/* 配置摘要 */}
+                {config.enabled && (
+                  <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                    <h4 className="text-sm font-medium text-blue-800 mb-2">当前配置</h4>
+                    <div className="text-xs text-blue-700 space-y-1">
+                      <div>文本: {config.text}</div>
+                      <div>透明度: {config.opacity}%</div>
+                      <div>大小: {config.fontSize}px</div>
+                      <div>角度: {config.rotation}°</div>
+                      <div>位置: {
+                        config.position === 'center' ? '居中' :
+                          config.position === 'top-left' ? '左上角' :
+                            config.position === 'top-right' ? '右上角' :
+                              config.position === 'bottom-left' ? '左下角' : '右下角'
+                      }</div>
+                      <div>模式: {
+                        config.repeat === 'none' ? '单个' :
+                          config.repeat === 'diagonal' ? '对角线' : '网格'
+                      }</div>
+                      <div>颜色: {
+                        config.color === 'gray' ? '灰色' :
+                          config.color === 'red' ? '红色' :
+                            config.color === 'blue' ? '蓝色' : '黑色'
+                      }</div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
