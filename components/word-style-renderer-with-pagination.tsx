@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState, useEffect, useRef } from "react"
 import { FormData } from "@/lib/types"
+import { generateHeadingId } from "@/lib/utils"
 
 // 水印配置接口
 interface WatermarkConfig {
@@ -553,8 +554,9 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
     // 处理特殊符号和转义字符
     html = html.replace(/\\([\\`*_{}[\]()#+\-.!])/g, '$1') // 处理转义字符
 
-    // 处理标题 - 中文商业文档标准
+    // 处理标题 - 中文商业文档标准，并添加ID用于目录跳转
     let isFirstH1 = true // 标记是否为第一个一级标题（文档主标题）
+    let headingIndex = 0
     html = html.replace(/^(#{1,6})\s+(.+)$/gm, (match, hashes, title) => {
       const level = hashes.length
       let fontSize, fontFamily, marginTop, marginBottom, fontWeight, textAlign
@@ -607,7 +609,12 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
           textAlign = 'center'
       }
 
-      return `<h${level} style="font-size: ${fontSize}; font-family: ${fontFamily}; font-weight: ${fontWeight}; color: #000000; margin-top: ${marginTop}; margin-bottom: ${marginBottom}; line-height: 1.5; text-align: ${textAlign};">${title.trim()}</h${level}>`
+      // 生成与useToc hook一致的ID
+      const cleanTitle = title.replace(/^\*+|\*+$/g, '').trim();
+      const headingId = generateHeadingId(headingIndex, cleanTitle);
+      headingIndex++;
+
+      return `<h${level} id="${headingId}" style="font-size: ${fontSize}; font-family: ${fontFamily}; font-weight: ${fontWeight}; color: #000000; margin-top: ${marginTop}; margin-bottom: ${marginBottom}; line-height: 1.5; text-align: ${textAlign};">${title.trim()}</h${level}>`
     })
 
     // 处理列表项

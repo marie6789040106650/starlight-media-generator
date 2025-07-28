@@ -109,6 +109,16 @@ export default function MultiWritePage() {
     setWatermarkConfig(config)
   }
 
+  // 生成标题ID（与markdown渲染器保持一致）
+  const generateId = (text: string): string => {
+    return text
+      .toLowerCase()
+      .replace(/[^\w\u4e00-\u9fff\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+  }
+
   // 生成目录
   const generateToc = () => {
     const lines = content.split('\n')
@@ -118,8 +128,8 @@ export default function MultiWritePage() {
       const match = line.match(/^(#{1,6})\s+(.+)/)
       if (match) {
         const level = match[1].length
-        const text = match[2].replace(/[《》]/g, '')
-        const id = `heading-${index}`
+        const text = match[2].replace(/[《》]/g, '').trim()
+        const id = generateId(text)
         tocItems.push({ level, text, id })
       }
     })
@@ -129,29 +139,8 @@ export default function MultiWritePage() {
 
   const tocItems = generateToc()
 
-  // 渲染markdown内容，并为标题添加ID
-  const renderedContent = (() => {
-    let html = renderMarkdown(content, MarkdownPresets.full)
-    
-    // 为标题添加ID，以便目录跳转
-    const lines = content.split('\n')
-    lines.forEach((line, index) => {
-      const match = line.match(/^(#{1,6})\s+(.+)/)
-      if (match) {
-        const headingText = match[2].replace(/[《》]/g, '')
-        const headingId = `heading-${index}`
-        
-        // 在HTML中查找对应的标题标签并添加ID
-        const headingLevel = match[1].length
-        const headingTag = `h${headingLevel}`
-        const headingRegex = new RegExp(`<${headingTag}[^>]*>(.*?${headingText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}.*?)</${headingTag}>`, 'i')
-        
-        html = html.replace(headingRegex, `<${headingTag} id="${headingId}">$1</${headingTag}>`)
-      }
-    })
-    
-    return html
-  })()
+  // 渲染markdown内容（markdown渲染器会自动为标题添加ID）
+  const renderedContent = renderMarkdown(content, MarkdownPresets.full)
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -363,6 +352,8 @@ export default function MultiWritePage() {
                         className="flex items-center py-2 px-2 hover:bg-blue-50 hover:text-blue-600 rounded cursor-pointer text-sm transition-colors group"
                         style={{ paddingLeft: `${(item.level - 1) * 16 + 8}px` }}
                         onClick={() => {
+                          console.log(`尝试跳转到: ${item.text}, ID: ${item.id}`)
+                          
                           // 跳转到对应的标题
                           const targetElement = document.getElementById(item.id)
                           if (targetElement) {
@@ -374,6 +365,13 @@ export default function MultiWritePage() {
                             setShowToc(false)
                           } else {
                             console.warn(`未找到ID为 ${item.id} 的元素`)
+                            // 调试：列出所有标题元素
+                            const allHeadings = document.querySelectorAll('h1, h2, h3, h4, h5, h6')
+                            console.log('页面中所有标题元素:', Array.from(allHeadings).map(el => ({ 
+                              id: el.id, 
+                              tag: el.tagName, 
+                              text: el.textContent?.slice(0, 50) 
+                            })))
                           }
                         }}
                         title={`点击跳转到: ${item.text}`}

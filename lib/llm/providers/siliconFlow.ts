@@ -41,6 +41,16 @@ export async function chatSiliconFlow(options: SiliconFlowChatOptions): Promise<
 
     if (!response.ok) {
       const errorText = await response.text()
+      
+      // 检查是否是余额不足或模型不可用错误
+      if (response.status === 403 && errorText.includes('paid balance')) {
+        throw new Error(`模型 ${modelConfig.name} 需要付费余额，请使用其他免费模型`)
+      }
+      
+      if (response.status === 400 && errorText.includes('max_tokens')) {
+        throw new Error(`模型 ${modelConfig.name} 的max_tokens参数超出限制，请减少输出长度`)
+      }
+      
       throw new Error(`SiliconFlow API 错误: ${response.status} ${response.statusText} - ${errorText}`)
     }
 

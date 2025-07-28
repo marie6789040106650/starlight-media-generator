@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState, useEffect } from "react"
 import { FormData } from "@/lib/types"
+import { generateHeadingId } from "@/lib/utils"
 
 interface WordStyleRendererProps {
   content: string
@@ -45,7 +46,8 @@ export const WordStyleRenderer: React.FC<WordStyleRendererProps> = ({
 
     let html = content;
 
-    // 处理标题 - 完全按照Word样式
+    // 处理标题 - 完全按照Word样式，并添加ID用于目录跳转
+    let headingIndex = 0;
     html = html.replace(/^(#{1,6})\s+(.+)$/gm, (match, hashes, title) => {
       const level = hashes.length;
       let fontSize, fontFamily, marginTop, marginBottom, fontWeight;
@@ -83,7 +85,13 @@ export const WordStyleRenderer: React.FC<WordStyleRendererProps> = ({
           fontWeight = 'bold';
       }
 
-      return `<h${level} style="font-size: ${fontSize}; font-family: ${fontFamily}; font-weight: ${fontWeight}; color: #000000; margin-top: ${marginTop}; margin-bottom: ${marginBottom}; line-height: 1.5; text-align: left;">${title.trim()}</h${level}>`;
+      // 生成与useToc hook一致的ID
+      const cleanTitle = title.replace(/^\*+|\*+$/g, '').trim();
+      const headingId = generateHeadingId(headingIndex, cleanTitle);
+      console.log(`渲染标题: 索引=${headingIndex}, 标题="${cleanTitle}", ID="${headingId}"`)
+      headingIndex++;
+
+      return `<h${level} id="${headingId}" style="font-size: ${fontSize}; font-family: ${fontFamily}; font-weight: ${fontWeight}; color: #000000; margin-top: ${marginTop}; margin-bottom: ${marginBottom}; line-height: 1.5; text-align: left;">${title.trim()}</h${level}>`;
     });
 
     // 处理粗体 - 正文加粗关键字：同正文，11pt，加粗

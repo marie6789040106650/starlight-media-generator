@@ -10,115 +10,127 @@
      ⨯ webpackBuildWorker
 
  ✓ Starting...
- ✓ Ready in 5.5s
- ✓ Compiled /middleware in 361ms (108 modules)
-[2025-07-28T12:48:50.541Z] [ym33uu57o] GET http://localhost:3000/ {
+ ✓ Ready in 14s
+ ✓ Compiled /middleware in 423ms (108 modules)
+[2025-07-28T15:39:49.600Z] [zvc7f291j] GET http://localhost:3000/ {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: null,
   clientIP: '::1'
 }
-[2025-07-28T12:48:50.549Z] [ym33uu57o] 请求处理开始完成 { duration: '8ms', status: 200 }
+[2025-07-28T15:39:49.602Z] [zvc7f291j] 请求处理开始完成 { duration: '2ms', status: 200 }
  ○ Compiling / ...
- GET / 200 in 7076ms
-[2025-07-28T12:48:59.041Z] [8dbj6km05] GET http://localhost:3000/api/keyword-stats {
+[2025-07-28T15:39:56.245Z] [r2jitwqme] GET http://localhost:3000/ {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
+  referer: null,
+  clientIP: '::ffff:192.168.1.200'
 }
-[2025-07-28T12:48:59.044Z] [8dbj6km05] 请求处理开始完成 { duration: '3ms', status: 200 }
- GET /api/keyword-stats 200 in 1192ms
-[2025-07-28T12:49:00.254Z] [mugkp8mlf] GET http://localhost:3000/api/keyword-stats {
+[2025-07-28T15:39:56.247Z] [r2jitwqme] 请求处理开始完成 { duration: '2ms', status: 200 }
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ GET / 200 in 3536ms
+ GET / 200 in 10338ms
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ Cross origin request detected from 192.168.1.200 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+[2025-07-28T15:40:01.995Z] [tvfd5ziar] GET http://localhost:3000/api/keyword-stats {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
 }
-[2025-07-28T12:49:00.255Z] [mugkp8mlf] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET /api/keyword-stats 200 in 10ms
-[2025-07-28T12:49:06.110Z] [4jsnyy1lf] POST http://localhost:3000/api/expand-keywords {
+[2025-07-28T15:40:01.997Z] [tvfd5ziar] 请求处理开始完成 { duration: '2ms', status: 200 }
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ GET /api/keyword-stats 200 in 2644ms
+[2025-07-28T15:40:04.672Z] [my2wg5xre] GET http://localhost:3000/api/keyword-stats {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
 }
-[2025-07-28T12:49:06.111Z] [4jsnyy1lf] 请求处理开始完成 { duration: '1ms', status: 200 }
-收到关键词拓展请求: {
-  storeFeatures: '',
-  ownerFeatures: undefined,
-  storeCategory: undefined
-}
-关键词拓展结果: {
-  expanded_store_features: [
-    '专业服务', '品质保证',
-    '价格合理', '服务周到',
-    '经验丰富', '诚信经营',
-    '客户至上', '创新思维',
-    '持续改进', '团队协作',
-    '专业素养', '用心服务',
-    '行业领先', '技术创新',
-    '质量第一', '信誉保障',
-    '口碑传承', '匠心精神',
-    '精益求精', '追求卓越'
-  ],
-  expanded_boss_features: [
-    '热情好客', '亲和力强',
-    '平易近人', '善于沟通',
-    '幽默风趣', '专业素养',
-    '技术精湛', '经验丰富',
-    '行业专家', '持续学习',
-    '诚信经营', '用心服务',
-    '客户至上', '品质坚持',
-    '创新思维'
-  ]
-}
- POST /api/expand-keywords 200 in 916ms
-[2025-07-28T12:49:09.467Z] [g33ooeuq9] POST http://localhost:3000/api/expand-keywords {
+[2025-07-28T15:40:04.672Z] [my2wg5xre] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /api/keyword-stats 200 in 20ms
+[2025-07-28T15:40:16.861Z] [47l92f5gw] POST http://localhost:3000/api/keyword-stats {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
 }
-[2025-07-28T12:49:09.468Z] [g33ooeuq9] 请求处理开始完成 { duration: '1ms', status: 200 }
-收到关键词拓展请求: {
-  storeFeatures: '',
-  ownerFeatures: undefined,
-  storeCategory: undefined
-}
-关键词拓展结果: {
-  expanded_store_features: [
-    '专业服务', '品质保证',
-    '价格合理', '服务周到',
-    '经验丰富', '诚信经营',
-    '客户至上', '创新思维',
-    '持续改进', '团队协作',
-    '专业素养', '用心服务',
-    '行业领先', '技术创新',
-    '质量第一', '信誉保障',
-    '口碑传承', '匠心精神',
-    '精益求精', '追求卓越'
-  ],
-  expanded_boss_features: [
-    '热情好客', '亲和力强',
-    '平易近人', '善于沟通',
-    '幽默风趣', '专业素养',
-    '技术精湛', '经验丰富',
-    '行业专家', '持续学习',
-    '诚信经营', '用心服务',
-    '客户至上', '品质坚持',
-    '创新思维'
-  ]
-}
- POST /api/expand-keywords 200 in 20ms
-[2025-07-28T12:49:16.255Z] [ifd6mhkoz] POST http://localhost:3000/api/keyword-stats {
+[2025-07-28T15:40:16.862Z] [47l92f5gw] 请求处理开始完成 { duration: '1ms', status: 200 }
+ POST /api/keyword-stats 200 in 31ms
+[2025-07-28T15:40:16.934Z] [3qbpvj1uw] POST http://localhost:3000/api/expand-keywords {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
 }
-[2025-07-28T12:49:16.255Z] [ifd6mhkoz] 请求处理开始完成 { duration: '0ms', status: 200 }
- POST /api/keyword-stats 200 in 20ms
-[2025-07-28T12:49:16.292Z] [da22xdxhy] POST http://localhost:3000/api/expand-keywords {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T12:49:16.292Z] [da22xdxhy] 请求处理开始完成 { duration: '0ms', status: 200 }
+[2025-07-28T15:40:16.934Z] [3qbpvj1uw] 请求处理开始完成 { duration: '0ms', status: 200 }
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
 收到关键词拓展请求: {
   storeFeatures: '秘制汤底、地域食材、现制模式、健康定制、主题沉浸、网红装修',
   ownerFeatures: '匠人、传承、学霸、宠粉',
@@ -145,316 +157,525 @@
     '行业专家', '持续学习'
   ]
 }
- POST /api/expand-keywords 200 in 248ms
-[2025-07-28T12:49:16.584Z] [7q70fgb48] POST http://localhost:3000/api/generate-plan {
+ POST /api/expand-keywords 200 in 995ms
+[2025-07-28T15:40:17.965Z] [4xnmpp77f] GET http://localhost:3000/ {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
 }
-[2025-07-28T12:49:16.584Z] [7q70fgb48] 请求处理开始完成 { duration: '0ms', status: 200 }
-[2025-07-28T12:49:16.705Z] [valwqkhn5] GET http://localhost:3000/ {
+[2025-07-28T15:40:17.966Z] [4xnmpp77f] 请求处理开始完成 { duration: '1ms', status: 200 }
+[2025-07-28T15:40:17.974Z] [mmpj04ajd] POST http://localhost:3000/api/generate-plan {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
 }
-[2025-07-28T12:49:16.706Z] [valwqkhn5] 请求处理开始完成 { duration: '1ms', status: 200 }
-[2025-07-28T12:49:17.220Z] [oktjt9g] 收到生成方案请求
-[2025-07-28T12:49:17.221Z] [oktjt9g] 请求参数: {
+[2025-07-28T15:40:17.975Z] [mmpj04ajd] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+[2025-07-28T15:40:18.916Z] [srx3qdc] 收到生成方案请求
+[2025-07-28T15:40:18.918Z] [srx3qdc] 请求参数: {
   promptLength: 543,
   modelId: 'deepseek-ai/DeepSeek-V3',
   taskType: 'long_generation',
   stream: true,
   storeInfo: '馋嘴老张麻辣烫',
-  clientIP: '::1'
+  clientIP: '::ffff:192.168.1.200'
 }
- GET / 200 in 638ms
-[2025-07-28T12:50:22.818Z] [oktjt9g] 生成完成 { duration: '65598ms', contentLength: 2386, totalChunks: 880 }
- POST /api/generate-plan 200 in 66162ms
-[2025-07-28T12:50:22.852Z] [3niqforuk] POST http://localhost:3000/api/images {
+ GET / 200 in 994ms
+[2025-07-28T15:40:29.358Z] [c9crb1a7y] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: null,
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T15:40:29.358Z] [c9crb1a7y] 请求处理开始完成 { duration: '0ms', status: 200 }
+ POST /api/generate-plan 200 in 11767ms
+ GET / 200 in 390ms
+[2025-07-28T15:40:32.402Z] [pb8pn3k6f] GET http://localhost:3000/api/keyword-stats {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T15:40:32.403Z] [pb8pn3k6f] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /api/keyword-stats 200 in 29ms
+[2025-07-28T15:40:32.450Z] [2e17jqw5a] GET http://localhost:3000/api/keyword-stats {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T15:40:32.450Z] [2e17jqw5a] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /api/keyword-stats 200 in 40ms
+[2025-07-28T15:41:15.594Z] [ff09140f1] POST http://localhost:3000/api/keyword-stats {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T15:41:15.595Z] [ff09140f1] 请求处理开始完成 { duration: '1ms', status: 200 }
+ POST /api/keyword-stats 200 in 61ms
+[2025-07-28T15:41:15.678Z] [9gm7jd6ay] POST http://localhost:3000/api/expand-keywords {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T15:41:15.678Z] [9gm7jd6ay] 请求处理开始完成 { duration: '0ms', status: 200 }
+收到关键词拓展请求: {
+  storeFeatures: '秘制汤底、地域食材、现制模式、健康定制、主题沉浸、网红装修',
+  ownerFeatures: '匠人、传承、学霸、宠粉',
+  storeCategory: undefined
+}
+关键词拓展结果: {
+  expanded_store_features: [
+    '专业服务', '品质保证',
+    '价格合理', '服务周到',
+    '经验丰富', '诚信经营',
+    '客户至上', '创新思维',
+    '持续改进', '团队协作',
+    '专业素养', '用心服务',
+    '行业领先', '技术创新',
+    '质量第一'
+  ],
+  expanded_boss_features: [
+    '匠人传承', '二代传承',
+    '学霸出身', '宠粉达人',
+    '热情好客', '亲和力强',
+    '平易近人', '善于沟通',
+    '幽默风趣', '专业素养',
+    '技术精湛', '经验丰富',
+    '行业专家', '持续学习'
+  ]
+}
+ POST /api/expand-keywords 200 in 316ms
+[2025-07-28T15:41:16.055Z] [myyahny8k] POST http://localhost:3000/api/generate-plan {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T15:41:16.055Z] [myyahny8k] 请求处理开始完成 { duration: '0ms', status: 200 }
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+[2025-07-28T15:41:16.215Z] [ds00l0n] 收到生成方案请求
+[2025-07-28T15:41:16.216Z] [ds00l0n] 请求参数: {
+  promptLength: 543,
+  modelId: 'deepseek-ai/DeepSeek-V3',
+  taskType: 'long_generation',
+  stream: true,
+  storeInfo: '馋嘴老张麻辣烫',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T15:41:16.240Z] [5jk725j8k] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T15:41:16.241Z] [5jk725j8k] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 38ms
+[2025-07-28T15:41:23.999Z] [srx3qdc] 生成完成 { duration: '65083ms', contentLength: 2130, totalChunks: 837 }
+[2025-07-28T15:41:24.000Z] [srx3qdc] 生成错误: {
+  error: 'Invalid state: Controller is already closed',
+  duration: '65084ms'
+}
+[2025-07-28T15:41:24.001Z] [srx3qdc] 处理异常: {
+  error: 'Invalid state: Controller is already closed',
+  duration: '65084ms'
+}
+[2025-07-28T15:41:24.001Z] [srx3qdc] 尝试降级到智能选择...
+[2025-07-28T15:42:26.066Z] [ds00l0n] 生成完成 { duration: '69851ms', contentLength: 2249, totalChunks: 870 }
+ POST /api/generate-plan 200 in 70011ms
+[2025-07-28T15:42:26.101Z] [uoxedlzco] POST http://localhost:3000/api/images {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T15:42:26.102Z] [uoxedlzco] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[2025-07-28T15:42:27.110Z] [h40ajfzch] GET http://localhost:3000/ {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-28T12:50:22.852Z] [3niqforuk] 请求处理开始完成 { duration: '0ms', status: 200 }
- POST /api/images 200 in 3120ms
-[2025-07-28T12:54:44.175Z] [dff6y7ug0] GET http://localhost:3000/ {
+[2025-07-28T15:42:27.110Z] [h40ajfzch] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 397ms
+[2025-07-28T15:42:29.842Z] [is3j3nute] GET http://localhost:3000/api/keyword-stats {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-28T12:54:44.176Z] [dff6y7ug0] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 221ms
-[2025-07-28T12:55:09.960Z] [yc5c93ipw] GET http://localhost:3000/ {
+[2025-07-28T15:42:29.842Z] [is3j3nute] 请求处理开始完成 { duration: '0ms', status: 200 }
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ GET /api/keyword-stats 200 in 270ms
+[2025-07-28T15:42:30.128Z] [h79330mn4] GET http://localhost:3000/api/keyword-stats {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-28T12:55:09.962Z] [yc5c93ipw] 请求处理开始完成 { duration: '2ms', status: 200 }
- GET / 200 in 71ms
-[2025-07-28T12:56:56.975Z] [xei46s94z] GET http://localhost:3000/ {
+[2025-07-28T15:42:30.128Z] [h79330mn4] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET /api/keyword-stats 200 in 18ms
+ POST /api/images 200 in 5077ms
+[2025-07-28T15:42:40.615Z] [3wnikp78s] POST http://localhost:3000/api/images {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T15:42:40.615Z] [3wnikp78s] 请求处理开始完成 { duration: '0ms', status: 200 }
+ POST /api/images 200 in 2808ms
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+[2025-07-28T15:46:18.281Z] [kj90dg03v] GET http://localhost:3000/ {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-28T12:56:56.977Z] [xei46s94z] 请求处理开始完成 { duration: '2ms', status: 200 }
- GET / 200 in 111ms
-[2025-07-28T12:57:25.020Z] [drhmrk8mn] GET http://localhost:3000/ {
+[2025-07-28T15:46:18.281Z] [kj90dg03v] 请求处理开始完成 { duration: '0ms', status: 200 }
+[2025-07-28T15:46:18.282Z] [g1ktuya9c] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T15:46:18.282Z] [g1ktuya9c] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 800ms
+ GET / 200 in 812ms
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+[2025-07-28T15:46:54.559Z] [wwggrghh2] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T15:46:54.560Z] [wwggrghh2] 请求处理开始完成 { duration: '1ms', status: 200 }
+[2025-07-28T15:46:54.561Z] [q4etgb4mz] GET http://localhost:3000/ {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-28T12:57:25.022Z] [drhmrk8mn] 请求处理开始完成 { duration: '2ms', status: 200 }
- GET / 200 in 114ms
-[2025-07-28T12:57:45.268Z] [5hlgd5pd7] GET http://localhost:3000/ {
+[2025-07-28T15:46:54.561Z] [q4etgb4mz] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 644ms
+ GET / 200 in 658ms
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+[2025-07-28T15:47:15.715Z] [gg5elagk7] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T15:47:15.715Z] [gg5elagk7] 请求处理开始完成 { duration: '0ms', status: 200 }
+[2025-07-28T15:47:15.716Z] [9jnc8ct1v] GET http://localhost:3000/ {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-28T12:57:45.269Z] [5hlgd5pd7] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 54ms
-[2025-07-28T12:59:29.107Z] [wnu438lud] GET http://localhost:3000/ {
+[2025-07-28T15:47:15.716Z] [9jnc8ct1v] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 257ms
+ GET / 200 in 263ms
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+[2025-07-28T15:47:51.759Z] [95hg3xm1p] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T15:47:51.759Z] [95hg3xm1p] 请求处理开始完成 { duration: '0ms', status: 200 }
+[2025-07-28T15:47:51.760Z] [ewn1wk5ri] GET http://localhost:3000/ {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-28T12:59:29.108Z] [wnu438lud] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 68ms
-[2025-07-28T13:00:58.538Z] [mh2dp4hbb] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:00:58.539Z] [mh2dp4hbb] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 147ms
-[2025-07-28T13:01:18.814Z] [1bv2nu2id] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:01:18.815Z] [1bv2nu2id] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 56ms
-[2025-07-28T13:03:39.791Z] [1llpbmmb5] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:03:39.791Z] [1llpbmmb5] 请求处理开始完成 { duration: '0ms', status: 200 }
- GET / 200 in 47ms
-[2025-07-28T13:04:42.620Z] [dqhuantyd] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:04:42.622Z] [dqhuantyd] 请求处理开始完成 { duration: '2ms', status: 200 }
- GET / 200 in 348ms
-[2025-07-28T13:04:42.988Z] [v6j1rxrvw] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:04:42.988Z] [v6j1rxrvw] 请求处理开始完成 { duration: '0ms', status: 200 }
- GET / 200 in 55ms
-[2025-07-28T13:04:59.659Z] [6q8l02xnd] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:04:59.661Z] [6q8l02xnd] 请求处理开始完成 { duration: '2ms', status: 200 }
- GET / 200 in 85ms
-[2025-07-28T13:05:23.966Z] [ab76xtmlb] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:05:23.967Z] [ab76xtmlb] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 464ms
-[2025-07-28T13:10:22.287Z] [rlc9x6qob] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:10:22.288Z] [rlc9x6qob] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 129ms
-[2025-07-28T13:11:31.353Z] [cs2oh014c] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:11:31.355Z] [cs2oh014c] 请求处理开始完成 { duration: '2ms', status: 200 }
- GET / 200 in 80ms
-[2025-07-28T13:12:24.898Z] [vn8pynlg7] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:12:24.899Z] [vn8pynlg7] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 98ms
-[2025-07-28T13:14:21.395Z] [53qbhmltc] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:14:21.396Z] [53qbhmltc] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 69ms
-[2025-07-28T13:37:58.854Z] [9hkke0k1o] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:37:58.855Z] [9hkke0k1o] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 195ms
-[2025-07-28T13:38:39.506Z] [ow7izc6qa] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:38:39.508Z] [ow7izc6qa] 请求处理开始完成 { duration: '2ms', status: 200 }
+[2025-07-28T15:47:51.760Z] [ewn1wk5ri] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 302ms
  GET / 200 in 311ms
-[2025-07-28T13:38:39.859Z] [z5phq7npc] GET http://localhost:3000/ {
+[2025-07-28T15:50:16.057Z] [2g8if8pis] POST http://localhost:3000/api/keyword-stats {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T15:50:16.058Z] [2g8if8pis] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ POST /api/keyword-stats 200 in 1228ms
+[2025-07-28T15:50:17.302Z] [5jwkofcvx] POST http://localhost:3000/api/expand-keywords {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T15:50:17.302Z] [5jwkofcvx] 请求处理开始完成 { duration: '0ms', status: 200 }
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+收到关键词拓展请求: {
+  storeFeatures: '秘制汤底、地域食材、现制模式、健康定制、主题沉浸、网红装修',
+  ownerFeatures: '匠人、传承、学霸、宠粉',
+  storeCategory: undefined
+}
+关键词拓展结果: {
+  expanded_store_features: [
+    '专业服务', '品质保证',
+    '价格合理', '服务周到',
+    '经验丰富', '诚信经营',
+    '客户至上', '创新思维',
+    '持续改进', '团队协作',
+    '专业素养', '用心服务',
+    '行业领先', '技术创新',
+    '质量第一'
+  ],
+  expanded_boss_features: [
+    '匠人传承', '二代传承',
+    '学霸出身', '宠粉达人',
+    '热情好客', '亲和力强',
+    '平易近人', '善于沟通',
+    '幽默风趣', '专业素养',
+    '技术精湛', '经验丰富',
+    '行业专家', '持续学习'
+  ]
+}
+ POST /api/expand-keywords 200 in 1459ms
+[2025-07-28T15:50:18.788Z] [2m3ldkhz5] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T15:50:18.788Z] [2m3ldkhz5] 请求处理开始完成 { duration: '0ms', status: 200 }
+[2025-07-28T15:50:18.789Z] [vbkezazuz] GET http://localhost:3000/ {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
   referer: 'http://localhost:3000/',
   clientIP: '::1'
 }
-[2025-07-28T13:38:39.859Z] [z5phq7npc] 请求处理开始完成 { duration: '0ms', status: 200 }
- GET / 200 in 52ms
-[2025-07-28T13:41:51.655Z] [n8jbdih0g] GET http://localhost:3000/ {
+[2025-07-28T15:50:18.789Z] [vbkezazuz] 请求处理开始完成 { duration: '0ms', status: 200 }
+[2025-07-28T15:50:18.807Z] [ss00juy4d] POST http://localhost:3000/api/generate-plan {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
 }
-[2025-07-28T13:41:51.656Z] [n8jbdih0g] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 408ms
-[2025-07-28T13:41:52.094Z] [5juqfbv1h] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
+[2025-07-28T15:50:18.808Z] [ss00juy4d] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ GET / 200 in 226ms
+ GET / 200 in 237ms
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+[2025-07-28T15:50:19.650Z] [r9t2hdc] 收到生成方案请求
+[2025-07-28T15:50:19.651Z] [r9t2hdc] 请求参数: {
+  promptLength: 543,
+  modelId: 'deepseek-ai/DeepSeek-V3',
+  taskType: 'long_generation',
+  stream: true,
+  storeInfo: '馋嘴老张麻辣烫',
+  clientIP: '::ffff:192.168.1.200'
 }
-[2025-07-28T13:41:52.095Z] [5juqfbv1h] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 60ms
-[2025-07-28T13:53:28.640Z] [3jgh12lwe] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:53:28.640Z] [3jgh12lwe] 请求处理开始完成 { duration: '0ms', status: 200 }
- GET / 200 in 254ms
-[2025-07-28T13:53:28.945Z] [t9vnve1m4] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:53:28.945Z] [t9vnve1m4] 请求处理开始完成 { duration: '0ms', status: 200 }
- GET / 200 in 57ms
-[2025-07-28T13:54:09.962Z] [nqhtikqln] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:54:09.963Z] [nqhtikqln] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 417ms
-[2025-07-28T13:54:10.411Z] [jrpm4be8s] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:54:10.412Z] [jrpm4be8s] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 44ms
-[2025-07-28T13:55:20.597Z] [a07bspina] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:55:20.597Z] [a07bspina] 请求处理开始完成 { duration: '0ms', status: 200 }
- GET / 200 in 73ms
-[2025-07-28T13:56:52.872Z] [3j2b3irj9] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:56:52.872Z] [3j2b3irj9] 请求处理开始完成 { duration: '0ms', status: 200 }
- GET / 200 in 28ms
-[2025-07-28T13:57:45.510Z] [npvz58bol] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:57:45.511Z] [npvz58bol] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 312ms
-[2025-07-28T13:57:45.854Z] [prbghqgea] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:57:45.854Z] [prbghqgea] 请求处理开始完成 { duration: '0ms', status: 200 }
- GET / 200 in 44ms
-[2025-07-28T13:57:59.571Z] [xh4xyzwo5] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:57:59.571Z] [xh4xyzwo5] 请求处理开始完成 { duration: '0ms', status: 200 }
- GET / 200 in 54ms
-[2025-07-28T13:58:15.387Z] [rftl8x1a0] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:58:15.387Z] [rftl8x1a0] 请求处理开始完成 { duration: '0ms', status: 200 }
- GET / 200 in 51ms
-[2025-07-28T13:58:52.971Z] [niezc6lpg] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:58:52.972Z] [niezc6lpg] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 275ms
-[2025-07-28T13:58:53.268Z] [2wlgz9m5r] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T13:58:53.269Z] [2wlgz9m5r] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 52ms
-[2025-07-28T14:01:10.785Z] [f9nlf5uqp] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T14:01:10.786Z] [f9nlf5uqp] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 52ms
-[2025-07-28T14:02:30.928Z] [wr8n1i3jm] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T14:02:30.928Z] [wr8n1i3jm] 请求处理开始完成 { duration: '0ms', status: 200 }
- GET / 200 in 39ms
-[2025-07-28T14:03:51.054Z] [a29tp47fk] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T14:03:51.055Z] [a29tp47fk] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 282ms
-[2025-07-28T14:03:51.361Z] [hb1lorfdc] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T14:03:51.362Z] [hb1lorfdc] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 40ms
-[2025-07-28T14:04:10.957Z] [xq60ci5z5] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T14:04:10.958Z] [xq60ci5z5] 请求处理开始完成 { duration: '1ms', status: 200 }
- GET / 200 in 275ms
-[2025-07-28T14:04:11.658Z] [7s6mhb2ad] GET http://localhost:3000/ {
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-  referer: 'http://localhost:3000/',
-  clientIP: '::1'
-}
-[2025-07-28T14:04:11.658Z] [7s6mhb2ad] 请求处理开始完成 { duration: '0ms', status: 200 }
- GET / 200 in 37ms
-[?25h
+[2025-07-28T15:51:33.638Z] [r9t2hdc] 生成完成 { duration: '73988ms', contentLength: 2389, totalChunks: 960 }
+ POST /api/generate-plan 200 in 74828ms

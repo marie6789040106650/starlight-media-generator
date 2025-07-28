@@ -88,6 +88,14 @@ export async function POST(request: NextRequest) {
                   error: error.message,
                   duration: `${duration}ms`
                 })
+                
+                // 如果是模型不可用错误，尝试自动降级
+                if (error.message.includes('付费余额') || error.message.includes('地区不可用')) {
+                  console.log(`[${new Date().toISOString()}] [${requestId}] 尝试自动降级到可用模型...`)
+                  // 这里会在catch块中处理降级逻辑
+                  throw error
+                }
+                
                 controller.enqueue(encoder.encode(`data: ${JSON.stringify({ error: error.message })}\n\n`))
                 controller.close()
               }

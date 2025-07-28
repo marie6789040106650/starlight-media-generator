@@ -61,13 +61,13 @@ export const CHAT_MODELS: AIModel[] = [
     maxTokens: 16000,
     temperature: 0.7,
     topP: 0.9,
-    description: '🎯 高要求场景 - Moonshot Kimi-K2专业版，更强性能和更长上下文',
+    description: '💰 付费模型 - Moonshot Kimi-K2专业版，需要付费余额',
     category: 'chat',
     streaming: true,
     contextWindow: 200000,
     pricing: { input: 1.0, output: 2.0 },
-    features: ['超长上下文', '高性能', '专业分析', '复杂推理'],
-    status: 'active'
+    features: ['超长上下文', '高性能', '专业分析', '复杂推理', '需要付费'],
+    status: 'deprecated'
   },
   {
     id: 'THUDM/GLM-4.1V-9B-Thinking',
@@ -448,18 +448,16 @@ export function selectOptimalModel(taskType: 'fast' | 'long_context' | 'multimod
       return DEFAULT_CHAT_MODEL;
 
     case 'long_generation':
-      // 长内容生成：优先免费的Gemini 2.0，备选Gemini Pro，再备选Kimi
+      // 长内容生成：优先使用稳定可用的SiliconFlow模型
+      if (availableKeys.siliconflow) {
+        // 首选：Kimi K2 (长上下文，稳定可用)
+        return CHAT_MODELS.find(m => m.id === 'moonshotai/Kimi-K2-Instruct') || DEFAULT_CHAT_MODEL;
+      }
+      // 备选：如果Google可用且在支持地区
       if (availableKeys.google) {
-        // 首选：免费的Gemini 2.0 (12K tokens输出，完全免费!)
-        const gemini2 = CHAT_MODELS.find(m => m.id === 'gemini-2.0-flash-exp');
-        if (gemini2) return gemini2;
-
-        // 备选：稳定的Gemini Pro
         return CHAT_MODELS.find(m => m.id === 'gemini-1.5-pro') || DEFAULT_CHAT_MODEL;
       }
-      return availableKeys.siliconflow ?
-        CHAT_MODELS.find(m => m.id === 'moonshotai/Kimi-K2-Instruct') || DEFAULT_CHAT_MODEL :
-        DEFAULT_CHAT_MODEL;
+      return DEFAULT_CHAT_MODEL;
 
     default:
       // 默认：使用主力模型
@@ -486,24 +484,23 @@ function isValidApiKey(key: string | null): boolean {
   return !placeholders.includes(key.toLowerCase()) && key.length > 10;
 }
 
-// 稳定的模型优先级配置 - 基于你的实际API密钥
+// 稳定的模型优先级配置 - 基于实际可用性
 export function getStableModelPriority(): AIModel[] {
-  // 你的可用API密钥：SiliconFlow + Google
+  // 优先使用稳定可用的SiliconFlow模型，Google模型作为备选
   const stablePriorityList = [
-    // 第1优先级：免费且稳定的模型
-    'gemini-2.0-flash-exp',           // Google Gemini 2.0 - 完全免费，12K输出
-    
-    // 第2优先级：性价比最高的付费模型  
+    // 第1优先级：稳定可用的SiliconFlow模型
     'deepseek-ai/DeepSeek-V3',        // SiliconFlow DeepSeek-V3 - 便宜且强大
-    'gemini-1.5-flash',               // Google Gemini Flash - 快速便宜
-    
-    // 第3优先级：高性能模型
-    'gemini-1.5-pro',                 // Google Gemini Pro - 最强多模态
     'moonshotai/Kimi-K2-Instruct',    // SiliconFlow Kimi - 长上下文
+    'Qwen/Qwen2.5-72B-Instruct',     // SiliconFlow Qwen - 综合能力强
     
-    // 第4优先级：其他可用模型
-    'Qwen/Qwen2.5-72B-Instruct',     // SiliconFlow Qwen
-    'deepseek-ai/DeepSeek-R1-0528-Qwen3-8B' // SiliconFlow DeepSeek-R1
+    // 第2优先级：其他SiliconFlow模型
+    'deepseek-ai/DeepSeek-R1-0528-Qwen3-8B', // SiliconFlow DeepSeek-R1
+    'THUDM/GLM-4.1V-9B-Thinking',    // SiliconFlow GLM思维模型
+    
+    // 第3优先级：Google模型（如果地区支持）
+    'gemini-2.0-flash-exp',           // Google Gemini 2.0 - 免费但地区限制
+    'gemini-1.5-flash',               // Google Gemini Flash - 快速便宜
+    'gemini-1.5-pro',                 // Google Gemini Pro - 最强多模态
   ];
 
   return stablePriorityList

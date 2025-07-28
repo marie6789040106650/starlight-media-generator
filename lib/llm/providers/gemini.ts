@@ -48,13 +48,15 @@ export async function chatGemini(options: GeminiChatOptions): Promise<UnifiedCha
   }
 
   const headers = {
-    'Content-Type': 'application/json',
-    'X-goog-api-key': apiKey
+    'Content-Type': 'application/json'
   }
+
+  // Gemini API 使用查询参数传递 API 密钥
+  const url = `${modelConfig.endpoint}?key=${apiKey}`
 
   try {
     // 发送请求
-    const response = await fetch(modelConfig.endpoint, {
+    const response = await fetch(url, {
       method: 'POST',
       headers,
       body: JSON.stringify(requestBody)
@@ -62,6 +64,12 @@ export async function chatGemini(options: GeminiChatOptions): Promise<UnifiedCha
 
     if (!response.ok) {
       const errorText = await response.text()
+      
+      // 检查是否是地区限制错误
+      if (response.status === 400 && errorText.includes('User location is not supported')) {
+        throw new Error(`Gemini API 在当前地区不可用，请使用其他模型或配置VPN`)
+      }
+      
       throw new Error(`Gemini API 错误: ${response.status} ${response.statusText} - ${errorText}`)
     }
 

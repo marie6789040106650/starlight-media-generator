@@ -42,15 +42,19 @@ export const useToc = (content: string, currentStep: number) => {
     console.log('尝试滚动到:', id)
     const element = document.getElementById(id)
     if (element) {
-      console.log('找到元素，开始滚动')
+      console.log('找到元素，开始滚动:', element)
       element.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       })
     } else {
       console.log('未找到元素，可用的标题元素:', 
-        Array.from(document.querySelectorAll('[id^="heading-"]')).map(el => el.id)
+        Array.from(document.querySelectorAll('[id^="heading-"]')).map(el => ({ 
+          id: el.id, 
+          text: el.textContent?.slice(0, 30) 
+        }))
       )
+      console.log('目录中的ID:', tocItems.map(item => ({ id: item.id, title: item.title })))
     }
   }
 

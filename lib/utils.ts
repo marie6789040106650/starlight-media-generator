@@ -31,6 +31,7 @@ export const generateHeadingId = (index: number, title: string): string => {
 export const parseMarkdownToc = (content: string): TocItem[] => {
   const lines = content.split('\n')
   const toc: TocItem[] = []
+  let headingIndex = 0 // 使用标题索引而不是行索引
 
   lines.forEach((line, index) => {
     // 匹配标题行 (# ## ### 等)
@@ -42,7 +43,9 @@ export const parseMarkdownToc = (content: string): TocItem[] => {
       // 去掉标题前后的 * 号
       title = title.replace(/^\*+|\*+$/g, '').trim()
       
-      const id = generateHeadingId(index, title)
+      const id = generateHeadingId(headingIndex, title)
+      console.log(`生成目录项: 索引=${headingIndex}, 标题="${title}", ID="${id}"`)
+      headingIndex++ // 递增标题索引
 
       toc.push({
         id,
