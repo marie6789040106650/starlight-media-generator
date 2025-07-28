@@ -17,7 +17,7 @@ import {
 import { Download, FileText, File, ChevronDown, Shield, Layout } from "lucide-react"
 import { isExportAllowed } from "@/config/copy-settings"
 import { WatermarkSettingsButton } from "./watermark-settings-button"
-import { exportToPDF, exportToWord, checkExportSupport } from "@/lib/export-utils"
+import { exportToPDF, checkExportSupport } from "@/lib/export-utils"
 import { FormData } from "@/lib/types"
 
 interface EnhancedExportWithWatermarkProps {
@@ -79,53 +79,19 @@ export function EnhancedExportWithWatermark({
     setExportType('word')
 
     try {
-      let filename = undefined;
-      const firstLine = content.split('\n')[0];
-      if (firstLine && firstLine.startsWith('#')) {
-        const title = firstLine.replace(/^#+\s*/, '').trim();
-        if (title) {
-          const currentDate = new Date().toLocaleDateString('zh-CN').replace(/\//g, '');
-          filename = `${title}-${currentDate}.docx`;
-        }
-      }
-
-      const response = await fetch('/api/generate-word', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          content,
-          storeName,
-          bannerImage,
-          filename
-        }),
+      // 使用统一的客户端Word导出工具
+      const { exportWordDocument } = await import('@/lib/client-word-export')
+      
+      await exportWordDocument({
+        content,
+        storeName,
       })
-
-      if (!response.ok) {
-        const errorText = await response.text().catch(() => '未知错误');
-        console.error('Word导出API错误:', response.status, errorText);
-        throw new Error(`导出失败: ${response.status} ${errorText}`);
-      }
-
-      const blob = await response.blob()
-      if (blob.size === 0) {
-        throw new Error('导出的文件为空');
-      }
-
-      const url = window.URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.style.display = 'none'
-      a.href = url
-      a.download = filename || `${storeName}-方案.docx`
-      document.body.appendChild(a)
-      a.click()
-      window.URL.revokeObjectURL(url)
-      document.body.removeChild(a)
+      
+      console.log('✅ 客户端Word导出成功')
     } catch (error) {
-      console.error('Word导出失败:', error)
+      console.error('前端Word导出失败:', error)
       const errorMessage = error instanceof Error ? error.message : '导出失败，请重试';
-      alert(errorMessage);
+      alert(`Word导出失败: ${errorMessage}`);
     } finally {
       setIsExporting(false)
       setExportType(null)

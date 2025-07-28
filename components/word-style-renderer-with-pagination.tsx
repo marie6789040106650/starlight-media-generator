@@ -562,11 +562,11 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
       switch (level) {
         case 1:
           if (isFirstH1) {
-            // 文档主标题：24pt，居中，思源黑体加粗，段前24pt，段后18pt
-            fontSize = '24pt'
+            // 文档主标题：22pt，居中，思源黑体加粗，段前18pt，段后15pt
+            fontSize = '22pt'
             fontFamily = "'Source Han Sans SC', 'SimHei', sans-serif"
-            marginTop = '24pt'
-            marginBottom = '18pt'
+            marginTop = '18pt'
+            marginBottom = '15pt'
             fontWeight = 'bold'
             textAlign = 'center'
             isFirstH1 = false

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Download, FileText, File, Loader2, AlertCircle, Smartphone } from "lucide-react"
 import { FormData } from "@/lib/types"
-import { exportToPDF, exportToWord, checkExportSupport, getWatermarkConfig } from "@/lib/export-utils"
+import { exportToPDF, checkExportSupport, getWatermarkConfig } from "@/lib/export-utils"
 import { checkMobileCompatibility, getMobileExportTips } from "@/lib/mobile-compatibility"
 
 interface ExportButtonsProps {
@@ -61,11 +61,11 @@ export const ExportButtons: React.FC<ExportButtonsProps> = ({
     setIsExporting('word')
     
     try {
-      await exportToWord({
+      const { exportWordDocument } = await import('@/lib/client-word-export')
+      
+      await exportWordDocument({
         content,
-        formData,
-        bannerImage,
-        format: 'word'
+        storeName: formData.storeName,
       })
     } catch (error) {
       console.error('Word导出失败:', error)

@@ -1,5 +1,4 @@
 import { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType, Header, Footer, PageNumber, ImageRun, Table, TableRow, TableCell, WidthType, BorderStyle } from 'docx'
-import { saveAs } from 'file-saver'
 import { parseMarkdownContent, ParsedContent, FormattedText } from './markdown-parser'
 import { loadStyleConfig, StyleConfig } from './style-config'
 
@@ -15,9 +14,9 @@ export interface WordExportOptions {
 
 // Constants for better maintainability
 const BANNER_DIMENSIONS = {
-  WIDTH_PIXELS: 504, // 7英寸
-  HEIGHT_PIXELS: 168, // 保持原始比例 1800:600 = 3:1
-  ASPECT_RATIO: 3
+  ASPECT_RATIO: 3, // 原始比例 1800:600 = 3:1
+  // 页面宽度计算：A4宽度21cm - 左右边距(2.54cm * 2) = 15.92cm ≈ 453pt
+  PAGE_CONTENT_WIDTH_PT: 453, // 页面内容区域宽度（点）
 } as const
 
 const LOGO_DIMENSIONS = {
@@ -49,13 +48,13 @@ export class WordGenerator {
       if (typeof window === 'undefined') {
         const fs = await import('fs/promises')
         const path = await import('path')
-        
+
         // 尝试多个可能的logo路径
         const logoPaths = [
           ...DEFAULT_LOGO_PATHS.map(p => path.join(process.cwd(), p)),
           ...DEFAULT_LOGO_PATHS.map(p => path.join(__dirname, '../../', p))
         ]
-        
+
         for (const logoPath of logoPaths) {
           try {
             const logoData = await fs.readFile(logoPath)
@@ -67,10 +66,10 @@ export class WordGenerator {
             continue
           }
         }
-        
+
         console.warn('所有logo路径都无法访问，尝试使用HTTP方式')
       }
-      
+
       // 在客户端或服务器端HTTP方式作为备选
       const response = await fetch('/logo.png')
       if (response.ok) {
@@ -92,7 +91,7 @@ export class WordGenerator {
       if (typeof window === 'undefined' && bannerUrl.startsWith('/')) {
         const fs = await import('fs/promises')
         const path = await import('path')
-        
+
         const bannerPath = path.join(process.cwd(), 'public', bannerUrl.substring(1))
         try {
           const bannerData = await fs.readFile(bannerPath)
@@ -102,7 +101,7 @@ export class WordGenerator {
           console.warn(`无法从文件系统加载banner图片: ${bannerPath}，尝试HTTP方式`)
         }
       }
-      
+
       // HTTP方式加载（客户端或远程图片）
       const response = await fetch(bannerUrl)
       if (response.ok) {
@@ -115,8 +114,8 @@ export class WordGenerator {
     return null
   }
 
-  async generateWordDocument(options: WordExportOptions): Promise<void> {
-    const { content, bannerImage, filename } = options
+  async generateWordDocument(options: WordExportOptions): Promise<Buffer> {
+    const { content, bannerImage } = options
 
     // 加载logo图片
     const logoBuffer = await this.loadLogo()
@@ -143,8 +142,8 @@ export class WordGenerator {
             margin: {
               top: this.convertCmToTwips(2.54),      // 上边距 2.54cm
               bottom: this.convertCmToTwips(2.54),   // 下边距 2.54cm
-              left: this.convertCmToTwips(3.17),     // 左边距 3.17cm
-              right: this.convertCmToTwips(3.17),    // 右边距 3.17cm
+              left: this.convertCmToTwips(2.54),     // 左边距 2.54cm (Normal格式)
+              right: this.convertCmToTwips(2.54),    // 右边距 2.54cm (Normal格式)
               header: this.convertCmToTwips(1.5),    // 页眉距离 1.5cm
               footer: this.convertCmToTwips(1.75),   // 页脚距离 1.75cm
             },
@@ -178,14 +177,9 @@ export class WordGenerator {
       },
     })
 
-    // 生成并下载文件
+    // 生成并返回Buffer
     const buffer = await Packer.toBuffer(doc)
-    const blob = new Blob([buffer], {
-      type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-    })
-
-    const finalFilename = filename || this.generateEnterpriseFilename(content)
-    saveAs(blob, finalFilename)
+    return buffer
   }
 
   /**
@@ -219,8 +213,8 @@ export class WordGenerator {
             margin: {
               top: this.convertCmToTwips(2.54),      // 上边距 2.54cm
               bottom: this.convertCmToTwips(2.54),   // 下边距 2.54cm
-              left: this.convertCmToTwips(3.17),     // 左边距 3.17cm
-              right: this.convertCmToTwips(3.17),    // 右边距 3.17cm
+              left: this.convertCmToTwips(2.54),     // 左边距 2.54cm (Normal格式)
+              right: this.convertCmToTwips(2.54),    // 右边距 2.54cm (Normal格式)
               header: this.convertCmToTwips(1.5),    // 页眉距离 1.5cm
               footer: this.convertCmToTwips(1.75),   // 页脚距离 1.75cm
             },
@@ -256,7 +250,7 @@ export class WordGenerator {
 
     // 生成Buffer并写入文件
     const buffer = await Packer.toBuffer(doc)
-    
+
     // 在服务器环境中，直接写入文件
     if (typeof window === 'undefined') {
       const fs = await import('fs/promises')
@@ -267,17 +261,21 @@ export class WordGenerator {
   }
 
   private async createBannerSection(bannerBuffer: ArrayBuffer | null): Promise<Paragraph[]> {
-    // 首页Banner图（居中插入，宽度1800px，高度600px，格式为jpg，Word中显示为7英寸宽）
+    // 首页Banner图（居中插入，自适应页面宽度，保持原始比例3:1）
     if (bannerBuffer) {
       try {
+        // 计算自适应尺寸：使用页面内容区域的宽度，根据3:1比例计算高度
+        const bannerWidth = BANNER_DIMENSIONS.PAGE_CONTENT_WIDTH_PT
+        const bannerHeight = Math.round(bannerWidth / BANNER_DIMENSIONS.ASPECT_RATIO)
+
         return [
           new Paragraph({
             children: [
               new ImageRun({
                 data: new Uint8Array(bannerBuffer),
                 transformation: {
-                  width: BANNER_DIMENSIONS.WIDTH_PIXELS,
-                  height: BANNER_DIMENSIONS.HEIGHT_PIXELS,
+                  width: bannerWidth,   // 自适应页面宽度
+                  height: bannerHeight, // 根据比例计算高度
                 },
                 type: 'jpg', // 更新为jpg格式
               }),
@@ -299,7 +297,7 @@ export class WordGenerator {
       new Paragraph({
         children: [
           new TextRun({
-            text: "[首页Banner图位置 - 尺寸1800x600px，JPG格式，居中对齐]",
+            text: "[首页Banner图位置 - 自适应页面宽度，保持3:1比例，JPG格式，居中对齐]",
             size: 20,
             color: "#999999",
             italics: true,
@@ -758,7 +756,7 @@ export class WordGenerator {
     paragraphs.push(this.createEnterpriseHeading("1. 页面设置", 1))
     const pageSettings = [
       "纸张大小：A4（21 x 29.7 cm）",
-      "页边距：上 2.54 cm，下 2.54 cm，左 3.17 cm，右 3.17 cm",
+      "页边距：上 2.54 cm，下 2.54 cm，左 2.54 cm，右 2.54 cm（Normal格式）",
       "页码样式：页脚居中，阿拉伯数字，字体为思源黑体，10pt"
     ]
     pageSettings.forEach(text => {

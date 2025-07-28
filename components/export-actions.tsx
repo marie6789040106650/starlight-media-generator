@@ -49,15 +49,14 @@ export function ExportActions({ content, storeName, bannerImage, disabled = fals
         additionalRequirements: ''
       }
 
-      // 使用前端导出工具
-      await exportToWord({
+      // 使用统一的客户端Word导出工具
+      const { exportWordDocument } = await import('@/lib/client-word-export')
+      
+      await exportWordDocument({
         content,
-        formData,
-        bannerImage,
-        includeWatermark: true,
-        format: 'word'
+        storeName,
       })
-
+      
       console.log('Word文档导出成功')
     } catch (error) {
       console.error('Word导出失败:', error)

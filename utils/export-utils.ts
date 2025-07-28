@@ -49,10 +49,12 @@ export const handleExportWord = async (generatedContent: string, formData: FormD
   try {
     const { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType } = await import('docx')
     const fileSaver = await import('file-saver')
-    const saveAs = fileSaver.saveAs || fileSaver.default?.saveAs || fileSaver.default
+    
+    // 修复 saveAs 导入问题
+    const saveAs = fileSaver.default?.saveAs || fileSaver.default || fileSaver.saveAs
 
     if (!saveAs || typeof saveAs !== 'function') {
-      throw new Error('无法加载文件保存功能，请检查网络连接')
+      throw new Error('无法加载文件保存功能，请检查网络连接或浏览器兼容性')
     }
 
     // 解析内容为段落
