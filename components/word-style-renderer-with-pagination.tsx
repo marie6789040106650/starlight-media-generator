@@ -141,20 +141,22 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
 
     const { text, opacity, fontSize, rotation, position, repeat, color } = watermarkConfig
     
-    // 计算水印的基础样式 - 针对A4纸张优化
+    // 计算水印的基础样式 - 针对A4纸张和中英文混合优化
     const baseWatermarkStyle: React.CSSProperties = {
       position: 'absolute',
       color: getWatermarkColor(color, opacity),
       fontSize: `${fontSize}px`,
-      fontFamily: "'Source Han Sans SC', 'SimHei', sans-serif",
+      fontFamily: "'Source Han Sans SC', 'Noto Sans CJK SC', 'Microsoft YaHei', 'SimHei', 'Arial', sans-serif",
       fontWeight: '600', // 使用中等粗细，避免过于突出
       transform: `rotate(${rotation}deg)`,
       pointerEvents: 'none',
       userSelect: 'none',
       zIndex: 1, // 在背景之上，内容之下
       whiteSpace: 'nowrap',
-      letterSpacing: '2px', // 增加字符间距，提高可读性
-      textShadow: 'none' // 移除文字阴影，保持简洁
+      letterSpacing: '1px', // 适中的字符间距，适合中英文混合
+      textShadow: 'none', // 移除文字阴影，保持简洁
+      fontFeatureSettings: '"kern" 1', // 启用字距调整，优化中英文混合显示
+      textRendering: 'optimizeLegibility' // 优化文本渲染质量
     }
 
     // 根据位置计算具体坐标

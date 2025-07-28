@@ -1893,3 +1893,391 @@ Import trace for requested module:
 }
 [2025-07-28T01:19:51.732Z] [xkb90ermg] 请求处理开始完成 { duration: '3ms', status: 200 }
  GET / 200 in 730ms
+[2025-07-28T01:26:50.013Z] [lyp4blp9q] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: null,
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T01:26:50.013Z] [lyp4blp9q] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 647ms
+[2025-07-28T01:26:52.221Z] [4d3h48zw9] GET http://localhost:3000/api/keyword-stats {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T01:26:52.222Z] [4d3h48zw9] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ GET /api/keyword-stats 200 in 2304ms
+[2025-07-28T01:26:54.554Z] [q5vf7g77z] GET http://localhost:3000/api/keyword-stats {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T01:26:54.555Z] [q5vf7g77z] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /api/keyword-stats 200 in 25ms
+[2025-07-28T01:26:56.309Z] [8av2s3djo] POST http://localhost:3000/api/keyword-stats {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T01:26:56.309Z] [8av2s3djo] 请求处理开始完成 { duration: '0ms', status: 200 }
+ POST /api/keyword-stats 200 in 26ms
+[2025-07-28T01:26:57.005Z] [ogqettsxc] POST http://localhost:3000/api/expand-keywords {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T01:26:57.006Z] [ogqettsxc] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+收到关键词拓展请求: {
+  storeFeatures: '秘制汤底、地域食材、现制模式、健康定制、主题沉浸、网红装修',
+  ownerFeatures: '匠人、传承、学霸、宠粉',
+  storeCategory: undefined
+}
+关键词拓展结果: {
+  expanded_store_features: [
+    '专业服务', '品质保证',
+    '价格合理', '服务周到',
+    '经验丰富', '诚信经营',
+    '客户至上', '创新思维',
+    '持续改进', '团队协作',
+    '专业素养', '用心服务',
+    '行业领先', '技术创新',
+    '质量第一'
+  ],
+  expanded_boss_features: [
+    '匠人传承', '二代传承',
+    '学霸出身', '宠粉达人',
+    '热情好客', '亲和力强',
+    '平易近人', '善于沟通',
+    '幽默风趣', '专业素养',
+    '技术精湛', '经验丰富',
+    '行业专家', '持续学习'
+  ]
+}
+ POST /api/expand-keywords 200 in 1507ms
+[2025-07-28T01:26:58.534Z] [oed6z9odf] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T01:26:58.535Z] [oed6z9odf] 请求处理开始完成 { duration: '1ms', status: 200 }
+[2025-07-28T01:26:58.557Z] [iwd6td1ix] POST http://localhost:3000/api/generate-plan {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T01:26:58.558Z] [iwd6td1ix] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ GET / 200 in 323ms
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+[2025-07-28T01:26:59.642Z] [fsgbkix] 收到生成方案请求
+[2025-07-28T01:26:59.643Z] [fsgbkix] 请求参数: {
+  promptLength: 543,
+  modelId: 'deepseek-ai/DeepSeek-V3',
+  taskType: 'long_generation',
+  stream: true,
+  storeInfo: '馋嘴老张麻辣烫',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T01:28:12.239Z] [fsgbkix] 生成完成 { duration: '72598ms', contentLength: 2566, totalChunks: 1024 }
+ POST /api/generate-plan 200 in 73680ms
+[2025-07-28T01:28:12.269Z] [rsufr0lxm] POST http://localhost:3000/api/images {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T01:28:12.270Z] [rsufr0lxm] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ POST /api/images 200 in 3743ms
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+[2025-07-28T01:32:19.978Z] [s4dxqktx3] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T01:32:19.978Z] [s4dxqktx3] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 1257ms
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+[2025-07-28T01:32:45.066Z] [rwa8jlbkc] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T01:32:45.067Z] [rwa8jlbkc] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 557ms
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+[2025-07-28T01:33:07.076Z] [d1pmgpa3x] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T01:33:07.077Z] [d1pmgpa3x] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 290ms
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+[2025-07-28T01:33:39.699Z] [qze2c6olc] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T01:33:39.700Z] [qze2c6olc] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 304ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[2025-07-28T01:34:13.972Z] [bubux5gd0] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T01:34:13.975Z] [bubux5gd0] 请求处理开始完成 { duration: '3ms', status: 200 }
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[2025-07-28T01:34:18.657Z] [l3qjfebi0] GET http://localhost:3000/api/keyword-stats {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T01:34:18.658Z] [l3qjfebi0] 请求处理开始完成 { duration: '1ms', status: 200 }
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+ GET /api/keyword-stats 200 in 1752ms
+[2025-07-28T01:34:22.150Z] [tmh03t3d8] GET http://localhost:3000/api/keyword-stats {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: 'unknown'
+}
+[2025-07-28T01:34:22.151Z] [tmh03t3d8] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET / 200 in 8083ms
+[2025-07-28T01:34:26.272Z] [h689j6cbc] GET http://localhost:3000/api/keyword-stats {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T01:34:26.273Z] [h689j6cbc] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /api/keyword-stats 200 in 77ms
+[2025-07-28T01:34:26.398Z] [j3zd2w0dr] GET http://localhost:3000/api/keyword-stats {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T01:34:26.399Z] [j3zd2w0dr] 请求处理开始完成 { duration: '1ms', status: 200 }
+ GET /api/keyword-stats 200 in 36ms
+ ⚠ ./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+
+./lib/watermark-toolkit/index.ts
+export 'WatermarkConfig' (reexported as 'WatermarkConfig') was not found in './watermark-config' (possible exports: WatermarkConfigDialog, configToWatermarkOptions)
+
+Import trace for requested module:
+./lib/watermark-toolkit/index.ts
+./components/enhanced-export-with-watermark.tsx
+./app/page.tsx
+[2025-07-28T01:35:14.158Z] [2ki77e2p2] GET http://localhost:3000/ {
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  referer: 'http://192.168.1.200:3000/',
+  clientIP: '::ffff:192.168.1.200'
+}
+[2025-07-28T01:35:14.158Z] [2ki77e2p2] 请求处理开始完成 { duration: '0ms', status: 200 }
+ GET / 200 in 684ms

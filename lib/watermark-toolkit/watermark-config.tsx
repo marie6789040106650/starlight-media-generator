@@ -65,7 +65,7 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
           newConfig.opacity = 15;
           break;
         case 'confidential':
-          newConfig.text = '机密文档';
+          newConfig.text = '机密文档 CONFIDENTIAL';
           newConfig.color = 'red';
           newConfig.opacity = 40;
           break;
@@ -148,12 +148,12 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="company">公司水印 (推荐)</SelectItem>
-                    <SelectItem value="confidential">机密文档</SelectItem>
-                    <SelectItem value="custom">自定义</SelectItem>
+                    <SelectItem value="confidential">机密文档 (中英混合)</SelectItem>
+                    <SelectItem value="custom">自定义 (支持中英文混合)</SelectItem>
                   </SelectContent>
                 </Select>
                 <div className="text-xs text-gray-500 mt-1">
-                  💡 公司水印已针对A4纸张优化，透明度15%，字体42px
+                  💡 支持中文、英文、数字混合显示，已针对A4纸张优化
                 </div>
               </div>
 
@@ -164,8 +164,11 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
                   id="watermark-text"
                   value={config.text}
                   onChange={(e) => handleConfigChange('text', e.target.value)}
-                  placeholder="输入水印文本"
+                  placeholder="支持中文、English、123混合输入"
                 />
+                <div className="text-xs text-gray-500">
+                  💡 示例：机密文档 CONFIDENTIAL、© 2024 星光传媒、内部资料 INTERNAL
+                </div>
               </div>
 
               {/* 透明度 */}
@@ -276,6 +279,47 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
             </>
           )}
 
+          {/* 快速模板 */}
+          {config.type === 'custom' && (
+            <div className="space-y-2">
+              <Label>快速模板 (中英文混合)</Label>
+              <div className="grid grid-cols-1 gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleConfigChange('text', '机密文档 CONFIDENTIAL')}
+                  className="text-xs justify-start"
+                >
+                  机密文档 CONFIDENTIAL
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleConfigChange('text', '内部资料 INTERNAL USE ONLY')}
+                  className="text-xs justify-start"
+                >
+                  内部资料 INTERNAL USE ONLY
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleConfigChange('text', `© 2024 ${storeName} 版权所有`)}
+                  className="text-xs justify-start"
+                >
+                  © 2024 {storeName} 版权所有
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleConfigChange('text', '草稿 DRAFT - 请勿外传')}
+                  className="text-xs justify-start"
+                >
+                  草稿 DRAFT - 请勿外传
+                </Button>
+              </div>
+            </div>
+          )}
+
           {/* 预览说明 */}
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-center text-blue-800 text-sm">
@@ -283,7 +327,7 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
               <div>
                 <div>水印效果将在分页模式和导出的 PDF 中显示</div>
                 <div className="text-xs mt-1 text-blue-600">
-                  💡 配置修改后会立即在分页模式中生效
+                  💡 支持中文、英文、数字混合显示，配置修改后立即生效
                 </div>
               </div>
             </div>
