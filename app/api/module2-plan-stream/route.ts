@@ -3,6 +3,9 @@ import {
   formatModule1Data,
   generateRequestId
 } from '@/lib/business-utils';
+
+// Edge Runtime 配置
+export const runtime = 'edge'
 import { 
   getLongContentConfig,
   recordLongContentMetrics

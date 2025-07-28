@@ -6,6 +6,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { unifiedChat, smartChat } from '@/lib/llm'
 
+// Edge Runtime 配置
+export const runtime = 'edge'
+
 interface ChatMessage {
   role: 'system' | 'user' | 'assistant'
   content: string
