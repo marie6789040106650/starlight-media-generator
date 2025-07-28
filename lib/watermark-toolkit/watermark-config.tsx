@@ -39,14 +39,14 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
   storeName
 }) => {
   const [config, setConfig] = useState<WatermarkConfig>({
-    enabled: true,
+    enabled: false, // 默认不启用水印
     type: 'company',
     text: `© ${storeName}`,
-    opacity: 30,
-    fontSize: 48,
-    rotation: 45,
+    opacity: 15, // 透明度 15%
+    fontSize: 42, // 字体大小 42px
+    rotation: 45, // 旋转角度 45°
     position: 'center',
-    repeat: 'diagonal',
+    repeat: 'grid', // 重复模式 网格
     color: 'gray',
     ...defaultConfig
   });
@@ -62,7 +62,7 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
         case 'company':
           newConfig.text = `© ${storeName}`;
           newConfig.color = 'gray';
-          newConfig.opacity = 20;
+          newConfig.opacity = 15;
           break;
         case 'confidential':
           newConfig.text = '机密文档';
@@ -77,6 +77,13 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
     
     setConfig(newConfig);
     onConfigChange(newConfig);
+    
+    // 立即保存到localStorage，确保实时生效
+    try {
+      localStorage.setItem('watermarkConfig', JSON.stringify(newConfig));
+    } catch (error) {
+      console.warn('Failed to save watermark config:', error);
+    }
   };
 
   const colorMap = {
@@ -109,13 +116,22 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
         
         <div className="space-y-4">
           {/* 启用水印 */}
-          <div className="flex items-center justify-between">
-            <Label htmlFor="watermark-enabled">启用水印</Label>
-            <Switch
-              id="watermark-enabled"
-              checked={config.enabled}
-              onCheckedChange={(checked) => handleConfigChange('enabled', checked)}
-            />
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <Label htmlFor="watermark-enabled">启用水印</Label>
+              <Switch
+                id="watermark-enabled"
+                checked={config.enabled}
+                onCheckedChange={(checked) => handleConfigChange('enabled', checked)}
+              />
+            </div>
+            <div className="text-xs text-gray-500">
+              {config.enabled ? (
+                <span className="text-green-600">✅ 水印已启用，将在分页模式中实时显示</span>
+              ) : (
+                <span className="text-gray-500">❌ 水印已禁用</span>
+              )}
+            </div>
           </div>
 
           {config.enabled && (
@@ -131,11 +147,14 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="company">公司水印</SelectItem>
+                    <SelectItem value="company">公司水印 (推荐)</SelectItem>
                     <SelectItem value="confidential">机密文档</SelectItem>
                     <SelectItem value="custom">自定义</SelectItem>
                   </SelectContent>
                 </Select>
+                <div className="text-xs text-gray-500 mt-1">
+                  💡 公司水印已针对A4纸张优化，透明度15%，字体42px
+                </div>
               </div>
 
               {/* 水印文本 */}
@@ -155,11 +174,16 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
                 <Slider
                   value={[config.opacity]}
                   onValueChange={([value]) => handleConfigChange('opacity', value)}
-                  max={100}
+                  max={50}
                   min={10}
                   step={5}
                   className="w-full"
                 />
+                <div className="text-xs text-gray-500 flex justify-between">
+                  <span>10-15%: 正式文档</span>
+                  <span>15-20%: 标准保护</span>
+                  <span>20%+: 重要文档</span>
+                </div>
               </div>
 
               {/* 字体大小 */}
@@ -168,11 +192,16 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
                 <Slider
                   value={[config.fontSize]}
                   onValueChange={([value]) => handleConfigChange('fontSize', value)}
-                  max={100}
-                  min={20}
-                  step={4}
+                  max={72}
+                  min={24}
+                  step={6}
                   className="w-full"
                 />
+                <div className="text-xs text-gray-500 flex justify-between">
+                  <span>36px: 低调</span>
+                  <span>42px: 标准</span>
+                  <span>48px+: 显眼</span>
+                </div>
               </div>
 
               {/* 旋转角度 */}
@@ -251,7 +280,12 @@ export const WatermarkConfigDialog: React.FC<WatermarkConfigProps> = ({
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
             <div className="flex items-center text-blue-800 text-sm">
               <Eye className="h-4 w-4 mr-2" />
-              水印效果将在导出的 PDF 中显示
+              <div>
+                <div>水印效果将在分页模式和导出的 PDF 中显示</div>
+                <div className="text-xs mt-1 text-blue-600">
+                  💡 配置修改后会立即在分页模式中生效
+                </div>
+              </div>
             </div>
           </div>
         </div>

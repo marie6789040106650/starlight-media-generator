@@ -3,6 +3,18 @@
 import React, { useMemo, useState, useEffect, useRef } from "react"
 import { FormData } from "@/lib/types"
 
+// 水印配置接口
+interface WatermarkConfig {
+  enabled: boolean
+  text: string
+  opacity: number
+  fontSize: number
+  rotation: number
+  position: 'center' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
+  repeat: 'none' | 'diagonal' | 'grid'
+  color: 'gray' | 'red' | 'blue' | 'black'
+}
+
 interface WordStyleRendererWithPaginationProps {
   content: string
   formData: FormData
@@ -95,6 +107,184 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
   }
 
   const CONTENT_HEIGHT = getContentHeight(1, !!(bannerImage || isGeneratingBanner))
+
+  // 获取水印配置
+  const getWatermarkConfig = (): WatermarkConfig | null => {
+    try {
+      const saved = localStorage.getItem('watermarkConfig')
+      return saved ? JSON.parse(saved) : null
+    } catch (error) {
+      console.warn('获取水印配置失败:', error)
+      return null
+    }
+  }
+
+  // 获取颜色值 - 针对A4纸张优化
+  const getWatermarkColor = (color: string, opacity: number): string => {
+    const baseOpacity = opacity / 100
+    const colorMap = {
+      gray: `rgba(128, 128, 128, ${baseOpacity})`,
+      red: `rgba(220, 53, 69, ${baseOpacity})`, // 使用更柔和的红色
+      blue: `rgba(13, 110, 253, ${baseOpacity})`, // 使用更柔和的蓝色
+      black: `rgba(33, 37, 41, ${baseOpacity})` // 使用深灰色而非纯黑
+    }
+    return colorMap[color as keyof typeof colorMap] || colorMap.gray
+  }
+
+  // 渲染水印层
+  const renderWatermarkLayer = (pageNumber: number) => {
+    const watermarkConfig = getWatermarkConfig()
+    
+    if (!watermarkConfig || !watermarkConfig.enabled) {
+      return null
+    }
+
+    const { text, opacity, fontSize, rotation, position, repeat, color } = watermarkConfig
+    
+    // 计算水印的基础样式 - 针对A4纸张优化
+    const baseWatermarkStyle: React.CSSProperties = {
+      position: 'absolute',
+      color: getWatermarkColor(color, opacity),
+      fontSize: `${fontSize}px`,
+      fontFamily: "'Source Han Sans SC', 'SimHei', sans-serif",
+      fontWeight: '600', // 使用中等粗细，避免过于突出
+      transform: `rotate(${rotation}deg)`,
+      pointerEvents: 'none',
+      userSelect: 'none',
+      zIndex: 1, // 在背景之上，内容之下
+      whiteSpace: 'nowrap',
+      letterSpacing: '2px', // 增加字符间距，提高可读性
+      textShadow: 'none' // 移除文字阴影，保持简洁
+    }
+
+    // 根据位置计算具体坐标
+    const getPositionStyle = (pos: string): React.CSSProperties => {
+      switch (pos) {
+        case 'center':
+          return {
+            top: '50%',
+            left: '50%',
+            transform: `translate(-50%, -50%) rotate(${rotation}deg)`
+          }
+        case 'top-left':
+          return {
+            top: '20%',
+            left: '20%',
+            transform: `rotate(${rotation}deg)`
+          }
+        case 'top-right':
+          return {
+            top: '20%',
+            right: '20%',
+            transform: `rotate(${rotation}deg)`
+          }
+        case 'bottom-left':
+          return {
+            bottom: '20%',
+            left: '20%',
+            transform: `rotate(${rotation}deg)`
+          }
+        case 'bottom-right':
+          return {
+            bottom: '20%',
+            right: '20%',
+            transform: `rotate(${rotation}deg)`
+          }
+        default:
+          return {
+            top: '50%',
+            left: '50%',
+            transform: `translate(-50%, -50%) rotate(${rotation}deg)`
+          }
+      }
+    }
+
+    // 根据重复模式渲染水印
+    const renderWatermarkElements = () => {
+      const elements: JSX.Element[] = []
+      
+      if (repeat === 'none') {
+        // 单个水印
+        elements.push(
+          <div
+            key="single-watermark"
+            style={{
+              ...baseWatermarkStyle,
+              ...getPositionStyle(position)
+            }}
+          >
+            {text}
+          </div>
+        )
+      } else if (repeat === 'diagonal') {
+        // 对角线重复水印 - 针对A4纸张优化布局
+        const positions = [
+          { top: '20%', left: '20%' },
+          { top: '40%', left: '40%' },
+          { top: '60%', left: '60%' },
+          { top: '80%', left: '80%' },
+          { top: '30%', right: '30%' },
+          { top: '50%', right: '50%' },
+          { top: '70%', right: '70%' }
+        ]
+        
+        positions.forEach((pos, index) => {
+          elements.push(
+            <div
+              key={`diagonal-watermark-${index}`}
+              style={{
+                ...baseWatermarkStyle,
+                ...pos,
+                transform: `rotate(${rotation}deg)`
+              }}
+            >
+              {text}
+            </div>
+          )
+        })
+      } else if (repeat === 'grid') {
+        // 网格重复水印 - 针对A4纸张优化密度
+        const rows = 3 // 减少行数，避免过于密集
+        const cols = 2 // 减少列数，适合A4宽度
+        
+        for (let row = 0; row < rows; row++) {
+          for (let col = 0; col < cols; col++) {
+            elements.push(
+              <div
+                key={`grid-watermark-${row}-${col}`}
+                style={{
+                  ...baseWatermarkStyle,
+                  top: `${25 + (row * 25)}%`, // 增加间距
+                  left: `${25 + (col * 30)}%`, // 增加间距
+                  transform: `rotate(${rotation}deg)`
+                }}
+              >
+                {text}
+              </div>
+            )
+          }
+        }
+      }
+      
+      return elements
+    }
+
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 1,
+          pointerEvents: 'none'
+        }}
+      >
+        {renderWatermarkElements()}
+      </div>
+    )
+  }
 
   // 智能分页处理机制
   useEffect(() => {
@@ -651,6 +841,9 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
         </div>
       )}
 
+      {/* 水印层 - 在内容之前渲染，作为背景层 */}
+      {renderWatermarkLayer(page.pageNumber)}
+
       {/* 页面内容 - 精确按照Word A4页面样式 */}
       <div style={{
         position: 'absolute',
@@ -662,15 +855,18 @@ export const WordStyleRendererWithPagination: React.FC<WordStyleRendererWithPagi
         fontSize: '11pt', // 正文11pt
         lineHeight: '1.5', // 1.5倍行距
         color: '#000000',
-        backgroundColor: 'white',
-        fontFamily: "'Source Han Sans SC', 'SimHei', sans-serif"
+        backgroundColor: 'transparent', // 改为透明，让水印可见
+        fontFamily: "'Source Han Sans SC', 'SimHei', sans-serif",
+        zIndex: 2 // 确保内容在水印之上
       }}>
         <div
           style={{
             height: '100%',
             overflow: 'hidden', // 双重保险，确保内容不溢出
             paddingTop: '4px', // 顶部留一点空间
-            paddingBottom: '4px' // 底部留一点空间
+            paddingBottom: '4px', // 底部留一点空间
+            position: 'relative',
+            zIndex: 2 // 确保文本内容在水印之上
           }}
           dangerouslySetInnerHTML={{ __html: page.content }}
         />

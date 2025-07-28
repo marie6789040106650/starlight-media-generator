@@ -5,7 +5,7 @@
 
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Shield } from "lucide-react"
 import { WatermarkConfigDialog, WatermarkConfig } from "./watermark-config"
@@ -21,16 +21,33 @@ export function WatermarkSettingsButton({
   disabled = false, 
   className = "" 
 }: WatermarkSettingsButtonProps) {
-  const [watermarkConfig, setWatermarkConfig] = useState<WatermarkConfig>({
-    enabled: true,
+  // 默认配置
+  const defaultConfig: WatermarkConfig = {
+    enabled: false, // 默认不启用水印
+    type: 'company',
     text: `© ${storeName}`,
-    opacity: 35,
-    fontSize: 48,
-    rotation: 45,
+    opacity: 15, // 透明度 15%
+    fontSize: 42, // 字体大小 42px
+    rotation: 45, // 旋转角度 45°
     position: 'center',
-    repeat: 'diagonal',
+    repeat: 'grid', // 重复模式 网格
     color: 'gray'
-  })
+  }
+
+  const [watermarkConfig, setWatermarkConfig] = useState<WatermarkConfig>(defaultConfig)
+
+  // 从localStorage加载已保存的配置
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('watermarkConfig')
+      if (saved) {
+        const parsedConfig = JSON.parse(saved)
+        setWatermarkConfig({ ...defaultConfig, ...parsedConfig })
+      }
+    } catch (error) {
+      console.warn('Failed to load watermark config:', error)
+    }
+  }, [storeName])
 
   const handleConfigChange = (config: WatermarkConfig) => {
     setWatermarkConfig(config)
