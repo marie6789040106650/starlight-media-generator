@@ -1,0 +1,48 @@
+⚠️ 服务端中文字体加载失败，使用默认字体: Error: Input to `PDFDocument.embedFont` was a custom font, but no `fontkit` instance was found. You must register a `fontkit` instance with `PDFDocument.registerFontkit(...)` before embedding custom fonts.
+    at new Promise (<anonymous>)
+    at addServerSideWatermark (app/api/generate-pdf/route.ts:42:26)
+    at async generatePdfFromRequest (app/api/generate-pdf/route.ts:425:32)
+    at async POST (app/api/generate-pdf/route.ts:494:11)
+  40 |       const fontBytes = await readFile(fontPath)
+  41 |       console.log(`📁 服务端加载字体文件: ${fontPath}, 大小: ${fontBytes.length} bytes`)
+> 42 |       font = await pdfDoc.embedFont(fontBytes)
+     |                          ^
+  43 |       console.log('✅ 服务端中文字体加载成功')
+  44 |     } catch (fontError) {
+  45 |       console.warn('⚠️ 服务端中文字体加载失败，使用默认字体:', fontError)
+❌ 服务端水印处理失败: Error: WinAnsi cannot encode "馋" (0x998b)
+    at addServerSideWatermark (app/api/generate-pdf/route.ts:67:17)
+    at async generatePdfFromRequest (app/api/generate-pdf/route.ts:425:32)
+    at async POST (app/api/generate-pdf/route.ts:494:11)
+  65 |         for (let x = -width; x < width * 2; x += spacing) {
+  66 |           for (let y = -height; y < height * 2; y += spacing) {
+> 67 |             page.drawText(watermarkConfig.text, {
+     |                 ^
+  68 |               x: x,
+  69 |               y: y,
+  70 |               size: watermarkConfig.fontSize,
+⚠️ 水印处理返回null
+⚠️ 服务端中文字体加载失败，使用默认字体: Error: Input to `PDFDocument.embedFont` was a custom font, but no `fontkit` instance was found. You must register a `fontkit` instance with `PDFDocument.registerFontkit(...)` before embedding custom fonts.
+    at new Promise (<anonymous>)
+    at addServerSideWatermark (app/api/generate-pdf/route.ts:42:26)
+    at async generatePdfFromRequest (app/api/generate-pdf/route.ts:425:32)
+    at async POST (app/api/generate-pdf/route.ts:494:11)
+  40 |       const fontBytes = await readFile(fontPath)
+  41 |       console.log(`📁 服务端加载字体文件: ${fontPath}, 大小: ${fontBytes.length} bytes`)
+> 42 |       font = await pdfDoc.embedFont(fontBytes)
+     |                          ^
+  43 |       console.log('✅ 服务端中文字体加载成功')
+  44 |     } catch (fontError) {
+  45 |       console.warn('⚠️ 服务端中文字体加载失败，使用默认字体:', fontError)
+❌ 服务端水印处理失败: Error: WinAnsi cannot encode "馋" (0x998b)
+    at addServerSideWatermark (app/api/generate-pdf/route.ts:67:17)
+    at async generatePdfFromRequest (app/api/generate-pdf/route.ts:425:32)
+    at async POST (app/api/generate-pdf/route.ts:494:11)
+  65 |         for (let x = -width; x < width * 2; x += spacing) {
+  66 |           for (let y = -height; y < height * 2; y += spacing) {
+> 67 |             page.drawText(watermarkConfig.text, {
+     |                 ^
+  68 |               x: x,
+  69 |               y: y,
+  70 |               size: watermarkConfig.fontSize,
+⚠️ 水印处理返回null

@@ -1,0 +1,24 @@
+{
+  "name": "Task Recovery",
+  "description": "当任务执行异常停止时，自动恢复并继续执行",
+  "trigger": {
+    "type": "onError",
+    "conditions": ["spec_task_failed", "execution_interrupted"]
+  },
+  "context": {
+    "includeFiles": [
+      ".kiro/specs/*/tasks.md",
+      "dev.log"
+    ]
+  },
+  "instructions": [
+    "1. 分析任务失败的原因",
+    "2. 检查是否可以自动修复问题",
+    "3. 如果可以修复，执行修复操作",
+    "4. 重新启动失败的任务或跳到下一个任务",
+    "5. 记录恢复过程到 dev.log",
+    "6. 更新任务状态标记",
+    "7. 发送恢复状态通知"
+  ],
+  "autoApprove": true
+}

@@ -1,0 +1,479 @@
+{
+  "generated_at": "2025-07-22T16:47:28.134Z",
+  "summary": {
+    "total_files": 2,
+    "total_lines": 116,
+    "total_errors": 1,
+    "total_warnings": 1,
+    "total_api_calls": 24
+  },
+  "files": [
+    {
+      "filename": "dev-server-20250723-002649.log",
+      "total_lines": 45,
+      "errors": [],
+      "warnings": [],
+      "apiCalls": [
+        {
+          "line": 15,
+          "content": "[2025-07-22T16:29:52.174Z] [rqk1tk3m2] GET http://localhost:3000/api/health/storage { userAgent: 'curl/8.7.1', referer: null, clientIP: '::1' }",
+          "method": "GET",
+          "path": "/api/health/storage"
+        },
+        {
+          "line": 17,
+          "content": "○ Compiling /api/health/storage ...",
+          "method": "unknown",
+          "path": "/api/health/storage"
+        },
+        {
+          "line": 18,
+          "content": "✓ Compiled /api/health/storage in 2.5s (342 modules)",
+          "method": "unknown",
+          "path": "/api/health/storage"
+        },
+        {
+          "line": 20,
+          "content": "GET /api/health/storage 200 in 2725ms",
+          "method": "GET",
+          "path": "/api/health/storage"
+        },
+        {
+          "line": 21,
+          "content": "[2025-07-22T16:30:26.321Z] [55jqh0o6l] GET http://localhost:3000/api/config/ai-services { userAgent: 'curl/8.7.1', referer: null, clientIP: '::1' }",
+          "method": "GET",
+          "path": "/api/config/ai-services"
+        },
+        {
+          "line": 23,
+          "content": "○ Compiling /api/config/ai-services ...",
+          "method": "unknown",
+          "path": "/api/config/ai-services"
+        },
+        {
+          "line": 24,
+          "content": "✓ Compiled /api/config/ai-services in 904ms (345 modules)",
+          "method": "unknown",
+          "path": "/api/config/ai-services"
+        },
+        {
+          "line": 28,
+          "content": "GET /api/config/ai-services 200 in 1026ms",
+          "method": "GET",
+          "path": "/api/config/ai-services"
+        },
+        {
+          "line": 29,
+          "content": "[2025-07-22T16:33:59.619Z] [ys06b4cig] GET http://localhost:3000/api/health/storage { userAgent: null, referer: null, clientIP: '::1' }",
+          "method": "GET",
+          "path": "/api/health/storage"
+        },
+        {
+          "line": 32,
+          "content": "GET /api/health/storage 200 in 35ms",
+          "method": "GET",
+          "path": "/api/health/storage"
+        },
+        {
+          "line": 33,
+          "content": "[2025-07-22T16:33:59.678Z] [huh7nw5al] GET http://localhost:3000/api/config/ai-services { userAgent: null, referer: null, clientIP: '::1' }",
+          "method": "GET",
+          "path": "/api/config/ai-services"
+        },
+        {
+          "line": 36,
+          "content": "GET /api/config/ai-services 200 in 17ms",
+          "method": "GET",
+          "path": "/api/config/ai-services"
+        },
+        {
+          "line": 37,
+          "content": "[2025-07-22T16:43:04.719Z] [c6aj1eg28] GET http://localhost:3000/api/health/storage { userAgent: null, referer: null, clientIP: '::1' }",
+          "method": "GET",
+          "path": "/api/health/storage"
+        },
+        {
+          "line": 40,
+          "content": "GET /api/health/storage 200 in 24ms",
+          "method": "GET",
+          "path": "/api/health/storage"
+        },
+        {
+          "line": 41,
+          "content": "[2025-07-22T16:43:04.771Z] [nfu8kr0nd] GET http://localhost:3000/api/config/ai-services { userAgent: null, referer: null, clientIP: '::1' }",
+          "method": "GET",
+          "path": "/api/config/ai-services"
+        },
+        {
+          "line": 44,
+          "content": "GET /api/config/ai-services 200 in 22ms",
+          "method": "GET",
+          "path": "/api/config/ai-services"
+        }
+      ],
+      "performance": [
+        {
+          "line": 12,
+          "content": "✓ Ready in 3.2s",
+          "duration": "unknown"
+        },
+        {
+          "line": 14,
+          "content": "✓ Compiled /middleware in 615ms (98 modules)",
+          "duration": "615ms"
+        },
+        {
+          "line": 16,
+          "content": "[2025-07-22T16:29:52.177Z] [rqk1tk3m2] 请求处理开始完成 { duration: '3ms', status: 200 }",
+          "duration": "3ms"
+        },
+        {
+          "line": 18,
+          "content": "✓ Compiled /api/health/storage in 2.5s (342 modules)",
+          "duration": "unknown"
+        },
+        {
+          "line": 20,
+          "content": "GET /api/health/storage 200 in 2725ms",
+          "duration": "2725ms"
+        },
+        {
+          "line": 22,
+          "content": "[2025-07-22T16:30:26.324Z] [55jqh0o6l] 请求处理开始完成 { duration: '3ms', status: 200 }",
+          "duration": "3ms"
+        },
+        {
+          "line": 24,
+          "content": "✓ Compiled /api/config/ai-services in 904ms (345 modules)",
+          "duration": "904ms"
+        },
+        {
+          "line": 28,
+          "content": "GET /api/config/ai-services 200 in 1026ms",
+          "duration": "1026ms"
+        },
+        {
+          "line": 30,
+          "content": "[2025-07-22T16:33:59.621Z] [ys06b4cig] 请求处理开始完成 { duration: '2ms', status: 200 }",
+          "duration": "2ms"
+        },
+        {
+          "line": 32,
+          "content": "GET /api/health/storage 200 in 35ms",
+          "duration": "35ms"
+        },
+        {
+          "line": 34,
+          "content": "[2025-07-22T16:33:59.679Z] [huh7nw5al] 请求处理开始完成 { duration: '1ms', status: 200 }",
+          "duration": "1ms"
+        },
+        {
+          "line": 36,
+          "content": "GET /api/config/ai-services 200 in 17ms",
+          "duration": "17ms"
+        },
+        {
+          "line": 38,
+          "content": "[2025-07-22T16:43:04.721Z] [c6aj1eg28] 请求处理开始完成 { duration: '2ms', status: 200 }",
+          "duration": "2ms"
+        },
+        {
+          "line": 40,
+          "content": "GET /api/health/storage 200 in 24ms",
+          "duration": "24ms"
+        },
+        {
+          "line": 42,
+          "content": "[2025-07-22T16:43:04.771Z] [nfu8kr0nd] 请求处理开始完成 { duration: '0ms', status: 200 }",
+          "duration": "0ms"
+        },
+        {
+          "line": 44,
+          "content": "GET /api/config/ai-services 200 in 22ms",
+          "duration": "22ms"
+        }
+      ],
+      "compilations": [
+        {
+          "line": 9,
+          "content": "· webpackBuildWorker"
+        },
+        {
+          "line": 13,
+          "content": "○ Compiling /middleware ..."
+        },
+        {
+          "line": 14,
+          "content": "✓ Compiled /middleware in 615ms (98 modules)"
+        },
+        {
+          "line": 17,
+          "content": "○ Compiling /api/health/storage ..."
+        },
+        {
+          "line": 18,
+          "content": "✓ Compiled /api/health/storage in 2.5s (342 modules)"
+        },
+        {
+          "line": 23,
+          "content": "○ Compiling /api/config/ai-services ..."
+        },
+        {
+          "line": 24,
+          "content": "✓ Compiled /api/config/ai-services in 904ms (345 modules)"
+        }
+      ],
+      "serverEvents": [
+        {
+          "line": 6,
+          "content": "- Local:        http://localhost:3000"
+        },
+        {
+          "line": 7,
+          "content": "- Network:      http://192.168.1.198:3000"
+        },
+        {
+          "line": 11,
+          "content": "✓ Starting..."
+        },
+        {
+          "line": 12,
+          "content": "✓ Ready in 3.2s"
+        }
+      ],
+      "timestamps": [
+        "2025-07-22T16:29:52.174Z",
+        "2025-07-22T16:29:52.177Z",
+        "req_mder2yq4_55lsu6",
+        "2025-07-22T16:30:26.321Z",
+        "2025-07-22T16:30:26.324Z",
+        "req_mder3nrr_k6u2zv",
+        "2025-07-22T16:33:59.619Z",
+        "2025-07-22T16:33:59.621Z",
+        "req_mder87kt_jcxh6y",
+        "2025-07-22T16:33:59.678Z",
+        "2025-07-22T16:33:59.679Z",
+        "req_mder87m5_m8ivo1",
+        "2025-07-22T16:43:04.719Z",
+        "2025-07-22T16:43:04.721Z",
+        "req_mderjw6e_cbl4uq",
+        "2025-07-22T16:43:04.771Z",
+        "2025-07-22T16:43:04.771Z",
+        "req_mderjw7u_mf11bo"
+      ]
+    },
+    {
+      "filename": "dev-server-20250723-000810.log",
+      "total_lines": 71,
+      "errors": [
+        {
+          "line": 68,
+          "content": "✓ Compiled /_error in 1232ms (491 modules)",
+          "type": "error"
+        }
+      ],
+      "warnings": [
+        {
+          "line": 5,
+          "content": "⚠ Port 3000 is in use, trying 3001 instead.",
+          "type": "warning"
+        }
+      ],
+      "apiCalls": [
+        {
+          "line": 16,
+          "content": "[2025-07-22T16:21:33.994Z] [3so8ol046] GET http://localhost:3001/api/health { userAgent: 'curl/8.7.1', referer: null, clientIP: '::1' }",
+          "method": "GET",
+          "path": "/api/health"
+        },
+        {
+          "line": 20,
+          "content": "GET /api/health 404 in 6330ms",
+          "method": "GET",
+          "path": "/api/health"
+        },
+        {
+          "line": 22,
+          "content": "[2025-07-22T16:23:59.473Z] [ru1c365uy] GET http://localhost:3001/api/health/storage { userAgent: 'curl/8.7.1', referer: null, clientIP: '::1' }",
+          "method": "GET",
+          "path": "/api/health/storage"
+        },
+        {
+          "line": 24,
+          "content": "○ Compiling /api/health/storage ...",
+          "method": "unknown",
+          "path": "/api/health/storage"
+        },
+        {
+          "line": 38,
+          "content": "./app/api/health/storage/route.ts",
+          "method": "unknown",
+          "path": "/api/health/storage/route.ts"
+        },
+        {
+          "line": 52,
+          "content": "./app/api/health/storage/route.ts",
+          "method": "unknown",
+          "path": "/api/health/storage/route.ts"
+        },
+        {
+          "line": 66,
+          "content": "./app/api/health/storage/route.ts",
+          "method": "unknown",
+          "path": "/api/health/storage/route.ts"
+        },
+        {
+          "line": 67,
+          "content": "GET /api/health/storage 500 in 4167ms",
+          "method": "GET",
+          "path": "/api/health/storage"
+        }
+      ],
+      "performance": [
+        {
+          "line": 13,
+          "content": "✓ Ready in 3.5s",
+          "duration": "unknown"
+        },
+        {
+          "line": 15,
+          "content": "✓ Compiled /middleware in 550ms (98 modules)",
+          "duration": "550ms"
+        },
+        {
+          "line": 17,
+          "content": "[2025-07-22T16:21:33.998Z] [3so8ol046] 请求处理开始完成 { duration: '4ms', status: 200 }",
+          "duration": "4ms"
+        },
+        {
+          "line": 19,
+          "content": "✓ Compiled /_not-found in 5.9s (590 modules)",
+          "duration": "unknown"
+        },
+        {
+          "line": 20,
+          "content": "GET /api/health 404 in 6330ms",
+          "duration": "6330ms"
+        },
+        {
+          "line": 21,
+          "content": "✓ Compiled in 722ms (297 modules)",
+          "duration": "722ms"
+        },
+        {
+          "line": 23,
+          "content": "[2025-07-22T16:23:59.476Z] [ru1c365uy] 请求处理开始完成 { duration: '3ms', status: 200 }",
+          "duration": "3ms"
+        },
+        {
+          "line": 67,
+          "content": "GET /api/health/storage 500 in 4167ms",
+          "duration": "4167ms"
+        },
+        {
+          "line": 68,
+          "content": "✓ Compiled /_error in 1232ms (491 modules)",
+          "duration": "1232ms"
+        },
+        {
+          "line": 69,
+          "content": "✓ Compiled in 475ms (491 modules)",
+          "duration": "475ms"
+        }
+      ],
+      "compilations": [
+        {
+          "line": 10,
+          "content": "· webpackBuildWorker"
+        },
+        {
+          "line": 14,
+          "content": "○ Compiling /middleware ..."
+        },
+        {
+          "line": 15,
+          "content": "✓ Compiled /middleware in 550ms (98 modules)"
+        },
+        {
+          "line": 18,
+          "content": "○ Compiling /_not-found ..."
+        },
+        {
+          "line": 19,
+          "content": "✓ Compiled /_not-found in 5.9s (590 modules)"
+        },
+        {
+          "line": 21,
+          "content": "✓ Compiled in 722ms (297 modules)"
+        },
+        {
+          "line": 24,
+          "content": "○ Compiling /api/health/storage ..."
+        },
+        {
+          "line": 68,
+          "content": "✓ Compiled /_error in 1232ms (491 modules)"
+        },
+        {
+          "line": 69,
+          "content": "✓ Compiled in 475ms (491 modules)"
+        }
+      ],
+      "serverEvents": [
+        {
+          "line": 5,
+          "content": "⚠ Port 3000 is in use, trying 3001 instead."
+        },
+        {
+          "line": 7,
+          "content": "- Local:        http://localhost:3001"
+        },
+        {
+          "line": 8,
+          "content": "- Network:      http://192.168.1.198:3001"
+        },
+        {
+          "line": 12,
+          "content": "✓ Starting..."
+        },
+        {
+          "line": 13,
+          "content": "✓ Ready in 3.5s"
+        },
+        {
+          "line": 29,
+          "content": "> 6 | import { kv } from '@vercel/kv';"
+        },
+        {
+          "line": 37,
+          "content": "Import trace for requested module:"
+        },
+        {
+          "line": 43,
+          "content": "> 6 | import { kv } from '@vercel/kv';"
+        },
+        {
+          "line": 51,
+          "content": "Import trace for requested module:"
+        },
+        {
+          "line": 57,
+          "content": "> 6 | import { kv } from '@vercel/kv';"
+        },
+        {
+          "line": 65,
+          "content": "Import trace for requested module:"
+        }
+      ],
+      "timestamps": [
+        "2025-07-22T16:21:33.994Z",
+        "2025-07-22T16:21:33.998Z",
+        "2025-07-22T16:23:59.473Z",
+        "2025-07-22T16:23:59.476Z",
+        "",
+        "",
+        ""
+      ]
+    }
+  ]
+}

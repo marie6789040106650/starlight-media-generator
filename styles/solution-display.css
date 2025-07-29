@@ -1,0 +1,262 @@
+/**
+ * 方案展示页面的Markdown样式
+ * 确保网页展示效果和导出效果一致
+ */
+
+.solution-display-container {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.solution-content {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.solution-markdown-content {
+  line-height: 1.7;
+  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Microsoft YaHei', sans-serif;
+}
+
+/* 标题样式 */
+.solution-markdown-content h1,
+.solution-markdown-content h2,
+.solution-markdown-content h3,
+.solution-markdown-content h4,
+.solution-markdown-content h5,
+.solution-markdown-content h6 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #1a202c;
+}
+
+.solution-markdown-content h1:first-child,
+.solution-markdown-content h2:first-child,
+.solution-markdown-content h3:first-child {
+  margin-top: 0;
+}
+
+.solution-markdown-content h1 { 
+  font-size: 2rem; 
+  border-bottom: 2px solid #e2e8f0; 
+  padding-bottom: 0.5rem; 
+}
+
+.solution-markdown-content h2 { 
+  font-size: 1.5rem; 
+  border-bottom: 1px solid #e2e8f0; 
+  padding-bottom: 0.3rem; 
+}
+
+.solution-markdown-content h3 { 
+  font-size: 1.25rem; 
+}
+
+.solution-markdown-content h4 { 
+  font-size: 1.1rem; 
+}
+
+.solution-markdown-content h5 { 
+  font-size: 1rem; 
+}
+
+.solution-markdown-content h6 { 
+  font-size: 0.9rem; 
+  color: #718096; 
+}
+
+/* 段落样式 */
+.solution-markdown-content p {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+/* 列表样式 */
+.solution-markdown-content ul,
+.solution-markdown-content ol {
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+}
+
+.solution-markdown-content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.solution-markdown-content ul ul,
+.solution-markdown-content ol ol,
+.solution-markdown-content ul ol,
+.solution-markdown-content ol ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* 引用样式 */
+.solution-markdown-content blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid #3182ce;
+  background-color: #f7fafc;
+  color: #4a5568;
+  border-radius: 0 6px 6px 0;
+}
+
+.solution-markdown-content blockquote p {
+  margin-bottom: 0.5rem;
+}
+
+.solution-markdown-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* 代码样式 */
+.solution-markdown-content pre {
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  padding: 1.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border: 1px solid #e9ecef;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, 'Courier New', monospace;
+}
+
+.solution-markdown-content code {
+  background-color: #f1f3f4;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, 'Courier New', monospace;
+  font-size: 0.9em;
+  color: #d63384;
+}
+
+.solution-markdown-content pre code {
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
+  font-size: 0.9rem;
+}
+
+/* 表格样式 */
+.solution-markdown-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.solution-markdown-content th,
+.solution-markdown-content td {
+  border: 1px solid #dee2e6;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.solution-markdown-content th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #495057;
+}
+
+.solution-markdown-content tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.solution-markdown-content tr:hover {
+  background-color: #e9ecef;
+}
+
+/* 链接样式 */
+.solution-markdown-content a {
+  color: #3182ce;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.solution-markdown-content a:hover {
+  color: #2c5282;
+  border-bottom-color: #3182ce;
+}
+
+/* 图片样式 */
+.solution-markdown-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 1rem 0;
+}
+
+/* 水平分隔线 */
+.solution-markdown-content hr {
+  border: none;
+  border-top: 2px solid #e2e8f0;
+  margin: 2rem 0;
+}
+
+/* 文本格式化 */
+.solution-markdown-content strong {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.solution-markdown-content em {
+  font-style: italic;
+  color: #4a5568;
+}
+
+.solution-markdown-content del {
+  color: #718096;
+  text-decoration: line-through;
+}
+
+/* 任务列表 */
+.solution-markdown-content input[type="checkbox"] {
+  margin-right: 0.5rem;
+  margin-top: 0.1rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .solution-content {
+    padding: 1rem;
+  }
+  
+  .solution-markdown-content {
+    font-size: 0.9rem;
+  }
+  
+  .solution-markdown-content h1 {
+    font-size: 1.75rem;
+  }
+  
+  .solution-markdown-content h2 {
+    font-size: 1.4rem;
+  }
+  
+  .solution-markdown-content h3 {
+    font-size: 1.2rem;
+  }
+  
+  .solution-markdown-content pre {
+    padding: 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .solution-markdown-content table {
+    font-size: 0.85rem;
+  }
+  
+  .solution-markdown-content th,
+  .solution-markdown-content td {
+    padding: 0.5rem 0.75rem;
+  }
+}

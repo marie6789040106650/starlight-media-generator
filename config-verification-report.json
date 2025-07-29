@@ -1,0 +1,14 @@
+{
+  "timestamp": "2025-07-22T06:30:31.821Z",
+  "environment": "development",
+  "checks": {
+    "environmentVariables": false,
+    "envFiles": true,
+    "modelConfiguration": true,
+    "apiEndpoints": true
+  },
+  "recommendations": [
+    "配置必需的API密钥环境变量",
+    "设置有效的 SILICONFLOW_API_KEY"
+  ]
+}

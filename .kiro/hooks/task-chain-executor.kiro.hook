@@ -1,0 +1,23 @@
+{
+  "name": "Task Chain Executor",
+  "description": "自动执行任务链，当前任务完成或失败后继续下一个任务",
+  "trigger": {
+    "type": "manual",
+    "label": "继续执行任务链"
+  },
+  "context": {
+    "includeFiles": [
+      ".kiro/specs/streaming-response/tasks.md"
+    ]
+  },
+  "instructions": [
+    "1. 检查当前 Spec 任务的执行状态",
+    "2. 识别下一个未完成的任务",
+    "3. 如果当前任务失败，分析失败原因并尝试修复",
+    "4. 自动开始执行下一个任务",
+    "5. 在任务之间提供状态更新和进度报告",
+    "6. 如果遇到错误，记录详细信息并继续下一个任务",
+    "7. 遵循项目的开发规则和模块化原则"
+  ],
+  "autoApprove": false
+}

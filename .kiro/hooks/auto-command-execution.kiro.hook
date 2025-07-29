@@ -1,0 +1,81 @@
+{
+  "name": "Auto Command Execution",
+  "description": "根据自动化规则自动执行命令，减少人工干预",
+  "trigger": {
+    "type": "onCommand",
+    "conditions": [
+      "command_execution_required",
+      "dev_server_start",
+      "dependency_install",
+      "build_process"
+    ]
+  },
+  "context": {
+    "includeFiles": [
+      "package.json",
+      ".kiro/steering/automation-rules.md",
+      "dev.log"
+    ]
+  },
+  "instructions": [
+    "1. 根据自动化规则判断命令优先级：",
+    "   - 高优先级命令（pnpm install, pnpm dev, pnpm build, git status等）：自动执行",
+    "   - 中优先级命令（pkill, rm -rf node_modules等）：自动确认后执行",
+    "   - 低优先级命令：需要用户明确授权",
+    "",
+    "2. 开发服务器智能管理：",
+    "   - 启动前自动检查现有进程：ps aux | grep 'next dev'",
+    "   - 发现冲突时自动关闭：pkill -f 'next dev' || true",
+    "   - 等待进程关闭：sleep 2",
+    "   - 重新启动：pnpm dev",
+    "   - 验证启动状态：检查端口3000占用情况",
+    "",
+    "3. 自动后续步骤执行：",
+    "   - 安装依赖后自动运行类型检查",
+    "   - 构建后自动验证输出目录",
+    "   - 启动服务器后自动检查健康状态",
+    "",
+    "4. 错误处理和恢复：",
+    "   - 网络错误：自动重试3次",
+    "   - 端口占用：自动清理并重启",
+    "   - 依赖问题：自动重新安装",
+    "",
+    "5. 执行日志记录：",
+    "   - 记录所有自动执行的命令",
+    "   - 记录执行结果和耗时",
+    "   - 记录错误和恢复过程"
+  ],
+  "autoApprove": true,
+  "commandRules": {
+    "highPriority": [
+      "pnpm install",
+      "npm install", 
+      "pnpm dev",
+      "npm run dev",
+      "pnpm build",
+      "npm run build",
+      "pnpm test",
+      "npm test",
+      "git status",
+      "git diff",
+      "ls",
+      "cat"
+    ],
+    "mediumPriority": [
+      "pkill -f \"next dev\"",
+      "rm -rf node_modules",
+      "git add .",
+      "git commit"
+    ],
+    "autoRetry": {
+      "maxAttempts": 3,
+      "retryDelay": [2, 5, 10],
+      "retryableCommands": [
+        "pnpm install",
+        "npm install",
+        "pnpm dev",
+        "git"
+      ]
+    }
+  }
+}

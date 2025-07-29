@@ -1,0 +1,179 @@
+{
+  "document": {
+    "page": {
+      "size": "A4",
+      "orientation": "portrait",
+      "margins": {
+        "top": 2.54,
+        "bottom": 2.54,
+        "left": 3.17,
+        "right": 3.17
+      }
+    },
+    "fonts": {
+      "title": {
+        "name": "Source Han Serif SC",
+        "fallback": "Microsoft YaHei",
+        "size": 18,
+        "bold": true,
+        "color": "#000000"
+      },
+      "subtitle": {
+        "name": "Source Han Sans SC",
+        "fallback": "Microsoft YaHei",
+        "size": 12,
+        "bold": false,
+        "italic": true,
+        "color": "#000000"
+      },
+      "heading1": {
+        "name": "Source Han Serif SC",
+        "fallback": "Microsoft YaHei",
+        "size": 16,
+        "bold": true,
+        "color": "#000000"
+      },
+      "heading2": {
+        "name": "Source Han Serif SC",
+        "fallback": "Microsoft YaHei",
+        "size": 14,
+        "bold": true,
+        "color": "#000000"
+      },
+      "heading3": {
+        "name": "Source Han Sans SC",
+        "fallback": "Microsoft YaHei",
+        "size": 12,
+        "bold": true,
+        "color": "#000000"
+      },
+      "body": {
+        "name": "Source Han Sans SC",
+        "fallback": "Microsoft YaHei",
+        "size": 11,
+        "bold": false,
+        "color": "#000000"
+      },
+      "emphasis": {
+        "name": "Source Han Sans SC",
+        "fallback": "Microsoft YaHei",
+        "size": 11,
+        "bold": true,
+        "color": "#000000"
+      },
+      "footer": {
+        "name": "Source Han Sans SC",
+        "fallback": "Microsoft YaHei",
+        "size": 10,
+        "bold": false,
+        "italic": true,
+        "color": "#000000"
+      },
+      "caption": {
+        "name": "Source Han Sans SC",
+        "fallback": "Microsoft YaHei",
+        "size": 10,
+        "bold": false,
+        "color": "#000000"
+      }
+    },
+    "spacing": {
+      "lineHeight": 1.5,
+      "titleSpacing": {
+        "before": 12,
+        "after": 6
+      },
+      "heading1Spacing": {
+        "before": 12,
+        "after": 6
+      },
+      "heading2Spacing": {
+        "before": 6,
+        "after": 4
+      },
+      "heading3Spacing": {
+        "before": 3,
+        "after": 3
+      },
+      "paragraphSpacing": {
+        "before": 0,
+        "after": 6
+      },
+      "captionSpacing": {
+        "before": 3,
+        "after": 6
+      }
+    },
+    "indentation": {
+      "firstLine": 0.74
+    },
+    "alignment": {
+      "title": "center",
+      "subtitle": "center",
+      "heading1": "left",
+      "heading2": "left",
+      "heading3": "left",
+      "body": "left",
+      "caption": "center",
+      "footer": "center"
+    }
+  },
+  "watermark": {
+    "enabled": true,
+    "type": "text",
+    "text": {
+      "content": "星光传媒 AI 生成",
+      "font": {
+        "name": "Source Han Sans SC",
+        "fallback": "Microsoft YaHei",
+        "size": 36,
+        "color": "#E5E7EB",
+        "bold": false
+      },
+      "position": {
+        "rotation": -45,
+        "opacity": 0.3,
+        "layout": "diagonal"
+      }
+    },
+    "image": {
+      "enabled": false,
+      "url": "/watermarks/logo.png",
+      "width": 200,
+      "height": 100,
+      "opacity": 0.2,
+      "position": {
+        "x": "center",
+        "y": "center"
+      }
+    }
+  },
+  "pageElements": {
+    "header": {
+      "enabled": true,
+      "content": "{storeName} IP打造方案",
+      "font": {
+        "name": "Source Han Sans SC",
+        "size": 10,
+        "bold": false
+      }
+    },
+    "footer": {
+      "enabled": true,
+      "includePageNumber": true,
+      "font": {
+        "name": "Source Han Sans SC",
+        "size": 10,
+        "bold": false
+      }
+    }
+  },
+  "templates": {
+    "default": {
+      "titleFormat": "《{storeName}》抖音老板IP打造方案",
+      "subtitle": "由星光传媒专业团队为您量身定制",
+      "footer": "本方案由星光传媒AI智能生成 | 专注于服务本地实体商家的IP内容机构",
+      "date": "撰写日期：{date}"
+    }
+  }
+}

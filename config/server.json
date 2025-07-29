@@ -1,0 +1,21 @@
+{
+  "development": {
+    "port": 3000,
+    "host": "localhost",
+    "autoOpenBrowser": true,
+    "fallbackPorts": [3001, 3002, 3003, 3004, 3005]
+  },
+  "production": {
+    "port": 8080,
+    "host": "0.0.0.0"
+  },
+  "portConflictStrategy": {
+    "action": "prompt",
+    "options": ["kill", "fallback", "manual"]
+  },
+  "healthCheck": {
+    "enabled": true,
+    "endpoint": "/api/health",
+    "timeout": 5000
+  }
+}

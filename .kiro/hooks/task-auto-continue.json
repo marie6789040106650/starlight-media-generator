@@ -1,0 +1,99 @@
+{
+  "name": "任务自动继续执行",
+  "description": "当任务执行遇到错误时自动重试和恢复，避免人工介入",
+  "trigger": {
+    "events": ["task_error", "execution_failed", "unexpected_error"],
+    "conditions": [
+      "error.message.includes('An unexpected error occurred')",
+      "error.message.includes('Tool execution failed')",
+      "error.message.includes('Error(s) while')"
+    ]
+  },
+  "actions": [
+    {
+      "type": "auto_retry",
+      "config": {
+        "maxRetries": 3,
+        "retryDelay": 2000,
+        "backoffMultiplier": 1.5
+      }
+    },
+    {
+      "type": "auto_fix",
+      "config": {
+        "fixStrategies": [
+          "create_missing_files",
+          "fix_permissions",
+          "create_directories",
+          "restart_services"
+        ]
+      }
+    },
+    {
+      "type": "continue_next_task",
+      "config": {
+        "skipFailedTask": true,
+        "logFailure": true,
+        "notifyUser": false
+      }
+    }
+  ],
+  "settings": {
+    "enabled": true,
+    "logLevel": "INFO",
+    "logFile": ".kiro/logs/auto-recovery.log",
+    "stateFile": ".kiro/state/task-state.json"
+  },
+  "errorPatterns": [
+    {
+      "pattern": "An unexpected error occurred",
+      "action": "retry_with_delay",
+      "maxRetries": 3
+    },
+    {
+      "pattern": "Tool execution failed",
+      "action": "retry_immediately",
+      "maxRetries": 2
+    },
+    {
+      "pattern": "Error(s) while creating",
+      "action": "create_missing_resources",
+      "maxRetries": 1
+    },
+    {
+      "pattern": "Error(s) while reading",
+      "action": "check_file_permissions",
+      "maxRetries": 2
+    },
+    {
+      "pattern": "ENOENT",
+      "action": "create_missing_file",
+      "maxRetries": 1
+    },
+    {
+      "pattern": "EACCES",
+      "action": "fix_permissions",
+      "maxRetries": 1
+    }
+  ],
+  "recoveryStrategies": {
+    "file_operations": {
+      "create_missing_directories": true,
+      "create_empty_files": true,
+      "fix_file_permissions": true,
+      "backup_before_fix": false
+    },
+    "task_execution": {
+      "skip_failed_tasks": true,
+      "continue_with_next": true,
+      "mark_as_partial_success": true,
+      "save_progress": true
+    },
+    "error_handling": {
+      "log_all_errors": true,
+      "categorize_errors": true,
+      "suggest_manual_fixes": true,
+      "auto_report_bugs": false
+    }
+  }
+}
